@@ -1,0 +1,30 @@
+#!/bin/bash 
+
+function BUILD {
+    echo $@ | pdflatex main.tex
+}
+TARGET=main.pdf
+
+if [ "$1" == "all" ] || ! [ -f $TARGET ]; then
+    BUILD all
+elif [ "$1" == "clean" ]; then
+    cmd="rm -f *log *aux *toc *lot *lof main.pdf"
+    echo $cmd
+    $cmd
+else
+    TARGETMODIFIED=$(stat -c %Z $TARGET)
+    TOBUILD=""
+    for TEX in $(ls *tex | grep -v main.tex); do
+        MODIFIED=$(stat -c %Z $TEX)
+        if [[ $MODIFIED > $TARGETMODIFIED ]]; then
+	    TOBUILD=${TOBUILD}$(echo ${TEX} | sed 's?.tex$??')","
+        fi
+    done
+    TOBUILD=$(echo $TOBUILD | sed 's?,$??')
+    if [ "$TOBUILD" == "" ]; then
+        echo "Nothing to build!"
+        exit 0;
+    fi 
+    echo "Building: "$TOBUILD
+    echo $TOBUILD | pdflatex main.tex
+fi
