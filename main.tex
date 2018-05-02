@@ -33,6 +33,13 @@
 \usepackage[T1]{fontenc}
 \pagestyle{plain}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand{\ptmiss}{\ensuremath{p_\mathrm{T}^\mathrm{miss}}}
+\newcommand{\monotop}{\ensuremath{t+\ptmiss}}
+\newcommand{\monohiggs}{\ensuremath{H+\ptmiss}}
+
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.
 %% Krishna Sethuraman (1990).
@@ -51,10 +58,16 @@ process all files:}
 % \include{signature}
 \pagestyle{plain}
 \include{contents}
-\include{chap1}
+\include{intro}
+\include{cms}
+\include{jets}
+\include{monotop}
+\include{monohiggs}
+\include{vbf}
+\include{deep}
 \appendix
-\include{appa}
-\include{appb}
+%\include{appa}
+%\include{appb}
 \include{biblio}
 \end{document}
 

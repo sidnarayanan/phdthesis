@@ -2,15 +2,18 @@
 
 function BUILD {
     echo $@ | pdflatex main.tex
+    echo $@ | pdflatex main.tex # do it twice to force toc recompilation
 }
 TARGET=main.pdf
 
-if [ "$1" == "all" ] || ! [ -f $TARGET ]; then
-    BUILD all
-elif [ "$1" == "clean" ]; then
+if [ "$1" == "clean" ]; then
     cmd="rm -f *log *aux *toc *lot *lof main.pdf"
     echo $cmd
     $cmd
+elif ! [ -f $TARGET ]; then
+    BUILD all
+elif ! [ "$1" == "" ]; then
+    BUILD $1
 else
     TARGETMODIFIED=$(stat -c %Z $TARGET)
     TOBUILD=""
