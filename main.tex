@@ -33,12 +33,21 @@
 \usepackage[T1]{fontenc}
 \pagestyle{plain}
 
+\usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amssymb}
 
 \newcommand{\ptmiss}{\ensuremath{p_\mathrm{T}^\mathrm{miss}}}
 \newcommand{\monotop}{\ensuremath{t+\ptmiss}}
 \newcommand{\monohiggs}{\ensuremath{H+\ptmiss}}
+\newcommand{\fig}[3]{
+    \begin{figure}\begin{center}
+        #1
+        \caption{#2}
+        \label{fig:#2}
+    \end{center}\end{figure}
+}
 
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.

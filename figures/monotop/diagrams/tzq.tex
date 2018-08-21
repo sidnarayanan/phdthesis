@@ -1,0 +1,46 @@
+% template.tex -- trivial FeynMF example
+% $Id: template.tex,v 1.1 1996/12/02 01:38:45 ohl Exp $
+% To typeset, either use the feynmf script
+%   $ feynmf template
+% or run Metafont manually
+%   $ latex template
+%   $ mf '\mode:=localfont; input fmftempl'
+%   $ latex template
+
+\documentclass{beamer}
+\usepackage{feynmp}%%%{feynmp}
+\usepackage{amsmath}
+\usefonttheme[onlymath]{serif}
+\unitlength=1mm
+\setbeamertemplate{navigation symbols}{}
+\definecolor{histbackground}{RGB}{255,255,255}
+\setbeamercolor{background canvas}{bg=histbackground}
+\setlength{\paperwidth}{9cm}
+\setlength{\paperheight}{5.4cm}
+\setlength{\textwidth}{9cm}
+\setlength{\textheight}{5.4cm}
+\begin{document}
+\Large
+\begin{frame}{ }
+\vspace{2mm}
+\begin{fmffile}{mjb}
+  \begin{fmfchar*}(70,40)
+  \fmfstraight
+    \fmfleft{i2,i1}  \fmflabel{${u}$}{i1} \fmflabel{${g}$}{i2}
+    \fmfright{o5,o4,o3,o2,o1}  \fmflabel{${d}$}{o1} \fmflabel{$\nu$}{o2} \fmflabel{$\bar\nu$}{o3} \fmflabel{${t}$}{o4} \fmflabel{$\bar{{b}}$}{o5}
+    \fmf{fermion,tension=4.5}{i1,v1} \fmf{fermion}{v1,o1}
+    \fmf{photon,label=${W}$,tension=3}{v1,v2}
+    \fmf{curly,tension=4.5}{i2,v3}
+    \fmf{fermion}{o5,v3}
+    \fmf{fermion,label=${b}$,tension=3}{v3,v2}
+    \fmf{fermion,tension=3, label=$t$}{v2,v4}
+    \fmf{fermion}{v4,o4}
+    \fmf{photon,label=${Z}$}{v4,v6}
+    \fmf{fermion}{v6,o2}
+    \fmf{fermion}{o3,v6}
+\end{fmfchar*}
+\end{fmffile}
+
+\end{frame}
+\end{document}
+
