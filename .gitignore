@@ -3,4 +3,13 @@
 *toc
 *lot
 *lof
-main.pdf
+*dvi
+*nav
+*out
+*snv
+*.snm
+*.1
+*.mp
+*.t1
+*.swp
+*.sty
