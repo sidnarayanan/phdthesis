@@ -217,7 +217,7 @@ Figure~\ref{fig:mt:zvsz} makes the same argument in a schematic fashion.
             \caption{$Z\rightarrow\mu\mu$}
         \end{subfigure}
         \caption{Schematic representation of two $Z$ decay modes: to neutrinos (as in the SR) and to muons (as in the CRs).
-                 Note that in both cases, $U$ is sensitive to the same effects arising from the measurement of the jet recoiling against the $Z$ boson, whereas $\pt^{\mu\mu}$ is largely invariant of the jet.}
+                 Note that in both cases, $U$ is sensitive to the same effects arising from the measurement of the jet recoiling against the $Z$ boson, whereas $\pt^{\mu\mu}$ is largely independent of the jet.}
         \label{fig:mt:zvsz}
     \end{center}
 \end{figure}
@@ -657,16 +657,83 @@ Having defined (almost all of) the CRs and transfer factors, we can write down a
     \mathcal{L}\left(\bm{d}~|~ \mu,\muz,\muw,\mut,\bm{\theta}\right) = \hspace{-40mm} & \nonumber \\
     \prod_{i\in\mathrm{bins}} & \left[ 
     \pois\left(d^{\mathrm{SR}}_{i} \Big| \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \muwi + \muti + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
-    & \phantom{\Big[} \times \pois\left(d^{\mu\mu}_i~\Big|~ \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)} + B^{\mu\mu}_i(\bm\theta) \right) \nonumber \\  
-    & \phantom{\Big[} \times \pois\left(d^{ee}_i~\Big|~ \frac{\muzi}{\Ti{ee}{Z}(\bm\theta)} + B^{ee}_i(\bm\theta) \right) \nonumber \\ 
-    & \phantom{\Big[} \times \pois\left(d^{b\mu}_i~\Big|~ \frac{\muti}{\Ti{b\mu}{\ttbar}(\bm\theta)} + B^{b\mu}_i(\bm\theta) \right) \nonumber \\ 
-    & \phantom{\Big[} \times \pois\left(d^{be}_i~\Big|~ \frac{\muti}{\Ti{be}{\ttbar}(\bm\theta)} + B^{be}_i(\bm\theta) \right) \nonumber \\  
-    & \phantom{\Big[} \times \pois\left(d^{\mu}_i~\Big|~ \frac{\muwi}{\Ti{\mu}{W}(\bm\theta)} + \frac{\muti}{\Ti{\mu}{\ttbar}(\bm\theta)}+ B^{\mu\mu}_i(\bm\theta) \right)  \nonumber \\
-    & \phantom{\Big[} \left. \times \pois\left(d^{e}_i~\Big|~ \frac{\muwi}{\Ti{e}{W}(\bm\theta)} + \frac{\muti}{\Ti{e}{\ttbar}(\bm\theta)} + B^{ee}_i(\bm\theta) \right) \right]  \times  \prod_{j=0}^{n_\theta} p(\theta_j)
+    & \phantom{\Big[} \times \prod_{X=\mu\mu,ee} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\  
+    & \phantom{\Big[} \times \prod_{X=b\mu,be}\pois\left(d^{X}_i~\Big|~ \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\ 
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left(\left.d^{X}_i~\Big|~ \frac{\muwi}{\Ti{X}{W}(\bm\theta)} + \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \right]  \times  \prod_{j=0}^{n_\theta} p(\theta_j)
 \end{align}
 
 \subsection{Theoretically-limited extrapolations}
 \label{sec:mt:smtheory}
+
+Despite the combination of the $\mu\mu$ and $ee$ regions, there are still large statistical uncertainties in the estimate of $Z\rightarrow\nu\nu$ at high $U$.
+This is apparent in Figure~\ref{fig:mt:prefit_dielectron}, in which exactly one event is observed in the last bin of the tight CR. 
+The dilepton CRs are limited by $\sigma(pp\rightarrow Z\rightarrow\nu\nu) > \sigma(pp\rightarrow Z\rightarrow\ell^+\ell^-)$; accordingly, to alleviate this limitation, we look to a process with a much bigger cross-section.
+In similar regions of final-state phase space, $\sigma(pp\rightarrow\gamma+\mathrm{jets}) \sim 30 \times \sigma(pp\rightarrow Z(\rightarrow\nu\nu)+\mathrm{jets})$. 
+Therefore, it is natural to use the $\gamma$+jet production spectrum as a way to estimate the $Z$+jet spectrum.
+As before, let us define another transfer factor:
+\begin{equation}
+    \Ti{\gamma}{\gamma} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\gamma(\gamma)}
+\end{equation}
+However, unlike the $\T{X}{Y}$ we have discussed so far (which correlate similar processes, e.g. $Z\rightarrow\nu\nu/Z\rightarrow\mu\mu$), $\T{\gamma}{\gamma}$ is highly sensitive to the theoretical predictions of the $Z$ and $\gamma$ spectra.
+
+To reduce the impact of higher-order effects on $\T\gamma\gamma$, we ensure that the numerator and denominator are predicted to as high an order as possible.
+Leading-order MC is used to simulate $V$+jet processes, because higher-order simulations are much more computationally intensive.
+We therefore choose to produce a less accurate LO simulation, as opposed to a more accurate, but statistically-limited, NLO simulation.
+While producing sufficient NLO simulation for the analysis is prohibitive, we can compute certain inclusive distributions at NLO.
+Since $U\approx \pt^V$ is the quantity of interest in this analysis, we want to ensure this distribution is accurately predicted.
+It is clear from Figure~\ref{fig:mt:zlonlo} that adding an additional QCD order induces large corrections, both at low and high $\pt^V$.
+In the LO simulation, we can obtain an estimate of the uncertainty due to NLO effects by varying the renormalization and factorization scales ($\mu_R,\mu_F$) by factors of two.
+This is represented by the red envelope and grey band in Figure~\ref{fig:mt:zlonlo} and clearly is insufficient to cover NLO effects. 
+Therefore, we compute a simple correction for the NLO QCD effects, known as a $k$-factor:
+\begin{equation}
+    k_{Z,\mathrm{QCD}}(\pt^Z) = \frac{d\sigma_\text{NLO QCD}(Z) / d\pt^Z}{d\sigma_\mathrm{LO}(Z) / d\pt^Z}
+\end{equation}
+We include another$k$-factor, $k_\mathrm{EWK}$, to cover NLO EWK effects.
+Unlike $k_\mathrm{QCD}$, $k_\mathrm{EWK}$ is derived using a theoretical calculation~\cite{ewk2,ewk3,ewk1} instead of NLO simulation.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/kfactors/zpt_logy.pdf}
+            \caption{LO vs. NLO (QCD)}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/kfactors/zcorr_ptv.pdf}
+            \caption{$k$-factors}
+        \end{subfigure}
+        \caption{Theoretical predictions for $\pt^Z$ in $Z$+jet events and the corresponding $k$-factors. 
+                 No detector simulation is applied in these figures; all quantities are directly from MC simulation of the physics process.
+                 ``LO QCD uncertainty`` refers to an estimate of the effect of the QCD renormalization and factorization scales on the LO simulation.
+                 The grey band in the ratio is the quadrature sum of the QCD and statistical uncertainties.}
+        \label{fig:mt:zlonlo}
+    \end{center}
+\end{figure}
+
+Figure~\ref{fig:mt:vlonlo} compares the $k$-factors for all three $V$+jet processes.
+While there are similar trends as a function of $\pt^V$, it is clear that the corrections are quite different for each process.
+Therefore, transfer factors like $\T\gamma\gamma$ are strongly sensitive to NLO effects, i.e.:
+\begin{equation}
+    \Ti{\gamma}{\gamma} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\gamma(\gamma)} \neq \frac{N^\mathrm{SR,LO}_i(Z\rightarrow\nu\nu)}{N_i^{\gamma,\mathrm{LO}}(\gamma)}
+\end{equation}
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/kfactors/zcorr_ptv.pdf}
+            \caption{$Z$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/kfactors/wcorr_ptv.pdf}
+            \caption{$W$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/kfactors/acorr_ptv.pdf}
+            \caption{$\gamma$}
+        \end{subfigure}
+        \caption{Differential $k$-factors for each of the $V$+jet processes.}
+        \label{fig:mt:vlonlo}
+    \end{center}
+\end{figure}
 
 \section{Results}
 

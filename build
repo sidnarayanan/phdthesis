@@ -30,4 +30,7 @@ else
     fi 
     echo "Building: "$TOBUILD
     echo $TOBUILD | pdflatex main.tex
+    bibtex main.aux
+    echo $TOBUILD | pdflatex main.tex
+    echo $TOBUILD | pdflatex main.tex
 fi

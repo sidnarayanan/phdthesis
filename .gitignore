@@ -13,3 +13,5 @@
 *.t1
 *.swp
 *.sty
+*.bbl
+*.blg

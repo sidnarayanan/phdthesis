@@ -3,14 +3,16 @@
 	# "\newcommand{\singleletter}[1]{#1} "
 	# "\newcommand{\switchargs}[2]{#2#1} " }
 
-@ARTICLE{article-minimal,
+
+
+@ARTICLE{ARTICLE-minimal,
    author = {L[eslie] A. Aamport},
    title = {The Gnats and Gnus Document Preparation System},
    journal = {\mbox{G-Animal's} Journal},
    year = 1986,
 }
 
-@ARTICLE{article-full,
+@ARTICLE{ARTICLE-full,
    author = {L[eslie] A. Aamport},
    title = {The Gnats and Gnus Document Preparation System},
    journal = {\mbox{G-Animal's} Journal},
@@ -26,7 +28,7 @@ The KEY field is here to override the KEY field in the journal being
 cross referenced (so is the NOTE field, in addition to its imparting
 information).
 
-@ARTICLE{article-crossref,
+@ARTICLE{ARTICLE-crossref,
    crossref = {WHOLE-JOURNAL},
    key = "",
    author = {L[eslie] A. Aamport},
@@ -238,14 +240,14 @@ information).
 
 @STRING{STOC = " Symposium on the Theory of Computing"}
 
-@INPROCEEDINGS{inproceedings-minimal,
+@INPROCEEDINGS{INPROCEEDINGS-minimal,
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
    booktitle = "Proc. Fifteenth Annual ACM" # STOC,
    year = 1983,
 }
 
-@INPROCEEDINGS{inproceedings-full,
+@INPROCEEDINGS{INPROCEEDINGS-full,
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
    editor = "Wizard V. Oz and Mihalis Yannakakis",
@@ -261,7 +263,7 @@ information).
    note = "This is a full INPROCEDINGS entry",
 }
 
-@INPROCEEDINGS{inproceedings-crossref,
+@INPROCEEDINGS{INPROCEEDINGS-crossref,
    crossref = "whole-proceedings",
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -354,3 +356,53 @@ information).
    key = {Volume-2},
    note = "Volume~2 is listed under Knuth \cite{book-full}"
 }
+
+@ARTICLE{ewk1,
+      author         = "Kuhn, Johann H. and Kulesza, A. and Pozzorini, S. and
+                        Schulze, M.",
+      title          = "{Electroweak corrections to hadronic photon production at
+                        large transverse momenta}",
+      journal        = "JHEP",
+      volume         = "03",
+      pages          = "059",
+      year           = "2006",
+      doi            = "10.1088/1126-6708/2006/03/059",
+      eprint         = "hep-ph/0508253",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "TTP05-16, SFB-CPP-05-44",
+      SLACcitation   = "%%CITATION = HEP-PH/0508253;%%",
+}
+@ARTICLE{ewk2,
+      author         = "Kallweit, Stefan and Lindert, Jonas M. and Maierh{\"o}fer,
+                        Philipp and Pozzorini, Stefano and Sch{\"o}nherr, Marek",
+      title          = "{NLO electroweak automation and precise predictions for
+                        W+multijet production at the LHC}",
+      journal        = "JHEP",
+      volume         = "04",
+      year           = "2015",
+      pages          = "012",
+      doi            = "10.1007/JHEP04(2015)012",
+      eprint         = "1412.5157",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "LPN14-127, IPPP-14-107, DCPT-14-214, MCNET-14-26,
+                        ZU-TH-42-14, MITP-14-102, --MITP-14-102",
+      SLACcitation   = "%%CITATION = ARXIV:1412.5157;%%"
+}
+@INPROCEEDINGS{ewk3,
+      author         = "Kallweit, Stefan and Lindert, Jonas M. and Pozzorini,
+                        Stefano and Sch{\"o}nherr, Marek and Maierh{\"o}fer, Philipp",
+      title          = "{NLO QCD+EW automation and precise predictions for
+                        V+multijet production}",
+      booktitle      = "{50th Rencontres de Moriond on QCD and High Energy
+                        Interactions La Thuile, Italy, March 21-28, 2015}",
+      url            = "http://inspirehep.net/record/1372103/files/arXiv:1505.05704.pdf",
+      year           = "2015",
+      eprint         = "1505.05704",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "DCPT-15-56, IPPP-15-28, MITP-15-037, ZU-TH-12-15",
+      SLACcitation   = "%%CITATION = ARXIV:1505.05704;%%"
+}
+
