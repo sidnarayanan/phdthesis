@@ -4,358 +4,24 @@
 	# "\newcommand{\switchargs}[2]{#2#1} " }
 
 
-
-@ARTICLE{ARTICLE-minimal,
-   author = {L[eslie] A. Aamport},
-   title = {The Gnats and Gnus Document Preparation System},
-   journal = {\mbox{G-Animal's} Journal},
-   year = 1986,
+@article{nnpdf,
+      author         = "Ball, Richard D. and Bertone, Valerio and Carrazza, Stefano and Deans, Christopher S. and Del Debbio, Luigi and Forte, Stefano
+                        and Guffanti, Alberto and Hartland, Nathan P. and Latorre, Jos{\'e} I. and Rojo, Juan and Ubiali, Maria",
+      title          = "Parton distributions for the {LHC Run II}",
+      collaboration  = "NNPDF",
+      journal        = "JHEP",
+      volume         = "04",
+      year           = "2015",
+      pages          = "040",
+      doi            = "10.1007/JHEP04(2015)040",
+      eprint         = "1410.8849",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "EDINBURGH-2014-15, IFUM-1034-FT, CERN-PH-TH-2013-253,
+                        OUTP-14-11P, CAVENDISH-HEP-14-11",
+      SLACcitation   = "%%CITATION = ARXIV:1410.8849;%%"
 }
 
-@ARTICLE{ARTICLE-full,
-   author = {L[eslie] A. Aamport},
-   title = {The Gnats and Gnus Document Preparation System},
-   journal = {\mbox{G-Animal's} Journal},
-   year = 1986,
-   volume = 41,
-   number = 7,
-   pages = "73+",
-   month = jul,
-   note = "This is a full ARTICLE entry",
-}
-
-The KEY field is here to override the KEY field in the journal being
-cross referenced (so is the NOTE field, in addition to its imparting
-information).
-
-@ARTICLE{ARTICLE-crossref,
-   crossref = {WHOLE-JOURNAL},
-   key = "",
-   author = {L[eslie] A. Aamport},
-   title = {The Gnats and Gnus Document Preparation System},
-   pages = "73+",
-   note = "This is a cross-referencing ARTICLE entry",
-}
-
-@ARTICLE{whole-journal,
-   key = "GAJ",
-   journal = {\mbox{G-Animal's} Journal},
-   year = 1986,
-   volume = 41,
-   number = 7,
-   month = jul,
-   note = {The entire issue is devoted to gnats and gnus
-		(this entry is a cross-referenced ARTICLE (journal))},
-}
-
-@INBOOK{inbook-minimal,
-   author = "Donald E. Knuth",
-   title = "Fundamental Algorithms",
-   publisher = "Addison-Wesley",
-   year = "{\noopsort{1973b}}1973",
-   chapter = "1.2",
-}
-
-@INBOOK{inbook-full,
-   author = "Donald E. Knuth",
-   title = "Fundamental Algorithms",
-   volume = 1,
-   series = "The Art of Computer Programming",
-   publisher = "Addison-Wesley",
-   address = "Reading, Massachusetts",
-   edition = "Second",
-   month = "10~" # jan,
-   year = "{\noopsort{1973b}}1973",
-   type = "Section",
-   chapter = "1.2",
-   pages = "10--119",
-   note = "This is a full INBOOK entry",
-}
-
-@INBOOK{inbook-crossref,
-   crossref = "whole-set",
-   title = "Fundamental Algorithms",
-   volume = 1,
-   series = "The Art of Computer Programming",
-   edition = "Second",
-   year = "{\noopsort{1973b}}1973",
-   type = "Section",
-   chapter = "1.2",
-   note = "This is a cross-referencing INBOOK entry",
-}
-
-@BOOK{book-minimal,
-   author = "Donald E. Knuth",
-   title = "Seminumerical Algorithms",
-   publisher = "Addison-Wesley",
-   year = "{\noopsort{1973c}}1981",
-}
-
-@BOOK{book-full,
-   author = "Donald E. Knuth",
-   title = "Seminumerical Algorithms",
-   volume = 2,
-   series = "The Art of Computer Programming",
-   publisher = "Addison-Wesley",
-   address = "Reading, Massachusetts",
-   edition = "Second",
-   month = "10~" # jan,
-   year = "{\noopsort{1973c}}1981",
-   note = "This is a full BOOK entry",
-}
-
-@BOOK{book-crossref,
-   crossref = "whole-set",
-   title = "Seminumerical Algorithms",
-   volume = 2,
-   series = "The Art of Computer Programming",
-   edition = "Second",
-   year = "{\noopsort{1973c}}1981",
-   note = "This is a cross-referencing BOOK entry",
-}
-
-@BOOK{whole-set,
-   author = "Donald E. Knuth",
-   publisher = "Addison-Wesley",
-   title = "The Art of Computer Programming",
-   series = "Four volumes",
-   year = "{\noopsort{1973a}}{\switchargs{--90}{1968}}",
-   note = "Seven volumes planned (this is a cross-referenced set of BOOKs)",
-}
-
-@BOOKLET{booklet-minimal,
-   key = "Kn{\printfirst{v}{1987}}",
-   title = "The Programming of Computer Art",
-}
-
-@BOOKLET{booklet-full,
-   author = "Jill C. Knvth",
-   title = "The Programming of Computer Art",
-   howpublished = "Vernier Art Center",
-   address = "Stanford, California",
-   month = feb,
-   year = 1988,
-   note = "This is a full BOOKLET entry",
-}
-
-@INCOLLECTION{incollection-minimal,
-   author = "Daniel D. Lincoll",
-   title = "Semigroups of Recurrences",
-   booktitle = "High Speed Computer and Algorithm Organization",
-   publisher = "Academic Press",
-   year = 1977,
-}
-
-@INCOLLECTION{incollection-full,
-   author = "Daniel D. Lincoll",
-   title = "Semigroups of Recurrences",
-   editor = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
-   booktitle = "High Speed Computer and Algorithm Organization",
-   number = 23,
-   series = "Fast Computers",
-   chapter = 3,
-   type = "Part",
-   pages = "179--183",
-   publisher = "Academic Press",
-   address = "New York",
-   edition = "Third",
-   month = sep,
-   year = 1977,
-   note = "This is a full INCOLLECTION entry",
-}
-
-@INCOLLECTION{incollection-crossref,
-   crossref = "whole-collection",
-   author = "Daniel D. Lincoll",
-   title = "Semigroups of Recurrences",
-   pages = "179--183",
-   note = "This is a cross-referencing INCOLLECTION entry",
-}
-
-@BOOK{whole-collection,
-   editor = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
-   title = "High Speed Computer and Algorithm Organization",
-   booktitle = "High Speed Computer and Algorithm Organization",
-   number = 23,
-   series = "Fast Computers",
-   publisher = "Academic Press",
-   address = "New York",
-   edition = "Third",
-   month = sep,
-   year = 1977,
-   note = "This is a cross-referenced BOOK (collection) entry",
-}
-
-@MANUAL{manual-minimal,
-   key = "Manmaker",
-   title = "The Definitive Computer Manual",
-}
-
-@MANUAL{manual-full,
-   author = "Larry Manmaker",
-   title = "The Definitive Computer Manual",
-   organization = "Chips-R-Us",
-   address = "Silicon Valley",
-   edition = "Silver",
-   month = apr # "-" # may,
-   year = 1986,
-   note = "This is a full MANUAL entry",
-}
-
-@MASTERSTHESIS{mastersthesis-minimal,
-   author = "{\'{E}}douard Masterly",
-   title = "Mastering Thesis Writing",
-   school = "Stanford University",
-   year = 1988,
-}
-
-@MASTERSTHESIS{mastersthesis-full,
-   author = "{\'{E}}douard Masterly",
-   title = "Mastering Thesis Writing",
-   school = "Stanford University",
-   type = "Master's project",
-   address = "English Department",
-   month = jun # "-" # aug,
-   year = 1988,
-   note = "This is a full MASTERSTHESIS entry",
-}
-
-@MISC{misc-minimal,
-   key = "Missilany",
-   note = "This is a minimal MISC entry",
-}
-
-@MISC{misc-full,
-   author = "Joe-Bob Missilany",
-   title = "Handing out random pamphlets in airports",
-   howpublished = "Handed out at O'Hare",
-   month = oct,
-   year = 1984,
-   note = "This is a full MISC entry",
-}
-
-@STRING{STOC-key = "OX{\singleletter{stoc}}"}
-
-@STRING{ACM = "The OX Association for Computing Machinery"}
-
-@STRING{STOC = " Symposium on the Theory of Computing"}
-
-@INPROCEEDINGS{INPROCEEDINGS-minimal,
-   author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
-   title = "On Notions of Information Transfer in {VLSI} Circuits",
-   booktitle = "Proc. Fifteenth Annual ACM" # STOC,
-   year = 1983,
-}
-
-@INPROCEEDINGS{INPROCEEDINGS-full,
-   author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
-   title = "On Notions of Information Transfer in {VLSI} Circuits",
-   editor = "Wizard V. Oz and Mihalis Yannakakis",
-   booktitle = "Proc. Fifteenth Annual ACM" # STOC,
-   number = 17,
-   series = "All ACM Conferences",
-   pages = "133--139",
-   month = mar,
-   year = 1983,
-   address = "Boston",
-   organization = ACM,
-   publisher = "Academic Press",
-   note = "This is a full INPROCEDINGS entry",
-}
-
-@INPROCEEDINGS{INPROCEEDINGS-crossref,
-   crossref = "whole-proceedings",
-   author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
-   title = "On Notions of Information Transfer in {VLSI} Circuits",
-   organization = "",
-   pages = "133--139",
-   note = "This is a cross-referencing INPROCEEDINGS entry",
-}
-
-@PROCEEDINGS{proceedings-minimal,
-   key = STOC-key,
-   title = "Proc. Fifteenth Annual" # STOC,
-   year = 1983,
-}
-
-@PROCEEDINGS{proceedings-full,
-   editor = "Wizard V. Oz and Mihalis Yannakakis",
-   title = "Proc. Fifteenth Annual" # STOC,
-   number = 17,
-   series = "All ACM Conferences",
-   month = mar,
-   year = 1983,
-   address = "Boston",
-   organization = ACM,
-   publisher = "Academic Press",
-   note = "This is a full PROCEEDINGS entry",
-}
-
-@PROCEEDINGS{whole-proceedings,
-   key = STOC-key,
-   organization = ACM,
-   title = "Proc. Fifteenth Annual" # STOC,
-   address = "Boston",
-   year = 1983,
-   booktitle = "Proc. Fifteenth Annual ACM" # STOC,
-   note = "This is a cross-referenced PROCEEDINGS",
-}
-
-@PHDTHESIS{phdthesis-minimal,
-   author = "F. Phidias Phony-Baloney",
-   title = "Fighting Fire with Fire: Festooning {F}rench Phrases",
-   school = "Fanstord University",
-   year = 1988,
-}
-
-@PHDTHESIS{phdthesis-full,
-   author = "F. Phidias Phony-Baloney",
-   title = "Fighting Fire with Fire: Festooning {F}rench Phrases",
-   school = "Fanstord University",
-   type = "{PhD} Dissertation",
-   address = "Department of French",
-   month = jun # "-" # aug,
-   year = 1988,
-   note = "This is a full PHDTHESIS entry",
-}
-
-@TECHREPORT{techreport-minimal,
-   author = "Tom Terrific",
-   title = "An {$O(n \log n / \! \log\log n)$} Sorting Algorithm",
-   institution = "Fanstord University",
-   year = 1988,
-}
-
-@TECHREPORT{techreport-full,
-   author = "Tom T{\'{e}}rrific",
-   title = "An {$O(n \log n / \! \log\log n)$} Sorting Algorithm",
-   institution = "Fanstord University",
-   type = "Wishful Research Result",
-   number = "7",
-   address = "Computer Science Department, Fanstord, California",
-   month = oct,
-   year = 1988,
-   note = "This is a full TECHREPORT entry",
-}
-
-@UNPUBLISHED{unpublished-minimal,
-   author = "Ulrich {\"{U}}nderwood and Ned {\~N}et and Paul {\={P}}ot",
-   title = "Lower Bounds for Wishful Research Results",
-   note = "Talk at Fanstord University (this is a minimal UNPUBLISHED entry)",
-}
-
-@UNPUBLISHED{unpublished-full,
-   author = "Ulrich {\"{U}}nderwood and Ned {\~N}et and Paul {\={P}}ot",
-   title = "Lower Bounds for Wishful Research Results",
-   month = nov # ", " # dec,
-   year = 1988,
-   note = "Talk at Fanstord University (this is a full UNPUBLISHED entry)",
-}
-
-@MISC{random-note-crossref,
-   key = {Volume-2},
-   note = "Volume~2 is listed under Knuth \cite{book-full}"
-}
 
 @ARTICLE{ewk1,
       author         = "Kuhn, Johann H. and Kulesza, A. and Pozzorini, S. and
@@ -406,3 +72,103 @@ information).
       SLACcitation   = "%%CITATION = ARXIV:1505.05704;%%"
 }
 
+@article{ewk4,
+      author         = "Denner, Ansgar and Dittmaier, Stefan and Kasprzik, Tobias
+                        and Muck, Alexander",
+      title          = "{Electroweak corrections to dilepton + jet production at
+                        hadron colliders}",
+      journal        = "JHEP",
+      volume         = "06",
+      year           = "2011",
+      pages          = "069",
+      doi            = "10.1007/JHEP06(2011)069",
+      eprint         = "1103.0914",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      SLACcitation   = "%%CITATION = ARXIV:1103.0914;%%"
+}
+
+@article{ewk5,
+      author         = "Denner, Ansgar and Dittmaier, Stefan and Kasprzik, Tobias
+                        and Muck, Alexander",
+      title          = "{Electroweak corrections to W + jet hadroproduction
+                        including leptonic W-boson decays}",
+      journal        = "JHEP",
+      volume         = "08",
+      year           = "2009",
+      pages          = "075",
+      doi            = "10.1088/1126-6708/2009/08/075",
+      eprint         = "0906.1656",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "MPP-2009-72, PSI-PR-09-08",
+      SLACcitation   = "%%CITATION = ARXIV:0906.1656;%%"
+}
+
+
+@article{ewk6,
+      author         = "Denner, Ansgar and Dittmaier, Stefan and Kasprzik, Tobias
+                        and M{\"u}ck, Alexander",
+      title          = "{Electroweak corrections to monojet production at the
+                        LHC}",
+      journal        = "Eur. Phys. J. C",
+      volume         = "73",
+      year           = "2013",
+      pages          = "2297",
+      doi            = "10.1140/epjc/s10052-013-2297-x",
+      eprint         = "1211.5078",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      SLACcitation   = "%%CITATION = ARXIV:1211.5078;%%"
+}
+
+@article{ewk7,
+      author         = "Kuhn, Johann H. and Kulesza, A. and Pozzorini, S. and
+                        Schulze, M.",
+      title          = "{Electroweak corrections to hadronic production of W
+                        bosons at large transverse momenta}",
+      journal        = "Nucl. Phys. B",
+      volume         = "797",
+      year           = "2008",
+      pages          = "27",
+      doi            = "10.1016/j.nuclphysb.2007.12.029",
+      eprint         = "0708.0476",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "TTP07-19, SFB-CPP-07-43, MPP-2007-102, DESY-07-112",
+      SLACcitation   = "%%CITATION = ARXIV:0708.0476;%%"
+}
+
+@article{ewk8,
+      author         = "Kuhn, Johann H. and Kulesza, A. and Pozzorini, S. and
+                        Schulze, M.",
+      title          = "{One-loop weak corrections to hadronic production of Z
+                        bosons at large transverse momenta}",
+      journal        = "Nucl. Phys. B",
+      volume         = "727",
+      year           = "2005",
+      pages          = "368",
+      doi            = "10.1016/j.nuclphysb.2005.08.019",
+      eprint         = "hep-ph/0507178",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "TTP05-10, SFB-CPP-05-30",
+      SLACcitation   = "%%CITATION = HEP-PH/0507178;%%"
+}
+
+@article{ewk9,
+      author         = "Kuhn, Johann H. and Kulesza, A. and Pozzorini, S. and
+                        Schulze, M.",
+      title          = "{Logarithmic electroweak corrections to hadronic Z+1 jet
+                        production at large transverse momentum}",
+      journal        = "Phys. Lett. B",
+      volume         = "609",
+      year           = "2005",
+      pages          = "277",
+      doi            = "10.1016/j.physletb.2005.01.059",
+      eprint         = "hep-ph/0408308",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      reportNumber   = "TTP04-18, SFB-CPP-04-32",
+      SLACcitation   = "%%CITATION = HEP-PH/0408308;%%"
+}

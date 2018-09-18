@@ -199,7 +199,7 @@ In the latter, $\pt^Z$ can be directly measured, whereas in the former it must b
 Effects like jet energy scale and acceptance can impact $\ptmiss$, but not $\pt^{\mu\mu}$. 
 Therefore, instead of directly measuring $\pt^{\mu\mu}$ in $\mu\mu$ events, we define and use the hadronic recoil $U$:
 \begin{equation}
-    \vec{U} = \vec{\ptmiss} + \sum_{\mu} \vec{\pt}_\mu + \sum_{e} \vec{\pt}_e + \sum_\gamma \vec{\pt}_\gamma
+    \vec{U} = \vptmiss + \sum_{\mu} \vpt^{~\mu} + \sum_{e} \vpt^{~e} + \sum_\gamma \vpt^{~\gamma}
 \end{equation}
 In the SR (where there are no $e,\mu,\gamma$), $U = \ptmiss$.
 In $Z\rightarrow\mu\mu$ events, $U$ mimics the momentum imbalance, if we had pretended the identified muons did not exist when computing $\ptmiss$. 
@@ -313,7 +313,7 @@ Table~\ref{tab:mt:zmm_uncs} shows the relevant uncertainties for $\T{\mu\mu}{Z}$
 
 \begin{table}[]
     \begin{center}
-    \caption{Uncertainties affecting the $\mu\mu$ $\leftrightarrow$ $\nu\nu$ extrapolation. ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins. ``Shape, uncorrelated'' uncertainties have different priors and are assumed to be uncorrelated.}
+    \caption{Uncertainties affecting the $\mu\mu$ $\leftrightarrow$ $\nu\nu$ extrapolation. ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
     \label{tab:mt:zmm_uncs}
     \begin{tabular}{lcl}
         Uncertainty & 1 s.d. & Notes \\ 
@@ -571,7 +571,7 @@ These three sets of transfer factors, and the corresponding uncertainties, are s
 \begin{table}[]
     \begin{center}
     \caption{Uncertainties affecting the various single-muon extrapolations. 
-            ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins. ``Shape, uncorrelated'' uncertainties have different priors and are assumed to be uncorrelated.}
+            ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
     \label{tab:mt:zmm_uncs}
     \begin{tabular}{lcccl}
         Uncertainty                   & 1 s.d. ($\T{b\mu}{\ttbar}$) & 1 s.d. ($\T{\mu}{W}$) & 1 s.d. ($\T{\mu}{\ttbar}$)  & Notes \\ 
@@ -688,8 +688,9 @@ Therefore, we compute a simple correction for the NLO QCD effects, known as a $k
 \begin{equation}
     k_{Z,\mathrm{QCD}}(\pt^Z) = \frac{d\sigma_\text{NLO QCD}(Z) / d\pt^Z}{d\sigma_\mathrm{LO}(Z) / d\pt^Z}
 \end{equation}
-We include another$k$-factor, $k_\mathrm{EWK}$, to cover NLO EWK effects.
+We include another$k$-factor, $k_\mathrm{EWK}$, to correct for higher-order EWK effects.
 Unlike $k_\mathrm{QCD}$, $k_\mathrm{EWK}$ is derived using a theoretical calculation~\cite{ewk2,ewk3,ewk1} instead of NLO simulation.
+$k_\mathrm{EWK}$ covers NLO EWK terms, as well as large Sudakov logarithms that appear at high $\pt^V$ in the NNLO expansion (NLL). 
 
 \begin{figure}[]
     \begin{center}
@@ -734,6 +735,113 @@ Therefore, transfer factors like $\T\gamma\gamma$ are strongly sensitive to NLO 
         \label{fig:mt:vlonlo}
     \end{center}
 \end{figure}
+
+The distributions in Sections~\ref{sec:mt:sel}-\ref{sec:mt:bkg} are all corrected using these $k$-factors.
+Figure~\ref{fig:mt:prefit_photon} shows the equivalent for CRs that target $\gamma$+jet events, and Table~\ref{tab:mt:pho_cuts} describes the selection used to define these CRs. 
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/prefit/photon_loose_pfUAmag_logy.pdf}
+            \caption{$U$ in loose CR}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/prefit/photon_tight_pfUAmag_logy.pdf}
+            \caption{$U$ in tight CR}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/monotop/prefit/photon_loose_loosePho1Pt_logy.pdf}
+            \caption{$\pt^\gamma$}
+        \end{subfigure}
+        \caption{Various kinematic distributions in the two mono-top $\gamma$ CRs. }
+        \label{fig:mt:prefit_photon}
+    \end{center}
+\end{figure}
+
+\begin{table}[]
+    \caption{Criteria used to select events for the mono-top $\gamma$ CR. As with the SR, the region is further split based on the jet BDT score.}
+    \label{tab:mt:pho_cuts}
+    \centering
+    \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
+        Criterion & Notes \\ 
+        \hline 
+        \hline 
+        $U>250$ GeV & Mimicking the selection in the SR\\ 
+        1 CA15 jet with $\pt>250$ GeV &  Same as SR \\ 
+        CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\ 
+        \hline 
+        No identified $\mu,e,\tau_\mathrm{h}$ & Same as SR. \\ 
+        Well-identified $\gamma$ with $\pt^\gamma>175$ GeV & High-$\pt$ photon, set by trigger threshold \\ 
+        \hline 
+        $\min_\mathrm{jets}\Delta\phi(\mathrm{jet},U) > 0.5$ & Same as SR \\ 
+        \hline 
+        CA15 jet BDT & Same as SR\\ 
+    \end{tabular}
+\end{table}
+
+Now that we can describe $\T\gamma\gamma$ at NLO, we must assess the impact of unknown higher-order terms on the transfer factors.
+We account for variations caused by uncertainties in the PDF model by taking the RMS of the 100 parameter variations prescribed for the NNPDF3.0 set~\cite{nnpdf}.
+By varying $\mu_F$ and $\mu_R$ by factors of $0.5$ and $2$, we assess the effect of the integration scale choices on $\T{}{}$. 
+These scale and PDF uncertainties cover all unknown QCD effects on the production of electroweak bosons.
+To be conservative, they are assumed to be uncorrelated between processes. 
+However, the uncertainties are correlated between all bins (i.e. as a function of $\pt^V$). 
+A second set of uncertainties is included for higher-order EWK effects, following what is suggested in References~\cite{ewk5,ewk4,ewk6,ewk2,ewk3,ewk9,ewk8,ewk1,ewk7} and agreed upon in the LHC Dark Matter Working Group.
+These EWK uncertainties break down into three categories:
+\begin{itemize}
+    \item Unknown Sudakov logarithms in the NLL correction. These uncertainties are correlated across processes ($Z,W,\gamma$).
+    \item Missing NNLO EWK effects not covered by the NLL correction. These are not correlated across processes.
+    \item The full difference between the NLL correction and an exponentiation of the NLO correction; also not correlated across processes.
+\end{itemize}
+
+It should be stressed that while these uncertainties apply to the prediction of each $V$+jet processes, they do not affect transfer factors that correlate processes differing only in decay mode or acceptance.
+This is simply because these uncertainties primarily deal with the initial state or the production of an electroweak boson, which is not related to the description of the decay to leptons or the experimental identification of leptons and $b$-jets. 
+That is:
+\begin{equation}
+    \Ti{\mu\mu}{Z} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^{\mu\mu}(Z\rightarrow\mu\mu)} \approx \frac{N^\mathrm{SR,LO}_i(Z\rightarrow\nu\nu)}{N_i^{\mu\mu,\mathrm{LO}}(Z\rightarrow\mu\mu)}
+\end{equation}
+Now that we have tools to construct transfer factors of the form $N(V)/N(V')$ with reasonably small uncertainties (i.e. smaller than the statistical uncertainty of the data), it is natural to add another transfer factor to our toolbox:
+\begin{equation}
+    \Ti{\mathrm{SR}}{Z/W} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\mathrm{SR}(W\rightarrow\ell\nu)}
+\end{equation}
+This allows us to use the $e,\mu$ CRs (which target $W$+jet production) to further reduce the uncertainty in the estimation of $Z\rightarrow\nu\nu$ in the SR.
+For technical reasons, the transfer factor is defined as the ratio $Z/W$ in the SR. 
+However, the SR and the $\mu$ CR are connected through a product of transfer factors:
+\begin{equation}
+    N^\mathrm{SR}_i(Z\rightarrow\nu\nu) = \Ti{\mathrm{SR}}{Z/W}(\bm{\hat\theta}) \times \Ti{\mu}{W}(\bm{\hat\theta}) \times N^\mu_i(W\rightarrow\ell\nu)
+\end{equation}
+where $\bm{\hat\theta}$ is the maximum-likelihood estimate of $\bm\theta$.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_photon_loose.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_photon_loose.pdf}
+            \caption{Loose $Z/\gamma$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_photon.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_photon.pdf}
+            \caption{Loose $Z/\gamma$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_wz_loose.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_wz_loose.pdf}
+            \caption{Loose $Z/W$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_wz.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_wz.pdf}
+            \caption{Loose $Z/W$}
+        \end{subfigure}
+        \caption{The transfer factors $\T\gamma\gamma$ and $\T{\mathrm{SR}}{Z/W}$; and corresponding shape uncertainties.}
+        \label{fig:mt:theory_xfer}
+    \end{center}
+\end{figure}
+
+Figure~\ref{fig:mt:theory_xfer} shows these additional transfer factors and their shape uncertainties.
+It is clear from inspection that $\T\gamma\gamma \ll 1$, and the same holds for the effective transfer factor $\T{\mathrm{SR}}{Z/W}\times \T{\mu}{W}$. 
+This indicates that the CR data to which the transfer factor is linked has greater statistical power than the SR data. 
+
 
 \section{Results}
 
