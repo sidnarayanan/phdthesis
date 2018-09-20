@@ -281,11 +281,11 @@ To encode the effects of various uncertainties, we introduce nuisance parameters
 That is:
 \begin{gather}
     \Ti{X}{Y} \rightarrow \Ti{X}{Y}(\bm\theta) \equiv \Ti{X}{Y} \times \prod_{j=0}^{n_\theta} (1+\theta_j) \\ 
-    \theta_j \sim p(\theta_j) 
+    \theta_j \sim p_j(\theta_j) 
 \end{gather}
-where $n_\theta$ is the number of nuisance parameters and $p(\theta_j)$ is some prior distribution for each nuisance (see below for how the priors are used).
+where $n_\theta$ is the number of nuisance parameters and $p_j(\theta_j)$ is some prior distribution for each nuisance (see below for how the priors are used).
 The priors are typically chosen to have a central value (e.g. mean, median) at $0$, with a finite variance that encodes the uncertainty.
-In this chapter, we assume $p$ is either a normal distribution centered at 0 or a log-normal distribution (in cases where negative values are undesirable). 
+In this chapter, we assume $p_j$ is either a normal distribution centered at 0 or a log-normal distribution (in cases where negative values are undesirable). 
 We will use the terms ``uncertainty'' and ``nuisance parameter'' interchangeably. 
 
 Let $\pois(d|\lambda)$ refer to the Poisson probability of observing $d$ with an expected mean of $\lambda$. 
@@ -293,7 +293,7 @@ In terms of these transfer factors, the likelihood for the data observed in the 
 \begin{align}
     \mathcal{L}(\bm{d} ~|~ \mu,\muz,\bm{\theta}) = & \prod_{i\in\mathrm{bins}} \left[ 
     \pois\left(d^{\mathrm{SR}}_{i} ~|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
-    & \left. \phantom{\prod_{i\in\mathrm{bins}}\Big[} \times \pois\left(d^{\mu\mu}_i~\Big|~ \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)} + B^{\mu\mu}_i(\bm\theta) \right)\right]  \times  \prod_{j=0}^{n_\theta} p(\theta_j)
+    & \left. \phantom{\prod_{i\in\mathrm{bins}}\Big[} \times \pois\left(d^{\mu\mu}_i~\Big|~ \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)} + B^{\mu\mu}_i(\bm\theta) \right)\right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
 \end{align}
 where the following notation is used:
 \begin{itemize}
@@ -656,10 +656,10 @@ Having defined (almost all of) the CRs and transfer factors, we can write down a
 \begin{align}
     \mathcal{L}\left(\bm{d}~|~ \mu,\muz,\muw,\mut,\bm{\theta}\right) = \hspace{-40mm} & \nonumber \\
     \prod_{i\in\mathrm{bins}} & \left[ 
-    \pois\left(d^{\mathrm{SR}}_{i} \Big| \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \muwi + \muti + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+    \pois\left(d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \muwi + \muti + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
     & \phantom{\Big[} \times \prod_{X=\mu\mu,ee} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\  
     & \phantom{\Big[} \times \prod_{X=b\mu,be}\pois\left(d^{X}_i~\Big|~ \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\ 
-    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left(\left.d^{X}_i~\Big|~ \frac{\muwi}{\Ti{X}{W}(\bm\theta)} + \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \right]  \times  \prod_{j=0}^{n_\theta} p(\theta_j)
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left(\left.d^{X}_i~\Big|~ \frac{\muwi}{\Ti{X}{W}(\bm\theta)} + \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
 \end{align}
 
 \subsection{Theoretically-limited extrapolations}
@@ -821,7 +821,7 @@ where $\bm{\hat\theta}$ is the maximum-likelihood estimate of $\bm\theta$.
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_photon.pdf}
             \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_photon.pdf}
-            \caption{Loose $Z/\gamma$}
+            \caption{Tight $Z/\gamma$}
         \end{subfigure}
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_wz_loose.pdf}
@@ -831,7 +831,7 @@ where $\bm{\hat\theta}$ is the maximum-likelihood estimate of $\bm\theta$.
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=0.49\textwidth]{figures/monotop/xfer/rfactor_wz.pdf}
             \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_wz.pdf}
-            \caption{Loose $Z/W$}
+            \caption{Tight $Z/W$}
         \end{subfigure}
         \caption{The transfer factors $\T\gamma\gamma$ and $\T{\mathrm{SR}}{Z/W}$; and corresponding shape uncertainties.}
         \label{fig:mt:theory_xfer}
@@ -841,6 +841,34 @@ where $\bm{\hat\theta}$ is the maximum-likelihood estimate of $\bm\theta$.
 Figure~\ref{fig:mt:theory_xfer} shows these additional transfer factors and their shape uncertainties.
 It is clear from inspection that $\T\gamma\gamma \ll 1$, and the same holds for the effective transfer factor $\T{\mathrm{SR}}{Z/W}\times \T{\mu}{W}$. 
 This indicates that the CR data to which the transfer factor is linked has greater statistical power than the SR data. 
+
+Having included all of these components, the likelihood can be written as:
+\begin{align}
+    \mathcal{L}\left(\bm{d}~|~ \mu,\muz,\mut,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
+    \prod_{i\in\mathrm{bins}} & \left[ 
+    \pois\left(d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \frac{\muzi}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + \muti + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=\mu\mu,ee} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\  
+    & \phantom{\Big[} \times \prod_{X=b\mu,be}\pois\left(d^{X}_i~\Big|~ \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\ 
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\  
+    & \phantom{\Big[} \times \pois\left(\left.d^\gamma_i~\Big|~ \frac{\muzi}{\Ti\gamma\gamma(\bm\theta)} \right) \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+\end{align}
+
+The discussion in this section has largely relied on arguments from simulation and calculation. 
+We can, however, validate that our estimates of $\T{}{}$ and the corresponding uncertainties are reasonable by using CR data and appropriate proxies.
+For example, to test $\T\gamma\gamma \sim N(Z\rightarrow\nu\nu) / N(\gamma)$, we can look at $N(Z\rightarrow\mu\mu) / N(\gamma)$.
+Up to differences in branching ratio and muon identification, these ratios are identical. 
+Figure~\ref{fig:mt:dataval} shows some examples of these proxy ratios.
+In particular, we see that the $Z/\gamma$, $Z/W$ and $W/\gamma$ ratios are well-described the MC, especially as compared to the systematic uncertainties that are assigned. 
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.32\textwidth]{figures/monotop/ratios/ratio_loose_pho_zmm_shapes_fit_b.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/monotop/ratios/ratio_loose_wen_zee_shapes_fit_b.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/monotop/ratios/ratio_loose_wmn_pho_shapes_fit_b.pdf}
+        \caption{Data validation of CR-to-CR transfer factors in the loose category. Only ratios with theoretically-limited systematic uncertainties are shown.}
+        \label{fig:mt:dataval}
+    \end{center}
+\end{figure}
 
 
 \section{Results}
