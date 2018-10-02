@@ -1,0 +1,55 @@
+% template.tex -- trivial FeynMF example
+% $Id: template.tex,v 1.1 1996/12/02 01:38:45 ohl Exp $
+% To typeset, either use the feynmf script
+%   $ feynmf template
+% or run Metafont manually
+%   $ latex template
+%   $ mf '\mode:=localfont; input fmftempl'
+%   $ latex template
+
+\documentclass{beamer}
+\usepackage{feynmp}%%%{feynmp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usefonttheme[onlymath]{serif}
+\unitlength=1mm
+\setbeamertemplate{navigation symbols}{}
+\definecolor{histbackground}{RGB}{255,255,255}
+\setbeamercolor{background canvas}{bg=histbackground}
+%\setlength{\paperwidth}{9cm}
+%\setlength{\paperheight}{5.4cm}
+%\setlength{\textwidth}{9cm}
+%\setlength{\textheight}{5.4cm}
+\begin{document}
+\Large
+\begin{frame}{ }
+\vspace{2mm}
+\begin{fmffile}{tmp}
+  \begin{fmfchar*}(100,60)
+  \fmfpen{thick}
+  \fmfstraight
+    \fmfleft{i1,i2}  
+%      \fmflabel{$q$}{i1} 
+%      \fmflabel{$q'$}{i2}
+    \fmfright{o1,o2,o3,o4}  
+%      \fmflabel{$\~{q}$}{o1} 
+      \fmflabel{$\chi$}{o2} 
+      \fmflabel{$\bar\chi$}{o3}
+%      \fmflabel{$\~{q'}$}{o4} 
+
+    \fmf{fermion,label=$q$,tension=2.5}{i1,v1}
+    \fmf{fermion,label=$q'$,tension=2.5}{i2,v2}
+    \fmf{photon,label=$W^\pm/Z$}{v1,v3}
+    \fmf{photon,label=$W^\mp/Z$}{v2,v3}
+    \fmf{dashes,label=$H$}{v3,v4}
+    \fmf{fermion,label=$\tilde{q}$}{v1,o1}
+    \fmf{fermion,label=$\tilde{q'}$}{v2,o4}
+    \fmf{fermion}{v4,o2}
+    \fmf{fermion}{o3,v4}
+
+\end{fmfchar*}
+\end{fmffile}
+
+\end{frame}
+\end{document}
+

@@ -131,6 +131,49 @@ The three primary background processes are:
     \end{center}
 \end{figure}
 
+\subsection{Online trigger selection}
+\label{sec:mt:trigger}
+
+Data events are first selected by the L1 trigger system by requiring $p_\mathrm{T,L1}^\mathrm{miss} > 70$ GeV, where:
+\begin{equation}
+    p_\mathrm{T,L1}^\mathrm{miss} = -\left(\sum_{i\in C} \vec{p}_i \right)_\mathrm{T}, \text{ $C = \{$calorimeter deposits with $|\eta|<3.0\}$}
+\end{equation}
+Events that pass this selection are sent to the HLT system, where we place requirements on the both the missing momentum ($p_\mathrm{T,HLT}^\mathrm{miss}$) and the missing hadronic momentum ($H_\mathrm{T,HLT}^\mathrm{miss}$).
+These are defined as:
+\begin{equation}
+    p_\mathrm{T,HLT}^\mathrm{miss} = -\left(\sum_{i\in\mathrm{particles}} \vec{p}_i \right)_\mathrm{T}, \text{ all particles except muons}
+\end{equation}
+\begin{equation}
+    H_\mathrm{T,HLT}^\mathrm{miss} = -\left(\sum_{i\in\mathrm{jets}} \vec{p}_i \right)_\mathrm{T}, \text{ jets passing noise-rejection ID}
+\end{equation}
+The HLT decides to keep an event if $\min(p_\mathrm{T,HLT}^\mathrm{miss}, H_\mathrm{T,HLT}^\mathrm{miss})$ is higher than a specified threshold.
+Over the course of the data-taking period considered in this chapter, this threshold varied from $90$ to $120$ GeV.
+
+Note that in all of the trigger decisions, muons are implicitly (in the L1) or explicitly (in the HLT) excluded from the missing momentum calculations.
+This means that an event which produces high-momentum muons can be selected using these triggers.
+This flexibility will be exploited in Section~\ref{sec:mt:bkg}. 
+
+Since the online environment and reconstruction are significantly limited as compared to the offline reconstruction of $U$, we do not expect the trigger decision to be a step function at $U=120$ GeV.
+Therefore, we define and measure a trigger efficiency:
+\begin{equation}
+    \epsilon_\mathrm{trig} (U) = \frac{N_\text{pass trig}(U)}{N(U)}
+\end{equation}
+This is measured using $W\rightarrow\mu\nu$ events containing one or more high-$\pt$ jets.
+The events are triggered using single-$\mu$ triggers (which have lower thresholds and efficiencies $\sim 1$ in this phase space).
+We then require events have exactly one well-identified muon and at least one jet with $\pt>100$ GeV.
+Figure~\ref{fig:mt:trigeff} shows the efficiency as a function of $U$.
+To avoid the steeply-rising part of the curve, we choose a threshold of $U>250$ GeV in the analysis.
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.49\textwidth]{figures/monotop/trigger/trigeff_nmu1pfUWmag.pdf}
+        \caption{Efficiency of the $\ptmiss$ trigger measured in single-muon events. }
+        \label{fig:mt:trigeff}
+    \end{center}
+\end{figure}
+
+\subsection{Offline signal selection}
+
 Events in the signal regions (SRs) are then selected according to Table~\ref{tab:mt:cuts}, chosen to be consistent with the signal topology while mitigating the aforementioned SM backgrounds.
 As described in Section~\ref{sec:jets:combined}, two working points (WPs) are defined for the top ID BDT.
 The signal events (passing all other selection criteria) are partitioned into a ``loose'' SR and a ``tight'' SR on the basis of which WP the top candidate jet satisfies.
@@ -1019,7 +1062,7 @@ On the entire plane, the observed exclusion is consistent with the median expect
 
 Sticking to two-dimensional projections of the parameter space, Figure~\ref{fig:mt:fcnc_obs_mg} shows the excluded regions as a function of mediator mass $m_V$ and all four free couplings $g_q^V,g_q^A,g_\chi^V,g_\chi^A$. 
 As the DM mass is fixed to be strictly on-shell regardless of $m_V$, there are no visible differences between the vector and axial-vector scenarios. 
-Assuming sufficiently low masses (but still allowed by previous measurements), we exclude couplings as weak as $g_q \cdot g_\chi \sim 0.01$.  
+Assuming sufficiently low masses (still corresponding to viable hypotheses), we exclude couplings as weak as $g_q \cdot g_\chi \sim 0.01$.  
 
 \begin{figure}[]
     \begin{center}
@@ -1046,5 +1089,20 @@ Assuming sufficiently low masses (but still allowed by previous measurements), w
     \end{center}
 \end{figure}
 
-\subsection{Extending to new BSM models}
+It is difficult to fully visualize more than two dimensions of the parameter space at a time.
+Figure~\ref{fig:mt:fcnc_obs_mgg} shows the largest mediator mass that is excluded as a function of $g_q^V,g_\chi^V$ (assuming $g_q^A = g_\chi^A = 0$).
+Given sufficiently large couplings, we exclude FCNCs as massive as $2.5$ TeV, while only assuming that $2m_\chi < m_V$.
+% It should be noted that these couplings, while of order unity, still lead to physically allowed
 
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{figures/monotop/results/fcnc3d_obs_vector.pdf}
+        \caption{Maximum excluded value of $m_V$ for each set of couplings, assuming vector-only couplings.}
+        \label{fig:mt:fcnc_obs_mgg}
+    \end{center}
+\end{figure}
+
+% \subsection{Extending to new BSM models}
+
+% The results of the previous section assume the hypothesis
