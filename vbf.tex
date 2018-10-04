@@ -61,8 +61,48 @@ A candidate VBF $\hinv$ event displaying these properties is shown in a CMS even
 
 The same trigger decisions (L1 and HLT) as described in Section~\ref{sec:mt:trigger} are used to select events in this analysis.
 However, the L1 seeds for the 2016 data run were designed with mono-top-like analyses in mind; i.e., searches where the momentum imbalance is created by central objects.
-To avoid noise and resolution issues in the forward calorimeters, the L1 seed only considers energy deposits in the region $|\eta|<3$. 
-Therefore, VBF events in which both jets are in the forward region will not be triggered.  
+To avoid noise and resolution issues in the forward calorimeters, the L1 seed only considers energy deposits in the region ${|\eta|<3}$. 
+Therefore, VBF events in which both jets are in the forward region are not selected.  
+
+This is visible in Figure~\ref{fig:vbf:hlta}, where events are classified based on the location of the two highest-$\pt$ jets.
+Events with both jets in the barrel (BB) have a higher efficiency than events with one jet in the forward detector (BF).
+Note that events with two forward jets (FF) are not considered at all, as the efficiency for such events is essentially zero. 
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/triggers/trigeff_nmu1pfUWmag.pdf}
+            \caption{Recoil}
+            \label{fig:vbf:hlta}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/triggers/trigeff_nmu1barrelHTMiss.pdf}
+            \caption{$H_\mathrm{T,barrel}^\mathrm{miss}$}
+            \label{fig:vbf:hltb}
+        \end{subfigure}
+        \caption{Trigger efficiency of events with a VBF-like topology (two jets with $\pt>80,40$ GeV) as a function of two different observables.
+                 Events are split into two categories: those where both jets have $|\eta|<3$ (BB) and those were exactly one jet has $|\eta|>3$ (FF).
+                 "All" refers to the sum of these categories.}
+        \label{fig:vbf:hlt}
+    \end{center}
+\end{figure}
+
+The trigger efficiency is truly characterized by the energy deposited in the $|\eta|<3$ region of the detector, and will be dominated in VBF events by the energy of jets.
+Accordingly, we define the ``missing barrel hadronic transverse momentum'':
+\begin{equation}
+    H_\mathrm{T,barrel}^\mathrm{miss} = \left|\left(\sum_{j\in\text{barrel}} \vec{p}_j \right)_\mathrm{T}\right|, \text{ where barrel refers to jets with $|\eta|<3$}
+\end{equation}
+As shown in Figure~\ref{fig:vbf:hltb}, the three categories (BB, BF, All) have similar behavior as a function of $H_\mathrm{T,barrel}^\mathrm{miss}$.
+Therefore, we use this parameterization of the efficiency to correct MC simulation to match data. 
+
+A second L1-related issue that plagues the 2016 dataset is caused by a ``pre-firing'' effect.
+When an L1 seed is triggered to accept an event (``L1Accept'' or ``L1A''), the following two bunch crossings (not necessarily corresponding to collisions) are blocked from firing L1As. 
+At most, two in four consecutive events can fire L1A (i.e. the sequence L1A, blocked, blocked, L1A).
+A pre-fire refers to the case where a detector signal is mis-reconstructed, so that the peak of the pulse appears to have occurred in the previous event.   
+In this particular case, a region of the ECAL ($2.5 < |\eta|<3$) suffered from a loss in transparency due to radiation damage and would produce pulse shapes that are poorly described by the model used to extract the pulse energy and time. 
+When this happens, the L1 seeds for ECAL-based signatures (e.g. electron triggers) can fire an L1A, but for the event prior to which the signal came from.
+So, we would have an L1A for an arbitrary event, and the interesting event would be blocked from passing the L1 altogether. 
+This is explained diagrammaticaly in
 
 \subsection{EW and QCD production of electroweak bosons}
 
