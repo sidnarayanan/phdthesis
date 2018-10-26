@@ -29,21 +29,21 @@
   \fmfpen{thick}
   \fmfstraight
     \fmfleft{i1,i2}  
-%      \fmflabel{$q$}{i1} 
-%      \fmflabel{$q'$}{i2}
+      \fmflabel{$q$}{i1} 
+      \fmflabel{$q'$}{i2}
     \fmfright{o1,o2,o3,o4}  
-%      \fmflabel{$\~{q}$}{o1} 
+      \fmflabel{$\bar{q}$}{o1} 
       \fmflabel{$\ell^\pm$}{o3} 
       \fmflabel{$\nu/\bar\nu$}{o2}
-%      \fmflabel{$\~{q'}$}{o4} 
+      \fmflabel{$\bar{q'}$}{o4} 
 
-    \fmf{fermion,label=$q$,tension=2.5}{i1,v1}
-    \fmf{fermion,label=$q'$,tension=2.5}{i2,v2}
+    \fmf{fermion,tension=2.5}{i1,v1}
+    \fmf{fermion,tension=2.5}{i2,v2}
     \fmf{photon,label=$W^\pm$}{v1,v3}
     \fmf{photon,label=$Z$}{v2,v3}
     \fmf{photon,label=$W^\pm$}{v3,v4}
-    \fmf{fermion,label=$\tilde{q}$}{v1,o1}
-    \fmf{fermion,label=$\tilde{q'}$}{v2,o4}
+    \fmf{fermion}{v1,o1}
+    \fmf{fermion}{v2,o4}
     \fmf{fermion}{v4,o2}
     \fmf{fermion}{o3,v4}
 

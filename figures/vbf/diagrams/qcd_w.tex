@@ -28,24 +28,31 @@
   \begin{fmfchar*}(100,60)
   \fmfpen{thick}
   \fmfstraight
-    \fmfleft{i1,i2}  
-      \fmflabel{$q$}{i1} 
-      \fmflabel{$q'$}{i2}
-    \fmfright{o1,o2,o3,o4}  
-      \fmflabel{$\tilde{q}$}{o1} 
-      \fmflabel{$\bar\nu/\ell^+$}{o2}
-      \fmflabel{$\nu/\ell^-$}{o3}
-      \fmflabel{$\tilde{q'}$}{o4} 
+    \fmfleft{i2,i3,i4,i5,i6,i7}  
+      \fmflabel{$g$}{i2} 
+      \fmflabel{$q$}{i6}
+    \fmfright{o2,o3,o4,o5,o6,o7}  
+%      \fmflabel{$\~{q}$}{o1} 
+      \fmflabel{$\ell^+$}{o7}
+      \fmflabel{$\nu$}{o5}
+      \fmflabel{$g$}{o4}
+      \fmflabel{$\bar q'$}{o2}
+%      \fmflabel{$\~{q'}$}{o4} 
 
-    \fmf{fermion,tension=2.5}{i1,v1}
-    \fmf{fermion,tension=2.5}{i2,v2}
-    \fmf{photon,label=$W^\pm$}{v1,v3}
-    \fmf{photon,label=$W^\mp$}{v2,v3}
-    \fmf{photon,label=$Z$}{v3,v4}
-    \fmf{fermion}{v1,o1}
-    \fmf{fermion}{v2,o4}
-    \fmf{fermion}{v4,o3}
-    \fmf{fermion}{o2,v4}
+    \fmf{curly}{i2,v2}
+    \fmf{fermion}{v2,o2}
+    \fmffreeze
+
+    \fmf{fermion}{i6,v1}
+    \fmf{phantom}{v1,o6}    
+    \fmffreeze
+    \fmf{photon,label=$W$}{v1,v4}
+    \fmf{fermion}{v4,o5}
+    \fmf{fermion}{o7,v4}
+%
+    \fmf{fermion}{v1,v3}
+    \fmf{fermion}{v3,v2}
+    \fmf{curly,tension=0}{v3,o4}
 
 \end{fmfchar*}
 \end{fmffile}

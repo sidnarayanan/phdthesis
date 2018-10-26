@@ -58,6 +58,7 @@ A candidate VBF $\hinv$ event displaying these properties is shown in a CMS even
 \end{figure}
 
 \subsection{Online trigger selection}
+\label{sec:vbf:trig}
 
 The same trigger decisions (L1 and HLT) as described in Section~\ref{sec:mt:trigger} are used to select events in this analysis.
 However, the L1 seeds for the 2016 data run were designed with mono-top-like analyses in mind; i.e., searches where the momentum imbalance is created by central objects.
@@ -115,6 +116,7 @@ In what follows, we will refer to the bunch crossing with an interesting collisi
 A pre-fire refers to the case in which a malformed detector signal is mis-reconstructed, so that the peak of the pulse appears to have occurred in the previous bunch crossing (\bx{-1}).   
 In this particular case, a region of the ECAL ($2.5 < |\eta|<3$) suffered from a loss in transparency due to radiation damage and would produce pulse shapes that are poorly described by the model used to extract the pulse energy and time. 
 When this happens, the L1 seeds for ECAL-based signatures (e.g. electron triggers) can fire an L1A for \bx{-1}.
+This ECAL L1 seed in \bx{-1}~will zero out the corresponding ECAL clusters in \bx{0} (known as zero suppression), further biasing the event description.
 So, we would have an L1A for an arbitrary event (\bx{-1}), and the interesting event (\bx{0}) would be blocked from passing the L1 altogether. 
 This is depicted in Figure~\ref{fig:vbf:pre2}.
 Typically, \bx{-1}~contains uninteresting physics signatures, and so is not accepted by the HLT.
@@ -169,12 +171,10 @@ Beyond this, there is very little localization in the pre-fire probability (besi
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_inclusive_egiso_etaphi_den.pdf}
             \caption{Number of jets}
-            \label{fig:vbf:hlta}
         \end{subfigure}
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_inclusive_egiso_etaphi_ratio.pdf}
             \caption{Pre-fire probability}
-            \label{fig:vbf:hltb}
         \end{subfigure}
         \caption{Distribution of jets and pre-fire events as a function of the jet location in the detector.
                  Note the spike near $(\eta,\phi) = (-2.8,2)$. }
@@ -188,18 +188,18 @@ This is explained by the mechanism of the pre-fire: the individual ECAL trigger 
 The higher the jet $\pt$, the higher the probability of the jet depositing $30$ GeV of EM energy in a localized area, setting off an L1 seed. 
 Secondly, we observe a strong dependence on the reference triggers used to select $\bx{0}$.
 For example, jet-based triggers (JetHT) lead to a much higher efficiency than $\ptmiss$-based triggers (MET).  
+This is a consequence of zero suppression biasing the \bx{0}~triggers, as shown diagrammatically in Figure~\ref{fig:vbf:pre_diag}.
+Muon-based triggers (SingleMuon) are largely unaffected by the ECAL system, and therefore this measurement of $\epsilon_\text{pre-fire}$ is the least biased.  
 
 \begin{figure}[]
     \begin{center}
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/triggers/oned_jotPt_finor_ratio.pdf}
             \caption{$\pt$}
-            \label{fig:vbf:hlta}
         \end{subfigure}
         \begin{subfigure}[t]{0.49\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/triggers/oned_jotEMPt_finor_ratio.pdf}
             \caption{$\pt \times E_\mathrm{ECAL}/E_\mathrm{total}$}
-            \label{fig:vbf:hltb}
         \end{subfigure}
         \caption{Probability that a given jet with $2.25<|\eta|<3$ causes a pre-fire in the L1 trigger due to ECAL mistiming.
                  Two parameterizations are used: jet $\pt$ and EM $\pt$.
@@ -208,14 +208,203 @@ For example, jet-based triggers (JetHT) lead to a much higher efficiency than $\
     \end{center}
 \end{figure}
 
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/normal_dijet.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/prefire_dijet.pdf}
+            \caption{Dijet event}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/normal_z.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/prefire_z.pdf}
+            \caption{$Z\rightarrow\nu\nu$ event}
+        \end{subfigure}
+        \caption{How zero suppression in the ECAL due to pre-firing can bias certain events.
+                 Subfigure (a) shows a dijet event, in which the loss of an ECAL deposit reduces the total $H_\mathrm{T}$ of the event, thereby lowering the probability of a jet-based trigger to fire.
+                 Subfigure (b) shows a $Z\rightarrow\nu\nu$ event, in which the loss of an ECAL deposit reduces the total $\ptmiss$ of the event.}
+        \label{fig:vbf:pre_diag}
+    \end{center}
+\end{figure}
 
+The probability of at least one jet pre-firing in an event is:
+\begin{equation}
+    \epsilon_\text{pre-fire}^\text{event} = 1 - \prod_{j\in\text{jets}}  \left(1-\epsilon_\text{pre-fire}(\pt^j,\eta^j)\right)
+\end{equation}
+The $\phi$-dependence has been dropped, since it is clear from Figure~\ref{fig:vbf:pre_eff2_etaphi} that the effect can be averaged over $\phi$ (once the spike is removed). 
+Figure~\ref{fig:vbf:pre_eff2_pteta} shows $\epsilon_\text{pre-fire}(\pt,\eta)$ using muon-triggered and jet-triggered events.
+In the former case, statistical fluctuations make the region with $\pt>250$ GeV unusable.
+Fortunately, this is the region in which the trigger bias is smallest, and so we switch to the jet triggered measurement above this threshold.
+A 20\% uncertainty is assessed on the efficiency, which is derived from the difference between the SingleMuon and JetHT measurements. 
 
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/triggers/SingleMuon_spike_finor_pteta_ratio.pdf}
+            \caption{Muon-triggered}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_spike_finor_pteta_ratio.pdf}
+            \caption{Jet-triggered}
+        \end{subfigure}
+        \caption{$\epsilon_\text{pre-fire}(\pt,\eta)$ with two different sets of reference triggers used to select \bx{0}.}
+        \label{fig:vbf:pre_eff2_pteta}
+    \end{center}
+\end{figure}
 
 \subsection{EW and QCD production of electroweak bosons}
 
+The primary backgrounds to the VBF production of invisibly-decaying Higgs bosons are $Z(\rightarrow\nu\nu)$+2 jet and $W(\rightarrow\ell\nu)$+2 jet production.
+At leading order, the relevant Feynman diagrams are either of the order $\alpha_\mathrm{EW}^2 \alpha_\mathrm{QCD}^4$ or $\alpha_\mathrm{EW}^6$. 
+We refer to the former as the QCD production mode and the latter as the EW mode. 
+Examples Feynman diagrams are shown in Figure~\ref{fig:vbf:ewqcd}.
+The EW mode is essentially vector boson fusion, and so the terms EW and VBF will be used interchangeably. 
+
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/diagrams/qcd_z.pdf}
+            \caption{QCD}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/diagrams/vbf_z.pdf}
+            \caption{EW/VBF}
+        \end{subfigure}
+        \caption{Examples of the two modes of producing $Z$ bosons in association with 2 jets.
+                 Similar diagrams exist for $W$ boson production.}
+        \label{fig:vbf:ewqcd}
+    \end{center}
+\end{figure}
+
+As the vector boson is not directly detectable, the only experimental signatures are the jets.
+The jet kinematics are sensitive to the production mode (vector boson fusion vs QCD), as well as the spin of the produced boson.
+Some conclusions can be drawn from the kinematic distributions (Figure~\ref{fig:vbf:jetkins}):
+\begin{enumerate}
+    \item The yield ($\sigma\times A$) of the three VBF processes are relatively close in the relevant phase space (assuming $\mathcal{B}(\hinv)=1$), but the QCD processes are 1-2 orders of magnitude higher.
+    \item The jet $\pt$ and $\ptmiss$ distributions in the signal are comparable to or softer than the background processes. 
+          This is in contrast to other DM searches, in which the signal $\ptmiss$ distribution is much harder than SM predictions.
+    \item VBF $\hinv$ produces fewer jets than SM processes.
+    \item VBF $\hinv$ produces relatively forward jets. QCD $V$+jets produces mostly central jets. VBF $V$+jets produces jets that are somewhere between these distributions. 
+\end{enumerate}
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jotPt_0__logy.pdf}
+            \caption{Leading jet $\pt$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jotPt_1__logy.pdf}
+            \caption{Sub-leading jet $\pt$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_nJot_logy.pdf}
+            \caption{$N_\mathrm{jet}$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jotEta_0__logy.pdf}
+            \caption{Leading jet $\eta$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jotEta_1__logy.pdf}
+            \caption{Sub-leading jet $\eta$}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_pfmet_logy.pdf}
+            \caption{$\ptmiss$}
+        \end{subfigure}
+        \caption{Event kinematic distributions, as compared between $H$ vs $Z$ vs $W$ production, and VBF vs QCD modes.}
+        \label{fig:vbf:jetkins}
+    \end{center}
+\end{figure}
+
+To fully exploit these kinematic distributions, we look at ``VBF-tag'' observables, which are functions of the two leading jets. 
+These are defined as:
+\begin{itemize}
+    \item[$m_{jj}$:] Invariant mass of the dijet system.
+    \item[$\Delta\eta_{jj}$:] Absolute value of the difference in pseudorapidity of the two jets.
+    \item[$\Delta\phi_{jj}$:] Absolute value of the difference in azimuthal angle of the two jets.
+\end{itemize}
+These distributions are shown in Figure~\ref{fig:vbf:dijetkins}.
+The first two distributions look different in QCD and VBF processes and are therefore useful to reduce QCD backgrounds.
+On the other hand, \dphi~is sensitive to the spin of the boson produced in a VBF process, and therefore can distinguish between Higgs and electroweak boson production.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jot12Mass_logy.pdf}
+            \caption{\mjj}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jot12DEta.pdf}
+            \caption{\deta}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/shapes/loosesignal_jot12DPhi.pdf}
+            \caption{\dphi}
+        \end{subfigure}
+        \caption{VBF tag observable distributions, as compared between $H$ vs $Z$ vs $W$ production, and VBF vs QCD modes.}
+        \label{fig:vbf:dijetkins}
+    \end{center}
+\end{figure}
+
 \subsection{Sensitivity optimization}
 
+A ``baseline'' selection is defined as:
+\begin{itemize}
+    \item $\ptmiss>250$ GeV: driven by trigger efficiency, as discussed in Section~\ref{sec:vbf:trig}.
+    \item $\pt^\mathrm{jet}>80,40$ GeV: require two VBF jets, lower $\pt$ thresholds set by trigger efficiency
+    \item $N_{e,\mu,\tau,\gamma}=0$: veto leptonic decays of $Z$ and $W$, $t\bar{t}$, diboson production, $\gamma$+jet, etc.
+    \item $\min\Delta\phi(\mathrm{jet},\ptmiss)>0.4$: remove QCD multijet events.
+    \item $|p^\mathrm{miss}_\mathrm{T,calo}-\ptmiss|<\ptmiss/2$: remove miscalibrated events.
+\end{itemize}
+
+As the tag variables each show some level of separation between signal and backgrounds, we can choose to either fit the distributions or use them to select events. 
+To find the optimal choice, we fit each of the distributions in turn, and scan the other two observables.
+The metric is chosen to be the expected 95\% CLs upper limit on $\mathcal{B}(\hinv)$.
+Figure~\ref{fig:vbf:opt} shows the result of this optimization.
+The dijet mass is found to be the best distribution to fit, while requiring $\Delta\eta_{jj}>1$ and $\Delta\phi_{jj}<1.5$.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_fabsdphi.pdf}
+            \caption{Fit \mjj}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_fabsdphi_mjj.pdf}
+            \caption{Fit \deta}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_mjj.pdf}
+            \caption{Fit \dphi}
+        \end{subfigure}
+        \caption{Optimization of the dijet kinematic selection, in three different fitting distribution scenarios.}
+        \label{fig:vbf:opt}
+    \end{center}
+\end{figure}
+
 \section{Background estimation}
+
+To estimate the combined $m_{jj}$ spectra of the EW and QCD $V$+jet backgrounds, we employ a similar visible-to-invisible strategy as described in Section~\ref{sec:mt:bkg}.
+In this case, the transfer factors $\T{}{}$ are a function of $m_{jj}$.
+Control regions are defined using dilepton (single-lepton) selections to estimate the $Z$ ($W$) contributions.
+Again, $\ptmiss$ is replaced by $U$ (Equation~\ref{eq:u}) to mimic the signal region selection. 
+Because there are \emph{two} components to estimate in each CR (QCD and EW), we slightly modify the likelihood.
+Adding only the $\mu\mu$ CR to constrain the $Z$+jet component for now:
+\begin{align}
+    \mathcal{L}(\bm{d} \,|\, \mu,\muz,\bm{\theta}) = & \prod_{i\in\mathrm{bins}} \left[
+    \pois\left(d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \frac{\muzi}{\Ti{\mathrm{QE}}{Z}(\bm\theta)} + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \right. \nonumber \\
+    & \left. \phantom{\prod_{i\in\mathrm{bins}}\Big[} \times \pois\left(d^{\mu\mu}_i~\Big|~ \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)} + \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta) \Ti{\mathrm{QE}}{Z}(\bm\theta)} + B^{\mu\mu}_i(\bm\theta) \right)\right]  \nonumber \\ 
+    & \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+\end{align}
+While the notation largely follows that used in Equation~\ref{eq:mt:lhood}, one additional term has been introduced.
+This is a ``transfer factor'' linking the QCD and EW components in the signal region, so that the only free parameter is $\muz$:
+\begin{equation}
+    \Ti{\mathrm{QE}}{Z} = \frac{N^\mathrm{SR}_i(\mathrm{QCD\,}Z\rightarrow\nu\nu)}{N^\mathrm{SR}_i(\mathrm{EW\,}Z\rightarrow\nu\nu)} 
+\end{equation}
+where as always, the yields $N$ are predicted using MC. 
 
 \section{Results}
 

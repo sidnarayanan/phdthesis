@@ -243,6 +243,7 @@ Effects like jet energy scale and acceptance can impact $\ptmiss$, but not $\pt^
 Therefore, instead of directly measuring $\pt^{\mu\mu}$ in $\mu\mu$ events, we define and use the hadronic recoil $U$:
 \begin{equation}
     \vec{U} = \vptmiss + \sum_{\mu} \vpt^{~\mu} + \sum_{e} \vpt^{~e} + \sum_\gamma \vpt^{~\gamma}
+    \label{eq:u}
 \end{equation}
 In the SR (where there are no $e,\mu,\gamma$), $U = \ptmiss$.
 In $Z\rightarrow\mu\mu$ events, $U$ mimics the momentum imbalance, if we had pretended the identified muons did not exist when computing $\ptmiss$.
@@ -337,6 +338,7 @@ In terms of these transfer factors, the likelihood for the data observed in the 
     \mathcal{L}(\bm{d} ~|~ \mu,\muz,\bm{\theta}) = & \prod_{i\in\mathrm{bins}} \left[
     \pois\left(d^{\mathrm{SR}}_{i} ~|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
     & \left. \phantom{\prod_{i\in\mathrm{bins}}\Big[} \times \pois\left(d^{\mu\mu}_i~\Big|~ \frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)} + B^{\mu\mu}_i(\bm\theta) \right)\right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+    \label{eq:mt:lhood}
 \end{align}
 where the following notation is used:
 \begin{itemize}
