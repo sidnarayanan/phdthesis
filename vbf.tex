@@ -362,6 +362,7 @@ A ``baseline'' selection is defined as:
 
 As the tag variables each show some level of separation between signal and backgrounds, we can choose to either fit the distributions or use them to select events. 
 To find the optimal choice, we fit each of the distributions in turn, and scan the other two observables.
+The details of this fit and the background estimation are described in Section~\ref{sec:vbf:bkg}.
 The metric is chosen to be the expected 95\% CLs upper limit on $\mathcal{B}(\hinv)$.
 Figure~\ref{fig:vbf:opt} shows the result of this optimization.
 The dijet mass is found to be the best distribution to fit, while requiring $\Delta\eta_{jj}>1$ and $\Delta\phi_{jj}<1.5$.
@@ -386,6 +387,7 @@ The dijet mass is found to be the best distribution to fit, while requiring $\De
 \end{figure}
 
 \section{Background estimation}
+\label{sec:vbf:bkg}
 
 To estimate the combined $m_{jj}$ spectra of the EW and QCD $V$+jet backgrounds, we employ a similar visible-to-invisible strategy as described in Section~\ref{sec:mt:bkg}.
 In this case, the transfer factors $\T{}{}$ are a function of $m_{jj}$.
@@ -435,6 +437,49 @@ Kinematic distributions from the two dilepton CRs are shown in Figure~\ref{fig:v
         \end{subfigure}
         \caption{Dijet and recoil distributions in the dielectron (top) and dimuon (bottom) CRs.}
         \label{fig:vbf:zcr}
+    \end{center}
+\end{figure}
+
+In the region $m_{jj}>2.5$ TeV, the statistical power of the dilepton regions is extremely limited.
+For this reason, and to estimate the $W$+jets contribution in the SR, we add two single-lepton CRs in analogy to what is done in Section~\ref{sec:mt:bkg}. 
+Figure~\ref{fig:vbf:wcr} shows the level of agreement between the data and MC in these CRs.
+The likelihood is modified to include the constraints of the single-lepton CRs:
+\begin{align}
+    \mathcal{L}\left(\bm{d}\,|\, \mu,\muz,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
+    \prod_{i\in\mathrm{bins}} & \left[
+    \pois\left\{d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\left(1+\frac{1}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)}\right)\muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right\} \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \nonumber \\
+    & \phantom{\Big[} \times \left.\prod_{X=\mu\mu,ee} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+\end{align}
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singleelectron_jot12DEta_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singleelectron_jot12DPhi_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singleelectron_jot12Mass_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singleelectron_pfUWmag_logy.pdf}
+        \end{subfigure} \\ 
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singlemuon_jot12DEta_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singlemuon_jot12DPhi_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singlemuon_jot12Mass_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.24\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/prefit/singlemuon_pfUWmag_logy.pdf}
+        \end{subfigure}
+        \caption{Dijet and recoil distributions in the single-electron (top) and single-muon (bottom) CRs.}
+        \label{fig:vbf:wcr}
     \end{center}
 \end{figure}
 
