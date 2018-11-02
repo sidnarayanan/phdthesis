@@ -451,6 +451,12 @@ The likelihood is modified to include the constraints of the single-lepton CRs:
     & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \nonumber \\
     & \phantom{\Big[} \times \left.\prod_{X=\mu\mu,ee} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
 \end{align}
+To validate that the transfer factors are reasonably well-simulated (within the assigned uncertainties), Figure~\ref{fig:vbf:valid} uses the following ratios of CRs as proxies for transfer factors:
+\begin{gather}
+    \T{\mu\mu}{Z}, \T{ee}{Z} \sim \frac{N_{\mu\mu}(Z\rightarrow\mu\mu)}{N_{ee}(Z\rightarrow ee)} \nonumber \\ 
+    \T{\mu}{W}, \T{e}{W} \sim \frac{N_\mu(W\rightarrow\mu\nu)}{N_e(W\rightarrow e\nu)} \nonumber \\ 
+    \T{\mathrm{SR}}{Z/W} \sim \frac{N_\mu(W\rightarrow\mu\nu)+N_e(W\rightarrow e\nu)}{N_{\mu\mu}(Z\rightarrow\mu\mu)+N_{ee}(Z\rightarrow ee)} 
+\end{gather}
 
 \begin{figure}[]
     \begin{center}
@@ -482,6 +488,25 @@ The likelihood is modified to include the constraints of the single-lepton CRs:
         \label{fig:vbf:wcr}
     \end{center}
 \end{figure}
+
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/dimuon_dielectron_cat_vbf_ratio.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/singlemuon_singleelectron_cat_vbf_ratio.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/combined_combinedW_cat_vbf_ratio.pdf}
+        \end{subfigure}
+        \caption{Validation of the VBF transfer factors using control region data. 
+                 The transfer factor proxies are found to agree quite well with the data within the post-fit uncertainties}
+        \label{fig:vbf:valid}
+    \end{center}
+\end{figure}
+
 
 \section{Results}
 
