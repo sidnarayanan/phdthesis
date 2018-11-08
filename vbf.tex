@@ -510,7 +510,50 @@ To validate that the transfer factors are reasonably well-simulated (within the 
 
 \section{Results}
 
-\subsection{Constraints on Higgs production and decay parameters}
+The dijet mass distribution in data is fit in all signal and control regions, the results of which are shown in Figure~\ref{fig:vbf:postfit}.
+As no statistically significant excess over the Standard Model is observed, we translate the results into upper limits on the branching ratio of $\hinv$.
+As the signal hypothesis, both the VBF and gluon fusion Higgs production modes are considered; the latter contaminates the SR due to its relatively large cross section.
+After the signal region selection criteria, the two modes contribute approximately equal yields. 
+Assuming $m_H=125$ GeV, the observed 95\% CL upper limit is 0.33. 
+Assuming a background-only hypothesis, the expected distribution of upper limits has median $0.33$, with the 1 standard deviation band covering $[0.18,0.35]$; the observation therefore represents an upwards fluctuation slightly under $1\sigma$. 
 
-\subsection{Constraints on scalar production of DM}
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/vbf_PULLS_prefit_postfit_signal.pdf}
+            \caption{SR}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/vbf_PULLS_prefit_postfit_dimuon.pdf}
+            \caption{$\mu\mu$ CR}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/vbf_PULLS_prefit_postfit_dielectron.pdf}
+            \caption{$ee$ CR}
+        \end{subfigure} \\ 
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/vbf_PULLS_prefit_postfit_singlemuon.pdf}
+            \caption{$\mu$ CR}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/vbf/fits/vbf_PULLS_prefit_postfit_singleelectron.pdf}
+            \caption{$e$ CR}
+        \end{subfigure}
+        \caption{Post-fit $m_{jj}$ distributions in the various signal and control regions.
+                 The uncertainties (gray bands) and bin pulls (blue bands) are defined by varying the nuisances by one standard deviation around the maximum likelihood estimate.}
+        \label{fig:vbf:postfit}
+    \end{center}
+\end{figure}
 
+We further scan $m_H$ and set upper limits on $\sigma(qq\rightarrow qqH)\mathcal{B}(\hinv)$. 
+In this case, as this is no longer the observed (Standard Model-like) Higgs boson, we only consider the VBF production mode as a signal hypothesis. 
+The upper limits are shown in
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/mhscan.pdf}
+        \caption{Upper limits on $\sigma\times \mathcal{B}$ as a function of $m_H$, assuming VBF as the only production mode.
+                 The predicted cross section is shown in red.}
+        \label{fig:vbf:mhscan}
+    \end{center}
+\end{figure}
