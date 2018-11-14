@@ -546,14 +546,13 @@ Assuming a background-only hypothesis, the expected distribution of upper limits
 \end{figure}
 
 We further scan $m_H$ and set upper limits on $\sigma(qq\rightarrow qqH)\mathcal{B}(\hinv)$. 
-In this case, as this is no longer the observed (Standard Model-like) Higgs boson, we only consider the VBF production mode as a signal hypothesis. 
-The upper limits are shown in Figure~\ref{fig:vbf:mhscan}, and the observed (expected) limits exclude $m_H<550$ GeV ($600$ GeV) assuming a branching ratio of $100\%$. 
+The upper limits are shown in Figure~\ref{fig:vbf:mhscan}, and the observed (expected) limits exclude $m_H<540$ GeV ($635$ GeV) assuming a branching ratio of $100\%$. 
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/mhscan.pdf}
-        \caption{Upper limits on $\sigma\times \mathcal{B}$ as a function of $m_H$, assuming VBF as the only production mode.
-                The predicted cross section (assuming $\mathcal{B}=1$) is shown in red.}
+        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/mhscan_ggf.pdf}
+        \caption{Upper limits on $\sigma\times \mathcal{B}/\sigma_\mathrm{theory}$ as a function of $m_H$, where $\sigma$ refers to the total production cross section of the Higgs boson with mass $m_H$.
+                 If one assumes that $\sigma = \sigma_\mathrm{theory}$, then the upper limits can be interpreted directly as constraints on $\mathcal{B}(\hinv)$.}
         \label{fig:vbf:mhscan}
     \end{center}
 \end{figure}
@@ -565,12 +564,34 @@ The details of these searches are left to the referenced literature, but a summa
 When statistically combining the results, most experimental nuisances are treated as correlated between the searches, with the exception of the VBF jet energy scale dependence.
 This is because the VBF category selects forward jets, whereas other searches generally probe central jets.
 Theoretical nuisances (e.g. those affecting $W/Z$ or $ZZ/WZ$ ratios) are left uncorrelated between all searches.
+The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95\% CL, which approximately corresponds to a 1 standard deviation fluctuation upward relative to the median expected limit of $0.20$.
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/comb.pdf}
-        \caption{Upper limits on $\sigma\times \mathcal{B}$ as a function of $m_H$, assuming VBF as the only production mode.
-                The predicted cross section (assuming $\mathcal{B}=1$) is shown in red.}
-        \label{fig:vbf:mhscan}
+        \includegraphics[width=0.6\textwidth]{figures/vbf/fits/comb.pdf}
+        \caption{Upper limits on $\mathcal{B}(\hinv)$ after statistically combining all of the CMS searches for $\hinv$~conducted on $36$ fb$^{-1}$ of data collected in 2016.
+                 For comparison, the upper limits of each of the individual categories are also shown.}
+        \label{fig:vbf:comb}
     \end{center}
 \end{figure}
+
+Higgs-mediated DM can also be probed by direct detection (DD) experiments.
+We interpret the combined 90\% CL upper limit (for consistency with DD conventions) on $\mathcal{B}(\hinv)$ as an upper limit on the spin-independent cross section of DM-nucleon scattering. 
+First, we convert the branching ratio into a partial width:
+\begin{equation}
+    \Gamma_{\hinv} = \frac{\mathcal{B}(\hinv) \cdot \Gamma_\mathrm{SM}}{1 - \mathcal{B}(\hinv)}, \text{ where }\Gamma_\mathrm{SM} = 4~\mathrm{GeV}
+\end{equation}
+Then, using the results described in Reference~\needcite, $\Gamma_{\hinv}$ is translated into $\sigma^{\mathrm{SI}}_{\chi N}(m_\chi)$, where the only free parameter is the DM mass.
+Figure~\ref{fig:vbf:dd} compares the CMS exclusions with those from DD experiments~\needcite.
+Also shown for comparison is the ``neutrino floor'', which is the cross section of coherent scattering of solar neutrinos, and a limiting factor for DD experiments.
+At low $m_\chi$, CMS is able to significantly extend the DD constraints, reaching well below the neutrino floor. 
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/dd.pdf}
+        \caption{Upper limits on $\sigma^\mathrm{SI}_{\chi N}$ as a function of $m_\chi$. 
+                 Shown are the combined results from the CMS invisible Higgs searches, as well as various direct detection experiments.}
+        \label{fig:vbf:dd}
+    \end{center}
+\end{figure}
+
