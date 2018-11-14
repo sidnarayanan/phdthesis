@@ -512,7 +512,7 @@ To validate that the transfer factors are reasonably well-simulated (within the 
 
 The dijet mass distribution in data is fit in all signal and control regions, the results of which are shown in Figure~\ref{fig:vbf:postfit}.
 As no statistically significant excess over the Standard Model is observed, we translate the results into upper limits on the branching ratio of $\hinv$.
-As the signal hypothesis, both the VBF and gluon fusion Higgs production modes are considered; the latter contaminates the SR due to its relatively large cross section.
+As the signal hypothesis, both the VBF and gluon fusion (with 2 extra jets) Higgs production modes are considered; the latter contaminates the SR due to its relatively large cross section.
 After the signal region selection criteria, the two modes contribute approximately equal yields. 
 Assuming $m_H=125$ GeV, the observed 95\% CL upper limit is 0.33. 
 Assuming a background-only hypothesis, the expected distribution of upper limits has median $0.33$, with the 1 standard deviation band covering $[0.18,0.35]$; the observation therefore represents an upwards fluctuation slightly under $1\sigma$. 
@@ -547,13 +547,30 @@ Assuming a background-only hypothesis, the expected distribution of upper limits
 
 We further scan $m_H$ and set upper limits on $\sigma(qq\rightarrow qqH)\mathcal{B}(\hinv)$. 
 In this case, as this is no longer the observed (Standard Model-like) Higgs boson, we only consider the VBF production mode as a signal hypothesis. 
-The upper limits are shown in
+The upper limits are shown in Figure~\ref{fig:vbf:mhscan}, and the observed (expected) limits exclude $m_H<550$ GeV ($600$ GeV) assuming a branching ratio of $100\%$. 
 
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/vbf/fits/mhscan.pdf}
         \caption{Upper limits on $\sigma\times \mathcal{B}$ as a function of $m_H$, assuming VBF as the only production mode.
-                 The predicted cross section is shown in red.}
+                The predicted cross section (assuming $\mathcal{B}=1$) is shown in red.}
+        \label{fig:vbf:mhscan}
+    \end{center}
+\end{figure}
+
+As described in the beginning of this chapter, each Higgs production mode corresponds to a potential invisible Higgs search channel.
+While VBF is the most sensitive, the total sensitivity can be improved by statistically combining all channels.
+Other results from CMS cover searches for associated production of a Higgs boson, either with a leptonically-decaying $Z$ boson (\needcite) or a hadronically-decaying weak boson (\needcite); and for gluon fusion production, with at least one jet originating from the initial state or heavy quark loop (\needcite). 
+The details of these searches are left to the referenced literature, but a summary of their results is provided in Figure~\ref{fig:vbf:comb}.
+When statistically combining the results, most experimental nuisances are treated as correlated between the searches, with the exception of the VBF jet energy scale dependence.
+This is because the VBF category selects forward jets, whereas other searches generally probe central jets.
+Theoretical nuisances (e.g. those affecting $W/Z$ or $ZZ/WZ$ ratios) are left uncorrelated between all searches.
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/comb.pdf}
+        \caption{Upper limits on $\sigma\times \mathcal{B}$ as a function of $m_H$, assuming VBF as the only production mode.
+                The predicted cross section (assuming $\mathcal{B}=1$) is shown in red.}
         \label{fig:vbf:mhscan}
     \end{center}
 \end{figure}
