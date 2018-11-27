@@ -75,7 +75,7 @@ Hereafter, we will refer to Cambridge-Aachen $R=1.5$ jets as CA15 jets.
 \section{Identification}
 
 Having \emph{reconstructed} the candidate top quark jets, we turn to the problem of \emph{identifying} which CA15 jets originate from top quarks as opposed to light $q/g$ hadronization. 
-As indicated in Figure~\ref{figs:jets:caak}, the jet mass is a powerful observable, but top (QCD) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
+As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observable, but top (QCD) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
 These extra particles can arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
 Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
@@ -88,7 +88,36 @@ More formally, at each node in the clustering tree, the softer branch of the nod
 where $p_\mathrm{T,i}$ refers to the $i$-th branch of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two branches; and $R$ and $\beta$ are tunable parameters. 
 This condition is satisfied if the two branches are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
 The particles remaining after this grooming procedure are combined to make the ``groomed'' or SD jet. 
+We then define $m_\mathrm{SD}$ as the mass of the SD jet. 
+We will see that observables may also be defined in terms of the groomed or ungroomed jet. 
+Figure~\ref{fig:jets:msd} compares the ungroomed and groomed mass distributions in top and QCD jets, as a function of jet momentum. 
+It is immediately clear that grooming provides (a) a sharper mass peak in top jets at $m_t$ and (b) a smoothly falling mass distribution in QCD jets that goes to 0.
+Furthermore, SD ensures the stability of the mass distribution as a function of jet \pt, especially in QCD jets.
+For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass. 
 
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_M_QCD.pdf}
+            \caption{Ungroomed, QCD}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_M_ZpTT_lo.pdf}
+            \caption{Ungroomed, Top}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_MSD_QCD.pdf}
+            \caption{SD, QCD}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_MSD_ZpTT_lo.pdf}
+            \caption{SD, Top}
+        \end{subfigure}
+        \caption{Distribution of ungroomed and groomed jet mass in CA15 jets originating from light $q/g$ partons or hadronic top decays.
+                 The multiple histograms represent increasingly stringent \pt~requirements on the parton that initiates the jet.}
+        \label{fig:jets:msd}
+    \end{center}
+\end{figure}
 
 \subsection{Substructure}
 
