@@ -30,7 +30,7 @@ This motivates the use of $R=1.5$ jets to reconstruct hadronic top quarks with $
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/toptagging/gen/ptdr.pdf}
+        \includegraphics[width=0.5\textwidth]{figures/toptagging/gen/ptdr.pdf}
         \caption{Distribution of top quark momenta versus decay radii in a simulated top quark pair sample.
                  The events are weighted such that the inclusive momentum distribution is uniform. 
                  The $z$-axis units are arbitrary, but proportional to the distribution of jets. 
@@ -43,7 +43,7 @@ There are two tunable parameters in jet reconstruction.
 We have specified the jet radius, but we must also choose the jet algorithm.
 The anti-$k_\mathrm{T}$ algorithm tends to pick circular jets, whereas the Cambridge-Aachen (CA) algorithm allows for more geometric shapes (Figure~\ref{fig:jets:algos}).
 As the top jets we seek to reconstruct are the sum of three light quark jets, we do not necessarily expect the $R=1.5$ jet to be circular.
-Figure~\ref{fig:jets:caak} compares the jet mass distribution for top and light quark/gluon (QCD) jets, where the jets are clustered using both algorithms.
+Figure~\ref{fig:jets:caak} compares the jet mass distribution for top and light quark/gluon (LQG) jets, where the jets are clustered using both algorithms.
 CA produces a top jet mass distribution with a narrower peak that sits closer to $m_t$ than anti-\kt. 
 Because of this, and the general improvement in $S/B$ near the top mass peak, we choose the CA algorithm.
 Hereafter, we will refer to Cambridge-Aachen $R=1.5$ jets as CA15 jets. 
@@ -70,12 +70,44 @@ Hereafter, we will refer to Cambridge-Aachen $R=1.5$ jets as CA15 jets.
     \end{center}
 \end{figure}
 
+The distance parameter of $R=1.5$ corresponds approximately to a maximal azimuthal angle separation of $\nicefrac{\pi}{2}$, which can cover half of the detector's fiducial volume.
+As the jet is so large, particles from pile-up interactions can accidentally be clustered into a jet from the primary vertex.
+Fundamental quantities (like top quark momentum) are uncorrelated with the number of primary vertices (\NPV), but reconstructed quantities can acquire such a dependence due to the extra radiation.
+These additional particles can bias the energy scale of the jet (e.g. the mass) as well as geometric observables (described in Section~\ref{sec:jets:id}).
+To mitigate these effects, we scale the particles' 4-momenta by their corresponding PUPPI scores (described in Chapter~\ref{sec:cms}) prior to clustering the jet.
+Jets clustered using all particles (without PUPPI filtering) have a jet mass and $\tau_{32}^\mathrm{SD}$ distributions (Figure~\ref{fig:jets:puppi}) in which both the mean and variance have an \NPV-dependence.
+Adding PUPPI stabilizes the mean and ensures that the variance does not grow at large \NPV.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/npv_clf_MSD_QCD.pdf}
+            \caption{Jet mass, LQG}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/npv_clf_MSD_ZpTT_lo.pdf}
+            \caption{Jet mass, Top}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/npv_clf_Tau32SD_QCD.pdf}
+            \caption{$\tau_{32}^\SD$, LQG}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/npv_clf_Tau32SD_ZpTT_lo.pdf}
+            \caption{$\tau_{32}^\SD$, Top}
+        \end{subfigure}
+        \caption{Stability of two CA15 jet observables (described in Section~\ref{sec:jets:id}) as a function of $N_\mathrm{PV}$.
+            The median (mean) of each \NPV~bin is represented by an open circle (dashed line), while the $[25\%,75\%]$ percentile range is shown with a box.}
+        \label{fig:jets:puppi}
+    \end{center}
+\end{figure}
 
 
 \section{Identification}
+\label{sec:jets:id}
 
 Having \emph{reconstructed} the candidate top quark jets, we turn to the problem of \emph{identifying} which CA15 jets originate from top quarks as opposed to light $q/g$ hadronization. 
-As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observable, but top (QCD) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
+As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observable, but top (LQG) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
 These extra particles can arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
 Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
@@ -85,21 +117,21 @@ More formally, at each node in the clustering tree, the softer branch of the nod
     \frac{\min(p_\mathrm{T,1},p_\mathrm{T,2})}{p_\mathrm{T,1}+p_\mathrm{T,2}} < 
     \left(\frac{\Delta R_{12}}{R}\right)^\beta
 \end{equation}
-where $p_\mathrm{T,i}$ refers to the $i$-th branch of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two branches; and $R$ and $\beta$ are tunable parameters. 
+where $p_\mathrm{T,i}$ refers to the \pt~of the $i$-th branch of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two branches; and $R$ and $\beta$ are tunable parameters. 
 This condition is satisfied if the two branches are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
 The particles remaining after this grooming procedure are combined to make the ``groomed'' or SD jet. 
 We then define $m_\mathrm{SD}$ as the mass of the SD jet. 
-We will see that observables may also be defined in terms of the groomed or ungroomed jet. 
-Figure~\ref{fig:jets:msd} compares the ungroomed and groomed mass distributions in top and QCD jets, as a function of jet momentum. 
-It is immediately clear that grooming provides (a) a sharper mass peak in top jets at $m_t$ and (b) a smoothly falling mass distribution in QCD jets that goes to 0.
-Furthermore, SD ensures the stability of the mass distribution as a function of jet \pt, especially in QCD jets.
+Observables may also be defined in terms of the groomed or ungroomed jet. 
+Figure~\ref{fig:jets:msd} compares the ungroomed and groomed mass distributions in top and LQG jets, as a function of jet momentum. 
+It is immediately clear that grooming provides (a) a sharper mass peak in top jets at $m_t$ and (b) a smoothly falling mass distribution in LQG jets that goes to 0.
+Furthermore, SD ensures the stability of the mass distribution as a function of jet \pt, especially in LQG jets.
 For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass. 
 
 \begin{figure}[]
     \begin{center}
         \begin{subfigure}[t]{0.35\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_M_QCD.pdf}
-            \caption{Ungroomed, QCD}
+            \caption{Ungroomed, LQG}
         \end{subfigure}
         \begin{subfigure}[t]{0.35\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_M_ZpTT_lo.pdf}
@@ -107,13 +139,13 @@ For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass.
         \end{subfigure}
         \begin{subfigure}[t]{0.35\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_MSD_QCD.pdf}
-            \caption{SD, QCD}
+            \caption{SD, LQG}
         \end{subfigure}
         \begin{subfigure}[t]{0.35\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/gen/norm_clf_MSD_ZpTT_lo.pdf}
             \caption{SD, Top}
         \end{subfigure}
-        \caption{Distribution of ungroomed and groomed jet mass in CA15 jets originating from light $q/g$ partons or hadronic top decays.
+        \caption{Distribution of ungroomed and groomed jet mass in CA15 jets originating from LQG or hadronic top decays.
                  The multiple histograms represent increasingly stringent \pt~requirements on the parton that initiates the jet.}
         \label{fig:jets:msd}
     \end{center}
@@ -121,9 +153,29 @@ For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass.
 
 \subsection{Substructure}
 
+A substructure observable is any function of a jet's constituents that is sensitive to the multi-pronged structure of a heavy resonance decay. 
+In addition to mass and heavy flavor mesons (Section~\ref{sec:jets:btag}), substructure is used to reject LQG jets as top decay candidates. 
+
+\subsubsection{$N$-subjettiness}
+
+The $N$-subjettiness ($\tau_N$) is a measure of the compatibility of a jet with an $N$-axis hypothesis~\needcite.
+It is defined as:
+\begin{equation}
+    \tau_N = \frac{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} \min\{\Delta R_{ia} | a\in A\}}{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} R}
+\end{equation}
+where $R=1.5$ (the jet radius); $\Delta R_{ia}$ is the $\Delta R$ distance between the particle $i$ and the axis $a$; and $A$ is a set of $N$ axes. 
+Ideally, $A$ would be defined to be the set of axes that minimize $\tau_N$ for each jet, but this minimization problem is computationally difficult.  
+Instead, the exclusive \kt~algorithm is used to partition the jet's constituents into $N$ ``subjets.''
+Since the \kt~distance metric is proportional to $\nicefrac{\Delta R^2}{R^2}$, this approximates the ideal minimization.
+The set of axes $A$ is taken to be the directions of the $N$ subjets. 
+A small $\tau_N$ indicates a high degree of compatibility with the $N$-axis hypothesis.
+Therefore, we expect a 3-pronged (e.g. top) jet to satisfy $\tau_3 \ll \tau_2$, whereas a 1-pronged (e.g. LQG) jet should satisfy $\tau_3 \lesssim \tau_2$ (for optimal choice of $A$, $\tau_{N} \leq \tau_{M}$ if $N>M$ for any jet). 
+Correspondingly, we take $\tau_{32} \equiv \nicefrac{\tau_3}{\tau_2}$ to be the tagging observable. 
+
 \subsubsection{A combined tagger}
 \label{sec:jets:combined}
 
 \subsection{Heavy flavor identification}
+\label{sec:jets:btag}
 
 \section{Data validation}
