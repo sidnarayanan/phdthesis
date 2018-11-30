@@ -111,21 +111,25 @@ As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observabl
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
 These extra particles can arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
 Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
-SD functions by traversing the CA clustering history in reverse and removing branches of the clustering tree that are deemed to be too soft or wide-angled.
-More formally, at each node in the clustering tree, the softer branch of the node will be removed if it satisfies the condition:
+SD functions by traversing the CA clustering history (a binary tree) in reverse and removing subjets (i.e. branches) of the clustering tree that are deemed to be too soft or wide-angled.
+More formally, at each node in the clustering tree, the softer subjet of the node will be removed if it satisfies the condition:
 \begin{equation}
     \frac{\min(p_\mathrm{T,1},p_\mathrm{T,2})}{p_\mathrm{T,1}+p_\mathrm{T,2}} < 
     \left(\frac{\Delta R_{12}}{R}\right)^\beta
 \end{equation}
-where $p_\mathrm{T,i}$ refers to the \pt~of the $i$-th branch of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two branches; and $R$ and $\beta$ are tunable parameters. 
-This condition is satisfied if the two branches are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
+where $p_\mathrm{T,i}$ refers to the \pt~of the $i$-th subjet of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two subjet; and $R$ and $\beta$ are tunable parameters. 
+This process starts at the root node of the clustering tree (i.e. the whole jet) and proceeds iteratively to the leaves (i.e. individual particles).
+This condition is satisfied if the two subjets are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
+We define the ``SD subjets'' (or where clear, simply ``subjets'') of a jet to be the two branches of the root node, after branches failing the SD condition have been removed. 
 The particles remaining after this grooming procedure are combined to make the ``groomed'' or SD jet. 
+
 We then define $m_\mathrm{SD}$ as the mass of the SD jet. 
 Observables may also be defined in terms of the groomed or ungroomed jet. 
 Figure~\ref{fig:jets:msd} compares the ungroomed and groomed mass distributions in top and LQG jets, as a function of jet momentum. 
 It is immediately clear that grooming provides (a) a sharper mass peak in top jets at $m_t$ and (b) a smoothly falling mass distribution in LQG jets that goes to 0.
 Furthermore, SD ensures the stability of the mass distribution as a function of jet \pt, especially in LQG jets.
 For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass. 
+
 
 \begin{figure}[]
     \begin{center}
@@ -154,7 +158,7 @@ For these reasons, $m_\mathrm{SD}$ will be our standard definition of jet mass.
 \subsection{Substructure}
 
 A substructure observable is any function of a jet's constituents that is sensitive to the multi-pronged structure of a heavy resonance decay. 
-In addition to mass and heavy flavor mesons (Section~\ref{sec:jets:btag}), substructure is used to reject LQG jets as top decay candidates. 
+In addition to jet mass and $b$-tagging, substructure is used to reject LQG jets as top decay candidates. 
 
 \subsubsection{$N$-subjettiness}
 
@@ -165,17 +169,142 @@ It is defined as:
 \end{equation}
 where $R=1.5$ (the jet radius); $\Delta R_{ia}$ is the $\Delta R$ distance between the particle $i$ and the axis $a$; and $A$ is a set of $N$ axes. 
 Ideally, $A$ would be defined to be the set of axes that minimize $\tau_N$ for each jet, but this minimization problem is computationally difficult.  
-Instead, the exclusive \kt~algorithm is used to partition the jet's constituents into $N$ ``subjets.''
+Instead, the exclusive \kt~algorithm is used to partition the jet's constituents into $N$ subjets (NB: these are not the SD subjets discussed above).
 Since the \kt~distance metric is proportional to $\nicefrac{\Delta R^2}{R^2}$, this approximates the ideal minimization.
-The set of axes $A$ is taken to be the directions of the $N$ subjets. 
+The set of axes $A$ is taken to be the directions of the $N$ \kt~subjets. 
 A small $\tau_N$ indicates a high degree of compatibility with the $N$-axis hypothesis.
-Therefore, we expect a 3-pronged (e.g. top) jet to satisfy $\tau_3 \ll \tau_2$, whereas a 1-pronged (e.g. LQG) jet should satisfy $\tau_3 \lesssim \tau_2$ (for optimal choice of $A$, $\tau_{N} \leq \tau_{M}$ if $N>M$ for any jet). 
+Therefore, we expect a 3-pronged (e.g. top) jet to satisfy $\tau_3 \ll \tau_2$, whereas a 1-pronged (e.g. LQG) jet should satisfy $\tau_3 \lesssim \tau_2$ (for optimal choice of $A$, $N>M \Rightarrow \tau_{N} \leq \tau_{M}$ for any jet). 
 Correspondingly, we take $\tau_{32} \equiv \nicefrac{\tau_3}{\tau_2}$ to be the tagging observable. 
 
-\subsubsection{A combined tagger}
+Figure~\ref{fig:jets:tau32} shows the distribution of $\tau_{32}$.
+As with jet mass, we can calculate $\tau_{32}$ either on the whole jet or on the groomed (SD) jet.
+The discrimination between top and LQG jets is similar in both cases, but as Figure~\ref{fig:jets:msdtau} demonstrates, $\tau_{32}^\SD$ has the weaker correlation with $m_\SD$ in LQG jets. 
+This feature will be critical to validate any tagger in data, as described in Section~\ref{sec:jets:sf}.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_fjTau32.pdf}
+            \caption{}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_fjTau32SD.pdf}
+            \caption{}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/gen/msdtau_QCD.pdf}
+            \caption{}
+            \label{fig:jets:msdtau}
+        \end{subfigure}
+        \caption{Shape of ungroomed (left) and groomed (center) $\tau_{32}$ distributions in top and LQG jets, with a mass selection consistent with $m_t$. 
+                 Right: the correlation between $\tau_{32}$ and $m_\SD$ in LQG jets, comparing groomed and ungroomed jets. 
+                 }
+        \label{fig:jets:tau32}
+    \end{center}
+\end{figure}
+
+\subsubsection{\HTT}
+% https://arxiv.org/pdf/1503.05921.pdf
+
+The \HTT~algorithm de-clusters the jet into many subjets and attempts to reconstruct the $W$ and $t$ decay products out of these subjets~\needcite.
+The computation of the tagging variable \frec~can be simplified into three steps (a more detailed description can be found in the appendix of Reference~\needcite):
+\begin{enumerate}
+    \item Compute subjets of the CA15 jet. This is done in a fashion similar to the SD subjets discussed above, but instead of taking the two subjets of the root node, the tree is traversed until some lower \pt~bound is crossed.
+    \item Test all triplet combinations of the found subjets and define the $m_{123}$ as the groomed mass of the trijet system. 
+    \item Choosing the triplet most consistent with a 3-body top decay (see Equation 12 in Reference~\needcite), define:
+        \begin{equation}
+            \frec = \min_{0\leq i < j \leq 2} \left|
+            \frac{\nicefrac{m_{ij}}{m_{123}}}{\nicefrac{m_W}{m_t}} - 1\right|
+        \end{equation}
+        where the indices $i,j$ index elements of the selected triplet. 
+\end{enumerate}
+Figure~\ref{fig:jets:htt} shows the distribution of the selected $m_{123}$ and $\frec$, although we will only use the latter as a tagging observable. 
+Note that we do not define distinct groomed and ungroomed versions of these observables, as grooming is intrinsically used in defining the subjets. 
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/incl_fjHTTMass.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_fjHTTFRec.pdf}
+        \end{subfigure}
+        \caption{Shape of the $m_{123}$ and $\frec$ observables computed by the \HTT~algorithm. }
+        \label{fig:jets:htt}
+    \end{center}
+\end{figure}
+
+\subsubsection{Energy Correlation Functions}
+
+Energy correlation functions measure the correlation of the positions of hard particles in a jet~\needcite. 
+Heuristically, an $N$-point ECF is small if the hard particles can be grouped into fewer than $N$ prongs and large if they arise from $N$ or more prongs. 
+An $N$-point ECF, with angular parameters $o$ and $\beta$, is defined as:
+\begin{equation}
+    e(o,N,\beta) \equiv 
+    ~_o e_N^\beta = 
+    \sum _{K\subset J, |K|=N} 
+    \left[\prod_{i\in K} \frac{\pt^{(i)}}{\pt^{(J)}}\right] \times 
+    \min\left\{ \prod_{i,j\in P} \Delta R_{ij}^\beta 
+        ~\Big|~ P \subset (K^2 \backslash (k,k)),~|P|=o\right\}
+\end{equation}
+where $K^2\backslash(k,k)$ indicates all pairs of distinct particles in $K$. 
+The proposed tagger in Reference~\needcite~is:
+\begin{equation}
+    N_3^{(\beta)} = \frac{e(2,4,\beta)}{(e(1,3,\beta))^2}
+\end{equation}
+Figure~\ref{fig:jets:n3} shows $N_3$ for various values of $\beta$; given our desire for stability as a function of jet \pt~and mass, we only consider ECFs computed on the SD jet. 
+The discrimination power of this ECF ratio is roughly comparable to that of $\tau_{32}^\SD$. 
+$N_3$ is motivated by the behavior of 3- and 4-point ECFs in top and LQG jets:
+\begin{itemize}
+    \item In top jets, $e(N=4) \ll e(N=3)$, since 3-point correlation functions are large in a 3-pronged jet
+    \item In QCD jets, $e(N=3) \sim e(N=3)$, since both 3- and 4-point ECFs are weak in a 1-pronged jet
+\end{itemize}
+Therefore, taking the ratio $e(N=4)/e(N=3)$ constructs a useful observable. 
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_24101310.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_24201320.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_24401340.pdf}
+        \end{subfigure}
+        \caption{Shape of the $N_3$ observables in top and LQG jets, for various values of $\beta$.}
+        \label{fig:jets:n3}
+    \end{center}
+\end{figure}
+
+While $N_3$ has a strong theoretical motivation, it is possible that other functions of ECFs can be used to distinguish top and LQG jets.
+In order to construct observables that do not have a strong dependence on the jet \pt, we restrict ourselves to ratios of the form:
+\begin{equation}
+    \psi(a,N,\alpha,b,M,\beta) = 
+    \frac{e(a,N,\alpha)}{\left(e(b,M,\beta)\right)^x} 
+    \text{, where } M\leq N \text{ and } x = \frac{a\alpha}{b\beta}
+\end{equation}
+A large subset of this broader class of ECF observables are found to be useful (Figure~\ref{fig:jets:ecfrs}), including ratios not of the form $e(N=4)/e(N=3)$.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_12102205.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_13102305.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_ratio_14401320.pdf}
+        \end{subfigure}
+        \caption{Examples of non-trivial ECF ratios other than $N_3$ that separate top and LQG jet distributions.}
+        \label{fig:jets:ecfrs}
+    \end{center}
+\end{figure}
+
+
+\subsection{A combined tagger}
 \label{sec:jets:combined}
 
-\subsection{Heavy flavor identification}
-\label{sec:jets:btag}
-
 \section{Data validation}
+\label{sec:jets:sf}
