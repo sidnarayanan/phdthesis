@@ -316,12 +316,74 @@ In practice, we only consider a finite sampling of ECF parameters:
 This grid results in $\sim900$ $\psi$ observables.
 
 To build a single optimal observable out of all the $\{\psi_i\}$s, we will use a boosted decision tree (BDT).
-A simplified algorithm to train a single decision tree node is as follows:
+A simplified algorithm to train a single decision tree node $n$ is as follows:
 \begin{enumerate}
-    \item Choose a $psi_i$, either by sampling randomly or selecting the one most optimal for the next step.
-    \item 
+    \item Choose a $\psi_j$, either by sampling randomly or selecting the one most optimal for the next step.
+    \item Based on the training data fed to the node, select a decision boundary $d_n$ to optimize a loss function. For example, one can use the cross-entropy loss:
+        \begin{gather}
+            \ell(X,y;j,d_n) =  -\hat\pi_B\ln\hat\pi_B -\hat\pi_S\ln\hat\pi_S \text{, where } 
+            \hat\pi_c = \hat P(y=c | \psi_j < d_n) 
+        \end{gather}
+\end{enumerate}
+A tree is built iteratively:
+\begin{enumerate}
+    \item Train a node $n$ using the above criteria. 
+    \item If a stopping condition is not met (i.e. maximum number of nodes, minimal improvement in $\ell(n)$), train one node on the samples that pass $n$ and another on the samples that fail.
+\end{enumerate}
+Figure~\ref{fig:jets:dt} provides a pictoral example of how a decision tree can be built. 
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree0.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree1.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree2.pdf}
+        \end{subfigure}
+        \caption{Steps in greedily training a simple decision tree.}
+        \label{fig:jets:dt}
+    \end{center}
+\end{figure}
+
+While decision trees can very accurately describe training data provided sufficient complexity, they also pathologically overfit the data.
+To mitigate this, while retaining descriptive power, a standard method is to \emph{boost} many simple trees.
+The simplicity of the tree prevents overfitting, while boosting many trees allows for a complex model.
+The result of a BDT is a classifier $f_n(x) = \sum_{i=0}^n \nu^i T_i(x)$, where $\nu\leq 1$ is tunable and each $T_i$ is a decision tree. 
+A simplified algorithm to train a BDT is as follows:
+\begin{enumerate}
+    \item Define a global loss function, e.g.:
+        \begin{equation} L(y_i; f_i) = \ln\left(1 + \exp(-y_if_i)\right)\end{equation}
+    \item Train a single tree $T_0$ and initialize classifier $f_0 = T_0$
+    \item Until some stopping condition (index $m=1,\dots$):
+    \begin{enumerate}
+      \item[3.1.] Compute the ``residual''
+        \begin{equation}r_{mi} = -\nabla_f L(y_i; f) |_{f=f_{m-1}(\bm\psi_i)}\end{equation}
+        \begin{equation}L = (y-f_m(\bm\psi))^2 \Rightarrow r_m = y - f_m(\bm\psi) \end{equation}
+      \item[3.2.] Fit a regression tree $T_m$ to predict $r_{mi}$ as a function of $x_i$:
+        \begin{equation}\ell(X,r_m;j,d,\hat{r}) = \sum_{i | \psi_{ji} < d} (r_{mi} - \hat r)^2\end{equation}
+      \item[3.3.] Update $f_m = f_{m-1} + \nu T_m$
+    \end{enumerate}
 \end{enumerate}
 
+While we would like to train a BDT on the entire space of $\{\psi\}$, there are two limiting factors:
+Firstly, not every ECF ratio is well-simulated by our MC (Figure~\ref{fig:jets:datamc_ratios}).
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/datamc/singlemuonw_ratio_23403210_logy.pdf}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/datamc/singlemuonw_ratio_22051240_logy.pdf}
+        \end{subfigure}
+        \caption{Two different ECF ratios in a $W$+jets selection, heavily enriched in LQG jets.
+                 One is fairly well-modeled, while the other is not. }
+        \label{fig:jets:datamc_ratios}
+    \end{center}
+\end{figure}
 
 \section{Data validation}
 \label{sec:jets:sf}
