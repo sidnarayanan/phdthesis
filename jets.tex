@@ -304,7 +304,24 @@ A large subset of this broader class of ECF observables are found to be useful (
 
 
 \subsection{A combined tagger}
-\label{sec:jets:combined}
+\label{sec:jets:bdt}
+
+In principle, we have constructed an infinitely large space of substructure observables.
+In practice, we only consider a finite sampling of ECF parameters:
+\begin{gather}
+    N \in \{1,2,3,4\} \nonumber \\ 
+    o \in \{1,2,3\} \nonumber \\ 
+    \beta \in \{0.5, 1, 2, 4\}
+\end{gather}
+This grid results in $\sim900$ $\psi$ observables.
+
+To build a single optimal observable out of all the $\{\psi_i\}$s, we will use a boosted decision tree (BDT).
+A simplified algorithm to train a single decision tree node is as follows:
+\begin{enumerate}
+    \item Choose a $psi_i$, either by sampling randomly or selecting the one most optimal for the next step.
+    \item 
+\end{enumerate}
+
 
 \section{Data validation}
 \label{sec:jets:sf}
