@@ -16,7 +16,7 @@ The approximate angular separation between the quarks from a heavy resonance dec
     \Delta R \sim \frac{2M}{\pt}
 \end{equation}
 where $M$ is the resonance mass and $\pt$ is the resonance transverse momentum.
-Setting $M=m_t$ and $\Delta R=1.2$ (i.e. the radius at which three $R=0.4$ jets start to overlap), we extract a ``merging scale'' of $300$ GeV.  
+Setting $M=m_t$ and $\Delta R=1.2$ (i.e.~the radius at which three $R=0.4$ jets start to overlap), we extract a ``merging scale'' of $300$ GeV.  
 This is be verified by checking the distribution of the ``decay radius'' in top quark simulation.
 Here, we define decay radius as: 
 \begin{equation}
@@ -65,7 +65,7 @@ Hereafter, we will refer to Cambridge-Aachen $R=1.5$ jets as CA15 jets.
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/toptagging/gen/clf_M.pdf}
         \caption{Mass distribution for jets clustered using the anti-$k_\mathrm{T}$ (dashed) and CA (solid) algorithms.
-                 QCD refers to jets originating in QCD multijet events, i.e. from the hadronization of light quarks or gluons.}
+                 QCD refers to jets originating in QCD multijet events, i.e.~from the hadronization of light quarks or gluons.}
         \label{fig:jets:caak}
     \end{center}
 \end{figure}
@@ -111,14 +111,14 @@ As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observabl
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
 These extra particles arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
 Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
-SD functions by traversing the CA clustering history (a binary tree) in reverse and removing subjets (i.e. branches) of the clustering tree that are deemed to be too soft or wide-angled.
+SD functions by traversing the CA clustering history (a binary tree) in reverse and removing subjets (i.e.~branches) of the clustering tree that are deemed to be too soft or wide-angled.
 More formally, at each node in the clustering tree, the softer subjet of the node will be removed if it satisfies the condition:
 \begin{equation}
     \frac{\min(p_\mathrm{T,1},p_\mathrm{T,2})}{p_\mathrm{T,1}+p_\mathrm{T,2}} < 
     \left(\frac{\Delta R_{12}}{R}\right)^\beta
 \end{equation}
 where $p_\mathrm{T,i}$ refers to the \pt~of the $i$-th subjet of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two subjet; and $R$ and $\beta$ are tunable parameters. 
-This process starts at the root node of the clustering tree (i.e. the whole jet) and proceeds iteratively to the leaves (i.e. individual particles).
+This process starts at the root node of the clustering tree (i.e.~the whole jet) and proceeds iteratively to the leaves (i.e.~individual particles).
 This condition is satisfied if the two subjets are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
 We define the ``SD subjets'' (or where clear, simply ``subjets'') of a jet to be the two branches of the root node, after branches failing the SD condition have been removed. 
 The particles remaining after this grooming procedure are combined to make the ``groomed'' or SD jet. 
@@ -328,9 +328,9 @@ A simplified algorithm to train a single decision tree node $n$ is as follows:
 A tree is built iteratively:
 \begin{enumerate}
     \item Train a node $n$ using the above criteria. 
-    \item If a stopping condition is not met (i.e. maximum number of nodes, minimal improvement in $\ell(n)$), train one node on the samples that pass $n$ and another on the samples that fail.
+    \item If a stopping condition is not met (i.e.~maximum number of nodes, minimal improvement in $\ell(n)$), train one node on the samples that pass $n$ and another on the samples that fail.
 \end{enumerate}
-Figure~\ref{fig:jets:dt} provides a pictoral example of how a decision tree can be built. 
+Figure~\ref{fig:jets:dt} provides a pictorial example of how a decision tree can be built. 
 
 \begin{figure}[]
     \begin{center}
@@ -424,18 +424,164 @@ It is semi-parallelizable, and the entire process typically takes a few hours.
 However, as the inference samples are 1-2 orders of magnitude larger than the training samples, this method reduces the total CPU time needed to run an analysis. 
 Figure~\ref{fig:jets:training} shows background acceptance rate at $\epsilon_\mathrm{sig}=0.5$ (a proxy for the global loss) as a function of feature space size. 
 For illustrative purposes, we only show the range $[1,50]$.
-It is clear that beyond 10-15 $\psi$s, there is little to be gained by adding additional information.
-
+The inputs for this training are the ECF ratios, as well as $\tau_{32}^\SD$ and $\frec$, which provide additional information.
+It is clear that beyond 13-15 features, there is little to be gained by adding additional information.
 
 \begin{figure}[]
     \begin{center}
         \begin{subfigure}[t]{0.4\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/bdt/fakerate_vs_eff50.pdf}
         \end{subfigure}
-        \caption{Performance of BDTs as a function of the number of ECF ratios used in the training.}
+        \caption{Performance of BDTs as a function of the number features used in the training.}
         \label{fig:jets:training}
+    \end{center}
+\end{figure}
+
+The features selected by this reduction and classification process are:
+\begin{gather}
+    \frac{e(1,4,20)}{e(1,3,10)^2},~
+    \frac{e(1,4,40)}{e(1,3,20)^2},~
+    \frac{e(2,4,05)}{e(1,3,05)^2},~
+    \frac{e(2,4,10)}{e(1,3,10)^2},~
+    \frac{e(2,4,10)}{e(2,3,05)^2},~
+    \frac{e(2,4,20)}{e(1,3,20)^2} \nonumber \\ 
+    \frac{e(1,2,20)}{e(1,2,10)^2},~
+    \frac{e(1,3,40)}{e(2,3,20)},~
+    \frac{e(3,3,10)}{e(1,3,40)^{3/4}},~
+    \frac{e(3,3,10)}{e(2,3,20)^{3/4}},~
+    \frac{e(3,3,20)}{e(3,3,40)^{1/2}}\nonumber \\ 
+    \tau_{32}^\SD,~ \frec 
+    \label{eq:jets:features}
+\end{gather}
+While a number of $N_3$ or other $4/3$ ratios appear in this list, we find a number of $2/2$ and $3/3$ ratios to contribute meaningfully to the classification task as well. 
+Figure~\ref{fig:jets:features} shows the distributions of all selected features. 
+Figure~\ref{fig:jets:roc} shows the background acceptance as a function of signal efficiency, comparing the final BDT (``Combined BDT``) to several other taggers.
+The ``11 ECF`` BDT refers to a BDT trained using only the 11 ECF ratios from Equation~\ref{eq:jets:features}, indicating that $\tau_{32}^\SD$ and $\frec$ are critical to achieving the same performance that can be reached with a much larger ECF ratio set (``50 ECF``).
+For comparison, also shown are the efficiency curves for $\tau_{32}^\SD$ and a BDT trained using $\tau_{32}^\SD$ and $\frec$ only.
+At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduces the background acceptance by 30\% relative to $\tau_{32}^\SD$, the standard top ID criterion at the LHC prior to this study. 
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_14201310.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_14401320.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_24051305.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_24101310.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_24102305.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_24201320.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_12201210.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_13402320.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_33101340.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_33102320.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_ratio_33203340.pdf} \\ 
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_fjTau32SD.pdf}
+        \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_fjHTTFRec.pdf}
+        \caption{Distributions of the 13 features selected by the iterative BDT training}
+        \label{figs:jets:features}
+    \end{center}
+\end{figure}
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/toptagging/bdt/massCut_roc.pdf}
+        \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The ``Combined BDT'' is the ID method chosen as the final tagger.}
+        \label{figs:jets:roc}
     \end{center}
 \end{figure}
 
 \section{Data validation}
 \label{sec:jets:sf}
+
+Prior to using the top BDT to identify top jets and reject LQG jets, we must verify that the simulation describes the BDT distribution properly as compared to data, and correct for any residual discrepancies.
+Figure~\ref{fig:jets:bdtdist} shows the BDT response and $m_\SD$ in top- and LQG-enriched selections.
+Top quarks are isolated by selecting events that produce $t\bar{t}$ pairs, in which one top quark decays hadronically (the top jet) and the other decays muonically ($t\rightarrow b\mu^+\nu_mu$).
+The leptonic $t$ is selected by identifying the muon and $b$ jet. 
+We further require that the CA15 jet have $110<m_\SD<210$ GeV and at least one SD subjet to be $b$-tagged.
+LQG jets are selected by using $Z(\rightarrow\mu\mu)$+jet events.
+We require two opposite sign muons, with $|m_{\mu\mu}-m_Z|<30$ GeV; this selection selects a $\gtrsim95\%$ pure $Z$+jet sample. 
+In both samples, we observe reasonably good agreement between data and simulation.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{\textwidth}
+    \begin{center}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/dimuon_fjMSD_logy.pdf}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/dimuon_top_ecf_bdt.pdf}
+            \caption{Dimuon selection}
+    \end{center}
+        \end{subfigure} \\ 
+        \begin{subfigure}[t]{\textwidth}
+    \begin{center}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/singlemuontop_fjMSD.pdf}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/singlemuontop_top_ecf_bdt.pdf}
+            \caption{$t\bar{t}$ selection}
+    \end{center}
+        \end{subfigure}
+        \caption{Comparison of the BDT response and jet mass in data and simulation, in top and LQG jets.}
+        \label{fig:jets:bdtdist}
+    \end{center}
+\end{figure}
+
+To account for any remaining differences, we define a scale factor (SF):
+\begin{equation}
+    \mathrm{SF}(x) = \frac{\epsilon_\mathrm{Data}(\mathrm{BDT}>x \text{ and }110<m_\SD<210)}{\epsilon_\mathrm{MC}(\mathrm{BDT}>x \text{ and }110<m_\SD<210)}
+\end{equation}
+where $x$ is a particular decision boundary and $\epsilon$ is the fraction of data or MC events passing this BDT  and mass selection.
+These are chosen to optimize sensitivity to the mono-top analysis, as described in Chapter~\ref{sec:mt}.
+The SF is strongly dependent on the type of jet; in particular, we expect different SFs for top and LQG jets.
+In what follows, we will define two decision boundaries: a loose (0.1) and a tight (0.45) category.
+
+To compute $\mathrm{SF}_\mathrm{LQG}$, we use the dimuon selection in Figure~\ref{fig:jets:bdtdist}, as this contains an essentially pure selection of LQG jets.
+Two sources of uncertainty are considered: the statistical uncertainties present in the data and MC, and the uncertainties on the theoretical prediction of the cross section of the small non-LQG backgrounds ($t\bar{t}$ and diboson events).
+The measured SFs are:
+\begin{align}
+    \mathrm{SF}_\mathrm{LQG}(0.1) = 1.02 & \pm 0.05 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.04 (\mathrm{statistical}) \pm 0.03 (t\bar{t}+\mathrm{diboson}) \nonumber \\ 
+    \mathrm{SF}_\mathrm{LQG}(0.45) = 0.97 & \pm 0.07 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.06 (\mathrm{statistical}) \pm 0.03 (t\bar{t}+\mathrm{diboson})
+\end{align}
+
+The process for top jets is complicated by the fact that the top pair selection in Figure~\ref{fig:jets:bdtdist} is not sufficiently pure in merged top jets.
+There is significant contamination from $W$+jets events.
+Furthermore, we cannot ensure that every $t\bar{t}$ event selected produces a \emph{merged} top jet - some events may contain jets in which only part of the top's decay products are clustered into the CA15 jet.
+Therefore, we extract the efficiency by means of a template fit to the mass distribution of passing and failing events, which can separate the top and LQG components in the selection.
+It is for this reason that we only use groomed observables in the BDT: grooming prevents a strong correlation between the observables and $m_\SD$.
+Such a correlation would cause the mass distribution of passing LQG jets to be indistinguishable from that of passing top jets.
+Figure~\ref{fig:jets:sffits} show the fits in the passing and failing regions for both decision boundaries.
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{\textwidth}
+    \begin{center}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/loose_fail.pdf}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/loose_pass.pdf}
+            \caption{Loose BDT-tagged}
+    \end{center}
+        \end{subfigure}
+        \begin{subfigure}[t]{\textwidth}
+    \begin{center}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/tight_fail.pdf}
+            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/tight_pass.pdf}
+            \caption{Tight BDT-tagged}
+    \end{center}
+        \end{subfigure}
+        \caption{Fits to the $m_\SD$ distribution in a $t\bar{t}$ sample to extract the efficiency in data of the BDT and mass selections.
+                 All uncertainties plotted and quoted are statistical in nature.}
+        \label{fig:jets:sffits}
+    \end{center}
+\end{figure}
+
+Several sources of uncertainty are considered for this measurement:
+\begin{itemize}
+    \item Poisson uncertainties in the data and simulation 
+    \item CA15 jet energy scale and resolution 
+    \item Definition used to select ``merged top'' jets, allowing $\max \Delta R_{qq'}$ to vary between 1 and 1.5 (nominal value is 1.2)
+    \item Efficiency of selecting $b$ jets
+\end{itemize}
+The resultant SFs and associated uncertainties are:
+\begin{align}
+    \mathrm{SF}_\mathrm{top}(0.1) = 1.08 & \pm 0.04 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.03 (\mathrm{statistical}) \pm 0.02 (\mathrm{JES+JER}) \pm 0.02 (\mathrm{merging}) \pm 0.002 (b) \nonumber \\ 
+    \mathrm{SF}_\mathrm{top}(0.45) = 1.07 & \pm 0.06 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.03 (\mathrm{statistical}) \pm 0.02 (\mathrm{JES+JER}) \pm 0.014 (\mathrm{merging}) \pm 0.000 (b) 
+\end{align}
+
