@@ -6,7 +6,7 @@ Within the Standard Model, the only such resonances are the massive vector boson
 These quarks hadronize into jets (described in Chapter~\ref{sec:theory}), which are typically reconstructed at the LHC using the anti-$k_\mathrm{T}$ algorithm (described in Chapter~\ref{sec:cms}).
 The focus of this chapter is on the cases in which the resonance is boosted and the decay products merge, such that they cannot be identified as 2 or 3 distinct jets.
 In preparation for Chapter~\ref{sec:mt}, we will take the top quark as a concrete example.
-In principle, the studies presented here can (and in some cases have been) applied to other heavy resonances, both within and beyond the Standard Model.
+The studies presented here can (and in some cases have been) applied to other heavy resonances, both within and beyond the Standard Model.
 
 \section{Reconstruction}
 \label{sec:jets:reco}
@@ -17,7 +17,7 @@ The approximate angular separation between the quarks from a heavy resonance dec
 \end{equation}
 where $M$ is the resonance mass and $\pt$ is the resonance transverse momentum.
 Setting $M=m_t$ and $\Delta R=1.2$ (i.e. the radius at which three $R=0.4$ jets start to overlap), we extract a ``merging scale'' of $300$ GeV.  
-This can be verified by checking the distribution of the ``decay radius'' in top quark simulation.
+This is be verified by checking the distribution of the ``decay radius'' in top quark simulation.
 Here, we define decay radius as: 
 \begin{equation}
     \max\Delta R_{qq} \equiv \displaystyle\max_{0\leq i < j \leq 2} \{\Delta R(q_i,q_j)\} \text{, where } t\rightarrow q_0q_1q_2
@@ -71,9 +71,9 @@ Hereafter, we will refer to Cambridge-Aachen $R=1.5$ jets as CA15 jets.
 \end{figure}
 
 The distance parameter of $R=1.5$ corresponds approximately to a maximal azimuthal angle separation of $\nicefrac{\pi}{2}$, which can cover half of the detector's fiducial volume.
-As the jet is so large, particles from pile-up interactions can accidentally be clustered into a jet from the primary vertex.
-Fundamental quantities (like top quark momentum) are uncorrelated with the number of primary vertices (\NPV), but reconstructed quantities can acquire such a dependence due to the extra radiation.
-These additional particles can bias the energy scale of the jet (e.g. the mass) as well as geometric observables (described in Section~\ref{sec:jets:id}).
+As the jet is so large, particles from pile-up interactions may accidentally be clustered into a jet from the primary vertex.
+Fundamental quantities (like top quark momentum) are uncorrelated with the number of primary vertices (\NPV), but reconstructed quantities acquire such a dependence due to the extra radiation.
+These additional particles bias the energy scale of the jet (e.g. the mass) as well as geometric observables (described in Section~\ref{sec:jets:id}).
 To mitigate these effects, we scale the particles' 4-momenta by their corresponding PUPPI scores (described in Chapter~\ref{sec:cms}) prior to clustering the jet.
 Jets clustered using all particles (without PUPPI filtering) have a jet mass and $\tau_{32}^\mathrm{SD}$ distributions (Figure~\ref{fig:jets:puppi}) in which both the mean and variance have an \NPV-dependence.
 Adding PUPPI stabilizes the mean and ensures that the variance does not grow at large \NPV.
@@ -109,7 +109,7 @@ Adding PUPPI stabilizes the mean and ensures that the variance does not grow at 
 Having \emph{reconstructed} the candidate top quark jets, we turn to the problem of \emph{identifying} which CA15 jets originate from top quarks as opposed to light $q/g$ hadronization. 
 As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observable, but top (LQG) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
-These extra particles can arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
+These extra particles arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
 Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
 SD functions by traversing the CA clustering history (a binary tree) in reverse and removing subjets (i.e. branches) of the clustering tree that are deemed to be too soft or wide-angled.
 More formally, at each node in the clustering tree, the softer subjet of the node will be removed if it satisfies the condition:
@@ -177,7 +177,7 @@ Therefore, we expect a 3-pronged (e.g. top) jet to satisfy $\tau_3 \ll \tau_2$, 
 Correspondingly, we take $\tau_{32} \equiv \nicefrac{\tau_3}{\tau_2}$ to be the tagging observable. 
 
 Figure~\ref{fig:jets:tau32} shows the distribution of $\tau_{32}$.
-As with jet mass, we can calculate $\tau_{32}$ either on the whole jet or on the groomed (SD) jet.
+As with jet mass, we may calculate $\tau_{32}$ either on the whole jet or on the groomed (SD) jet.
 The discrimination between top and LQG jets is similar in both cases, but as Figure~\ref{fig:jets:msdtau} demonstrates, $\tau_{32}^\SD$ has the weaker correlation with $m_\SD$ in LQG jets. 
 This feature will be critical to validate any tagger in data, as described in Section~\ref{sec:jets:sf}.
 
@@ -207,7 +207,7 @@ This feature will be critical to validate any tagger in data, as described in Se
 % https://arxiv.org/pdf/1503.05921.pdf
 
 The \HTT~algorithm de-clusters the jet into many subjets and attempts to reconstruct the $W$ and $t$ decay products out of these subjets~\needcite.
-The computation of the tagging variable \frec~can be simplified into three steps (a more detailed description can be found in the appendix of Reference~\needcite):
+The computation of the tagging variable \frec~can be simplified into three steps (a more detailed description is found in the appendix of Reference~\needcite):
 \begin{enumerate}
     \item Compute subjets of the CA15 jet. This is done in a fashion similar to the SD subjets discussed above, but instead of taking the two subjets of the root node, the tree is traversed until some lower \pt~bound is crossed.
     \item Test all triplet combinations of the found subjets and define the $m_{123}$ as the groomed mass of the trijet system. 
@@ -277,7 +277,7 @@ Therefore, taking the ratio $e(N=4)/e(N=3)$ constructs a useful observable.
     \end{center}
 \end{figure}
 
-While $N_3$ has a strong theoretical motivation, it is possible that other functions of ECFs can be used to distinguish top and LQG jets.
+While $N_3$ has a strong theoretical motivation, it is possible that other functions of ECFs  distinguish between top and LQG jets.
 In order to construct observables that do not have a strong dependence on the jet \pt, we restrict ourselves to ratios of the form:
 \begin{equation}
     \psi(a,N,\alpha,b,M,\beta) = 
@@ -368,8 +368,18 @@ A simplified algorithm to train a BDT is as follows:
     \end{enumerate}
 \end{enumerate}
 
-While we would like to train a BDT on the entire space of $\{\psi\}$, there are two limiting factors:
+While we would like to train a BDT on the entire space of $\{\psi\}$, there are two issues to be solved: poorly modeled ratios and a large feature space.
 Firstly, not every ECF ratio is well-simulated by our MC (Figure~\ref{fig:jets:datamc_ratios}).
+More systematically, we can compute the CDFs of each $\psi$ and define a score: 
+\begin{equation}
+    -\log_{10} \mathrm{KS}(F(\psi_i | \mathrm{data}), F(\psi_i | \mathrm{MC})) = -\log_{10} \max \left|F(\psi_i | \mathrm{data}) - F(\psi_i | \mathrm{MC})\right|
+\end{equation}
+where $F$ represents the CDF and $\mathrm{KS}$ denotes the Kolmogorov-Smirnov metric on probability distributions.
+The score is close to 0 for poorly-simulated distributions.
+Figure~\ref{fig:jets:ks} parameterizes this as a function of $N/M$ (ratio of the number of particles) and $a\alpha/b\beta$ (ratio of the angular powers) and shows an interesting structure.
+It is found that $3/2$ and $4/2$ ratios are uniformly poorly modeled, as are ratios with large $a\alpha/b\beta$. 
+While this structure is interesting and suggestive, we do not yet understand its origin, and therefore do not use this parameterization to select ECF ratios.
+Instead, we simply reject any ECF ratio for which $-\log_{10}\mathrm{KS} < 1$. 
 
 \begin{figure}[]
     \begin{center}
@@ -382,6 +392,48 @@ Firstly, not every ECF ratio is well-simulated by our MC (Figure~\ref{fig:jets:d
         \caption{Two different ECF ratios in a $W$+jets selection, heavily enriched in LQG jets.
                  One is fairly well-modeled, while the other is not. }
         \label{fig:jets:datamc_ratios}
+    \end{center}
+\end{figure}
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/datamc/scanmnab.pdf}
+        \end{subfigure}
+        \caption{The $-\log_{10}\mathrm{KS}$ metric as a function of $N/M$ and $a\alpha/b\beta$, computed using events enriched in LQG jets. }
+        \label{fig:jets:ks}
+    \end{center}
+\end{figure}
+
+Even after filtering poorly-modeled ratios, we are left with a sampled $\psi$ grid of $\sim 400$ points.
+By inspection, many of the $\psi$s are highly correlated or not useful at all.
+It is desirable to reduce the size of the feature space, as computing each ECF is somewhat computationally-intensive: an $N$-point ECF on a $p$-particle jet has $\binom{N}{p}$ terms. 
+Note that standard pre-processing techniques, like principal component analysis, do not reduce the number of features to be computed. 
+While L1 regularization does attempt such a dimensional reduction, it cannot be trivially applied to BDTs. 
+Therefore, we introduce a targeted iterative training method to solve this problem:
+\begin{enumerate}
+    \item Train a BDT with trees $T_1,\dots,T_n$
+    \item For each $\psi_i$, define a score:
+        \begin{equation}
+             s_i = \sum_{m=1}^n \nu^{m-1} \sum_{\text{nodes using $\psi_i$ in $T_m$}} N_\text{samples}(\mathrm{node}) \times \left(\ell(\mathrm{node}) - \ell(\mathrm{parent})\right)^2  
+        \end{equation}
+    \item Remove (one or more) $\psi_i$ with smallest $s_i$ and repeat until the global loss $L$ worsens significantly
+\end{enumerate}
+Iterative training is expensive and can require the training of $\mathcal{O}(50)$ BDTs.
+It is semi-parallelizable, and the entire process typically takes a few hours.
+However, as the inference samples are 1-2 orders of magnitude larger than the training samples, this method reduces the total CPU time needed to run an analysis. 
+Figure~\ref{fig:jets:training} shows background acceptance rate at $\epsilon_\mathrm{sig}=0.5$ (a proxy for the global loss) as a function of feature space size. 
+For illustrative purposes, we only show the range $[1,50]$.
+It is clear that beyond 10-15 $\psi$s, there is little to be gained by adding additional information.
+
+
+\begin{figure}[]
+    \begin{center}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/toptagging/bdt/fakerate_vs_eff50.pdf}
+        \end{subfigure}
+        \caption{Performance of BDTs as a function of the number of ECF ratios used in the training.}
+        \label{fig:jets:training}
     \end{center}
 \end{figure}
 
