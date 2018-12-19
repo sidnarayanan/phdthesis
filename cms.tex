@@ -11,8 +11,10 @@ In this thesis, we focus exclusively on data recorded from proton collisions dur
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.8\textwidth]{figures/cms/lhc.png}
-        \caption{Diagram of the CERN accelerator complex, adapted from Reference~\cite{lhcpic}. 
-                 The LHC (dark blue) is fed protons (and heavy ions) by a chain of intermediate accelerators, beginning with LINAC2 (dark pink).}
+        \caption{Diagram of the CERN accelerator complex.
+                 The LHC (dark blue) is fed protons (and heavy ions) by a chain of intermediate accelerators, beginning with LINAC2 (dark pink).i
+                 Reprinted from Reference~\cite{lhcpic}. 
+                    }
         \label{fig:cms:lhc}
     \end{center}
 \end{figure}
@@ -64,8 +66,8 @@ Figure~\ref{fig:cms:lumi} shows the total luminosity delivered by the LHC and re
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/cms/lumi.pdf}
-        \label{fig:cms:lumi}
         \caption{Integrated luminosity of the LHC during proton collisions during the 2016 data-taking period~\cite{lumitwiki}.}
+        \label{fig:cms:lumi}
     \end{center}
 \end{figure}
 
@@ -79,7 +81,7 @@ In what follows, we will use the $(r,\phi,\eta)$ coordinate system with respect 
     \item[$z = $] distance along beam axis, with $z=0$ defined to be at the center of the detector
     \item[$r = $] distance from the $z$ axis
     \item[$\phi = $] azimuthal angle in the plane orthogonal to the $z$ axis
-    \item[$\eta = $]$-\log\nicefrac{\theta}{2}$ (pseudorapidity), where $\theta$ is the angle from the $z$ axis
+    \item[$\eta = $]$-\log\nicefrac{\theta}{2}$ (pseudorapidity), where $\theta$ is the polar angle
 \end{itemize}
 In this coordinate system, we define $x$ and $y$ to lie in the plane perpendicular to $z$, with $x$ pointing from the center of the detector to the center of the LHC.
 As with the pseudorapidity, it is convenient to use quantities invariant under $z$-boosts, and so we define the transverse momentum:
@@ -88,15 +90,24 @@ As with the pseudorapidity, it is convenient to use quantities invariant under $
 \end{equation}
 We will frequently make use of the magnitude of this vector, $\pt$. 
 CMS can detect collision products that are within the fiducial volume of $0 \leq \phi < 2\pi$ and $-5 \leq \eta\leq 5$. 
-Several detector subsystems are used to identify and reconstruct muons, electrons, photons, and charged and neutral hadrons. 
+Several detector subsystems (Figure~\ref{fig:cms:cms}) are used to identify and reconstruct muons, electrons, photons, and charged and neutral hadrons. 
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{figures/cms/cms.png}
+        \caption{Cut-away view of the CMS detector and its subsystems.
+                 Reprinted from Reference~\cite{cmsjinst}.}
+        \label{fig:cms:cms}
+    \end{center}
+\end{figure}
 
 \subsubsection{Silicon tracker}
 
 Starting from the beam pipe, the first of these subsystems is the silicon tracker~\cite{cmstracker}, used to identify charged particles and measure their momenta. 
 The tracker consists of silicon detector geometries: pixels (providing 3D position measurement) and strips (2D). 
 The arrangement of the pixel and strip layers are shown in Figure~\ref{fig:cms:si}.
-The tracker sits in a near-uniform 3.8 T magnetic field, produced by a superconducting NbTi solenoid. 
-The field lines in the tracker volume are approximately parallel to the beam pipe. 
+A near-uniform 3.8 T magnetic field, produced by a superconducting NbTi solenoid, envelopes the tracker. 
+The field lines in the tracker volume are approximately parallel to the beam direction. 
 
 A single silicon pixel has dimensions $285\times100\times150$ $(\mu\mathrm{m})^3$ (in $r\times r\phi\times z$), leading to a position resolution of $\sim10\times30$ $(\mu\mathrm{m})^2$ (in $r\phi\times z$). 
 The 66 million pixels are arranged into 7 layers: 3 cylindrical ``barrels'' (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ ``endcap'' annulli (at $z=\pm34.5,~\pm46.5$ cm). 
@@ -113,7 +124,7 @@ There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0
                  The pixel layers are shown in bold red lines.
                  Single-strip (double-strip) layers are indicated by thin black (bold blue) lines.
                  The double-strip modules each consist of two back-to-back strips, rotated with respect to each other, that can provide 3D localization of the hits.
-                 Adapted from Reference~\cite{cmstracker}.}
+                 Reprinted from Reference~\cite{cmstracker}.}
         \label{fig:cms:si}
     \end{center}
 \end{figure}
@@ -124,30 +135,8 @@ The exact position of the particle in this layer (known as a ``hit'') is inferre
 A similar method is employed to determine the strip hit positions, with some modifications to account for Lorentz drift of the charges in the silicon detector due to the $B$-field. 
 The efficiency of reconstructing hits varies with the detector type, location, and particle momentum, but is generally greater than $99\%$ ($99.5\%$ if defective modules are not considered). 
 
-Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
-\begin{enumerate}
-    \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
-    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
-    \item Estimate trajectory parameters after finding all hits.
-    \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits)
-    \item Remove hits associated with tracks from hit collection and repeat.
-\end{enumerate}
-The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
-The CMS track fit typically has 5-6 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
-The efficiency and fake rate of this process, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
-For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
 
-\begin{figure}
-    \begin{center} 
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
-        \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).}
-        \label{fig:cms:trackeff}
-    \end{center}
-\end{figure}
-
-
-\subsubsection{Electromagnetic calorimetry}
+\subsubsection{Electromagnetic calorimeter}
 
 The CMS electromagnetic calorimeter~\cite{cmsecaljinst} (ECAL) is a homogenous detector with good energy and angular resolution, composed of 76,000 \pbwo~crystals. 
 The crystals are arranged in two sections: a cylindrical barrel (EB) covering $|\eta|<1.44$ and two endcap annuli (EE) extending to $|\eta|<3$.
@@ -175,13 +164,26 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
         \includegraphics[width=0.7\textwidth]{figures/cms/ecal.png}
         \caption{One quadrant of the CMS ECAL (symmetric with rotation around $z$ and reflection across $z=0$).
                  The dashed lines indicate values of $\eta$.
-                 Adapted from Reference~\cite{cmsecaljinst}.}
+                 Reprinted from Reference~\cite{cmsecaljinst}.}
         \label{fig:cms:ecal}
     \end{center}
 \end{figure}
 
+Due to the bending of an electron's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
+A ``supercluster'' is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
+The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the supercluster, where the coefficients account for crystal-specific calibration effects.
+For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
 
-\subsubsection{Hadronic calorimetry}
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.3\textwidth]{figures/cms/sc.png}
+        \caption{The combination of multiple ECAL crystals into a single supercluster, intended to capture energy depositions from bremsstrahlung photons.
+                  Reprinted from Reference~\cite{cmsecalrev}.}
+        \label{fig:cms:sc}
+    \end{center}
+\end{figure}
+
+\subsubsection{Hadronic calorimeter}
 
 \subsubsection{Muon chambers}
 
@@ -197,7 +199,33 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
 
 \subsubsection{Tracks and vertices}
 
+Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
+\begin{enumerate}
+    \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
+    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
+    \item Estimate trajectory parameters after finding all hits.
+    \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits)
+    \item Remove hits associated with tracks from hit collection and repeat.
+\end{enumerate}
+The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
+The CMS track fit typically has 5-6 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
+The efficiency and fake rate of this reconstruction, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
+For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
+
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
+        \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).
+                 Reprinted from Reference~\cite{cmstracker}.}
+        \label{fig:cms:trackeff}
+    \end{center}
+\end{figure}
+
+
 \subsubsection{Electrons and photons}
+
+
 
 \subsubsection{Jets}
 
