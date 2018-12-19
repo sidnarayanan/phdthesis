@@ -124,10 +124,62 @@ The exact position of the particle in this layer (known as a ``hit'') is inferre
 A similar method is employed to determine the strip hit positions, with some modifications to account for Lorentz drift of the charges in the silicon detector due to the $B$-field. 
 The efficiency of reconstructing hits varies with the detector type, location, and particle momentum, but is generally greater than $99\%$ ($99.5\%$ if defective modules are not considered). 
 
+Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
+\begin{enumerate}
+    \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
+    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
+    \item Estimate trajectory parameters after finding all hits.
+    \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits)
+    \item Remove hits associated with tracks from hit collection and repeat.
+\end{enumerate}
+The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
+The CMS track fit typically has 5-6 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
+The efficiency and fake rate of this process, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
+For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
 
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
+        \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).}
+        \label{fig:cms:trackeff}
+    \end{center}
+\end{figure}
 
 
 \subsubsection{Electromagnetic calorimetry}
+
+The CMS electromagnetic calorimeter~\cite{cmsecaljinst} (ECAL) is a homogenous detector with good energy and angular resolution, composed of 76,000 \pbwo~crystals. 
+The crystals are arranged in two sections: a cylindrical barrel (EB) covering $|\eta|<1.44$ and two endcap annuli (EE) extending to $|\eta|<3$.
+This provides slightly more coverage than the tracking volume.
+Each crystal in the EB (EE) has dimensions $2.2\times2.2\times23$ ($2.68\times2.68\times22$) $(\mathrm{cm}^3)$, with the long dimension pointing towards the beam.
+This can be compared to a Moli\'ere radius $r_M=2.19$ cm and a radiation length of $X_0=0.89$ cm. 
+A cross-sectional area comparable to $r_M\times r_M$ facilitates the differentiation of different electromagnetic (EM) showers arising from electrons and photons.
+The depth of the crystal (in units of $X_0$) drives the excellent energy resolution, which is determined using a standalone electron beam:
+\begin{equation}
+    \frac{\sigma_E}{E} = \frac{2.8\%}{\sqrt{E/\mathrm{GeV}}} \oplus \frac{12\%}{E/\mathrm{GeV}} \oplus 0.3\%
+\end{equation}
+Scintillation photons from the \pbwo~crystals are collected by avalanche photodiodes (APDs) in the EB and vacuum phototriodes (VPTs) in the EE, which provide amplification factors of 50 and 10, respectively. 
+
+At high momenta, the two photons from a $\pi^0$ decay may merge into a single ECAL crystal. 
+This primarily occurs at high $|\eta|$ due to the $z$-boost of the intitial state.
+To differentiate one- and two-photon deposits, a ``preshower'' detector sits in front of the EE ($1.6 < |\eta|<2.5$).
+The preshower detector consists of a lead absorber and silicon strips.
+A photon (or photon pair) initiates a shower in the lead.
+The shower can be resolved in the silicon strips, which have resolution $\mathcal{O}(1\mathrm{-}10)$ mm.
+
+The physical placement of all three ECAL components is shown in Figure~\ref{fig:cms:ecal}.
+
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.7\textwidth]{figures/cms/ecal.png}
+        \caption{One quadrant of the CMS ECAL (symmetric with rotation around $z$ and reflection across $z=0$).
+                 The dashed lines indicate values of $\eta$.
+                 Adapted from Reference~\cite{cmsecaljinst}.}
+        \label{fig:cms:ecal}
+    \end{center}
+\end{figure}
+
 
 \subsubsection{Hadronic calorimetry}
 
