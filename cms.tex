@@ -226,7 +226,7 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
 
 Due to the bending of a charged particle's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
 A ``supercluster'' (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
-The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects.
+The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects~\cite{cmsecalreco}.
 For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
 
 \begin{figure}
@@ -257,6 +257,9 @@ Inner track helices are extended into the calorimeters, searching for clusters c
 Similarly, clusters from the ECAL, the ECAL preshower, and the HCAL can be linked without a track present. 
 
 
+\subsubsection{Muons}
+
+
 \subsubsection{Electrons and photons}
 
 Both electrons and photons are seeded using ECAL SCs, with electrons also being associated with an isolated track.
@@ -267,7 +270,7 @@ Hits in the pixel and strip endcap layers consistent with the ECAL SC are used t
 GSF differs from a Kalman filter by modeling the uncertainties as a Gaussian mixture model instead of a single Gaussian.
 The primary backgrounds for electron identification are (1) the overlap of a charged hadron with a neutral hadron or photon and (2) a photon which converts into a $e^-/e^+$ pair in the tracker.
 Table~\ref{tab:cms:el} lists the observables used to reject these backgrounds; two cut-based IDs are defined.
-The ``loose'' ID selects electrons with $\sim90\%$ signal efficiency and $\sim0.5\%$ background acceptance (strongly dependent on the electron phase space); it is used to \emph{reject} electrons. 
+The ``loose'' ID selects electrons with $\sim90\%$ signal efficiency and $\sim0.5\%$ background acceptance (strongly dependent on the electron phase space); it is used to \emph{veto} electrons. 
 The ``tight'' ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.1\%$ background acceptance; it is used to \emph{select} electron-pure samples. 
 
 \begin{table}
@@ -279,22 +282,52 @@ The ``tight'' ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.
 			\hline
 			\hline
 			\pt & Backgrounds grow at low \pt~and brem.~photons can make low-\pt~tracking difficult. \\ \hline
-			$\sigma_{i\eta i\eta}$  & Energy-weighted variance of cell $\eta$ in SC. Small for electrons. \\ \hline
+			$\sigma_{i\eta i\eta}$  & Energy-weighted width of cell $\eta$ in SC. Small for electrons. \\ \hline
 			$|\Delta\eta(\mathrm{track,SC})|$  & $\Delta\eta$ between SC seed crystal and GSF track at PV. Small for electrons.  \\ \hline
 			$|\Delta\phi(\mathrm{track,SC})|$  & $\Delta\phi$, as above.\\ \hline
 			$E_\mathrm{H}/E_\mathrm{EM}$  & Ratio of HCAL and ECAL energies. Large for hadrons. \\ \hline
-			PF isolation & Sum of energies of other PF candiates near electron. Small for electrons. \\ \hline
+			PF isolation & Sum of energies of other PF candiates near electron. Large for particles in jets. \\ \hline
 			$|\nicefrac{1}{E}-\nicefrac{1}{p}|$ & Checks if ECAL and tracker agree ($m_e\sim0$) \\ \hline
 			$N_\mathrm{hit}^\mathrm{miss}$ & Conversions or bad tracks will have multiple missing hits in the inner tracker.\\ \hline
-			Conversion veto & Check for a pair of tracks originating at a displaced vertex.\\ \hline
+			Conversion veto & Check for a pair of tracks originating at a displaced vertex.\\ 
 		\end{tabular}
 	\end{center}
 \end{table}
 
+Photons are defined as ECAL SCs without matched tracks. 
+Table~\ref{tab:cms:pho} describes the selection variables used to define the loose veto ID ($\epsilon_\mathrm{sig}\approx90\%$, $\epsilon_\mathrm{bkg}\approx17\%$) and the tight selection ID ($\epsilon_\mathrm{sig}\approx82\%$, $\epsilon_\mathrm{bkg}\approx12\%$).
+The direction and energy of a photon are defined by the ECAL SC position and energy, respectively.
+
+\begin{table}
+	\begin{center}
+		\caption{Observables used in identifying photons and rejecting hadron backgrounds}
+		\label{tab:cms:pho}
+		\begin{tabular}{c|p{0.65\textwidth}}
+			Observable & Notes \\ 
+			\hline
+			\hline
+			\pt & Backgrounds grow at low \pt. \\ \hline
+			$\eta$ & EB resolution is better than EE; less hadron background. \\ \hline
+			$\sigma_{i\eta i\eta}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
+			$E_\mathrm{H}/E_\mathrm{EM}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
+			PF isolations & Defined in Table~\ref{tab:cms:el}. For photons, separate isolation criteria are placed on each PF type (photon, charged hadron, neutral hadron). \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+To calibrate ECAL SCs, we define the $R_9 = E_{3\times3}/E_\mathrm{SC}$. 
+$E_{3\times3}$ is the sum of the energies of the crystals in a $3\times3$ square centered on the most energetic crystal in the SC. 
+Much like $\sigma_{i\eta i\eta}$, it is sensitive to the width of the shower shape.
+A regression to correct the energy scale~\cite{cmsecalreco} is trained as a function of SC energy, $\eta$, $R_9$, and the width of the SC in $\phi$.
+To account for differences between data and simulation in the performance of the electron and photon IDs, corrections (known as scale factors) are derived:
+\begin{equation}
+	\SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
+\end{equation}
+While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow ee$ events, using one electron as a reference tag, and the other to probe the efficiency of the ID being tested.
+In the case of the photon ID, the electron SC is used as a proxy for the photon.
+
 \subsubsection{Jets}
 \label{sec:cms:jets}
-
-\subsubsection{Muons}
 
 \subsubsection{Hadronic taus}
 
