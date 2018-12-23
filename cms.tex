@@ -259,8 +259,37 @@ Similarly, clusters from the ECAL, the ECAL preshower, and the HCAL can be linke
 
 \subsubsection{Electrons and photons}
 
-Both electrons and photons are seeded using ECAL SCs.
+Both electrons and photons are seeded using ECAL SCs, with electrons also being associated with an isolated track.
+Due to the significant material budget of the silicon tracker, electrons will lose a significant amount of energy through bremsstrahlung.
+Although this energy is partially recovered through the supercluster algorithm, the standard Kalman filter tracking fit does not properly account for the non-Gaussian hit uncertainties induced by bremsstrahlung.
+Therefore, a modified algorithm based on a Gaussian Sum Filter (GSF)~\cite{cmstracker,gsf} is used to fit the track.
+Hits in the pixel and strip endcap layers consistent with the ECAL SC are used to seed the GSF fit.
+GSF differs from a Kalman filter by modeling the uncertainties as a Gaussian mixture model instead of a single Gaussian.
+The primary backgrounds for electron identification are (1) the overlap of a charged hadron with a neutral hadron or photon and (2) a photon which converts into a $e^-/e^+$ pair in the tracker.
+Table~\ref{tab:cms:el} lists the observables used to reject these backgrounds; two cut-based IDs are defined.
+The ``loose'' ID selects electrons with $\sim90\%$ signal efficiency and $\sim0.5\%$ background acceptance (strongly dependent on the electron phase space); it is used to \emph{reject} electrons. 
+The ``tight'' ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.1\%$ background acceptance; it is used to \emph{select} electron-pure samples. 
 
+\begin{table}
+	\begin{center}
+		\caption{Observables used in identifying electrons and rejecting hadron and photon backgrounds}
+		\label{tab:cms:el}
+		\begin{tabular}{c|p{0.65\textwidth}}
+			Observable & Notes \\ 
+			\hline
+			\hline
+			\pt & Backgrounds grow at low \pt~and brem.~photons can make low-\pt~tracking difficult. \\ \hline
+			$\sigma_{i\eta i\eta}$  & Energy-weighted variance of cell $\eta$ in SC. Small for electrons. \\ \hline
+			$|\Delta\eta(\mathrm{track,SC})|$  & $\Delta\eta$ between SC seed crystal and GSF track at PV. Small for electrons.  \\ \hline
+			$|\Delta\phi(\mathrm{track,SC})|$  & $\Delta\phi$, as above.\\ \hline
+			$E_\mathrm{H}/E_\mathrm{EM}$  & Ratio of HCAL and ECAL energies. Large for hadrons. \\ \hline
+			PF isolation & Sum of energies of other PF candiates near electron. Small for electrons. \\ \hline
+			$|\nicefrac{1}{E}-\nicefrac{1}{p}|$ & Checks if ECAL and tracker agree ($m_e\sim0$) \\ \hline
+			$N_\mathrm{hit}^\mathrm{miss}$ & Conversions or bad tracks will have multiple missing hits in the inner tracker.\\ \hline
+			Conversion veto & Check for a pair of tracks originating at a displaced vertex.\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \subsubsection{Jets}
 \label{sec:cms:jets}
