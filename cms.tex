@@ -81,7 +81,7 @@ In what follows, we will use the $(r,\phi,\eta)$ coordinate system with respect 
     \item[$z = $] distance along beam axis, with $z=0$ defined to be at the center of the detector
     \item[$r = $] distance from the $z$ axis
     \item[$\phi = $] azimuthal angle in the plane orthogonal to the $z$ axis
-    \item[$\eta = $]$-\log\nicefrac{\theta}{2}$ (pseudorapidity), where $\theta$ is the polar angle
+    \item[$\eta = $] pseudorapidity $(-\log\nicefrac{\theta}{2}$), with respect to the polar angle $\theta$ 
 \end{itemize}
 In this coordinate system, we define $x$ and $y$ to lie in the plane perpendicular to $z$, with $x$ pointing from the center of the detector to the center of the LHC.
 As with the pseudorapidity, it is convenient to use quantities invariant under $z$-boosts, and so we define the transverse momentum:
@@ -135,6 +135,61 @@ The exact position of the particle in this layer (known as a ``hit'') is inferre
 A similar method is employed to determine the strip hit positions, with some modifications to account for Lorentz drift of the charges in the silicon detector due to the $B$-field. 
 The efficiency of reconstructing hits varies with the detector type, location, and particle momentum, but is generally greater than $99\%$ ($99.5\%$ if defective modules are not considered). 
 
+Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
+\begin{enumerate}
+    \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
+    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
+    \item Estimate trajectory parameters after finding all hits.
+    \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits, track $\chi^2$)
+    \item Remove hits associated with tracks from hit collection and repeat.
+\end{enumerate}
+The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
+The CMS track fit typically has 5-7 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
+The efficiency and fake rate of this reconstruction, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
+For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
+
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
+        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
+        \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).
+                 Reprinted from Reference~\cite{cmstracker}.}
+        \label{fig:cms:trackeff}
+    \end{center}
+\end{figure}
+
+The excellent position resolution of the pixel detector is used to accurately measure the position of primary vertices, as well as any secondary vertices from the decays of long-lived particles.
+In the former case, tracks are first clustered together on the basis of the likelihood that the tracks in a cluster arise from a single primary vertex.
+This is done using a deterministic annealing algorithm~\cite{da}, which has as free parameters the number of clusters and the probability of each track belonging to each cluster.
+Having determined the clusters, an adaptive fit algorithm~\cite{adaptivefit} is used to determine the vertex for each cluster.
+The free parameters of this fit are the three spatial coordinates of the vertex.
+As the LHC collides bunches of $\mathcal{O}(10^{11})$ protons, we expect multiple primary vertices in a single collision, and this is reflected in Figure~\ref{fig:cms:npv}.
+The vertex defined to be the hard scattering interaction (known as \emph{the} primary vertex\footnote{This nomenclature is indeed confusing, defining the singular primary vertex to be one of many primary vertices. However, it is standard terminology in CMS publications, so we will continue to use it. In what follows, the distinction will be clear}) is the vertex which maximizes:
+\begin{equation}
+	\sum_{j\in\mathrm{track jets}} (\pt^j)^2 + (\ptmiss)^2
+\end{equation}
+where ``track jets`` refer to jets (Section~\ref{sec:cms:jets}) clustered from the vertex's tracks, and \ptmiss~is defined in Section~\ref{sec:cms:met}.
+
+\begin{figure}
+    \begin{center} 
+        \includegraphics[width=0.7\textwidth]{figures/cms/comparison_npv.pdf}
+        \caption{The distribution of the number of reconstructed primary vertices in data recorded by CMS during Run 2 of the LHC.
+				 While the results in this thesis only concern 2016 data, we show the evolution of $N_\mathrm{PV}$ as a function of time, as this correlates directly with increased instantaneous luminosity.}
+        \label{fig:cms:npv}
+    \end{center}
+\end{figure}
+
+The last reconstruction algorithm concerning the tracker alone is the identification of secondary vertices, which arise from the decay of long-lived particles (e.g. $B$ mesons).
+The inclusive vertex fitter (IVF)~\cite{csvv2} reconstructs such secondary vertices by the following steps:
+\begin{enumerate}
+	\item Select a track as a seed if it satisfies $\sqrt{d_0^2 + d_z^2} > 50~\mu\mathrm{m}$ and $d_0 > 1.2 \delta d_0$.
+	\item Choose nearby tracks based on their closest distance to and opening angle with the seed track.
+	\item Fit the tracks to a displaced vertex using the adaptive fitter~\cite{adaptivefit}.
+	\item Decide which tracks belong to the candidate secondary vertex and which belong to the primary vertex.
+	\item Re-fit the secondary vertex position only using the former set of tracks from the previous step.
+\end{enumerate}
+It is important not only to properly determine the location of the secondary vertex, but also to properly assign tracks.
+Observables that are a function of the \emph{tracks} (e.g. vertex mass) will be critical for $b$ jet tagging.
 
 \subsubsection{Electromagnetic calorimeter}
 
@@ -144,7 +199,7 @@ This provides slightly more coverage than the tracking volume.
 Each crystal in the EB (EE) has dimensions $2.2\times2.2\times23$ ($2.68\times2.68\times22$) $(\mathrm{cm}^3)$, with the long dimension pointing towards the beam.
 This can be compared to a Moli\'ere radius $r_M=2.19$ cm and a radiation length of $X_0=0.89$ cm. 
 A cross-sectional area comparable to $r_M\times r_M$ facilitates the differentiation of different electromagnetic (EM) showers arising from electrons and photons.
-The depth of the crystal (in units of $X_0$) drives the excellent energy resolution, which is determined using a standalone electron beam:
+The depth of the crystal (in units of $X_0$) drives the excellent energy resolution, which is determined using a electron beam:
 \begin{equation}
     \frac{\sigma_E}{E} = \frac{2.8\%}{\sqrt{E/\mathrm{GeV}}} \oplus \frac{12\%}{E/\mathrm{GeV}} \oplus 0.3\%
 \end{equation}
@@ -169,9 +224,9 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
     \end{center}
 \end{figure}
 
-Due to the bending of an electron's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
-A ``supercluster'' is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
-The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the supercluster, where the coefficients account for crystal-specific calibration effects.
+Due to the bending of a charged particle's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
+A ``supercluster'' (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
+The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects.
 For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
 
 \begin{figure}
@@ -189,49 +244,37 @@ For an electron or photon, the EM energy is typically the energy of the particle
 
 \subsubsection{Online trigger system}
 
+\section{Particle reconstruction and identification}
+
+\subsubsection{Particle flow algorithm}
+
+Because of the excellent angular granularity of the CMS detector and the momentum resolution of the tracker, a particle flow~\cite{cmspf} algorithm is used to correlate information from all detector subsystems to build a global description of each event.
+Particle flow (PF) algorithms date back to ALEPH~\needcite, and are in contrast to detector-specific physics object-based algorithms used at other experiments (e.g. References~\needcite).
+
+The key feature of the PF algorithm is to ``link'' multiple detector signals together into a single PF candidate.
+This linkage combines inner tracks, ECAL clusters, HCAL clusters, and muon tracks based on their proximity in the $(\eta,\phi)$ plane.
+Inner track helices are extended into the calorimeters, searching for clusters compatible with the trajectory.
+Similarly, clusters from the ECAL, the ECAL preshower, and the HCAL can be linked without a track present. 
+
+
+\subsubsection{Electrons and photons}
+
+Both electrons and photons are seeded using ECAL SCs.
+
+
+\subsubsection{Jets}
+\label{sec:cms:jets}
+
+\subsubsection{Muons}
+
+\subsubsection{Hadronic taus}
+
+\subsubsection{Missing momentum}
+\label{sec:cms:met}
+
+
 \section{Simulation of collisions}
 
 \subsection{Physics simulation}
 
 \subsection{Detector simulation}
-
-\section{Particle reconstruction algorithms}
-
-\subsubsection{Tracks and vertices}
-
-Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
-\begin{enumerate}
-    \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
-    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
-    \item Estimate trajectory parameters after finding all hits.
-    \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits)
-    \item Remove hits associated with tracks from hit collection and repeat.
-\end{enumerate}
-The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
-The CMS track fit typically has 5-6 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
-The efficiency and fake rate of this reconstruction, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
-For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
-
-\begin{figure}
-    \begin{center} 
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
-        \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).
-                 Reprinted from Reference~\cite{cmstracker}.}
-        \label{fig:cms:trackeff}
-    \end{center}
-\end{figure}
-
-
-\subsubsection{Electrons and photons}
-
-
-
-\subsubsection{Jets}
-
-\subsubsection{Muons}
-
-\subsubsection{Particle flow algorithm}
-
-\subsubsection{Missing momentum}
-
