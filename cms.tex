@@ -276,6 +276,10 @@ RPCs are interspersed among the DTs and CSCs in both the barrel and endcap.
 These serve as a very fast muon detector ($\sim 1$ ns) for the online trigger system. 
 The spatial resolution of the RPC hits is worse than the DTs and CSCs.
 
+The hit position resolution of the DTs is 78-120 $\mu$m (140-390 $\mu$m) in $r$-$\phi$ ($r$-$z$).
+For CSC, the resolution varies from 40 to 152 $\mu$m.
+The efficiency of individual reconstructed hits (``rechits'') is over 95\%.
+
 \subsubsection{Online trigger system}
 
 \section{Particle reconstruction and identification}
@@ -294,7 +298,71 @@ At the end of each block, any detector signature (track, calorimeter cell) which
 For example, tracks associated with muons will not be considered when reconstructing charged hadrons. 
 
 \subsubsection{Muons}
+\label{sec:cms:muons}
 
+The first block of the PF algorithm links inner tracks and muon chamber hits to identify muons.
+While ``standalone'' muons can rely solely on muon chamber hits, we also consider muons that use the inner tracker.
+To construct outside-in ``global muons'', standalone muon tracks are first reconstructed using a Kalman filter fit using muon chamber rechits~\cite{cmstdr1,cmsmuon}.
+These standalone tracks are extrapolated inwards to the inner tracker, accounting for effects from the magnetic field and the  material budget between the tracker and the muon chambers.
+A second Kalman filter fit is run to combine the inner track with the standalone track to form a global muon.
+To reject backgrounds, requirements are placed on the $\nicefrac{\chi^2}{N_\mathrm{dof}}$ (poorly fit tracks, charged hadrons) and $d_0,d_z$ (muons from hadron decays and cosmic rays).
+The total efficiency of global muon reconstruction is 99\%.
+In addition, ``tracker'' muons can be reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
+The PF algorithm uses both global and tracker muons, but in this thesis, we will only use the former.
+Figure~\ref{fig:cms:muonpt} shows the momentum resolution of global muons, compared to the momentum resolution of tracker-only muons (i.e. not using the muon chambers at all, not to be confused with inside-out tracker muons).
+The PF selection consumes all three types of reconstructed muons: global, tracker, and standalone.
+
+\begin{figure}[]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/cms/muonpt.png}
+	\caption{Resolution of muon $q/\pt$, compared between global muon reconstruction and the inner tracks corresponding to muons.
+			 The quantity $q/\pt$ is used because the distribution is approximately Gaussian.
+			 The salient feature is that the muon systems become important to the momentum measurement at approximately 200 GeV.
+			 Reprinted from Reference~\cite{cmsmuon}.}
+	\label{fig:cms:muonpt}
+\end{center}
+\end{figure}
+
+We define two muon identification (ID) criteria that are slightly stronger than the PF selection. 
+The first is a loose ID, which is used to veto muons when defining muon-free data samples.
+A loose muon is required to be either a global or tracker muon and have PF isolation less than $0.25$.
+PF isolation is defined as:
+\begin{equation}
+	\left(\sum_{i \in \text{PV charged had.}} \pt^{(i)} +
+	\max\left\{0,~\sum_{i\in\text{neut. had.}} \pt^{(i)} + \sum_{j\in\gamma} \pt^{(j)} - 
+			\frac{1}{2} \sum_{k\in\text{PU charged had.}}\pt^{(k)}\right\} \right)
+	\big/ \pt^{(\mu)}
+\end{equation}
+where the sums are over PF candidates within $\Delta R < 0.4$ of the muon.
+PV and PU refer to the primary vertex and pileup vertices, respectively.
+The tight muon ID requires a global muon, PF isolation less than $0.15$, and has selections on the criteria in Table~\ref{tab:cms:muon}.
+The efficiency
+
+\begin{table}
+	\begin{center}
+		\caption{Observables used in identifying muons and rejecting backgrounds}
+		\label{tab:cms:muon}
+		\begin{tabular}{c|p{0.65\textwidth}}
+			Observable & Notes \\ 
+			\hline
+			\hline
+			\pt & Backgrounds grow at low \pt. \\ \hline
+			$\chi^2/N_\mathrm{dof}$ & Ensure a good track fit. \\ \hline
+			$N_\mathrm{hit}^\mathrm{muon}$ & At least one hit in the muon chamber in the global fit. \\ \hline
+			$N_\mathrm{stations}$ & At least two muon chamber stations contain segments of the track. \\ \hline
+			$d_0$ & Track impact parameter, remove cosmic rays and hadron decays. \\ \hline
+			$d_z$ & Track impact parameter, as above but also for pileup. \\ \hline
+			$N_\mathrm{hit}^\mathrm{pixel}$ & At least one pixel hit. \\ \hline
+			$N_\mathrm{hit}^\mathrm{tracker}$ & At least 5 hits in the tracker. \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+To account for differences between data and simulation in the performance of the muon IDs, corrections (known as scale factors) are derived:
+\begin{equation}
+	\SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
+\end{equation}
+While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow \mu\mu$ events, using one muon as a reference tag, and the other to probe the efficiency of the ID being tested.
 
 \subsubsection{Electrons and photons}
 
@@ -355,11 +423,7 @@ To calibrate ECAL SCs, we define the $R_9 = E_{3\times3}/E_\mathrm{SC}$.
 $E_{3\times3}$ is the sum of the energies of the crystals in a $3\times3$ square centered on the most energetic crystal in the SC. 
 Much like $\sigma_{i\eta i\eta}$, it is sensitive to the width of the shower shape.
 A regression to correct the energy scale~\cite{cmsecalreco} is trained as a function of SC energy, $\eta$, $R_9$, and the width of the SC in $\phi$.
-To account for differences between data and simulation in the performance of the electron and photon IDs, corrections (known as scale factors) are derived:
-\begin{equation}
-	\SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
-\end{equation}
-While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow ee$ events, using one electron as a reference tag, and the other to probe the efficiency of the ID being tested.
+Differences between data and MC in the efficiencies of the electron and photon IDs are corrected using scale factors using $Z\rightarrow ee$ events, as was described for muon IDs.
 In the case of the photon ID, the electron SC is used as a proxy for the photon.
 
 \subsubsection{Jets}
