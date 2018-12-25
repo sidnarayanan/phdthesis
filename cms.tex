@@ -8,7 +8,7 @@ Designed to collide protons at a maximum center-of-mass energy $\sqrt{s} = 14$ T
 In addition to protons, the LHC accelerates and collides heavy nuclei (Pb and Xe) at lower values of $\sqrt{s}$. 
 In this thesis, we focus exclusively on data recorded from proton collisions during Run 2. 
 
-\begin{figure}[]
+\begin{figure}[][]
     \begin{center}
         \includegraphics[width=0.8\textwidth]{figures/cms/lhc.png}
         \caption{Diagram of the CERN accelerator complex.
@@ -63,7 +63,7 @@ where $\tau_L \approx 15$ h is the characteristic beam loss timescale and $L(0)$
 The LHC is designed to deliver $L(0) \sim \mathcal{O}(10^{34})$ cm$^{-2}$s$^{-1}$. 
 Figure~\ref{fig:cms:lumi} shows the total luminosity delivered by the LHC and recorded by CMS during the 2016 portion of Run 2. 
 
-\begin{figure}[]
+\begin{figure}[][]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/cms/lumi.pdf}
         \caption{Integrated luminosity of the LHC during proton collisions during the 2016 data-taking period~\cite{lumitwiki}.}
@@ -92,7 +92,7 @@ We will frequently make use of the magnitude of this vector, $\pt$.
 CMS can detect collision products that are within the fiducial volume of $0 \leq \phi < 2\pi$ and $-5 \leq \eta\leq 5$. 
 Several detector subsystems (Figure~\ref{fig:cms:cms}) are used to identify and reconstruct muons, electrons, photons, and charged and neutral hadrons. 
 
-\begin{figure}[]
+\begin{figure}[][]
     \begin{center}
         \includegraphics[width=0.65\textwidth]{figures/cms/cms.png}
         \caption{Cut-away view of the CMS detector and its subsystems.
@@ -117,7 +117,7 @@ Certain strip layers contain two layers of strips, rotated through a ``stereo'' 
 By matching adjacent hits, the stereo measurement can add a third dimension ($z$ for barrel, $r$ for endcap) to the strip's 2D measurement, with resolution $100$-$500$ $\mu$m.
 There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0.6 < |z| < 2.8$ m). 
 
-\begin{figure}
+\begin{figure}[]
     \begin{center} 
         \includegraphics[width=0.7\textwidth]{figures/cms/tracker.png}
         \caption{Diagram of a slice of the CMS tracking system.
@@ -138,7 +138,7 @@ The efficiency of reconstructing hits varies with the detector type, location, a
 Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
 \begin{enumerate}
     \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
-    \item Use a Kalman filter~\needcite to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
+    \item Use a Kalman filter~\cite{kalman2,kalman1} to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
     \item Estimate trajectory parameters after finding all hits.
     \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits, track $\chi^2$)
     \item Remove hits associated with tracks from hit collection and repeat.
@@ -148,10 +148,10 @@ The CMS track fit typically has 5-7 iterations, with each successive iteration l
 The efficiency and fake rate of this reconstruction, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
 For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
 
-\begin{figure}
+\begin{figure}[]
     \begin{center} 
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_eff.png}
-        \includegraphics[width=0.35\textwidth]{figures/cms/track_fake.png}
+        \includegraphics[width=0.36\textwidth]{figures/cms/track_eff.png}
+        \includegraphics[width=0.36\textwidth]{figures/cms/track_fake.png}
         \caption{Efficiency (fake rate) of the CMS track fit algorithm, evaluated using simulation of muons (charged pions).
                  Reprinted from Reference~\cite{cmstracker}.}
         \label{fig:cms:trackeff}
@@ -166,13 +166,13 @@ The free parameters of this fit are the three spatial coordinates of the vertex.
 As the LHC collides bunches of $\mathcal{O}(10^{11})$ protons, we expect multiple primary vertices in a single collision, and this is reflected in Figure~\ref{fig:cms:npv}.
 The vertex defined to be the hard scattering interaction (known as \emph{the} primary vertex\footnote{This nomenclature is indeed confusing, defining the singular primary vertex to be one of many primary vertices. However, it is standard terminology in CMS publications, so we will continue to use it. In what follows, the distinction will be clear}) is the vertex which maximizes:
 \begin{equation}
-	\sum_{j\in\mathrm{track jets}} (\pt^j)^2 + (\ptmiss)^2
+	\sum_{j\in\text{track jets}} (\pt^j)^2 + (\ptmiss)^2
 \end{equation}
 where ``track jets`` refer to jets (Section~\ref{sec:cms:jets}) clustered from the vertex's tracks, and \ptmiss~is defined in Section~\ref{sec:cms:met}.
 
-\begin{figure}
+\begin{figure}[]
     \begin{center} 
-        \includegraphics[width=0.7\textwidth]{figures/cms/comparison_npv.pdf}
+        \includegraphics[width=0.6\textwidth]{figures/cms/comparison_npv.pdf}
         \caption{The distribution of the number of reconstructed primary vertices in data recorded by CMS during Run 2 of the LHC.
 				 While the results in this thesis only concern 2016 data, we show the evolution of $N_\mathrm{PV}$ as a function of time, as this correlates directly with increased instantaneous luminosity.}
         \label{fig:cms:npv}
@@ -214,7 +214,7 @@ The shower can be resolved in the silicon strips, which have resolution $\mathca
 
 The physical placement of all three ECAL components is shown in Figure~\ref{fig:cms:ecal}.
 
-\begin{figure}
+\begin{figure}[]
     \begin{center} 
         \includegraphics[width=0.7\textwidth]{figures/cms/ecal.png}
         \caption{One quadrant of the CMS ECAL (symmetric with rotation around $z$ and reflection across $z=0$).
@@ -229,7 +229,7 @@ A ``supercluster'' (SC) is defined by clustering nearby ECAL energy depositions,
 The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects~\cite{cmsecalreco}.
 For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
 
-\begin{figure}
+\begin{figure}[]
     \begin{center} 
         \includegraphics[width=0.3\textwidth]{figures/cms/sc.png}
         \caption{The combination of multiple ECAL crystals into a single supercluster, intended to capture energy depositions from bremsstrahlung photons.
@@ -241,6 +241,40 @@ For an electron or photon, the EM energy is typically the energy of the particle
 \subsubsection{Hadronic calorimeter}
 
 \subsubsection{Muon chambers}
+
+The muon detectors are gas ionization chambers and are the outermost component of CMS~\cite{cmsmuon}. 
+The chambers are interleaved with the steel return yoke of the CMS magnet, ensuring a $B$-field which runs anti-parallel to the field inside the solenoid.
+This results in the characteristic $S$-shape of muon trajectories, as the bending changes direction across the solenoid. 
+3 types of ionization detectors are used: drift tubes (DTs; barrel), cathode strip chambers (CSCs; endcaps), and resistive plate chambers (RPCs; barrel and endcaps).
+The physical placement of the detectors is shown in Figure~\ref{fig:cms:muondet}.
+
+\begin{figure}[]
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{figures/cms/muon.png}
+		\caption{One quadrant of the CMS muon detection system, with the DTs (MBs), CSCs (MEs), and RPCs (RBs/REs) labeled. 
+				 Reprinted from Reference~\cite{cmsmuon}.}
+		\label{fig:cms:muondet}
+	\end{center}
+\end{figure}
+
+The DT cells are filled with a $85\%/15\%$ mix of argon and carbon dioxide, with a gold/steel anode wire held at a voltage of $3600$ V.
+The cell is a rectangular prism, with transverse dimensions of $42\times13~\mathrm{mm}^2$ and a longitudinal dimension ranging from $1.9$ to $4.1$ m.
+The dimensions and the drift speed of $55\mu\mathrm{m/s}$ result in a maximum response (drift) time of $400$ ns.
+The DTs are organized into cylindrical ``stations'' (MB).
+With the exception of the outermost barrel station (MB4), each MB consists of 3 ``superlayers'' (SLs).
+Each SL has 4 parallel drift cells, and so measure position in a particular plane.
+Of the 3 SLs, two measure $r$-$\phi$ position and one measures $r$-$z$ position. 
+MB4 does not have an $r$-$z$ SL.
+
+The endcap is instrumented with CSCs as these have a faster response time and better spatial resolution than DTs.
+This is needed in the forward region, where both the muon and background fluxes are higher.
+While the CSC dimensions vary depending on the position of the chamber, each is instrumented with 80 cathode strips, held at voltages (relative to the anode) of 2.9-3.6 kV.
+The CSC wires have a separation of 2.5-3.16 mm, which governs the position resolution.
+A 50\%/40\%/10\% mix of $\mathrm{CO}_2/\mathrm{Ar}/\mathrm{CF}_4$ is used to fill the chambers.
+
+RPCs are interspersed among the DTs and CSCs in both the barrel and endcap. 
+These serve as a very fast muon detector ($\sim 1$ ns) for the online trigger system. 
+The spatial resolution of the RPC hits is worse than the DTs and CSCs.
 
 \subsubsection{Online trigger system}
 
@@ -255,7 +289,9 @@ The key feature of the PF algorithm is to ``link'' multiple detector signals tog
 This linkage combines inner tracks, ECAL clusters, HCAL clusters, and muon tracks based on their proximity in the $(\eta,\phi)$ plane.
 Inner track helices are extended into the calorimeters, searching for clusters compatible with the trajectory.
 Similarly, clusters from the ECAL, the ECAL preshower, and the HCAL can be linked without a track present. 
-
+The remainder of this section is organized according to ``blocks'' in the PF algorithm.
+At the end of each block, any detector signature (track, calorimeter cell) which has been assigned to a PF candidate in that block is removed from the set of objects passed to the next block.
+For example, tracks associated with muons will not be considered when reconstructing charged hadrons. 
 
 \subsubsection{Muons}
 
