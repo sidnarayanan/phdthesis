@@ -240,6 +240,48 @@ For an electron or photon, the EM energy is typically the energy of the particle
 
 \subsubsection{Hadronic calorimeter}
 
+The hadronic calorimeter (HCAL)~\cite{cmshcaltdr,cmspf,cmshcalperf} is used to identify and measure the energy of hadrons.
+It consists of 4 calorimeters: barrel (HB; $|\eta|<1.4$), endcap (HE; $1.3<|\eta|<3$), forward (HF; $3\lesssim|\eta|<5$), and outer (HO; $|\eta|<1.3$).
+Their arrangement is shown in Figure~\ref{fig:cms:hcal}.
+
+\begin{figure}[]
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/cms/hcal.png}
+	\caption{One quadrant of the CMS HCAL (symmetric with rotation around $z$ and reflection across $z=0$).
+			 Note that the slight overlap of the detectors in $\eta$ ensures the hermeticity of the detector.
+			 Reprinted from Reference~\cite{cmshcalperf}.}
+	\label{fig:cms:hcal}.
+\end{center}
+\end{figure}
+
+The HB and HE are both composed of alternating absorber and plastic scintillator layers
+The absorber is a non-magnetic brass alloy with an interaction length $\lambda_I=1.5$ cm.
+The absorber layers range in thickness from 40 to 75 mm in the HB and HE, providing a total of 5.8-10.6$\lambda_I$ of material, depending on the $\eta$ of the particle.
+These dimensions are limited by the constraint that the HB and HE be inside the solenoid. 
+To augment the number of interaction lengths, additional layers of plastic scintillator sit outside of the solenoid.
+These comprise the HO, which use the magnet as an absorber, providing an additional $\sim 1.1\lambda_I$.
+The light from the scintillator tiles is read out by hybrid photodiodes (HPDs) in the HB and HE and by silicon photomultipliers (SiPMs) in the HO. 
+
+Beyond the HE, at 11 m from the interaction point, sits the HF.
+The HF is also a sampling calorimeter, made of steel absorbers instrumented with quartz fibers.
+Charged particles from the nuclear shower in the steel emit Cerenkov radiation in the quartz fibers, which transports the light to photomultipler tubes (PMTs).
+The HF uses more radiation-hard materials than the rest of the HCAL, as this $\eta$ range is subject to significantly more radiation from collisions than the central part of the detector. 
+
+Each HCAL subsystem is read out in ``towers'', corresponding to sections in $\eta$ and $\phi$.
+For $|\eta|<1.74$, the segmentation is $\eta\times\phi = 0.087\times0.087$.
+Beyond this, the towers vary in size from $0.09\times0.175$  to $0.35\times0.175$.
+
+The energy resolution of the HCAL must be considered in conjunction with the ECAL, as energy can be deposited in both detectors.
+This is calibrated using test beams of various charged particles.
+For the HB and HE, the resolution is:
+\begin{equation}
+	\frac{\sigma_E}{E} = \frac{0.847}{\sqrt{E/\mathrm{GeV}}} \oplus 0.074
+\end{equation}
+whereas for the HF, it is:
+\begin{equation}
+	\frac{\sigma_E}{E} = \frac{1.98}{\sqrt{E/\mathrm{GeV}}} \oplus 0.09
+\end{equation}
+
 \subsubsection{Muon chambers}
 
 The muon detectors are gas ionization chambers and are the outermost component of CMS~\cite{cmsmuon}. 
@@ -277,10 +319,63 @@ These serve as a very fast muon detector ($\sim 1$ ns) for the online trigger sy
 The spatial resolution of the RPC hits is worse than the DTs and CSCs.
 
 The hit position resolution of the DTs is 78-120 $\mu$m (140-390 $\mu$m) in $r$-$\phi$ ($r$-$z$).
-For CSC, the resolution varies from 40 to 152 $\mu$m.
+For CSCs, the resolution varies from 40 to 152 $\mu$m.
 The efficiency of individual reconstructed hits (``rechits'') is over 95\%.
 
 \subsubsection{Online trigger system}
+
+Figure~\ref{fig:cms:xsecs} shows various cross sections of $pp$ collisions as a function of $\sqrt{s}$.
+While it is clear that interesting SM processes (e.g. production of $W,Z,t$) increase as a function of $\sqrt{s}$, they still sit several orders of magnitude below the inclusive cross section $\sigma_\mathrm{tot}\sim 10^8$ nb.
+To produce an appreciable number of rare events, the LHC has bunch crossings every 25 ns (40 MHz).
+However, it is not possible to read out the entire detector at this rate, much less reconstruct the data and store it.
+CMS uses a two-stage trigger system~\cite{cmstrig} to refine the events to keep for permanent storage and analysis.
+First, a Level 1 (L1) hardware-based trigger selects interesting events at a rate of 100 kHz.
+These events are then fed to the high level trigger (HLT) to partially reconstruct the events on a CPU farm.
+The final selected data rate from the HLT is 400 Hz.
+
+\begin{figure}[]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/cms/xsec.png}
+	\caption{Various cross sections of interesting SM processes compared to the inclusive cross section of $pp$ collisions, at various values of $\sqrt{s}$.
+				Reprinted from Reference~\cite{lhcxsec}.}
+	\label{fig:cms:xsecs}
+\end{center}
+\end{figure}
+
+The L1 trigger makes decisions within $4\mu$s of collisions using field programmable gate arrays (FPGAs) and application specific integrated circuits (ASICs), which offer significant speed advantages as compared to CPUs for certain tasks.
+Individual detector systems (ECAL, HCAL, muon detectors) feed simple reconstructed objects (``trigger primitives'' (TPs)) to a series of regional trigger decisions.
+Quality selections are placed on calorimeter towers, and they are aggregated into clusters of energy deposits.
+A simple segment-finding and tracking algorithm is run on hits in the muon chambers to produce muon tracks.
+Note that the inner tracker is not included in the L1 decision: at the time of the construction of the CMS detector, the detector readout and reconstruction algorithms were not fast enough for the L1's requirements.\footnote{It should be noted that implementing tracking for hardware triggers is a significant goal for the community in the next few years.}
+Regional trigger decisions are sent to the global trigger (GT), which correlates the TPs it recieves.
+Some GT trigger decisions are localized, such as requiring a high-energy ECAL deposit (e.g. $e,\gamma$).
+Others require computing event-wide observables, such as a large momentum imbalance (e.g. neutrinos, DM).
+The GT also computes simple jets
+If the GT decides to select the event, the detector is read out and forwarded to the data acquisition system (DAQ).
+Figure~\ref{fig:cms:l1} shows a schematic description of this process.
+
+\begin{figure}[]
+\begin{center}
+	\includegraphics[width=0.65\textwidth]{figures/cms/l1.png}
+	\caption{Schematic diagram of the CMS L1 trigger system.
+			 In addition to the region and global trigger decisions (described in the text), the flow of data also includes the trigger, timing, and control system (TTC).
+				Reprinted from Reference~\cite{cmstrig}.}
+	\label{fig:cms:l1}
+\end{center}
+\end{figure}
+
+The full detector readout is picked up by the HLT.
+The HLT computing farm consists of 20k CPU cores (this number has grown from 13k in 2012 and continues to grow).
+Unlike the L1, the HLT has access to the entire event information.
+Therefore, a full reconstruction of the event is performed, using slightly algorithms similar to (in some cases, simplified) the algorithms used in offline reconstruction.
+To be selected by the HLT, an event must pass an HLT ``path''.
+A path consists of a series of filters, each making simple decisions that can be chained into complex decisions.
+For example, three filters may be: (1) two forward jets, (2) large momentum imbalance, and (3) an electron and a muon.
+These filters could be chained into two separate paths, targeting vector boson fusion production of the Higgs, where the Higgs decays to DM (1\&2) or two taus (1\&3).
+Simple decisions (calorimeter and muons) are computed before complex decisions (tracking).
+Events that are selected by the HLT are passed on to the Tier 0 computing farm for full offline reconstruction, and then onwards to disk and tape resources for analysis and storage, respectively.
+
+
 
 \section{Particle reconstruction and identification}
 
@@ -309,14 +404,13 @@ To reject backgrounds, requirements are placed on the $\nicefrac{\chi^2}{N_\math
 The total efficiency of global muon reconstruction is 99\%.
 In addition, ``tracker'' muons can be reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
 The PF algorithm uses both global and tracker muons, but in this thesis, we will only use the former.
-Figure~\ref{fig:cms:muonpt} shows the momentum resolution of global muons, compared to the momentum resolution of tracker-only muons (i.e. not using the muon chambers at all, not to be confused with inside-out tracker muons).
+Figure~\ref{fig:cms:muonpt} compares the momentum resolution of muons reconstructed using the different algorithms.  
 The PF selection consumes all three types of reconstructed muons: global, tracker, and standalone.
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/cms/muonpt.png}
-	\caption{Resolution of muon $q/\pt$, compared between global muon reconstruction and the inner tracks corresponding to muons.
-			 The quantity $q/\pt$ is used because the distribution is approximately Gaussian.
+	\includegraphics[width=0.6\textwidth]{figures/cms/muonpt.png}
+	\caption{Resolution of muon $\pt$, compared between the different reconstruction algorithms. 
 			 The salient feature is that the muon systems become important to the momentum measurement at approximately 200 GeV.
 			 Reprinted from Reference~\cite{cmsmuon}.}
 	\label{fig:cms:muonpt}
@@ -426,7 +520,7 @@ A regression to correct the energy scale~\cite{cmsecalreco} is trained as a func
 Differences between data and MC in the efficiencies of the electron and photon IDs are corrected using scale factors using $Z\rightarrow ee$ events, as was described for muon IDs.
 In the case of the photon ID, the electron SC is used as a proxy for the photon.
 
-\subsubsection{Jets}
+\subsubsection{Hadrons and jets}
 \label{sec:cms:jets}
 
 \subsubsection{Hadronic taus}
