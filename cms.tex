@@ -574,7 +574,7 @@ In particular, FastJet reduces the $\mathcal{O}(N^2)$ computation of Equation~\r
 \subsubsection{Jet calibration}
 
 While individual PF candidates recieve some level of energy calibration from the detector subsystems, it is still necessary to calibrate each jet as a whole~\cite{jec}.
-There are N steps in the additional calibration:
+There are 3 steps in the additional calibration:
 \begin{enumerate}
 \item A pileup correction (L1) is derived from MC truth information and randomly-triggered data events.
 It subtracts energy from jets, as a function of the jet \pt, $\eta$, $A$ (area), and $\rho$. 
@@ -645,7 +645,7 @@ Figure~\ref{fig:cms:csvv2} compares the CSVv2 response in data and simulation, a
 \subsection{Hadronic taus}
 
 A hadronic tau ($\tau_h$) is defined as a tau lepton which decays to one $\nu_\tau$ and one or more hadrons.
-A dedicated algorithm~\cite{pf,tauid} is used to extract $\tau_h$ candidates from the AK4 jet collection.
+A dedicated algorithm~\cite{cmspf,tauid} is used to extract $\tau_h$ candidates from the AK4 jet collection.
 Only jets within the tracker acceptance and with $\pt>13$ GeV are used.
 Combinations of particles within the jet are considered for compatibility with one of the relevant decay modes: a tau neutrino plus $h^-$, $h^-\pi^0$, $h^-\pi^0\pi^0$, or $h^-h^+h^-$.
 Here, $h^\pm$ refers generically to some charged hadron.
@@ -734,4 +734,11 @@ In the context of the results described in this analysis, it is found that CHS p
 
 \section{Simulation of CMS}
 \label{sec:cms:sim}
+
+The CMS offline software suite (CMSSW~\cite{cmssw}) uses Geant4 \cite{geant1,geant2} to simulate the detector response to particles produced in collisions. 
+As described in Section~\ref{sec:theory}, particle-level MC simulates the hard scattering and  parton shower.
+Multiple simulated proton-proton collisions are overlaid into a single event to mimic the effect of in-time pileup. 
+The generate particles are then interfaced to Geant4, which simulates the passage of a particle through the magnetic field, the energy deposited as the particle interacts with the detector material, and the evolution of any additional particles produced (e.g. EM showers).
+The readout electronics' response to the detector signature is then simulated.
+These signals are finally fed into the same software used to reconstruct real collision data, minimizing the differences between simulation and data. 
 
