@@ -349,7 +349,7 @@ Figure~\ref{fig:jets:dt} provides a pictorial example of how a decision tree can
 \end{figure}
 
 While decision trees can very accurately describe training data provided sufficient complexity, they also pathologically overfit the data.
-To mitigate this, while retaining descriptive power, a standard method is to \emph{boost} many simple trees.
+To mitigate this, while retaining descriptive power, a standard method is to \emph{boost} many simple trees~\needcite.
 The simplicity of the tree prevents overfitting, while boosting many trees allows for a complex model.
 The result of a BDT is a classifier $f_n(x) = \sum_{i=0}^n \nu^i T_i(x)$, where $\nu\leq 1$ is tunable and each $T_i$ is a decision tree. 
 A simplified algorithm to train a BDT is as follows:
