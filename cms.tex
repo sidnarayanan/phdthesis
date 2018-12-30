@@ -335,14 +335,14 @@ The final selected data rate from the HLT is 400 Hz.
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/cms/xsec.png}
+	\includegraphics[width=0.5\textwidth,angle=90]{figures/cms/xsec.png}
 	\caption{Various cross sections of interesting SM processes compared to the inclusive cross section of $pp$ collisions, at various values of $\sqrt{s}$.
 				Reprinted from Reference~\cite{lhcxsec}.}
 	\label{fig:cms:xsecs}
 \end{center}
 \end{figure}
 
-The L1 trigger makes decisions within $4\mu$s of collisions using field programmable gate arrays (FPGAs) and application specific integrated circuits (ASICs), which offer significant speed advantages as compared to CPUs for certain tasks.
+The L1 trigger makes decisions within 4 $\mu$s of collisions using field programmable gate arrays (FPGAs) and application specific integrated circuits (ASICs), which offer significant speed advantages as compared to CPUs for certain tasks.
 Individual detector systems (ECAL, HCAL, muon detectors) feed simple reconstructed objects (``trigger primitives'' (TPs)) to a series of regional trigger decisions.
 Quality selections are placed on calorimeter towers, and they are aggregated into clusters of energy deposits.
 A simple segment-finding and tracking algorithm is run on hits in the muon chambers to produce muon tracks.
@@ -523,13 +523,124 @@ In the case of the photon ID, the electron SC is used as a proxy for the photon.
 \subsubsection{Hadrons and jets}
 \label{sec:cms:jets}
 
+The remaining final states considered by the PF algorithm are hadrons.
+These are primarily found in jets, along with nonisolated photons (from $\pi^0$ decays) and muons (from heavy hadron decays).
+If a calorimeter cluster is within the tracker acceptance (and not already consumed by an earlier PF block), and it is not linked to a track, then it is assumed to have arisen from a photon or neutral hadron.
+If the cluster is in the ECAL, then the constructed PF candidate is a photon; if in the HCAL, it is a neutral hadron.
+Unlike for charged hadrons (described next), proximal ECAL and HCAL clusters are not linked together.
+This is because neutral hadrons are expected to leave very little energy in the ECAL, and the tracking efficiency for charged hadrons is over 90\%.
+To find charged hadrons, HCAL clusters, ECAL clusters, and tracks are linked together.
+The calorimeter energy of the clusters is estimated using a calibrated sum of the HCAL and ECAL deposits.
+If this energy is significantly (500 MeV) above the momentum estimate from the tracks, then it is assumed there are additional neutral hadrons or photons in the cluster.
+The number of charged hadrons is the number of reconstructed tracks.
+Outside of the tracker acceptance, ECAL clusters not linked to HCAL clusters are assigned to PF photons.
+Linked HCAL and ECAL clusters are assumed to arise from a shower containing neutral and charged hadrons.
+
+Jets arise from the hadronization and fragmentation of colored particles, as described in Section~\ref{sec:theory}.
+The precise definition of a jet is dependent on the algorithm used to cluster particles, and so we will use ``jet'' to refer to the final states of hadronization/fragmentation and to the output of a jet finding algorithm.
+LHC experiments typically use ``sequential recombination'' algorithms~\cite{antikt,kt,ca}.
+Given a set of particles (in CMS, PF candidates) in the event $E$, we compute two metrics:
+\begin{align}
+	d_{iB} &= \pti^2 \nonumber \\ 
+	d_{ij} &= \min\{\pti^{2q}, \ptj^{2q}\} \frac{\Delta R(p_i^\mu, p_j^\mu)^2}{R}
+	\label{eq:cms:dij}
+\end{align}
+where $i,j$ are two elements of $E$; $B$ represents the beam; and $p,~R$ are tunable parameters.
+Let $\tilde E = E \cup \{B\}$ and find $i,j\in \tilde E$ that minimize $d_{ij}$.
+If $j=B$, then we remove particle $i$ from $\tilde E$ and add it to the set of candidate jets.
+Otherwise, we combine $i$ and $j$ into a new particle $k$ by defining $p_k^\mu = p_i^\mu + p_j^\mu$.
+This ``pseudojet'' $k$ is added to $\tilde E$, while $i$ and $j$ are removed.
+This process is repeated until $\tilde E$ is exhausted.
+The exact value of $R$ is an approximate measure of the $\Delta R$ radius of the jet. 
+The value of $q$ defines the relationship between the momentum and angular factors; $q<0$  enforces clustering circular jets around hard seeds.
+For standard single-parton jets, CMS uses $q=-1$ (referred to as anti-\kt) and $R=0.4$ (AK4).
+In Section~\ref{sec:jets:reco}, we will discuss the use of $q=0$ and $R\gg 0.4$ for multi-parton jets. 
+CMS software uses the FastJet library~\cite{fastjet} for efficient implementations of sequential jet clustering.
+In particular, FastJet reduces the $\mathcal{O}(N^2)$ computation of Equation~\ref{eq:cms:dij} to $\mathcal{O}(N\log N)$, where $N\sim\mathcal{O}(10^{2}\mathrm{-}10^3)$. 
+
+While individual PF candidates recieve some level of energy calibration from the detector subsystems, it is still necessary to calibrate each jet as a whole~\cite{jec}.
+There are N steps in the additional calibration:
+\begin{enumerate}
+\item A pileup correction (L1) is derived from MC truth information and randomly-triggered data events.
+It subtracts energy from jets, as a function of the jet \pt, $\eta$, $A$ (area), and $\rho$. 
+$A$ is computed by adding a uniform distribution of infinitesimally soft particles (``ghosts'') to the event prior to the jet clustering, and counting how many are clustered with each jet. 
+A wide jet will have many such particles and will be more susceptible to pileup contamination.
+The event-wide quantity $\rho$ is a measure of the median $\pt$ per unit area in the event, also computed using ghosts.
+
+\item The L2L3\footnote{The terminology is historical, referring to previously-factorized corrections L2 and L3} correction accounts for detector response biases by using the GEANT4 simulation of the detector (see Section~\ref{sec:cms:sim}).
+Two jet collections are computed in the simulation: PF jets (using PF candidates) and truth jets (using the particle collection from the hard scattering and showering simulation). 
+The energy scale of PF jets is corrected (as a function of $\pt,\eta$) to match that of truth jets.
+
+\item The L2L3 residual correction is only applied to data and corrects for small differences between the real detector and the simulation used in MC.
+It is derived using $Z(\rightarrow\ell\ell)$+jet, $\gamma$+jet, and dijet events.
+In each case, one well-measured object ($Z,~\gamma,$ jet) is used to calibrate the recoiling jet.
+While the $Z$ events provide the best reference object ($\mu$ energy uncertainties are very small), the small cross section introduces large statistical uncertainties at high $\pt$ and $\eta$. 
+\end{enumerate}
+The \pt~dependence of the corrections and the associated uncertainties are shown in Figure~\ref{fig:cms:jec}.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=0.35\textwidth]{figures/cms/jec_jotjotRawPt.pdf}
+	\includegraphics[width=0.35\textwidth]{figures/cms/var_jotjotPt.pdf}
+	\caption{Left: the total effect of the L1 and L2L3 jet energy scale corrections in MC, as a function of $\pt,\eta$.
+			 Right: the corresponding uncertainties on the JES corrections, in the same \pt~binning and averaged over $\eta$.}
+	\label{fig:cms:jec}
+\end{center}
+\end{figure}
+
 \subsubsection{Hadronic taus}
 
 \subsubsection{Missing momentum}
 \label{sec:cms:met}
 
+\subsubsection{Pileup mitigation}
+
+Two algorithms are used to mitigate the effects of pileup in jets: charged hadron subtraction (CHS) and pileup per-particle identification (PUPPI)~\cite{puppi}.
+CHS simply removes charged particles not from the primary vertex from the set of PF candidates fed into the jet clustering.
+This is only able to remove charged pileup contamination for jets within the tracker acceptance.
+
+The PUPPI algorithm defines a local shape $\alpha_i$ for every particle $i$ in the event that is independent of particle location or charge.
+The distribution of $\alpha_i$ is determined for central, charged particles from the PV and from PU.
+This is then extrapolated to neutral particles and forward particles, to assign a probability $P(\mathrm{PU}|\alpha_i)$. 
+More concretely, the local shape is defined:
+\begin{equation}
+	\alpha_i = \log \sum_{j \neq i} \frac{\ptj}{\Delta R_{ij}} H(\Delta R_{ij} - R_{\min})H(R_0 - \Delta R_{ij})
+\end{equation}
+where $R_{\min}, R_0$ are tunable parameters and $H$ is the Heaviside step function. 
+Up to rescaling, $\alpha_i$ is the sum of \pt s of particles in an annulus around particle $i$. 
+It is expected to be larger for PV particles than PU particles, as PU radiation is uniformly distributed, whereas PV radiation is centered around hard partons.
+This is illustrated in Figure~\ref{fig:cms:puppi}, which shows $\alpha_i^F$ (same as $\alpha_i$) and $\alpha_i^C$ (same as $\alpha_i$, except sum only charged particles).
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{figures/cms/puppi.png}
+	\caption{Distribution of PUPPI local shapes for charged and neutral particles from the PV and PU vertices.
+			 Reprinted from Reference~\cite{puppi}.}
+	\label{fig:cms:puppi}
+\end{center}
+\end{figure}
+
+Then, we define:
+\begin{equation}
+	x_i = H(\alpha_i - \bar\alpha) \frac{(\alpha_i - \bar\alpha)^2}{\sigma^2}
+\end{equation}
+where $\bar\alpha$ and $\sigma$ are the median and RMS, respectively, of the charged PU $\alpha_i$ distribution, with some extrapolation for $\eta_i$ and $q_i$.
+It is found that $\alpha_i$ has a Gaussian distribution for pileup, and so $x_i$ should have a $\chi^2$ distribution with 1 degree of freedom.
+Therefore, we define the probability of pileup as:
+\begin{equation}
+w_i = 1 - P(\mathrm{PU}|\alpha_i) = 
+	\begin{cases}
+		1 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ from PV} \\ 
+		0 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ not from PV} \\ 
+		P(\chi^2<x_i | N_\mathrm{dof}=1)  & \text{otherwise} \\ 
+	\end{cases}
+\end{equation}
+The four momenta of particles are scaled by the PUPPI probability, i.e. $p_i^\mu \mapsto w_i p_i^\mu$.
+
+In the context of the results described in this analysis, it is found that CHS provides sufficient pileup mitigation for AK4 jets, but as described in Chapter~\ref{sec:jets}, PUPPI will be necessary for CA15 jets. 
 
 \section{Simulation of collisions}
+\label{sec:cms:sim}
 
 \subsection{Physics simulation}
 
