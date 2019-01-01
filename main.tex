@@ -34,6 +34,7 @@
 \usepackage{lmodern}
 \pagestyle{plain}
 
+\usepackage{pifont}
 \usepackage{nicefrac}
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -47,6 +48,7 @@
 
 \renewcommand\thefigure{\thechapter.\arabic{figure}}
 
+\newcommand{\cmark}{\ding{51}}
 \newcommand{\ttbar}{t\bar{t}}
 \newcommand{\T}[2]{\bm{T}^{#1}_{#2}}
 \newcommand{\Ti}[2]{{T}^{#1}_{#2,i}}
@@ -104,10 +106,10 @@ process all files:}
 \pagestyle{plain}
 \include{contents}
 \include{theory}
-\include{cms}
-\include{jets}
-\include{monotop}
-\include{vbf}
+%\include{cms}
+%\include{jets}
+%\include{monotop}
+%\include{vbf}
 %\include{deep}
 \appendix
 %\include{cls}

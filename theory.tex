@@ -77,13 +77,13 @@ where $f^{abc}$ are the structure constants of $\SU(3)$.
 
 An additional term can be added to Equation~\ref{eq:theory:lqcd} without violating any guage or Lorentz symmetry or renormalizability.
 This term would violate CP conservation and produce a non-zero electric dipole moment (EDM) for the neutron.
-Experimental constraints on the neutron EDM (e.g. Reference~\cite{nedm1}) place strong upper limits on this CP violation, and so we do not consider it as part of the SM QCD Lagrangian. 
+No evidence for such a term has yet been found (although it has not been excluded)~\cite{nedm1}, and so we do not consider it as part of the SM QCD Lagrangian. 
 
 \subsubsection{Renormalization and running of couplings}
 
 Physical quantities in a QFT (couplings, masses, field strengths, operators) acquire a scale-dependence from higher-order corrections to vertices and propagators. 
 In many cases, the quantum corrections to the bare parameter contain ultraviolet divergent terms.
-These infinities are absorbed into the Lagrangian by means of adding so-called counterterms. 
+These infinities are absorbed into the Lagrangian by means of adding \emph{counterterms}. 
 The systematic process of absorbing these infinities and ensuring scale-independence is known as renormalization.
 A Lagrangian is called \emph{renormalizable} if only a finite number of counterterms are needed to ensure that all observables (i.e. amplitudes) are finite. 
 The SM is a renormalizable theory.
@@ -235,7 +235,7 @@ A similar analysis can be carried out for the lepton sector:
 \begin{equation}
    \La_\mathrm{EW} \mapsto \La_\mathrm{EW} - y_{ij}^e \bar \ell_{iL} \phi e_{jR} - y_{ij}^\nu \bar \ell_{iL}i\sigma_2 \phi^* \nu_{uR}i + \hc
 \end{equation}
-The mixing matrix for leptons is the Pontecorvo-Maki-Nakagawa-Sakata matrix $U_\mathrm{PMNS}$~\cite{pmns}, which relates the weak eigenstates $\nu_e, \nu_\mu,\nu_\tau$ with the mass eigenstates $\nu_1,\nu_2,\nu_3$.
+The mixing matrix for leptons is the Pontecorvo-Maki-Nakagawa-Sakata matrix $U_\mathrm{PMNS}$ \cite{pmns}, which relates the weak eigenstates $\nu_e, \nu_\mu,\nu_\tau$ with the mass eigenstates $\nu_1,\nu_2,\nu_3$.
 The values of the neutrino masses are known to be non-zero from the observation of neutrino oscillations~\cite{nuosc}.
 
 After EWSB, each fermion mass eigenstate has a mass term and coupling to the Higgs field:
@@ -290,11 +290,11 @@ d\sigma(ab\rightarrow \{c_i\}) =
 where $k_a,k_b$ are the incoming momenta; $\{p_i\}$ are the outgoing momenta; and $\Ma$ is the matrix element of this reaction.
 Hadron collisions do not have two-particle initial states, but rather two composite particles containing partons with varying momenta. 
 
-The general cross section for $pp\rightarrow X$ is:
+The general cross section for $pp\rightarrow X$ is~\cite{tasi009}:
 \begin{equation}
 \di\sigma(pp\rightarrow X(\Theta)) = 
     \sum_{a,b} \int \mathrm{d}x_a \mathrm{d}x_b 
-    ~f_a(x_a) f_b(x_b) 
+    ~f_a(x_a,\mu_F) f_b(x_b,\mu_F) 
     \cdot \di\sigma(ab\rightarrow\{c_i\}) 
     \cdot D(\{c_i\}\rightarrow X(\Theta))
     \label{eq:theory:master}
@@ -306,8 +306,63 @@ This process of \emph{hadronization} is not described by pQCD.
 However, the production of most interesting final states at the LHC can be perturbatively analyzed.
 Therefore, we split the process $ab\rightarrow X$ into $ab\rightarrow \{c_i\} \rightarrow X$.
 The matrix element for the first step (\emph{hard scattering}) can usually be computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
-Other heuristic methods are used to deal with the second step (\emph{parton shower}), encoded in the \emph{fragmentation function} $D$. 
+Other heuristic methods are used to deal with the second step (\emph{parton shower} (PS)), encoded in the \emph{fragmentation function} $D$. 
 
 The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and parton shower) components follows from the collinear factorization theorem~\cite{fact}.
-The factorization depends on an arbitrary energy scale $\mu_F$, which defines a lower bound for radiation considered part of the hard scattering. 
-The remainder of this section discusses the computation of these three factors: $f$, $\Ma$, and $D$.
+The factorization depends on an arbitrary energy scale $\mu_F$, which defines a lower bound for interactions considered part of the hard scattering. 
+The remainder of this section discusses the use of Monte Carlo (MC) methods to simulate these three factors: $f$, $\Ma$, and $D$.
+
+\subsection{Parton distribution functions}
+The analytic behavior of PDFs as a function of the factorization scale is governed by the DGLAP evolution equation~\cite{dglap1,dglap2,dglap3}:
+\begin{gather}
+    \mu_F \frac{\di}{\di\mu_F} f_a(x_a,\mu_F) = \frac{\alpha_S}{\pi} \int_x^1 \frac{\di y}{y} f_a(y,\mu_F) P_{qq} \left(\frac{x}{y}\right) \\
+    \text{where } P_{qq}(z) = \frac{4}{3}\left[\frac{1+z^2}{1-z}\right]_+ + 2\delta(1-z) \nonumber 
+\end{gather}
+The computation of $f_a$ for a fixed scale cannot be done analytically.
+Instead, data from many experiments are used to fit a parameterization, as is done by the NNPDF collaboration~\cite{nnpdf}.
+Results presented in this thesis use the NNPDF3.0 PDF set.
+
+\subsection{Hard scattering}
+
+Monte Carlo generators simulate Equation~\ref{eq:theory:2n} by sampling events with probability proportional to the phase space and matrix element.
+The dedicated MC generators used in this result are MadGraph5~\cite{mg5,fxfx} and Powheg2~\cite{powheg}.
+Both generators can simulate to leading order (LO) in EW vertices and up to next-to-leading order (NLO) in QCD vertices.
+Finally, the PS model Pythia8.2~\cite{pythia} (discussed in the next section) can also generate certain hard scattering processes at LO in QCD.
+
+MC generators also generate additional partons from initial and final state radiation as part of the hard scattering.
+These quarks, gluons, and photons can be highly energetic in events with large $q^2$, and so it is necessary to compute them as part of the hard scattering matrix element.  
+It should be noted that, while NLO event generation is always preferable, it comes with two costs: (a) being able to generate fewer additional partons and (b) additional computational time.
+We will use LO simulation for processes which have large cross sections and in which additional parton spectra are important.
+Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders used in these results.
+
+\begin{table}[]
+\begin{center}
+    \caption{Summary of MC generators used for each SM and signal process.
+             Note that the $V$+jet processes have two entries each in this table, at different QCD orders.
+             Both will be used to improve the prediction accuracy.}
+    \label{tab:theory:sim}
+    \begin{tabular}{c|c|c|l}
+        $pp\rightarrow X$ & Generator & NLO in QCD? & Notes \\ \hline \hline
+        $t\bar{t}$ & Powheg & \cmark \\ 
+        $t$, $tW$, $tZ$ & Powheg & \cmark \\ 
+        \hline
+        $ZZ,~WZ,~WW$ & Pythia &  \\ 
+        \hline
+        $Z$ (+0,1 partons) & MG  & \cmark  \\ 
+        $W$ (+0,1 partons) & MG  & \cmark \\ 
+        $\gamma$ (+0,1 partons) & MG  & \cmark  \\ 
+        \hline
+        $Z$ (+0,1,2,3 partons) & MG  &  \\ 
+        $W$ (+0,1,2,3 partons) & MG  &  \\ 
+        $\gamma$ (+0,1,2 partons) & MG  &  \\ 
+        QCD multijet & MG && Jets defined in Section~\ref{sec:theory:ps} \\
+        \hline
+        Resonant DM & MG && See Chapter~\ref{sec:monotop} \\ 
+        FCNC DM & MG &\cmark& See Chapter~\ref{sec:monotop} \\ 
+        VBF $\hinv$ & Powheg && See Chapter~\ref{sec:vbf} \\ 
+    \end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Parton shower}
+\label{sec:theory:ps}
