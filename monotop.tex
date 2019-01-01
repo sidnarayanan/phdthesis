@@ -735,9 +735,9 @@ Therefore, we compute a simple correction for the NLO QCD effects, known as a $k
 \begin{equation}
     k_{Z,\mathrm{QCD}}(\pt^Z) = \frac{d\sigma_\text{NLO QCD}(Z) / d\pt^Z}{d\sigma_\mathrm{LO}(Z) / d\pt^Z}
 \end{equation}
-We include another$k$-factor, $k_\mathrm{EWK}$, to correct for higher-order EWK effects.
-Unlike $k_\mathrm{QCD}$, $k_\mathrm{EWK}$ is derived using a theoretical calculation~\cite{ewk2,ewk3,ewk1} instead of NLO simulation.
-$k_\mathrm{EWK}$ covers NLO EWK terms, as well as large Sudakov logarithms that appear at high $\pt^V$ in the NNLO expansion (NLL).
+We include another$k$-factor, $k_\mathrm{EW}$, to correct for higher-order EW effects.
+Unlike $k_\mathrm{QCD}$, $k_\mathrm{EW}$ is derived using a theoretical calculation~\cite{ewk2,ewk3,ewk1} instead of NLO simulation.
+$k_\mathrm{EW}$ covers NLO EW terms, as well as large Sudakov logarithms that appear at high $\pt^V$ in the NNLO expansion (NLL).
 
 \begin{figure}[]
     \begin{center}
@@ -832,11 +832,11 @@ By varying $\mu_F$ and $\mu_R$ by factors of $0.5$ and $2$, we assess the effect
 These scale and PDF uncertainties cover all unknown QCD effects on the production of electroweak bosons.
 To be conservative, they are assumed to be uncorrelated between processes.
 However, the uncertainties are correlated between all bins (i.e. as a function of $\pt^V$).
-A second set of uncertainties is included for higher-order EWK effects, following what is suggested in References~\cite{ewk5,ewk4,ewk6,ewk2,ewk3,ewk9,ewk8,ewk1,ewk7} and agreed upon in the LHC Dark Matter Working Group.
-These EWK uncertainties break down into three categories:
+A second set of uncertainties is included for higher-order EW effects, following what is suggested in References~\cite{ewk5,ewk4,ewk6,ewk2,ewk3,ewk9,ewk8,ewk1,ewk7} and agreed upon in the LHC Dark Matter Working Group.
+These EW uncertainties break down into three categories:
 \begin{itemize}
     \item Unknown Sudakov logarithms in the NLL correction. These uncertainties are correlated across processes ($Z,W,\gamma$).
-    \item Missing NNLO EWK effects not covered by the NLL correction. These are not correlated across processes.
+    \item Missing NNLO EW effects not covered by the NLL correction. These are not correlated across processes.
     \item The full difference between the NLL correction and an exponentiation of the NLO correction; also not correlated across processes.
 \end{itemize}
 

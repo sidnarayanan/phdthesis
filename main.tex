@@ -43,6 +43,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{footnote}
+\usepackage{slashed}
 
 \renewcommand\thefigure{\thechapter.\arabic{figure}}
 
@@ -77,6 +78,10 @@
 \newcommand{\frec}{\ensuremath{f_\mathrm{rec}}}
 \newcommand{\pbwo}{\ensuremath{\mathrm{PbWO}_4}}
 \newcommand{\SF}{\mathrm{SF}}
+\DeclareMathOperator{\SU}{\ensuremath{\mathrm{SU}}}
+\DeclareMathOperator{\U}{\ensuremath{\mathrm{U}}}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\hc}{\mathrm{h.c.}}
 
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.
@@ -97,7 +102,7 @@ process all files:}
 \pagestyle{plain}
 \include{contents}
 %\include{intro}
-%\include{theory}
+\include{theory}
 \include{cms}
 \include{jets}
 \include{monotop}
