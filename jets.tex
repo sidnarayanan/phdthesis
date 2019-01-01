@@ -16,8 +16,8 @@ The approximate angular separation between the quarks from a heavy resonance dec
     \Delta R \sim \frac{2M}{\pt}
 \end{equation}
 where $M$ is the resonance mass and $\pt$ is the resonance transverse momentum.
-Setting $M=m_t$ and $\Delta R=1.2$ (i.e.~the radius at which three $R=0.4$ jets start to overlap), we extract a ``merging scale'' of $300$ GeV.  
-This is be verified by checking the distribution of the ``decay radius'' in top quark simulation.
+Setting $M=m_t$ and $\Delta R=1.2$ (i.e.~the radius at which three $R=0.4$ jets start to overlap), we extract a \emph{merging scale} of $300$ GeV.  
+This is be verified by checking the distribution of the \emph{decay radius} in top quark simulation.
 Here, we define decay radius as: 
 \begin{equation}
     \max\Delta R_{qq} \equiv \displaystyle\max_{0\leq i < j \leq 2} \{\Delta R(q_i,q_j)\} \text{, where } t\rightarrow q_0q_1q_2
@@ -110,7 +110,7 @@ Having \emph{reconstructed} the candidate top quark jets, we turn to the problem
 As indicated in Figure~\ref{fig:jets:caak}, the jet mass is a powerful observable, but top (LQG) jets do not necessarily have a mass of $m_t$ ($m_q,m_g\sim 0$). 
 While some of this discrepancy is caused by mismeasurement of the jet energy scale (Chapter~\ref{sec:cms}), a substantial fraction originates from extra radiation being absorbed into the jet.
 These extra particles arise from pile-up (although this is accounted for by PUPPI), initial state radiation, and underlying event.
-Many algorithms exist to ``groom'' such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
+Many algorithms exist to \emph{groom} such particles from a jet after it has been clustered; here, we will discuss and use the soft drop (SD) method~\needcite.
 SD functions by traversing the CA clustering history (a binary tree) in reverse and removing subjets (i.e.~branches) of the clustering tree that are deemed to be too soft or wide-angled.
 More formally, at each node in the clustering tree, the softer subjet of the node will be removed if it satisfies the condition:
 \begin{equation}
@@ -120,8 +120,8 @@ More formally, at each node in the clustering tree, the softer subjet of the nod
 where $p_\mathrm{T,i}$ refers to the \pt~of the $i$-th subjet of the node; $\Delta R_{12}$ is the $\Delta R$-distance between the two subjet; and $R$ and $\beta$ are tunable parameters. 
 This process starts at the root node of the clustering tree (i.e.~the whole jet) and proceeds iteratively to the leaves (i.e.~individual particles).
 This condition is satisfied if the two subjets are very far apart (assuming $\beta \geq 0)$ or if the splitting is very asymmetric in momentum. 
-We define the ``SD subjets'' (or where clear, simply ``subjets'') of a jet to be the two branches of the root node, after branches failing the SD condition have been removed. 
-The particles remaining after this grooming procedure are combined to make the ``groomed'' or SD jet. 
+We define the \emph{SD subjets} (or where clear, simply \emph{subjets}) of a jet to be the two branches of the root node, after branches failing the SD condition have been removed. 
+The particles remaining after this grooming procedure are combined to make the \emph{groomed} or SD jet. 
 
 We then define $m_\mathrm{SD}$ as the mass of the SD jet. 
 Observables may also be defined in terms of the groomed or ungroomed jet. 
@@ -359,7 +359,7 @@ A simplified algorithm to train a BDT is as follows:
     \item Train a single tree $T_0$ and initialize classifier $f_0 = T_0$
     \item Until some stopping condition (index $m=1,\dots$):
     \begin{enumerate}
-      \item[3.1.] Compute the ``residual''
+      \item[3.1.] Compute the \emph{residual}
         \begin{equation}r_{mi} = -\nabla_f L(y_i; f) |_{f=f_{m-1}(\bm\psi_i)}\end{equation}
         \begin{equation}L = (y-f_m(\bm\psi))^2 \Rightarrow r_m = y - f_m(\bm\psi) \end{equation}
       \item[3.2.] Fit a regression tree $T_m$ to predict $r_{mi}$ as a function of $x_i$:
@@ -483,7 +483,7 @@ At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduc
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/toptagging/bdt/massCut_roc.pdf}
-        \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The ``Combined BDT'' is the ID method chosen as the final tagger.}
+        \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The \emph{Combined BDT} is the ID method chosen as the final tagger.}
         \label{figs:jets:roc}
     \end{center}
 \end{figure}
@@ -574,7 +574,7 @@ Several sources of uncertainty are considered for this measurement:
 \begin{itemize}
     \item Poisson uncertainties in the data and simulation 
     \item CA15 jet energy scale and resolution 
-    \item Definition used to select ``merged top'' jets, allowing $\max \Delta R_{qq'}$ to vary between 1 and 1.5 (nominal value is 1.2)
+    \item Definition used to select \emph{merged top} jets, allowing $\max \Delta R_{qq'}$ to vary between 1 and 1.5 (nominal value is 1.2)
     \item Efficiency of selecting $b$ jets
 \end{itemize}
 The resultant SFs and associated uncertainties are:

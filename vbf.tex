@@ -89,15 +89,15 @@ Note that events with two forward jets (FF) are not considered at all, as the ef
 \end{figure}
 
 The trigger efficiency is truly characterized by the energy deposited in the $|\eta|<3$ region of the detector, and will be dominated in VBF events by the energy of jets.
-Accordingly, we define the ``missing barrel hadronic transverse momentum'':
+Accordingly, we define the \emph{missing barrel hadronic transverse momentum}:
 \begin{equation}
     H_\mathrm{T,barrel}^\mathrm{miss} = \left|\left(\sum_{j\in\text{barrel}} \vec{p}_j \right)_\mathrm{T}\right|, \text{ where barrel refers to jets with $|\eta|<3$}
 \end{equation}
 As shown in Figure~\ref{fig:vbf:hltb}, the three categories (BB, BF, All) have similar behavior as a function of $H_\mathrm{T,barrel}^\mathrm{miss}$.
 Therefore, we use this parameterization of the efficiency to correct MC simulation to match data. 
 
-A second L1-related issue that plagues the 2016 dataset is caused by a ``pre-firing'' effect.
-When an L1 seed is triggered to accept an event (``L1Accept'' or ``L1A''), the following two bunch crossings (not necessarily corresponding to collisions) are blocked from firing L1As. 
+A second L1-related issue that plagues the 2016 dataset is caused by a \emph{pre-firing} effect.
+When an L1 seed is triggered to accept an event (\emph{L1Accept} or \emph{L1A}), the following two bunch crossings (not necessarily corresponding to collisions) are blocked from firing L1As. 
 At most, two in four consecutive events can fire L1A (i.e. the sequence L1A, blocked, blocked, L1A).
 Figure~\ref{fig:vbf:pre1} is an example of a normal ECAL L1 seed accepting an event and blocking the subsequent bunch crossings.
 In what follows, we will refer to the bunch crossing with an interesting collision (i.e. the one we would like the trigger to select) as \bx{0}.
@@ -137,7 +137,7 @@ To measure how often an ECAL energy deposit (typically left by a jet) causes an 
     \epsilon_\text{pre-fire}(\pt,\eta,\phi) = \frac{N_\text{pre-fire}(\pt,\eta,\phi)}{N_\text{all events}(\pt,\eta,\phi)}
 \end{equation}
 However, by definition, pre-fired events cannot be recorded, and therefore $N_\text{pre-fire}(\pt,\eta,\phi)$ is difficult to measure.
-A very small subset of the recorded dataset ($0.2\%$) consists of ``un-pre-fireable'' events.
+A very small subset of the recorded dataset ($0.2\%$) consists of \emph{un-pre-fireable} events.
 These are recorded events (\bx{0}) in which an L1A fired 3 bunch crossings prior (\bx{-3}).
 Due to the blocking rules, L1A cannot fire in \bx{-2}~and \bx{-1}.
 Even if there is an ECAL seed in \bx{0}~that pre-fires, it will be blocked from firing an L1A, and therefore \bx{0}~is protected.
@@ -161,7 +161,7 @@ Therefore (using the bunch crossing numbering in Figure~\ref{fig:vbf:pre3}), we 
 \end{equation}
 By definition, all events in this ratio will be recorded. 
 Figure~\ref{fig:vbf:pre_eff2_etaphi} shows this efficiency as a function of jet location. 
-We observe there is a ``hot'' ECAL tower near the location $\eta=-2.8$ and $\phi=2$.
+We observe there is a \emph{hot} ECAL tower near the location $\eta=-2.8$ and $\phi=2$.
 Not only does this tower fire very frequently (leading to many particles, leading to many jets), but it almost always pre-fires.
 To first order, events with a jet in this crystal should be rejected.
 Beyond this, there is very little localization in the pre-fire probability (besides restriction to the ECAL endcap). 
@@ -319,7 +319,7 @@ Some conclusions can be drawn from the kinematic distributions (Figure~\ref{fig:
     \end{center}
 \end{figure}
 
-To fully exploit these kinematic distributions, we look at ``VBF-tag'' observables, which are functions of the two leading jets. 
+To fully exploit these kinematic distributions, we look at \emph{VBF-tag} observables, which are functions of the two leading jets. 
 These are defined as:
 \begin{itemize}
     \item[$m_{jj}$:] Invariant mass of the dijet system.
@@ -351,7 +351,7 @@ On the other hand, \dphi~is sensitive to the spin of the boson produced in a VBF
 
 \subsection{Sensitivity optimization}
 
-A ``baseline'' selection is defined as:
+A \emph{baseline} selection is defined as:
 \begin{itemize}
     \item $\ptmiss>250$ GeV: driven by trigger efficiency, as discussed in Section~\ref{sec:vbf:trig}.
     \item $\pt^\mathrm{jet}>80,40$ GeV: require two VBF jets, lower $\pt$ thresholds set by trigger efficiency
@@ -402,7 +402,7 @@ Adding only the $\mu\mu$ CR to constrain the $Z$+jet component for now:
     & \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
 \end{align}
 While the notation largely follows that used in Equation~\ref{eq:mt:lhood}, one additional term has been introduced.
-This is a ``transfer factor'' linking the QCD and EW components in the signal region, so that the only free parameter is $\muz$:
+This is a \emph{transfer factor} linking the QCD and EW components in the signal region, so that the only free parameter is $\muz$:
 \begin{equation}
     \Ti{\mathrm{QE}}{Z} = \frac{N^\mathrm{SR}_i(\mathrm{QCD\,}Z\rightarrow\nu\nu)}{N^\mathrm{SR}_i(\mathrm{EW\,}Z\rightarrow\nu\nu)} 
 \end{equation}
@@ -583,7 +583,7 @@ First, we convert the branching ratio into a partial width:
 \end{equation}
 Then, using the results described in Reference~\needcite, $\Gamma_{\hinv}$ is translated into $\sigma^{\mathrm{SI}}_{\chi N}(m_\chi)$, where the only free parameter is the DM mass.
 Figure~\ref{fig:vbf:dd} compares the CMS exclusions with those from DD experiments~\needcite.
-Also shown for comparison is the ``neutrino floor'', which is the cross section of coherent scattering of solar neutrinos, and a limiting factor for DD experiments.
+Also shown for comparison is the \emph{neutrino floor}, which is the cross section of coherent scattering of solar neutrinos, and a limiting factor for DD experiments.
 At low $m_\chi$, CMS is able to significantly extend the DD constraints, reaching well below the neutrino floor. 
 
 \begin{figure}[]

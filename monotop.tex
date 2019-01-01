@@ -3,7 +3,7 @@
 \unboldmath
 \label{sec:mt}
 
-In this chapter, we discuss the search for dark matter produced in association with a single top quark (``mono-top'').
+In this chapter, we discuss the search for dark matter produced in association with a single top quark (\emph{mono-top}).
 Since the initial state of $pp$ collisions do not contain any appreciable contribution from top quarks, any process that produces a single top quark must involve some flavor violation.
 In the Standard Model, any such process is heavily suppressed by off-diagonal elements of the CKM matrix.
 The SM production mechanism for the mono-top signature (Figure~\ref{fig:mt:tzq}) involves a $b$ quark in the final state, and thus does not couple the third generation with the first or second.
@@ -178,7 +178,7 @@ To avoid the steeply-rising part of the curve, we choose a threshold of $U>250$ 
 
 Events in the signal regions (SRs) are then selected according to Table~\ref{tab:mt:cuts}, chosen to be consistent with the signal topology while mitigating the aforementioned SM backgrounds.
 As described in Section~\ref{sec:jets:combined}, two working points (WPs) are defined for the top ID BDT.
-The signal events (passing all other selection criteria) are partitioned into a ``loose'' SR and a ``tight'' SR on the basis of which WP the top candidate jet satisfies.
+The signal events (passing all other selection criteria) are partitioned into a \emph{loose} SR and a \emph{tight} SR on the basis of which WP the top candidate jet satisfies.
 
 \begin{table}[]
     \caption{Criteria used to select events for the mono-top search signal regions. Note that two SRs are defined, based on the BDT score.}
@@ -198,7 +198,7 @@ The signal events (passing all other selection criteria) are partitioned into a 
         \hline
         $\min_\mathrm{jets}\Delta\phi(\mathrm{jet},\ptmiss) > 0.5$ & Remove events with large $\ptmiss$ caused by mismeasured jets. \\
         \hline
-        CA15 jet BDT & Identifying top decay structure. If the jet passes the tight WP, it is placed in the ``tight'' SR. Otherwise, if it only passes the loose WP, it is placed in the ``loose'' SR.\\
+        CA15 jet BDT & Identifying top decay structure. If the jet passes the tight WP, it is placed in the \emph{tight} SR. Otherwise, if it only passes the loose WP, it is placed in the \emph{loose} SR.\\
     \end{tabular}
 \end{table}
 
@@ -229,8 +229,8 @@ Figure~\ref{fig:mt:prefit_signal} shows the $\ptmiss$ distributions, as predicte
 Searching for DM amounts to looking for an excess of data events over the SM prediction at large values of $\ptmiss$.
 Therefore, the $\ptmiss$ distribution of the three primary SM backgrounds described in Section~\ref{sec:mt:sel} must be predicted with small uncertainty.
 The MC simulation provides a reasonable description of the data, but the theoretical uncertainties inherent in the MC (primarily due to higher-order QCD effects) can range up to $20\%$.
-To reduce the prediction uncertainty further, a ``data-driven'' approach is used to estimate the SM processes in the SR.
-In this context, ``data-driven'' refers to the use of control data (i.e. data that cannot contain signal) to directly estimate or supplement the estimation of SM processes in the SR.
+To reduce the prediction uncertainty further, a \emph{data-driven} approach is used to estimate the SM processes in the SR.
+In this context, \emph{data-driven} refers to the use of control data (i.e. data that cannot contain signal) to directly estimate or supplement the estimation of SM processes in the SR.
 
 \subsection{Visible final states to constrain invisible final states}
 
@@ -268,7 +268,7 @@ Figure~\ref{fig:mt:zvsz} makes the same argument in a schematic fashion.
     \end{center}
 \end{figure}
 
-Table~\ref{tab:mt:zmm_cuts} describes the criteria used to define events in the ``$\mu\mu$'' control regions (CRs).
+Table~\ref{tab:mt:zmm_cuts} describes the criteria used to define events in the \emph{$\mu\mu$} control regions (CRs).
 Figure~\ref{fig:mt:prefit_dimuon} shows the distribution of $U$ in these CRs, as well as the $m_{\mu\mu}$ and $\pt^\mu$ distributions.
 
 \begin{table}[]
@@ -317,7 +317,7 @@ Figure~\ref{fig:mt:prefit_dimuon} shows the distribution of $U$ in these CRs, as
     \end{center}
 \end{figure}
 
-The control data is used to constrain the SR prediction by means of ``transfer factors'' $\Ti{X}{Y}$, where $X$ refers to a particular CR (e.g. $\mu\mu$), $Y$ refers to a particular process (e.g. $Z$), and $i$ refers to a particular bin in the CR (e.g. $200<U<250$ GeV in the tight category).
+The control data is used to constrain the SR prediction by means of \emph{transfer factors} $\Ti{X}{Y}$, where $X$ refers to a particular CR (e.g. $\mu\mu$), $Y$ refers to a particular process (e.g. $Z$), and $i$ refers to a particular bin in the CR (e.g. $200<U<250$ GeV in the tight category).
 Formally:
 \begin{equation}
     \Ti{\mu\mu}{Z} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N^{\mu\mu}_i(Z\rightarrow\mu\mu)}
@@ -332,7 +332,7 @@ That is:
 where $n_\theta$ is the number of nuisance parameters and $p_j(\theta_j)$ is some prior distribution for each nuisance (see below for how the priors are used).
 The priors are typically chosen to have a central value (e.g. mean, median) at $0$, with a finite variance that encodes the uncertainty.
 In this chapter, we assume $p_j$ is either a normal distribution centered at 0 or a log-normal distribution (in cases where negative values are undesirable).
-We will use the terms ``uncertainty'' and ``nuisance parameter'' interchangeably.
+We will use the terms \emph{uncertainty} and \emph{nuisance parameter} interchangeably.
 
 Let $\pois(d|\lambda)$ refer to the Poisson probability of observing $d$ with an expected mean of $\lambda$.
 In terms of these transfer factors, the likelihood for the data observed in the signal and $\mu\mu$ control regions is:
@@ -346,12 +346,12 @@ where the following notation is used:
 \begin{itemize}
     \item[$d^X_i$]: The data observed in bin $i$ of region $X$. For now, $X=\mathrm{SR},\mu\mu$.
     \item[$S^\mathrm{SR}_i$]: The predicted number of signal events in bin $i$ of the SR, under some fixed signal hypothesis.
-    \item[$\mu$]: The ``signal strength''. Essentially an unconstrained nuisance parameter that scales up or down the total signal yield.
+    \item[$\mu$]: The \emph{signal strength}. Essentially an unconstrained nuisance parameter that scales up or down the total signal yield.
     \item[$\mu_{\mathrm{SR},i}^P$]: The expected number of events from process $P$ in bin $i$ of the SR. This is also an unconstrained nuisance parameter.
-    \item[$B^X_i$]: The predicted number of ``minor'' background events in bin $i$ of region $X$. Here, ``minor'' refers to all SM processes that are not the signal and are not estimated using a data-driven method.
+    \item[$B^X_i$]: The predicted number of \emph{minor} background events in bin $i$ of region $X$. Here, \emph{minor} refers to all SM processes that are not the signal and are not estimated using a data-driven method.
 \end{itemize}
 The signal and background yields $\bm{S}$ and $\bm{B}$ are estimated using MC.
-Note that the inclusion of the priors in the likelihood constrains the nuisance parameters to be close to their ``nominal'' values; moving a $\theta_j$ to fit the data incurs a large cost from the prior.
+Note that the inclusion of the priors in the likelihood constrains the nuisance parameters to be close to their \emph{nominal} values; moving a $\theta_j$ to fit the data incurs a large cost from the prior.
 
 If we set $B_i = \mu = 0$ (the null hypothesis, ignoring small minor backgrounds), a simple picture emerges of how the likelihood is maximized.
 The parameters $\muz$ float freely to satisfy $d_\mathrm{SR,i} \sim \muzi$ and $d_\mathrm{\mu\mu,i}\sim \muzi / \Ti{\mu\mu}{Z}(\bm\theta)$.
@@ -360,7 +360,7 @@ Table~\ref{tab:mt:zmm_uncs} shows the relevant uncertainties for $\T{\mu\mu}{Z}$
 
 \begin{table}[]
     \begin{center}
-    \caption{Uncertainties affecting the $\mu\mu$ $\leftrightarrow$ $\nu\nu$ extrapolation. ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
+    \caption{Uncertainties affecting the $\mu\mu$ $\leftrightarrow$ $\nu\nu$ extrapolation. \emph{Shape} uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
     \label{tab:mt:zmm_uncs}
     \begin{tabular}{lcl}
         Uncertainty & 1 s.d. & Notes \\
@@ -618,7 +618,7 @@ These three sets of transfer factors, and the corresponding uncertainties, are s
 \begin{table}[]
     \begin{center}
     \caption{Uncertainties affecting the various single-muon extrapolations.
-            ``Shape'' uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
+            \emph{Shape} uncertainties have different priors for each bin, but are assumed to be correlated across bins.}
     \label{tab:mt:zmm_uncs}
     \begin{tabular}{lcccl}
         Uncertainty                   & 1 s.d. ($\T{b\mu}{\ttbar}$) & 1 s.d. ($\T{\mu}{W}$) & 1 s.d. ($\T{\mu}{\ttbar}$)  & Notes \\

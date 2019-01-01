@@ -2,6 +2,7 @@
 \label{sec:cms}
 
 \section{The Large Hadron Collider}
+\label{sec:cms:lhc}.
 
 The Large Hadron Collider (LHC)~\cite{lhcjinst}\footnote{Unless otherwise specified, all technical specifications of the LHC are derived from Reference~\cite{lhcjinst}} is a circular particle accelerator, 27 km in circumference and between 40 and 175 m below the surface of the French-Swiss border. 
 Designed to collide protons at a maximum center-of-mass energy $\sqrt{s} = 14$ TeV, the LHC has delivered collisions at $\sqrt{s}=7,8$ TeV (Run 1) and $\sqrt{s} = 13$ TeV (Run 2); the target energy $\sqrt{s} = 14$ TeV will be reached in Run 3. 
@@ -111,10 +112,10 @@ A near-uniform 3.8 T magnetic field, produced by a superconducting NbTi solenoid
 The field lines in the tracker volume are approximately parallel to the beam direction. 
 
 A single silicon pixel has dimensions $285\times100\times150$ $(\mu\mathrm{m})^3$ (in $r\times r\phi\times z$), leading to a position resolution of $\sim10\times30$ $(\mu\mathrm{m})^2$ (in $r\phi\times z$). 
-The 66 million pixels are arranged into 7 layers: 3 cylindrical ``barrels'' (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ ``endcap'' annulli (at $z=\pm34.5,~\pm46.5$ cm). 
+The 66 million pixels are arranged into 7 layers: 3 cylindrical \emph{barrels} (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ \emph{endcap} annulli (at $z=\pm34.5,~\pm46.5$ cm). 
 Outside the pixel layers are the strip layers, consisting of 9.3 million silicon strips arranged into barrels and endcaps.
 The resolution in $r\phi$ varies between $10$ and $50$ $\mu$m, depending on the location and pitch of the given strip.
-Certain strip layers contain two layers of strips, rotated through a ``stereo'' angle (100 mrad) with respect to each other.
+Certain strip layers contain two layers of strips, rotated through a \emph{stereo} angle (100 mrad) with respect to each other.
 By matching adjacent hits, the stereo measurement can add a third dimension ($z$ for barrel, $r$ for endcap) to the strip's 2D measurement, with resolution $100$-$500$ $\mu$m.
 There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0.6 < |z| < 2.8$ m). 
 
@@ -132,13 +133,13 @@ There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0
 
 Pixels with a signal greater than a tuneable readout threshold (typically around $3000 Q_e$) are read out.
 These pixels are then aggregated with adjacent signals to form pixel clusters, which are further subjected to readout thresholds ($\sim 4000 Q_e$).
-The exact position of the particle in this layer (known as a ``hit'') is inferred by fitting the charge distribution of the pixels in this cluster to pre-determined templates.
+The exact position of the particle in this layer (known as a \emph{hit}) is inferred by fitting the charge distribution of the pixels in this cluster to pre-determined templates.
 A similar method is employed to determine the strip hit positions, with some modifications to account for Lorentz drift of the charges in the silicon detector due to the $B$-field. 
 The efficiency of reconstructing hits varies with the detector type, location, and particle momentum, but is generally greater than $99\%$ ($99.5\%$ if defective modules are not considered). 
 
 \subsubsection{Tracking}
 
-Tracks are found using an iterative ``inside-out'' process, where each iteration has five steps:
+Tracks are found using an iterative \emph{inside-out} process, where each iteration has five steps:
 \begin{enumerate}
     \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
     \item Use a Kalman filter~\cite{kalman2,kalman1} to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
@@ -146,7 +147,7 @@ Tracks are found using an iterative ``inside-out'' process, where each iteration
     \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits, track $\chi^2$)
     \item Remove hits associated with tracks from hit collection and repeat.
 \end{enumerate}
-The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (``impact parameter'', minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
+The trajectory parameters referred to in step 3 are the 5 parameters of a helix: $\rho$ (curvature), $\phi_0$ (azimuthal angle), $\lambda$ ($\cot\theta$), $d_0$ (\emph{impact parameter}, minimum $r$ of track), $z_0$ (minimum $|z|$ of track).
 The CMS track fit typically has 5-7 iterations, with each successive iteration loosening the seed and track fit requirements to look for more difficult tracks (e.g. missing hits, large $d_0$).
 The efficiency and fake rate of this reconstruction, as a function of track \pt, are shown in Figure~\ref{fig:cms:trackeff}.
 For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\%, with a combinatorial fake rate of 2-6\%. 
@@ -214,7 +215,7 @@ Scintillation photons from the \pbwo~crystals are collected by avalanche photodi
 
 At high momenta, the two photons from a $\pi^0$ decay may merge into a single ECAL crystal. 
 This primarily occurs at high $|\eta|$ due to the $z$-boost of the intitial state.
-To differentiate one- and two-photon deposits, a ``preshower'' detector sits in front of the EE ($1.6 < |\eta|<2.5$).
+To differentiate one- and two-photon deposits, a \emph{preshower} detector sits in front of the EE ($1.6 < |\eta|<2.5$).
 The preshower detector consists of a lead absorber and silicon strips.
 A photon (or photon pair) initiates a shower in the lead.
 The shower can be resolved in the silicon strips, which have resolution $\mathcal{O}(1\mathrm{-}10)$ mm.
@@ -232,7 +233,7 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
 \end{figure}
 
 Due to the bending of a charged particle's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
-A ``supercluster'' (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
+A \emph{supercluster} (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
 The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects~\cite{cmsecalreco}.
 For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
 
@@ -274,7 +275,7 @@ The HF is also a sampling calorimeter, made of steel absorbers instrumented with
 Charged particles from the nuclear shower in the steel emit Cerenkov radiation in the quartz fibers, which transports the light to photomultipler tubes (PMTs).
 The HF uses more radiation-hard materials than the rest of the HCAL, as this $\eta$ range is subject to significantly more radiation from collisions than the central part of the detector. 
 
-Each HCAL subsystem is read out in ``towers'', corresponding to sections in $\eta$ and $\phi$.
+Each HCAL subsystem is read out in \emph{towers}, corresponding to sections in $\eta$ and $\phi$.
 For $|\eta|<1.74$, the segmentation is $\eta\times\phi = 0.087\times0.087$.
 Beyond this, the towers vary in size from $0.09\times0.175$  to $0.35\times0.175$.
 
@@ -309,8 +310,8 @@ The physical placement of the detectors is shown in Figure~\ref{fig:cms:muondet}
 The DT cells are filled with a $85\%/15\%$ mix of argon and carbon dioxide, with a gold/steel anode wire held at a voltage of $3600$ V.
 The cell is a rectangular prism, with transverse dimensions of $42\times13~\mathrm{mm}^2$ and a longitudinal dimension ranging from $1.9$ to $4.1$ m.
 The dimensions and the drift speed of $55\mu\mathrm{m/s}$ result in a maximum response (drift) time of $400$ ns.
-The DTs are organized into cylindrical ``stations'' (MB).
-With the exception of the outermost barrel station (MB4), each MB consists of 3 ``superlayers'' (SLs).
+The DTs are organized into cylindrical \emph{stations} (MB).
+With the exception of the outermost barrel station (MB4), each MB consists of 3 \emph{superlayers} (SLs).
 Each SL has 4 parallel drift cells, and so measure position in a particular plane.
 Of the 3 SLs, two measure $r$-$\phi$ position and one measures $r$-$z$ position. 
 MB4 does not have an $r$-$z$ SL.
@@ -327,7 +328,7 @@ The spatial resolution of the RPC hits is worse than the DTs and CSCs.
 
 The hit position resolution of the DTs is 78-120 $\mu$m (140-390 $\mu$m) in $r$-$\phi$ ($r$-$z$).
 For CSCs, the resolution varies from 40 to 152 $\mu$m.
-The efficiency of individual reconstructed hits (``rechits'') is over 95\%.
+The efficiency of individual reconstructed hits (\emph{rechits}) is over 95\%.
 
 \subsection{Online trigger system}
 
@@ -352,7 +353,7 @@ The final selected data rate from the HLT is 400 Hz.
 \subsubsection{Level 1}
 
 The L1 trigger makes decisions within 4 $\mu$s of collisions using field programmable gate arrays (FPGAs) and application specific integrated circuits (ASICs), which offer significant speed advantages as compared to CPUs for certain tasks.
-Individual detector systems (ECAL, HCAL, muon detectors) feed simple reconstructed objects (``trigger primitives'' (TPs)) to a series of regional trigger decisions.
+Individual detector systems (ECAL, HCAL, muon detectors) feed simple reconstructed objects (\emph{trigger primitives} (TPs)) to a series of regional trigger decisions.
 Quality selections are placed on calorimeter towers, and they are aggregated into clusters of energy deposits.
 A simple segment-finding and tracking algorithm is run on hits in the muon chambers to produce muon tracks.
 Note that the inner tracker is not included in the L1 decision: at the time of the construction of the CMS detector, the detector readout and reconstruction algorithms were not fast enough for the L1's requirements.\footnote{It should be noted that implementing tracking for hardware triggers is a significant goal for the community in the next few years.}
@@ -379,7 +380,7 @@ The full detector readout is picked up by the HLT.
 The HLT computing farm consists of 20k CPU cores (this number has grown from 13k in 2012 and continues to grow).
 Unlike the L1, the HLT has access to the entire event information.
 Therefore, a full reconstruction of the event is performed, using slightly algorithms similar to (in some cases, simplified) the algorithms used in offline reconstruction.
-To be selected by the HLT, an event must pass an HLT ``path''.
+To be selected by the HLT, an event must pass an HLT \emph{path}.
 A path consists of a series of filters, each making simple decisions that can be chained into complex decisions.
 For example, three filters may be: (1) two forward jets, (2) large momentum imbalance, and (3) an electron and a muon.
 These filters could be chained into two separate paths, targeting vector boson fusion production of the Higgs, where the Higgs decays to DM (1\&2) or two taus (1\&3).
@@ -395,11 +396,11 @@ Events that are selected by the HLT are passed on to the Tier 0 computing farm f
 Because of the excellent angular granularity of the CMS detector and the momentum resolution of the tracker, a particle flow~\cite{cmspf} algorithm is used to correlate information from all detector subsystems to build a global description of each event.
 Particle flow (PF) algorithms date back to ALEPH~\needcite, and are in contrast to detector-specific physics object-based algorithms used at other experiments~\needcite.
 
-The key feature of the PF algorithm is to ``link'' multiple detector signals together into a single PF candidate.
+The key feature of the PF algorithm is to \emph{link} multiple detector signals together into a single PF candidate.
 This linkage combines inner tracks, ECAL clusters, HCAL clusters, and muon tracks based on their proximity in the $(\eta,\phi)$ plane.
 Inner track helices are extended into the calorimeters, searching for clusters compatible with the trajectory.
 Similarly, clusters from the ECAL, the ECAL preshower, and the HCAL can be linked without a track present. 
-The remainder of this section is organized according to ``blocks'' in the PF algorithm.
+The remainder of this section is organized according to \emph{blocks} in the PF algorithm.
 At the end of each block, any detector signature (track, calorimeter cell) which has been assigned to a PF candidate in that block is removed from the set of objects passed to the next block.
 For example, tracks associated with muons will not be considered when reconstructing charged hadrons. 
 
@@ -407,13 +408,13 @@ For example, tracks associated with muons will not be considered when reconstruc
 \label{sec:cms:muons}
 
 The first block of the PF algorithm links inner tracks and muon chamber hits to identify muons.
-While ``standalone'' muons can rely solely on muon chamber hits, we also consider muons that use the inner tracker.
-To construct outside-in ``global muons'', standalone muon tracks are first reconstructed using a Kalman filter fit using muon chamber rechits~\cite{cmstdr1,cmsmuon}.
+While \emph{standalone} muons can rely solely on muon chamber hits, we also consider muons that use the inner tracker.
+To construct outside-in \emph{global muons}, standalone muon tracks are first reconstructed using a Kalman filter fit using muon chamber rechits~\cite{cmstdr1,cmsmuon}.
 These standalone tracks are extrapolated inwards to the inner tracker, accounting for effects from the magnetic field and the  material budget between the tracker and the muon chambers.
 A second Kalman filter fit is run to combine the inner track with the standalone track to form a global muon.
 To reject backgrounds, requirements are placed on the $\nicefrac{\chi^2}{N_\mathrm{dof}}$ (poorly fit tracks, charged hadrons) and $d_0,d_z$ (muons from hadron decays and cosmic rays).
 The total efficiency of global muon reconstruction is 99\%.
-In addition, ``tracker'' muons can be reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
+In addition, \emph{tracker} muons can be reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
 The PF algorithm uses both global and tracker muons, but in this thesis, we will only use the former.
 Figure~\ref{fig:cms:muonpt} compares the momentum resolution of muons reconstructed using the different algorithms.  
 The PF selection consumes all three types of reconstructed muons: global, tracker, and standalone.
@@ -479,8 +480,8 @@ Hits in the pixel and strip endcap layers consistent with the ECAL SC are used t
 GSF differs from a Kalman filter by modeling the uncertainties as a Gaussian mixture model instead of a single Gaussian.
 The primary backgrounds for electron identification are (1) the overlap of a charged hadron with a neutral hadron or photon and (2) a photon which converts into a $e^-/e^+$ pair in the tracker.
 Table~\ref{tab:cms:el} lists the observables used to reject these backgrounds; two cut-based IDs are defined.
-The ``loose'' ID selects electrons with $\sim90\%$ signal efficiency and $\sim0.5\%$ background acceptance (strongly dependent on the electron phase space); it is used to \emph{veto} electrons. 
-The ``tight'' ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.1\%$ background acceptance; it is used to \emph{select} electron-pure samples. 
+The \emph{loose} ID selects electrons with $\sim90\%$ signal efficiency and $\sim0.5\%$ background acceptance (strongly dependent on the electron phase space); it is used to \emph{veto} electrons. 
+The \emph{tight} ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.1\%$ background acceptance; it is used to \emph{select} electron-pure samples. 
 
 \begin{table}
 	\begin{center}
@@ -550,8 +551,8 @@ Linked HCAL and ECAL clusters are assumed to arise from a shower containing neut
 \subsubsection{Jet clustering}
 
 Jets arise from the hadronization and fragmentation of colored particles, as described in Section~\ref{sec:theory}.
-The precise definition of a jet is dependent on the algorithm used to cluster particles, and so we will use ``jet'' to refer to the final states of hadronization/fragmentation and to the output of a jet finding algorithm.
-LHC experiments typically use ``sequential recombination'' algorithms~\cite{antikt,kt,ca}.
+The precise definition of a jet is dependent on the algorithm used to cluster particles, and so we will use \emph{jet} to refer to the final states of hadronization/fragmentation and to the output of a jet finding algorithm.
+LHC experiments typically use \emph{sequential recombination} algorithms~\cite{antikt,kt,ca}.
 Given a set of particles (in CMS, PF candidates) in the event $E$, we compute two metrics:
 \begin{align}
 	d_{iB} &= \pti^2 \nonumber \\ 
@@ -562,7 +563,7 @@ where $i,j$ are two elements of $E$; $B$ represents the beam; and $p,~R$ are tun
 Let $\tilde E = E \cup \{B\}$ and find $i,j\in \tilde E$ that minimize $d_{ij}$.
 If $j=B$, then we remove particle $i$ from $\tilde E$ and add it to the set of candidate jets.
 Otherwise, we combine $i$ and $j$ into a new particle $k$ by defining $p_k^\mu = p_i^\mu + p_j^\mu$.
-This ``pseudojet'' $k$ is added to $\tilde E$, while $i$ and $j$ are removed.
+This \emph{pseudojet} $k$ is added to $\tilde E$, while $i$ and $j$ are removed.
 This process is repeated until $\tilde E$ is exhausted.
 The exact value of $R$ is an approximate measure of the $\Delta R$ radius of the jet. 
 The value of $q$ defines the relationship between the momentum and angular factors; $q<0$  enforces clustering circular jets around hard seeds.
@@ -578,7 +579,7 @@ There are 3 steps in the additional calibration:
 \begin{enumerate}
 \item A pileup correction (L1) is derived from MC truth information and randomly-triggered data events.
 It subtracts energy from jets, as a function of the jet \pt, $\eta$, $A$ (area), and $\rho$. 
-$A$ is computed by adding a uniform distribution of infinitesimally soft particles (``ghosts'') to the event prior to the jet clustering, and counting how many are clustered with each jet. 
+$A$ is computed by adding a uniform distribution of infinitesimally soft particles (\emph{ghosts}) to the event prior to the jet clustering, and counting how many are clustered with each jet. 
 A wide jet will have many such particles and will be more susceptible to pileup contamination.
 The event-wide quantity $\rho$ is a measure of the median $\pt$ per unit area in the event, also computed using ghosts.
 
@@ -609,7 +610,7 @@ It is frequently useful to identify the type of parton that induces a jet.
 In the context of the results presented in this thesis, identifying $b$ quarks ($b$-tagging) is important, but identifying other initial states is also possible ($c$ quarks, gluons vs quarks). 
 The hadronization of a $b$ quark involves the production of a $B$ meson, which has a lifetime of $\sim 1.5$ ps. 
 This translates into a lab frame displacement of several millimeters, which is well within the vertexing resolution of the pixel detector.
-Therefore, the signature of a $b$ jet is the identification of a ``secondary vertex'' (SV) displaced from the PV, with properties consistent with a heavy hadron (Figure~\ref{fig:cms:bjet}).
+Therefore, the signature of a $b$ jet is the identification of a \emph{secondary vertex} (SV) displaced from the PV, with properties consistent with a heavy hadron (Figure~\ref{fig:cms:bjet}).
 
 \begin{figure}[]
 \begin{center}

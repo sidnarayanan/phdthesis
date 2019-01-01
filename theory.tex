@@ -10,7 +10,7 @@ For the special unitary groups, we denote the representation as $\mathbf{N}$ (fu
 The special unitary gauges have the same interaction strength for all fermions in non-trivial representations (known as universality).
 All fermions are in a one-dimensional representation of $\U(1)$, but the weak hypercharge ($Y_W$) distinguishes their transformation under the gauge group $f\mapsto f + i Y_W g' f$, where $g'$ is the coupling strength of $\U(1)$.
 
-Table~\ref{tab:theory:fermions} gives a summary of the ``first generation'' SM fermion fields and the representation of $G$ which acts on them.
+Table~\ref{tab:theory:fermions} gives a summary of the \emph{first generation} SM fermion fields and the representation of $G$ which acts on them.
 The SM provides a total of 3 generations of fermions, each of them copies of the first generation in terms of the field content and gauge group action.
 
 \begin{table}[]
@@ -85,20 +85,20 @@ Physical quantities in a QFT (couplings, masses, field strengths, operators) acq
 In many cases, the quantum corrections to the bare parameter contain ultraviolet divergent terms.
 These infinities are absorbed into the Lagrangian by means of adding so-called counterterms. 
 The systematic process of absorbing these infinities and ensuring scale-independence is known as renormalization.
-A Lagrangian is called ``renormalizable'' if only a finite number of counterterms are needed to ensure that all observables (i.e. amplitudes) are finite. 
+A Lagrangian is called \emph{renormalizable} if only a finite number of counterterms are needed to ensure that all observables (i.e. amplitudes) are finite. 
 The SM is a renormalizable theory.
 
 In this discussion, we will focus on the renormalization of the coupling $\alpha_S \equiv \nicefrac{g_s^2}{4\pi}$, but the argument applies broadly to all SM quantities.
-There are two related consequences of quantum corrections: $\alpha_S$ acquires a non-trivial dependence on the energy scale at which it is probed ($\mu_R^2 = -q^2$, where $q^\mu$ is the gluon momentum); and the ``bare'' $\alpha_S$ as written in the Lagrangian is not the same as the $\alpha_S(\mu_R^2)$ measured in the laboratory.
+There are two related consequences of quantum corrections: $\alpha_S$ acquires a non-trivial dependence on the energy scale at which it is probed ($\mu_R^2 = -q^2$, where $q^\mu$ is the gluon momentum); and the \emph{bare} $\alpha_S$ as written in the Lagrangian is not the same as the $\alpha_S(\mu_R^2)$ measured in the laboratory.
 We will refer to the bare coupling as $\alpha_{S0}$. 
 Note that it does not have a $\mu_R^2$-dependence.
 To enforce this, we look for solutions to the differential equation
 \begin{equation}
-    \mu_R^2 \frac{d \alpha_{S0}}{d\mu_R^2} = 0
+    \mu_R^2 \frac{\di \alpha_{S0}}{\di\mu_R^2} = 0
 \end{equation}
-Writing $\alpha_{S0}$ in terms of $\alpha_S$ (which has a $\mu_R^2$-dependence) and rearranging the terms, we arrive at the ``$\beta$ function'' for $\alpha_S$:
+Writing $\alpha_{S0}$ in terms of $\alpha_S$ (which has a $\mu_R^2$-dependence) and rearranging the terms, we arrive at the \emph{$\beta$ function} for $\alpha_S$:
 \begin{equation}
-    \beta(\alpha_S) \equiv \mu_R^2 \frac{d \alpha_S}{d\mu_R^2} = -\left(\beta_0 \alpha_S^2 + \beta_1 \alpha_S^3 + \mathcal{O}(\alpha_S^4)\right)
+    \beta(\alpha_S) \equiv \mu_R^2 \frac{\di \alpha_S}{\di\mu_R^2} = -\left(\beta_0 \alpha_S^2 + \beta_1 \alpha_S^3 + \mathcal{O}(\alpha_S^4)\right)
 \end{equation}
 The $\beta$ coefficients are:
 \begin{align}
@@ -113,6 +113,7 @@ To one-loop order, the solution to this differential equation is:
 where $\Lambda_\mathrm{QCD}$ is set by enforcing a measured boundary condition, e.g. $\alpha_S(m_Z^2) = 0.1181 \pm 0.0011$~\cite{pdg}.
 The exact value of $\Lambda_\mathrm{QCD}$ depends on the number of flavors ($n_f=5$ at $m_Z$) and the renormalization scheme (most commonly used is $\overline{\text{MS}}$~\cite{msbar}); with these conditions, $\Lambda_\mathrm{QCD} = 218$ MeV.
 $\beta_0>0$ implies $\alpha_S$ falls as a function of energy, as illustrated in Figure~\ref{fig:theory:alphas}.
+
 This running (the opposite of theories like quantum electrodynamics, in which $\beta_0<0$) results in an asymptotically ($\mu_R\rightarrow \infty$) free theory.
 Below $\Lambda_\mathrm{QCD}$, the coupling constant is larger than order unity and perturbative QCD (pQCD) cannot make predictions in this regime.
 This long-range behavior also means that color triplet (quarks, antiquarks) or octet (gluons) states cannot be observed. 
@@ -162,7 +163,7 @@ We can write the complex doublet as 4 real fields:
 \begin{equation}
     \phi = \frac{1}{\sqrt{2}} \left(\begin{matrix} \phi_1 + i\phi_2 \\ \phi_3 + i \phi_4 \end{matrix} \right)
 \end{equation}
-The two self-interaction terms create a Higgs potential with a degenerate global minimum at ``vacuum expectation value'' $v \equiv \langle |\phi| \rangle = \sqrt{\nicefrac{\mu^2}{\lambda}}$.
+The two self-interaction terms create a Higgs potential with a degenerate global minimum at \emph{vacuum expectation value} $v \equiv \langle |\phi| \rangle = \sqrt{\nicefrac{\mu^2}{\lambda}}$.
 Through gauge rotations, we can fix $\langle\phi_{1,2,4}\rangle = 0$ and, at low energies, expand $\phi_3 = v + H$, where $H$ is the real Higgs field. 
 This is the spontaneoous breaking of a symmetry.
 
@@ -246,7 +247,8 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
 
 \begin{table}[]
 \begin{center}
-    \caption{}
+    \caption{Summary of the SM fields after electroweak symmery breaking.
+             All masses are taken from the global fits compiled by the Particle Data Group~\cite{pdg}.}
     \label{tab:theory:ewsb}
     \begin{tabular}{l|c|c|c|c}
         Name & Symbol & Spin & Mass & $Q_e$  \\  \hline \hline
@@ -254,22 +256,58 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
         photon & $\gamma $ & 1 & 0 & 0 \\   
         $Z$ boson & $Z$ & 1 & 91.2 GeV & 0 \\   
         $W$ boson & $W^{\pm}$ & 1 & 80.4 GeV & $\pm 1$ \\   \hline 
-        down quark & $d$  & $\nicefrac{1}{2}$ & $4.7$ MeV  & $-\nicefrac{1}{3}$  \\   
+        Higgs boson & $H$ & 0 & 125 GeV & $0$ \\   \hline 
         up quark & $u$ & $\nicefrac{1}{2}$ & $2.2$ MeV & $\nicefrac{2}{3}$    \\   
-        strange quark & $s$  & $\nicefrac{1}{2}$ & $95$ MeV  & $-\nicefrac{1}{3}$  \\   
+        down quark & $d$  & $\nicefrac{1}{2}$ & $4.7$ MeV  & $-\nicefrac{1}{3}$  \\   
         charm quark & $c$  & $\nicefrac{1}{2}$ & $1.28$ GeV  & $\nicefrac{2}{3}$  \\   
-        bottom quark & $b$  & $\nicefrac{1}{2}$ & $4.18$ GeV  & $-\nicefrac{1}{3}$  \\   
+        strange quark & $s$  & $\nicefrac{1}{2}$ & $95$ MeV  & $-\nicefrac{1}{3}$  \\   
         top quark & $t$  & $\nicefrac{1}{2}$ & $173$ GeV  & $\nicefrac{2}{3}$  \\  \hline
-        electron  & $e$  & $\nicefrac{1}{2}$ & $511$ keV  & $-1$  \\   
+        bottom quark & $b$  & $\nicefrac{1}{2}$ & $4.18$ GeV  & $-\nicefrac{1}{3}$  \\   
         electron neutrino  & $\nu_e$  & $\nicefrac{1}{2}$ & $-$  & $0$  \\   
-        muon  & $\mu$  & $\nicefrac{1}{2}$ & $105$ MeV  & $-1$  \\   
+        electron  & $e$  & $\nicefrac{1}{2}$ & $511$ keV  & $-1$  \\   
         muon neutrino  & $\nu_\mu$  & $\nicefrac{1}{2}$ & $-$  & $0$  \\   
-        tau  & $\tau$  & $\nicefrac{1}{2}$ & $178$ GeV  & $-1$  \\   
+        muon  & $\mu$  & $\nicefrac{1}{2}$ & $105$ MeV  & $-1$  \\   
         tau neutrino  & $\nu_\tau$  & $\nicefrac{1}{2}$ & $-$  & $0$  \\ 
+        tau  & $\tau$  & $\nicefrac{1}{2}$ & $178$ GeV  & $-1$  \\   
     \end{tabular}
 \end{center}
 \end{table}
 
 \section{LHC phenomenology}
 
+The Large Hadron Collider collides protons at a center of mass energy $\sqrt{s} = 13$ TeV.
+Section~\ref{sec:cms:lhc} provides an overview of the LHC machine.
+In this section, we describe the methods used to make predictions of observables at the LHC.
+These observables typically take the form of differential cross sections $\di\sigma(pp\rightarrow X)/\di\Theta$, where $X$ is some interesting final state with $N$ particles and $\Theta$ is a set of interesting kinematics.
+The differential element of the general cross section for $2\rightarrow N$ processes is:
+\begin{equation}
+d\sigma(ab\rightarrow \{c_i\}) = 
+    \frac{1}{2s} \left(\prod_i \dfrac{\mathrm{d}^3p_i}{(2\pi)^3} \frac{1}{2E_i}\right) 
+        \cdot (2\pi)^4 \delta^4\left(k_a + k_b - \sum_i p_i\right) 
+        \cdot \left|\Ma(ab\rightarrow \{c_i\})\right|^2
+        \label{eq:theory:2n}
+\end{equation}
+where $k_a,k_b$ are the incoming momenta; $\{p_i\}$ are the outgoing momenta; and $\Ma$ is the matrix element of this reaction.
+Hadron collisions do not have two-particle initial states, but rather two composite particles containing partons with varying momenta. 
 
+The general cross section for $pp\rightarrow X$ is:
+\begin{equation}
+\di\sigma(pp\rightarrow X(\Theta)) = 
+    \sum_{a,b} \int \mathrm{d}x_a \mathrm{d}x_b 
+    ~f_a(x_a) f_b(x_b) 
+    \cdot \di\sigma(ab\rightarrow\{c_i\}) 
+    \cdot D(\{c_i\}\rightarrow X(\Theta))
+    \label{eq:theory:master}
+\end{equation}
+The sum over $a,b$ refers to summing over partons in the initial state.
+The momentum fractions of the partons, $x_{a,b}$, follow parton distribution functions (PDFs) $f_{a,b}$ that depend on the particle species $a$ and $b$. 
+Any bare quark or gluon that is produced must form hadron(s) due to color confinement.
+This process of \emph{hadronization} is not described by pQCD.
+However, the production of most interesting final states at the LHC can be perturbatively analyzed.
+Therefore, we split the process $ab\rightarrow X$ into $ab\rightarrow \{c_i\} \rightarrow X$.
+The matrix element for the first step (\emph{hard scattering}) can usually be computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
+Other heuristic methods are used to deal with the second step (\emph{parton shower}), encoded in the \emph{fragmentation function} $D$. 
+
+The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and parton shower) components follows from the collinear factorization theorem~\cite{fact}.
+The factorization depends on an arbitrary energy scale $\mu_F$, which defines a lower bound for radiation considered part of the hard scattering. 
+The remainder of this section discusses the computation of these three factors: $f$, $\Ma$, and $D$.
