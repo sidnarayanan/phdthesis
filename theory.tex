@@ -283,8 +283,8 @@ While the SM is incredibly powerful at predicting the outcomes of many laborator
     \item \emph{Neutrino masses} are not completely determined by the SM. 
             While a mass term can be written down as in Section~\ref{sec:theory:ew}, it does not exclude a Majorana mass term for right-handed neutrinos. 
             Nor does it explain the observed range of masses $m_\nu/m_t \lesssim 10^{-15}$. 
-    \item An explanation of \emph{dark energy} accounting for $\Omega_\Lambda h \sim 68\%$ of the universe's energy budget, suggested by measurements of the CMB, galaxy clusters, supernovae, and other measurements of the universe expansion rate~\cite{darkenergy}.
-    \item An explanation of \emph{dark matter} accounting for $\Omega_\mathrm{DM} h \sim 20\%$ of the universe's energy budget, suggested by measurements of galactic rotation curves, the CMB, and gravitational lensing~\cite{pdg,dm1,dm2,dm3}.
+    \item An explanation of \emph{dark energy} accounting for $\sim 68\%$ of the universe's energy budget, suggested by measurements of the CMB, galaxy clusters, supernovae, and other measurements of the universe expansion rate~\cite{darkenergy}.
+    \item An explanation of \emph{dark matter} accounting for $\sim 27\%$ of the universe's energy budget, suggested by measurements of galactic rotation curves, the CMB, and gravitational lensing~\cite{pdg,dm1,dm2,dm3}.
 \end{itemize}
 In this thesis, we describe tests of certain extensions of the SM which add candidate fields for dark matter (DM). 
 
@@ -321,6 +321,90 @@ Figure~\ref{fig:theory:planck} shows the power spectrum measured by the Planck e
     \label{fig:theory:planck}
 \end{center}
 \end{figure}
+
+This is hardly an exhaustive list of DM evidence.
+Other observations include gravitational lensing, cluster collisions, and large-scale structure formation~\cite{dm1,dm2}.
+
+\subsubsection{DM candidates}
+
+The \emph{relic density} is the current density of a field that fell out of thermodynamic equilibrium with other fields as the universe expanded.
+This occurs as the rate of expansion of the universe outpaces the mean particle velocity $v$ (correlated with the temperature $T$) and the cross sections for annihilation and production of the field.
+This decoupling of the field is known as \emph{freeze-out}.
+The relic density is defined:
+\begin{equation}
+    \Omega \cdot h^2 = \frac{\rho}{\rho_c} \cdot \frac{H_0}{100\text{ km/s/Mpc}}
+\end{equation}
+where $\rho$ is the energy density of the field, $\rho_c$ is the critical total energy density of flat spacetime, and $H_0=73$ km/s/Mpc is the Hubble constant.
+If $\sigma_A$ is the annihilation cross section and the field is non-relativistic at freeze-out, then a very simplified approximation~\cite{dm1} is:
+\begin{equation}
+    \Omega h^2 = \frac{10^{-27}\mathrm{cm}^3\mathrm{s}^{-1}}{\langle \sigma_A v\rangle}
+    \label{eq:theory:relic}
+\end{equation}
+Planck~\cite{planck} measures the relic densities of baryonic and dark matter to be:
+\begin{equation}
+    \Omega_b h^2 = 0.02237 \pm 0.0015, \quad \Omega_\mathrm{DM} h^2 = 0.1200 \pm 0.0012
+\end{equation}
+
+As a first candidate, suppose we introduce a fermion $\chi$ is a particle with mass $m_\chi\sim100$ GeV.
+Further suppose that it has an interaction with the SM through a new current, and the cross section for the effective four-point interaction $\chi \bar\chi\rightarrow f\bar f$ (for some SM fermion $f$) is proportional to $g^4_\chi$, where $g_\chi \sim g \sim 0.6$.
+The relic density for such a particle would be $\Omega_\chi h^2 \sim 0.1$, which is quite close to the needed density.
+A \emph{Weakly-Interacting Massive Particle} (WIMP) such as $\chi$ therefore makes a good DM candidate.
+This coincidence is known as the \emph{WIMP miracle}.
+It should be noted that the definition of a WIMP is fairly loose.
+All models considered in these results contain at least one particle falls under the umbrella of a WIMP, but the models themselves are quite diverse.
+
+The obvious SM candidate for DM are neutrinos, as they are known to be non-interacting and massive.
+However, constraints on the neutrino mass restrict $\Omega_\nu h^2 \leq 0.0062$~\cite{pdg}, which is far too small to entirely account for the observed phenomena. 
+Sterile neutrinos (neutrinos that participate in oscillations but do not couple to the $Z$ boson) remain a viable DM candidate, above a mass of 10 keV.
+A proposed solution to the strong CP problem is the addition of a scalar \emph{axion} field.
+While axions can have couplings to photons, those interactions would be sufficiently weak for an axion to remain \emph{dark} in the sense of DM.
+Many other DM candidates have been proposed as well (some of which fall under the generic WIMP umbrella), and this is not an exhaustive list.
+
+\subsubsection{Non-collider WIMP searches}
+
+Each class of DM models has dedicated experimental signatures, and therefore dedicated experiments to search for them.
+Here, we focus on searches sensitive to WIMPs, as these are most relevant for the results in this thesis.
+
+The philosophy of collider DM searches is to produce DM in the laboratory and directly or indirectly detect it.
+Non-collider searches rely on DM that is present somewhere in the universe and look for its interaction with SM particles.
+
+\emph{Indirect detection} experiments look for the annihilation process $\chi\bar\chi\rightarrow X$, where $X$ is one or more SM particles.
+The Alpha Magnetic Spectrometer (AMS-02) searches for excess positrons in the cosmic ray flux, arising from $X=e^+e^-$ final states~\cite{ams}. 
+Similarly, $\gamma$ ray data from the Fermi Large Area Telescope (Fermi-LAT) is used to look for final states which include high-energy photons~\cite{fermilat}.
+As an example, the 95\% CL exclusion from Fermi-LAT is shown in Figure~\ref{fig:theory:fermilat}.
+The exclusion is drawn as a function of $m_\chi$ and $\langle \sigma_A v\rangle$, as the Fermi-LAT analysis is directly dependent on the annihilation rate.
+Also shown is an exclusion from a search conducted by the CMS experiment at the LHC, looking for the process $pp\rightarrow \chi+$jet and assuming a pseudoscalar mediator connecting the DM and SM sectors~\cite{monojet}.
+
+\begin{figure}[]
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/theory/fermilat.png}
+    \includegraphics[width=0.4\textwidth]{figures/theory/monojet.png}
+    \caption{Excluded WIMP hypotheses as a function of $m_\chi,\langle\sigma v\rangle$ from Fermi-LAT (left) and compared to CMS (right).
+             Reprinted from Reference~\cite{fermilat} (left) and Reference~\cite{monojet} (right).}
+    \label{fig:theory:fermilat}
+\end{center}
+\end{figure}
+
+\emph{Direct detection} experiments typically contain a large volume of instrumented material that has a large cross section for interaction with WIMPs.
+An example is the Large Underground Xenon (LUX) experiment~\cite{lux}, a two phase (liquid and gas) xenon detector.
+LUX searches for scintillation photons and additional electrons emitted from DM-nucleus interactions.
+Xenon is chosen because heavy nuclei have larger cross sections for \emph{spin independent} DM interactions.
+In this context, spin independent refers to any interaction mediated by a scalar or vector current (i.e. there is no coupling to the spin of the DM or nucleon). 
+Figure~\ref{fig:theory:lux} compares the exclusions of LUX to other direct detection experiments.
+The results are presented as a function of the natural quantities for direct detection: $m_\chi$ and $\sigma(\chi N \rightarrow \chi N)$.
+Also shown is the exclusion limit from the CMS invisible Higgs search, which is described in Chapter~\ref{sec:vbf}.
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/vbf/fits/dd.pdf}
+        \caption{Comparison of various direct detection experiments' sensitivity to WIMP models and the sensitivity of the CMS invisible Higgs search.
+                 Details of the CMS curve are presented in Chapter~\ref{sec:vbf}.}
+        \label{fig:vbf:lux}
+    \end{center}
+\end{figure}
+
+The results presented in this section suggest that collider searches have complementary sensitivity for certain DM hypotheses, typically at low masses.
+The searches described in this thesis target those models, as well as exotic models to which standard direct and indirect detection experiments have very little sensitivity.
 
 \section{LHC phenomenology}
 
