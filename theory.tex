@@ -49,7 +49,7 @@ The quark (electroweak) doublets contain the left-handed up- and down-type quark
     \left(\begin{matrix} c_L \\ s'_L \end{matrix}\right),
     \left(\begin{matrix} t_L \\ b'_L \end{matrix}\right)
 \end{equation}
-where $d',s',b'$ represent linear combinations of the mass eigenstates $d,s,b$ (discussed further in Section~\ref{sec:theory:ewk}).
+where $d',s',b'$ represent linear combinations of the mass eigenstates $d,s,b$ (discussed further in Section~\ref{sec:theory:ew}).
 All quarks also sit in a strong triplet; we have suppressed its charge above, as the strong representation is orthogonal to the electroweak representation.
 Where necessary, it will be specified with a superscript, i.e. $u^{c}$.
 
@@ -129,7 +129,7 @@ Only composite singlet states (hadrons) are observable.
 \end{figure}
 
 \subsection{Electroweak interactions}
-\label{sec:theory:ewk}
+\label{sec:theory:ew}
 The electroweak (EW) sector of the SM refers to the $\SU(2)\times\U(1)$ symmetry group.
 While all fermion fields in Table~\ref{tab:theory:fermions} transform under $\U(1)$, only left-handed fermions have non-trivial transformations under $\SU(2)$.
 The EW Lagrangian (ignoring particle masses and the Higgs sector for now) is:
@@ -240,7 +240,7 @@ The values of the neutrino masses are known to be non-zero from the observation 
 
 After EWSB, each fermion mass eigenstate has a mass term and coupling to the Higgs field:
 \begin{equation}
-    -\frac{y_f v}{\sqrt{2}} \left( \bar ff + \bar fH f\right)
+    \La_\mathrm{EWSB} \supset \sum_f -\frac{y_f v}{\sqrt{2}} \left( \bar ff + \bar fH f\right)
 \end{equation}
 where we identify the mass as $m_f = y_f v/\sqrt{2}$. 
 Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their properties after EWSB.
@@ -273,6 +273,55 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
 \end{center}
 \end{table}
 
+\section{Dark matter}
+
+While the SM is incredibly powerful at predicting the outcomes of many laboratory experiments, there are certain major phenomena it cannot predict:
+\begin{itemize}
+    \item There is not yet a complete formulation of \emph{quantum gravity}, folding in general relativity~\cite{gr}.
+    \item The observed \emph{matter/antimatter asymmetry} in the universe cannot be explained by the SM's CP violation and (predicted) baryon number of violation. 
+          Additional CP and $B$ violating interactions must exist.
+    \item \emph{Neutrino masses} are not completely determined by the SM. 
+            While a mass term can be written down as in Section~\ref{sec:theory:ew}, it does not exclude a Majorana mass term for right-handed neutrinos. 
+            Nor does it explain the observed range of masses $m_\nu/m_t \lesssim 10^{-15}$. 
+    \item An explanation of \emph{dark energy} accounting for $\Omega_\Lambda h \sim 68\%$ of the universe's energy budget, suggested by measurements of the CMB, galaxy clusters, supernovae, and other measurements of the universe expansion rate~\cite{darkenergy}.
+    \item An explanation of \emph{dark matter} accounting for $\Omega_\mathrm{DM} h \sim 20\%$ of the universe's energy budget, suggested by measurements of galactic rotation curves, the CMB, and gravitational lensing~\cite{pdg,dm1,dm2,dm3}.
+\end{itemize}
+In this thesis, we describe tests of certain extensions of the SM which add candidate fields for dark matter (DM). 
+
+\subsubsection{Astrophysical evidence}
+All known evidence of DM arises from gravitational measurements.
+One of the oldest observations is that of galactic rotational curves.
+The rotational velocities of stars and hydrogen clouds are measured in galaxies, as a function of distance from the center of the galaxy.
+It is found that the velocity increases as a function of $r$, eventually reaching a plateau that extends well past the bulk of the visible mass of the galaxy.
+This implies the existence of a massive dark halo that encompasses the galaxy.
+Indeed, the observed rotational curves $v(r)$ are well-described by a 3 component fit: the visible disk, a gas cloud, and a dark halo. 
+Two galaxies are shown in Figure~\ref{fig:theory:dm_rot}, and it is clear that a non-zero DM component is needed to describe the data.
+
+\begin{figure}[]
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/theory/dm_rot.png}
+    \caption{Observed and fitted galactic rotational curves for two galaxies.
+             The total fit (solid line) has three components: visible (dashed), gas clouds (dotted), and DM (dash-dotted). 
+             Reprinted from Reference~\cite{dmrot}.}
+    \label{fig:theory:dm_rot}
+\end{center}
+\end{figure}
+
+An orthogonal piece of evidence comes from measuring anisotropies in the cosmic microwave background (CMB).
+The CMB is the remnant of photons after they decoupled from matter in the early universe.
+The temperature spectrum of the CMB is isotropic to one part in $10^5$, and the anisotropies are driven by matter anisotropies at the time of decoupling.
+The power spectrum of the temperature anisotropies is modified when there are two matter populations (SM and DM) as opposed to one (just SM), especially when the two populations interact with each other (via gravity) but one does not interact with photons (DM).
+Figure~\ref{fig:theory:planck} shows the power spectrum measured by the Planck experiment~\cite{planck}, compared to the best-fit $\Lambda$ Cold Dark Matter ($\Lambda$CDM) model.
+
+\begin{figure}[]
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/theory/planck.png}
+    \caption{Temperature anisotropy power spectrum of the CMB, as measured by Planck.
+             Reprinted from Reference~\cite{planck}.}
+    \label{fig:theory:planck}
+\end{center}
+\end{figure}
+
 \section{LHC phenomenology}
 
 The Large Hadron Collider collides protons at a center of mass energy $\sqrt{s} = 13$ TeV.
@@ -281,15 +330,15 @@ In this section, we describe the methods used to make predictions of observables
 These observables typically take the form of differential cross sections $\di\sigma(pp\rightarrow X)/\di\Theta$, where $X$ is some interesting final state with $N$ particles and $\Theta$ is a set of interesting kinematics.
 The differential element of the general cross section for $2\rightarrow N$ processes is:
 \begin{equation}
-d\sigma(ab\rightarrow \{c_i\}) = 
+\di\sigma(ab\rightarrow \{c_i\}) = 
     \frac{1}{2s} \left(\prod_i \dfrac{\mathrm{d}^3p_i}{(2\pi)^3} \frac{1}{2E_i}\right) 
         \cdot (2\pi)^4 \delta^4\left(k_a + k_b - \sum_i p_i\right) 
         \cdot \left|\Ma(ab\rightarrow \{c_i\})\right|^2
         \label{eq:theory:2n}
 \end{equation}
 where $k_a,k_b$ are the incoming momenta; $\{p_i\}$ are the outgoing momenta; and $\Ma$ is the matrix element of this reaction.
-Hadron collisions do not have two-particle initial states, but rather two composite particles containing partons with varying momenta. 
 
+Hadron collisions do not have two-particle initial states, but rather two composite particles containing partons with varying momenta. 
 The general cross section for $pp\rightarrow X$ is~\cite{tasi009}:
 \begin{equation}
 \di\sigma(pp\rightarrow X(\Theta)) = 
@@ -301,11 +350,11 @@ The general cross section for $pp\rightarrow X$ is~\cite{tasi009}:
 \end{equation}
 The sum over $a,b$ refers to summing over partons in the initial state.
 The momentum fractions of the partons, $x_{a,b}$, follow parton distribution functions (PDFs) $f_{a,b}$ that depend on the particle species $a$ and $b$. 
-Any bare quark or gluon that is produced must form hadron(s) due to color confinement.
-This process of \emph{hadronization} is not described by pQCD.
-However, the production of most interesting final states at the LHC can be perturbatively analyzed.
-Therefore, we split the process $ab\rightarrow X$ into $ab\rightarrow \{c_i\} \rightarrow X$.
-The matrix element for the first step (\emph{hard scattering}) can usually be computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
+We then define an intermediate state $\{c_i\}$ which evolves into the final state $X(\Theta)$.
+That is, the process $ab\rightarrow X$ is split into $ab\rightarrow \{c_i\} \rightarrow X$.
+The definition of $\{c_i\}$ is not unique, but is chosen such that the process $ab\rightarrow\{c_i\}$ can be analyzed perturbatively.
+The non-perturbative aspects of evolution to the final state (soft or collinear radiation) will be analyzed separately. 
+The matrix element for the first step (\emph{hard scattering}) is computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
 Other heuristic methods are used to deal with the second step (\emph{parton shower} (PS)), encoded in the \emph{fragmentation function} $D$. 
 
 The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and parton shower) components follows from the collinear factorization theorem~\cite{fact}.
@@ -317,6 +366,7 @@ The analytic behavior of PDFs as a function of the factorization scale is govern
 \begin{gather}
     \mu_F \frac{\di}{\di\mu_F} f_a(x_a,\mu_F) = \frac{\alpha_S}{\pi} \int_x^1 \frac{\di y}{y} f_a(y,\mu_F) P_{qq} \left(\frac{x}{y}\right) \\
     \text{where } P_{qq}(z) = \frac{4}{3}\left[\frac{1+z^2}{1-z}\right]_+ + 2\delta(1-z) \nonumber 
+    \label{eq:theory:dglap}
 \end{gather}
 The computation of $f_a$ for a fixed scale cannot be done analytically.
 Instead, data from many experiments are used to fit a parameterization, as is done by the NNPDF collaboration~\cite{nnpdf}.
@@ -355,7 +405,7 @@ Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders us
         $Z$ (+0,1,2,3 partons) & MG  &  \\ 
         $W$ (+0,1,2,3 partons) & MG  &  \\ 
         $\gamma$ (+0,1,2 partons) & MG  &  \\ 
-        QCD multijet & MG && Jets defined in Section~\ref{sec:theory:ps} \\
+        Multijet & MG && Jets defined in Section~\ref{sec:theory:ps} \\
         \hline
         Resonant DM & MG && See Chapter~\ref{sec:monotop} \\ 
         FCNC DM & MG &\cmark& See Chapter~\ref{sec:monotop} \\ 
@@ -366,3 +416,34 @@ Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders us
 
 \subsection{Parton shower}
 \label{sec:theory:ps}
+Suppose we know $\di\sigma(ab\rightarrow \{c_i\})$ and would like to know $\di\sigma(ab\rightarrow\{c_i\}j)$, where $j$ is radiated from one of the $c_i$ in the soft and/or collinear limit.
+Such ``splittings'' include:
+\begin{gather}
+    q\rightarrow qg, \quad g\rightarrow qq, \quad g\rightarrow gg, \nonumber \\ 
+        f\rightarrow f\gamma, \quad \gamma\rightarrow ff 
+\end{gather}
+Define $z$ to be the fraction of energy kept by the parent parton and $\theta$ to be the opening angle between $c_i$ and $j$. 
+For QCD splittings, the cross section can be written (at LO):
+\begin{equation}
+    \di\sigma(ab\rightarrow\{c_i\}j) =
+        P_{c_i \rightarrow c_i j} (z) 
+        \cdot \frac{\alpha_S}{2\pi} 
+        \cdot \frac{\di\theta}{\theta} 
+        ~\di z
+        ~\di\sigma(ab\rightarrow\{c_i\})
+\end{equation}
+where $P_{c_i\rightarrow c_i j}$ are \emph{splitting functions} analogous to the ones that arise in the DGLAP evolution (Equation~\ref{eq:theory:dglap}).
+As an example, the splitting function for $q\rightarrow qg$ is~\cite{pythia}:
+\begin{equation}
+    P_{q\rightarrow qg} = \frac{4}{3} \frac{1+z^2}{1-z}
+\end{equation}
+
+It should be noted that this cross section grows as $\theta\rightarrow 0$ and $z\rightarrow 1$, i.e. soft and collinear splittings.
+That is, if a bare quark is produced in an event, it will produce many soft and collinear gluons (which in turn can split to $qq$ and $gg$) prior to hadronization.
+This iterative process is known as the $\emph{parton shower}$.
+As the width of the parton shower nears $1/\Lambda_\mathrm{QCD}$, the partons will hadronize, preventing further splitting.
+These hadronic endpoints of the shower reach the detector and appear as collimated sprays of hadrons (\emph{jets}).
+The reconstruction of jets is described in detail in Section~\ref{sec:cms:jets} and Chapter~\ref{sec:jets}. 
+
+PS models simulate the shower and hadronization processes.
+The results in this thesis use Pythia8.2~\cite{pythia} which employs the Lund string model~\cite{lund} to simulate hadronization.
