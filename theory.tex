@@ -4,14 +4,18 @@
 \section{The Standard Model of particle physics}
 
 The Standard Model (SM) is a quantum field theory governing the kinematics and interactions of a set of fermion fields, respecting Lorentz and local gauge symmetries.
-The SM gauge group $G$ decomposes into an electroweak sector (with symmetry group $\U(1) \times \SU(2)$)~\cite{weak1,weak2,weak3} and a strong sector ($\SU(3)$)~\cite{qcd1,qcd2}.
+The gauge symmetries correspond to the SM gauge group:
+\begin{equation}
+ G = \SU(3) \times \SU(2) \times \U(1)
+\end{equation}
+This group can be decomposed into two subgroups: the \emph{strong} interaction governed by $\SU(3)$~\cite{qcd1,qcd2} and the \emph{electroweak} interaction governed by $\SU(2)\times\U(1)$~\cite{weak1,weak2,weak3}.
 The action of $G$ on a fermion depends on the representation of the Lie group in which the fermion resides and the coupling strength.
 For the special unitary groups, we denote the representation as $\mathbf{N}$ (fundamental), $\bar{\mathbf{N}}$ (anti-fundamental), or $\mathbf{1}$ (trivial).
-The special unitary gauges have the same interaction strength for all fermions in non-trivial representations (known as universality).
-All fermions are in a one-dimensional representation of $\U(1)$, but the weak hypercharge ($Y_W$) distinguishes their transformation under the gauge group $f\mapsto f + i Y_W g' f$, where $g'$ is the coupling strength of $\U(1)$.
+The special unitary gauges have the same interaction strength for all fermions in non-trivial representations, known as \emph{universality}.
+All fermions are in a one-dimensional representation of $\U(1)$, but the weak hypercharge $Y$ distinguishes their transformation under the gauge group $f\mapsto f + i Y g' f$, where $g'$ is the coupling strength of $\U(1)$.
 
 Table~\ref{tab:theory:fermions} gives a summary of the \emph{first generation} SM fermion fields and the representation of $G$ which acts on them.
-The SM provides a total of 3 generations of fermions, each of them copies of the first generation in terms of the field content and gauge group action.
+The SM provides a total of 3 generations of fermions, each of them a copy of the first generation in terms of the field content and gauge group action.
 
 \begin{table}[]
 \begin{center}
@@ -20,7 +24,7 @@ The SM provides a total of 3 generations of fermions, each of them copies of the
              Not shown are the charge conjugated fields $f^C \equiv Cf$, which sit in conjugated representations.}
     \label{tab:theory:fermions}
     \begin{tabular}{l|c|c|c|c}
-                Name & Symbol       & $Y_W$ & $\SU(2)$ rep. & $\SU(3)$ rep. \\
+                Name & Symbol       & $Y$ & $\SU(2)$ rep. & $\SU(3)$ rep. \\
                 \hline \hline
   Left-handed lepton & $\ell_L$     & $-\nicefrac{1}{2}$  & $\mathbf{2}$  & $\mathbf{1}$ \\  
  Right-handed charged lepton & $e_R^-$   & $-1$  & $\mathbf{1}$  & $\mathbf{1}$ \\  
@@ -49,12 +53,12 @@ The quark (electroweak) doublets contain the left-handed up- and down-type quark
     \left(\begin{matrix} c_L \\ s'_L \end{matrix}\right),
     \left(\begin{matrix} t_L \\ b'_L \end{matrix}\right)
 \end{equation}
-where $d',s',b'$ represent linear combinations of the mass eigenstates $d,s,b$ (discussed further in Section~\ref{sec:theory:ew}).
+where $d'$, $s'$, and $b'$ represent linear combinations of the mass eigenstates $d$, $s$, and $b$ (discussed further in Section~\ref{sec:theory:ew}).
 All quarks also sit in a strong triplet; we have suppressed its charge above, as the strong representation is orthogonal to the electroweak representation.
 Where necessary, it will be specified with a superscript, i.e. $u^{c}$.
 
 \subsection{Quantum chromodynamics}
-The dynamics of quarks under the $\SU(3)$ gauge group is commonly referred to as the strong interaction or quantum chromodynamics (QCD).
+The dynamics of quarks under the $\SU(3)$ gauge group are commonly referred to as the strong interaction or quantum chromodynamics (QCD).
 The QCD Lagrangian is:
 \begin{equation}
     \mathcal{L}_\mathrm{QCD} = 
@@ -89,7 +93,9 @@ A Lagrangian is called \emph{renormalizable} if only a finite number of countert
 The SM is a renormalizable theory.
 
 In this discussion, we will focus on the renormalization of the coupling $\alpha_S \equiv \nicefrac{g_s^2}{4\pi}$, but the argument applies broadly to all SM quantities.
-There are two related consequences of quantum corrections: $\alpha_S$ acquires a non-trivial dependence on the energy scale at which it is probed ($\mu_R^2 = -q^2$, where $q^\mu$ is the gluon momentum); and the \emph{bare} $\alpha_S$ as written in the Lagrangian is not the same as the $\alpha_S(\mu_R^2)$ measured in the laboratory.
+There are two related consequences of quantum corrections.
+Firstly, $\alpha_S$ acquires a non-trivial dependence on the probed energy scale $\mu_R^2 = -q^2$, where $q^\mu$ is the momentum transferred by the gluon.
+Secondly, the \emph{bare} $\alpha_S$ as written in the Lagrangian is not the same as the $\alpha_S(\mu_R^2)$ measured in the laboratory.
 We will refer to the bare coupling as $\alpha_{S0}$. 
 Note that it does not have a $\mu_R^2$-dependence.
 To enforce this, we look for solutions to the differential equation
@@ -111,10 +117,11 @@ To one-loop order, the solution to this differential equation is:
     \alpha_S(\mu_R) = \frac{2\pi}{\beta_0 \ln \frac{\mu_R}{\Lambda_\mathrm{QCD}}}
 \end{equation}
 where $\Lambda_\mathrm{QCD}$ is set by enforcing a measured boundary condition, e.g. $\alpha_S(m_Z^2) = 0.1181 \pm 0.0011$~\cite{pdg}.
-The exact value of $\Lambda_\mathrm{QCD}$ depends on the number of flavors ($n_f=5$ at $m_Z$) and the renormalization scheme (most commonly used is $\overline{\text{MS}}$~\cite{msbar}); with these conditions, $\Lambda_\mathrm{QCD} = 218$ MeV.
+Using $n_f=5$ at $\mu_R = m_Z$ and the $\overline{\text{MS}}$ renormalization scheme~\cite{msbar}, we find $\Lambda_\mathrm{QCD} = 218$ MeV.
 $\beta_0>0$ implies $\alpha_S$ falls as a function of energy, as illustrated in Figure~\ref{fig:theory:alphas}.
 
-This running (the opposite of theories like quantum electrodynamics, in which $\beta_0<0$) results in an asymptotically ($\mu_R\rightarrow \infty$) free theory.
+This running is the opposite of theories like quantum electrodynamics, in which $\beta_0<0$.
+It results in an asymptotically ($\mu_R\rightarrow \infty$) free theory.
 Below $\Lambda_\mathrm{QCD}$, the coupling constant is larger than order unity and perturbative QCD (pQCD) cannot make predictions in this regime.
 This long-range behavior also means that color triplet (quarks, antiquarks) or octet (gluons) states cannot be observed. 
 Only composite singlet states (hadrons) are observable. 
@@ -173,13 +180,14 @@ The $|D_\mu \phi|$ term couples the complex Higgs field to the gauge bosons:
     |D_\mu \phi|^2_{\phi = \langle\phi\rangle} &= 
         \frac{v^2}{8} \left[(gW_\mu^1)^2 + (gW^2_\mu)^2 + (g'B_\mu - gW_\mu^3)^2\right] 
 \end{align}
-The diagonization of this mass term gives 3 massive weak bosons (consuming the 3 massless Nambu-Goldstone bosons) and one massless photon (defining $\tan\theta_w = g'/g$):
+The diagonization of this mass term gives 3 massive weak bosons (consuming the 3 massless Nambu-Goldstone bosons) and one massless photon:
 \begin{align}
     W^\pm_\mu &\equiv \frac{W_\mu^1 \mp iW_\mu^2}{\sqrt{2}} \nonumber \\ 
     Z_\mu &\equiv \cos\theta_w W_\mu^3 - \sin\theta_w B_\mu \nonumber \\ 
     A_\mu &\equiv \sin\theta_w W_\mu^3 + \cos\theta_w B_\mu
 \end{align}
-with mass eigenvalues:
+where $\tan\theta_w = g'/g$.
+The corresponding mass eigenvalues are:
 \begin{equation}
     m_W = \frac{gv}{2}, \quad m_Z = \frac{v\sqrt{g^2+g'^2}}{2}, \quad m_A = 0
 \end{equation}
@@ -191,8 +199,8 @@ By expanding $\phi$ around $\langle \phi \rangle$ in Equation~\ref{eq:theory:lhi
     \frac{m_Z^2}{v} hZ_\mu Z^\mu, \quad \frac{2m_W^2}{v}hW^{+\mu} W^{-}_\mu, \nonumber \\
     \frac{m_Z^2}{2v} h^2 Z_\mu Z^\mu, \quad \frac{m_W^2}{v} h^2 W^{+\mu} W^-_\mu 
 \end{gather}
-The breaking of the $\SU(2)\times \U(1)$ symmetry leaves behind a local $\U(1)$ symmetry (with gauge boson $A_\mu$), which corresponds to electromagnetism.
-Fermions have charge $eQ = e(T_3+Y)$, where $e=g'\cos\theta_w$ and $T_3$ is the third isospin component. 
+The breaking of the $\SU(2)\times \U(1)$ symmetry leaves behind a local $\U(1)$ symmetry (with gauge boson $A_\mu$), which corresponds to electromagnetism (EM).
+Fermions have EM charge $eQ = e(T_3+Y)$, where $e=g'\cos\theta_w$ and $T_3$ is the third isospin component. 
 The $W^\pm$ bosons receive charge $\pm e$.
 After symmetry breaking, the actions of the broken gauge groups on fermions are governed by the following Lagrangian terms:
 \begin{align}
@@ -261,8 +269,8 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
         down quark & $d$  & $\nicefrac{1}{2}$ & $4.7$ MeV  & $-\nicefrac{1}{3}$  \\   
         charm quark & $c$  & $\nicefrac{1}{2}$ & $1.28$ GeV  & $\nicefrac{2}{3}$  \\   
         strange quark & $s$  & $\nicefrac{1}{2}$ & $95$ MeV  & $-\nicefrac{1}{3}$  \\   
-        top quark & $t$  & $\nicefrac{1}{2}$ & $173$ GeV  & $\nicefrac{2}{3}$  \\  \hline
-        bottom quark & $b$  & $\nicefrac{1}{2}$ & $4.18$ GeV  & $-\nicefrac{1}{3}$  \\   
+        top quark & $t$  & $\nicefrac{1}{2}$ & $173$ GeV  & $\nicefrac{2}{3}$  \\  
+        bottom quark & $b$  & $\nicefrac{1}{2}$ & $4.18$ GeV  & $-\nicefrac{1}{3}$  \\   \hline
         electron neutrino  & $\nu_e$  & $\nicefrac{1}{2}$ & $-$  & $0$  \\   
         electron  & $e$  & $\nicefrac{1}{2}$ & $511$ keV  & $-1$  \\   
         muon neutrino  & $\nu_\mu$  & $\nicefrac{1}{2}$ & $-$  & $0$  \\   
@@ -277,9 +285,9 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
 
 While the SM is incredibly powerful at predicting the outcomes of many laboratory experiments, there are certain major phenomena it cannot predict:
 \begin{itemize}
-    \item There is not yet a complete formulation of \emph{quantum gravity}, folding in general relativity~\cite{gr}.
+    \item There is not yet a complete formulation of \emph{quantum gravity} that incorporates general relativity~\cite{gr}.
     \item The observed \emph{matter/antimatter asymmetry} in the universe cannot be explained by the SM's CP violation and (predicted) baryon number of violation. 
-          Additional CP and $B$ violating interactions must exist.
+          Additional CP- and $B$-violating interactions must exist.
     \item \emph{Neutrino masses} are not completely determined by the SM. 
             While a mass term can be written down as in Section~\ref{sec:theory:ew}, it does not exclude a Majorana mass term for right-handed neutrinos. 
             Nor does it explain the observed range of masses $m_\nu/m_t \lesssim 10^{-15}$. 
@@ -351,7 +359,7 @@ The relic density for such a particle would be $\Omega_\chi h^2 \sim 0.1$, which
 A \emph{Weakly-Interacting Massive Particle} (WIMP) such as $\chi$ therefore makes a good DM candidate.
 This coincidence is known as the \emph{WIMP miracle}.
 It should be noted that the definition of a WIMP is fairly loose.
-All models considered in these results contain at least one particle falls under the umbrella of a WIMP, but the models themselves are quite diverse.
+All models considered in these results contain at least one particle falling under the umbrella of a WIMP, but the models themselves are quite diverse.
 
 The obvious SM candidate for DM are neutrinos, as they are known to be non-interacting and massive.
 However, constraints on the neutrino mass restrict $\Omega_\nu h^2 \leq 0.0062$~\cite{pdg}, which is far too small to entirely account for the observed phenomena. 
@@ -399,7 +407,7 @@ Also shown is the exclusion limit from the CMS invisible Higgs search, which is 
         \includegraphics[width=0.5\textwidth]{figures/vbf/fits/dd.pdf}
         \caption{Comparison of various direct detection experiments' sensitivity to WIMP models and the sensitivity of the CMS invisible Higgs search.
                  Details of the CMS curve are presented in Chapter~\ref{sec:vbf}.}
-        \label{fig:vbf:lux}
+        \label{fig:theory:lux}
     \end{center}
 \end{figure}
 
@@ -441,7 +449,7 @@ The non-perturbative aspects of evolution to the final state (soft or collinear 
 The matrix element for the first step (\emph{hard scattering}) is computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
 Other heuristic methods are used to deal with the second step (\emph{parton shower} (PS)), encoded in the \emph{fragmentation function} $D$. 
 
-The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and parton shower) components follows from the collinear factorization theorem~\cite{fact}.
+The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and PS) components follows from the collinear factorization theorem~\cite{fact}.
 The factorization depends on an arbitrary energy scale $\mu_F$, which defines a lower bound for interactions considered part of the hard scattering. 
 The remainder of this section discusses the use of Monte Carlo (MC) methods to simulate these three factors: $f$, $\Ma$, and $D$.
 
@@ -491,8 +499,8 @@ Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders us
         $\gamma$ (+0,1,2 partons) & MG  &  \\ 
         Multijet & MG && Jets defined in Section~\ref{sec:theory:ps} \\
         \hline
-        Resonant DM & MG && See Chapter~\ref{sec:monotop} \\ 
-        FCNC DM & MG &\cmark& See Chapter~\ref{sec:monotop} \\ 
+        Resonant DM & MG && See Chapter~\ref{sec:mt} \\ 
+        FCNC DM & MG &\cmark& See Chapter~\ref{sec:mt} \\ 
         VBF $\hinv$ & Powheg && See Chapter~\ref{sec:vbf} \\ 
     \end{tabular}
 \end{center}

@@ -9,7 +9,7 @@ Designed to collide protons at a maximum center-of-mass energy $\sqrt{s} = 14$ T
 In addition to protons, the LHC accelerates and collides heavy nuclei (Pb and Xe) at lower values of $\sqrt{s}$. 
 In this thesis, we focus exclusively on data recorded from proton collisions during Run 2. 
 
-\begin{figure}[][]
+\begin{figure}[]
     \begin{center}
         \includegraphics[width=0.8\textwidth]{figures/cms/lhc.png}
         \caption{Diagram of the CERN accelerator complex.
@@ -442,7 +442,6 @@ PF isolation is defined as:
 where the sums are over PF candidates within $\Delta R < 0.4$ of the muon.
 PV and PU refer to the primary vertex and pileup vertices, respectively.
 The tight muon ID requires a global muon, PF isolation less than $0.15$, and has selections on the criteria in Table~\ref{tab:cms:muon}.
-The efficiency
 
 \begin{table}
 	\begin{center}
@@ -468,6 +467,7 @@ To account for differences between data and simulation in the performance of the
 \begin{equation}
 	\SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
 \end{equation}
+where $\epsilon$ refers to the fraction of muons that are correctly identified by the ID criteria.
 While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow \mu\mu$ events, using one muon as a reference tag, and the other to probe the efficiency of the ID being tested.
 
 \subsection{Electrons and photons}
