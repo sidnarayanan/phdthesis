@@ -67,7 +67,7 @@ The QCD Lagrangian is:
         - \frac{1}{4} G^{a}_{\mu\nu} G^{a,\mu\nu}
     \label{eq:theory:lqcd}
 \end{equation}
-where repeated indices are contracted; $q_f=u,d,c,s,b,t$ are the spinors for each quark flavor $f$; $a,b=r,g,b$ are the colors (basis elements of the triplet representation); $m_q$ is the mass of quark flavor $q$.
+where repeated indices are contracted; $q_f=u,d,c,s,b,t$ are the spinors for each quark flavor $f$; $a,b=r,g,b$ index the basis elements of the triplet representation, called \emph{colors}; $m_q$ is the mass of quark flavor $q$.
 $D_\mu$ is the QCD covariant derivative:
 \begin{equation}
     D_\mu^{ab} = \delta^{ab} \partial_\mu - i g_s \sum_c t^{ab}_c G_{c,\mu}
@@ -77,15 +77,16 @@ $G^a_{\mu\nu}$ are the gluon field strength tensors:
 \begin{equation}
     G^a_{\mu\nu} = \partial_\mu G_\nu^a - \partial_\nu G_\mu^a - g_s f^{abc} G_\mu^b G_\nu^c
 \end{equation}
-where $f^{abc}$ are the structure constants of $\SU(3)$.
+where $f^{abc}$ are the structure constants of $\SU(3)$, with $a,b,c=r,g,b$.
 
 An additional term can be added to Equation~\ref{eq:theory:lqcd} without violating any guage or Lorentz symmetry or renormalizability.
 This term would violate CP conservation and produce a non-zero electric dipole moment (EDM) for the neutron.
-No evidence for such a term has yet been found (although it has not been excluded)~\cite{nedm1}, and so we do not consider it as part of the SM QCD Lagrangian. 
+No evidence for such a term has yet been found, although it has not been excluded~\cite{nedm1}
+We therefore do not consider it as part of the SM QCD Lagrangian. 
 
 \subsubsection{Renormalization and running of couplings}
 
-Physical quantities in a QFT (couplings, masses, field strengths, operators) acquire a scale-dependence from higher-order corrections to vertices and propagators. 
+Physical quantities in a QFT such as couplings and masses acquire a scale-dependence from higher-order corrections to vertices and propagators. 
 In many cases, the quantum corrections to the bare parameter contain ultraviolet divergent terms.
 These infinities are absorbed into the Lagrangian by means of adding \emph{counterterms}. 
 The systematic process of absorbing these infinities and ensuring scale-independence is known as renormalization.
@@ -102,7 +103,7 @@ To enforce this, we look for solutions to the differential equation
 \begin{equation}
     \mu_R^2 \frac{\di \alpha_{S0}}{\di\mu_R^2} = 0
 \end{equation}
-Writing $\alpha_{S0}$ in terms of $\alpha_S$ (which has a $\mu_R^2$-dependence) and rearranging the terms, we arrive at the \emph{$\beta$ function} for $\alpha_S$:
+Writing $\alpha_{S0}$ in terms of $\alpha_S$, which has a $\mu_R^2$-dependence, and rearranging the terms gives the \emph{$\beta$ function} for $\alpha_S$:
 \begin{equation}
     \beta(\alpha_S) \equiv \mu_R^2 \frac{\di \alpha_S}{\di\mu_R^2} = -\left(\beta_0 \alpha_S^2 + \beta_1 \alpha_S^3 + \mathcal{O}(\alpha_S^4)\right)
 \end{equation}
@@ -111,20 +112,22 @@ The $\beta$ coefficients are:
     \beta_0 = \frac{33 - 2n_{f}}{3},~ 
     \beta_1 = \frac{153-19n_f}{24\pi^2} ,\dots
 \end{align}
-where $n_f$ is the number of quark flavors with masses below $\mu_R$~\cite{pdg,qcd1,qcd2}.
+where $n_f$ is the number of quark flavors with masses below $\mu_R$~\cite{pdg,qcd1,qcd2,qcd3}.
 To one-loop order, the solution to this differential equation is:
 \begin{equation}
     \alpha_S(\mu_R) = \frac{2\pi}{\beta_0 \ln \frac{\mu_R}{\Lambda_\mathrm{QCD}}}
 \end{equation}
 where $\Lambda_\mathrm{QCD}$ is set by enforcing a measured boundary condition, e.g. $\alpha_S(m_Z^2) = 0.1181 \pm 0.0011$~\cite{pdg}.
-Using $n_f=5$ at $\mu_R = m_Z$ and the $\overline{\text{MS}}$ renormalization scheme~\cite{msbar}, we find $\Lambda_\mathrm{QCD} = 218$ MeV.
+Using $n_f=5$ at $\mu_R = m_Z$ and the $\overline{\text{MS}}$ renormalization scheme~\cite{msbar} gives $\Lambda_\mathrm{QCD} = 218$ MeV.
 $\beta_0>0$ implies $\alpha_S$ falls as a function of energy, as illustrated in Figure~\ref{fig:theory:alphas}.
 
 This running is the opposite of theories like quantum electrodynamics, in which $\beta_0<0$.
-It results in an asymptotically ($\mu_R\rightarrow \infty$) free theory.
-Below $\Lambda_\mathrm{QCD}$, the coupling constant is larger than order unity and perturbative QCD (pQCD) cannot make predictions in this regime.
-This long-range behavior also means that color triplet (quarks, antiquarks) or octet (gluons) states cannot be observed. 
-Only composite singlet states (hadrons) are observable. 
+It results in an asymptotically free theory as $\mu_R\rightarrow \infty$.
+Below $\Lambda_\mathrm{QCD}$, the coupling constant is larger than order unity.
+In the regime where $\alpha_S < 1$, perturbation theory can be applied to calculate observables with $\alpha_S$ as the expansion parameter.
+This is referred to as perturbative QCD (pQCD).
+The long-range behavior of QCD also means that quarks and gluons, which have a color charge, cannot be observed below a temperature $\sim 10^{12}$ K~\cite{hagedorn}.
+Instead, a spectrum of composite color singlet states, known as \emph{hadrons}, are observed~\cite{quarkmodel}.
 
 \begin{figure}[]
 \begin{center}
@@ -139,7 +142,7 @@ Only composite singlet states (hadrons) are observable.
 \label{sec:theory:ew}
 The electroweak (EW) sector of the SM refers to the $\SU(2)\times\U(1)$ symmetry group.
 While all fermion fields in Table~\ref{tab:theory:fermions} transform under $\U(1)$, only left-handed fermions have non-trivial transformations under $\SU(2)$.
-The EW Lagrangian (ignoring particle masses and the Higgs sector for now) is:
+Ignoring mass terms and the Higgs sector, the EW Lagrangian is:
 \begin{align}
 \mathcal{L}_\mathrm{EW} =~
         & i\bar\ell_{iL} \left(\slashed\partial-ig \slashed W^a \tau^a - ig'Y_{\ell_L} \slashed B\right)\ell_{iL} 
@@ -172,7 +175,7 @@ We can write the complex doublet as 4 real fields:
 \end{equation}
 The two self-interaction terms create a Higgs potential with a degenerate global minimum at \emph{vacuum expectation value} $v \equiv \langle |\phi| \rangle = \sqrt{\nicefrac{\mu^2}{\lambda}}$.
 Through gauge rotations, we can fix $\langle\phi_{1,2,4}\rangle = 0$ and, at low energies, expand $\phi_3 = v + H$, where $H$ is the real Higgs field. 
-This is the spontaneoous breaking of a symmetry.
+This is the spontaneous breaking of a symmetry.
 
 By the Nambu-Goldstone theorem~\cite{nambu,goldstone}, these three lost degrees of freedom give rise to three massless bosons. 
 The $|D_\mu \phi|$ term couples the complex Higgs field to the gauge bosons:
@@ -180,7 +183,7 @@ The $|D_\mu \phi|$ term couples the complex Higgs field to the gauge bosons:
     |D_\mu \phi|^2_{\phi = \langle\phi\rangle} &= 
         \frac{v^2}{8} \left[(gW_\mu^1)^2 + (gW^2_\mu)^2 + (g'B_\mu - gW_\mu^3)^2\right] 
 \end{align}
-The diagonization of this mass term gives 3 massive weak bosons (consuming the 3 massless Nambu-Goldstone bosons) and one massless photon:
+The diagonalization of this mass term gives 3 massive weak bosons (consuming the 3 massless Nambu-Goldstone bosons) and one massless photon:
 \begin{align}
     W^\pm_\mu &\equiv \frac{W_\mu^1 \mp iW_\mu^2}{\sqrt{2}} \nonumber \\ 
     Z_\mu &\equiv \cos\theta_w W_\mu^3 - \sin\theta_w B_\mu \nonumber \\ 
@@ -192,14 +195,14 @@ The corresponding mass eigenvalues are:
     m_W = \frac{gv}{2}, \quad m_Z = \frac{v\sqrt{g^2+g'^2}}{2}, \quad m_A = 0
 \end{equation}
 
-The remaining $H$ field, which has not been consumed, is the Higgs boson discovered by CMS and ATLAS~\cite{higgsdisc} in 2012.
+The remaining $H$ field, which has not been consumed, gives rise to the Higgs boson discovered by CMS and ATLAS~\cite{higgsdisc} in 2012.
 It has mass $m_H = \sqrt2\mu$.
 By expanding $\phi$ around $\langle \phi \rangle$ in Equation~\ref{eq:theory:lhiggs}, we find couplings to the massive gauge bosons:
 \begin{gather}
     \frac{m_Z^2}{v} hZ_\mu Z^\mu, \quad \frac{2m_W^2}{v}hW^{+\mu} W^{-}_\mu, \nonumber \\
     \frac{m_Z^2}{2v} h^2 Z_\mu Z^\mu, \quad \frac{m_W^2}{v} h^2 W^{+\mu} W^-_\mu 
 \end{gather}
-The breaking of the $\SU(2)\times \U(1)$ symmetry leaves behind a local $\U(1)$ symmetry (with gauge boson $A_\mu$), which corresponds to electromagnetism (EM).
+The breaking of the $\SU(2)\times \U(1)$ symmetry leaves behind the local $\U(1)$ symmetry of electromagnetism (EM), with gauge boson $A_\mu$.
 Fermions have EM charge $eQ = e(T_3+Y)$, where $e=g'\cos\theta_w$ and $T_3$ is the third isospin component. 
 The $W^\pm$ bosons receive charge $\pm e$.
 After symmetry breaking, the actions of the broken gauge groups on fermions are governed by the following Lagrangian terms:
@@ -283,7 +286,8 @@ Table~\ref{tab:theory:ewsb} summarizes all SM fermions and some of their propert
 
 \section{Dark matter}
 
-While the SM is incredibly powerful at predicting the outcomes of many laboratory experiments, there are certain major phenomena it cannot predict:
+The SM is able to predict the outcomes of many laboratory experiments, ranging from measurements of the electron magnetic moment~\cite{eedm} to the discovery and characterization of the Higgs boson~\cite{higgsdisc,higgsprop}.
+Nonetheless, there are certain classes of phenomena it cannot explain:
 \begin{itemize}
     \item There is not yet a complete formulation of \emph{quantum gravity} that incorporates general relativity~\cite{gr}.
     \item The observed \emph{matter/antimatter asymmetry} in the universe cannot be explained by the SM's CP violation and (predicted) baryon number of violation. 
@@ -299,8 +303,8 @@ In this thesis, we describe tests of certain extensions of the SM which add cand
 \subsubsection{Astrophysical evidence}
 All known evidence of DM arises from gravitational measurements.
 One of the oldest observations is that of galactic rotational curves.
-The rotational velocities of stars and hydrogen clouds are measured in galaxies, as a function of distance from the center of the galaxy.
-It is found that the velocity increases as a function of $r$, eventually reaching a plateau that extends well past the bulk of the visible mass of the galaxy.
+The rotational velocities of stars and hydrogen clouds are measured in galaxies, as a function of the distance from the center of the galaxy.
+It is found that the velocity increases as a function of radius, eventually reaching a plateau that extends well past the bulk of the visible mass of the galaxy.
 This implies the existence of a massive dark halo that encompasses the galaxy.
 Indeed, the observed rotational curves $v(r)$ are well-described by a 3 component fit: the visible disk, a gas cloud, and a dark halo. 
 Two galaxies are shown in Figure~\ref{fig:theory:dm_rot}, and it is clear that a non-zero DM component is needed to describe the data.
@@ -318,7 +322,7 @@ Two galaxies are shown in Figure~\ref{fig:theory:dm_rot}, and it is clear that a
 An orthogonal piece of evidence comes from measuring anisotropies in the cosmic microwave background (CMB).
 The CMB is the remnant of photons after they decoupled from matter in the early universe.
 The temperature spectrum of the CMB is isotropic to one part in $10^5$, and the anisotropies are driven by matter anisotropies at the time of decoupling.
-The power spectrum of the temperature anisotropies is modified when there are two matter populations (SM and DM) as opposed to one (just SM), especially when the two populations interact with each other (via gravity) but one does not interact with photons (DM).
+The power spectrum of the temperature anisotropies is modified when there are two matter populations (SM and DM) as opposed to one (just SM), especially when the two populations interact with each other via gravity, but one does not interact with photons (DM).
 Figure~\ref{fig:theory:planck} shows the power spectrum measured by the Planck experiment~\cite{planck}, compared to the best-fit $\Lambda$ Cold Dark Matter ($\Lambda$CDM) model.
 
 \begin{figure}[]
@@ -353,7 +357,7 @@ Planck~\cite{planck} measures the relic densities of baryonic and dark matter to
     \Omega_b h^2 = 0.02237 \pm 0.0015, \quad \Omega_\mathrm{DM} h^2 = 0.1200 \pm 0.0012
 \end{equation}
 
-As a first candidate, suppose we introduce a fermion $\chi$ is a particle with mass $m_\chi\sim100$ GeV.
+As a first candidate, suppose we introduce a fermion $\chi$ with mass $m_\chi\sim100$ GeV.
 Further suppose that it has an interaction with the SM through a new current, and the cross section for the effective four-point interaction $\chi \bar\chi\rightarrow f\bar f$ (for some SM fermion $f$) is proportional to $g^4_\chi$, where $g_\chi \sim g \sim 0.6$.
 The relic density for such a particle would be $\Omega_\chi h^2 \sim 0.1$, which is quite close to the needed density.
 A \emph{Weakly-Interacting Massive Particle} (WIMP) such as $\chi$ therefore makes a good DM candidate.
@@ -361,20 +365,21 @@ This coincidence is known as the \emph{WIMP miracle}.
 It should be noted that the definition of a WIMP is fairly loose.
 All models considered in these results contain at least one particle falling under the umbrella of a WIMP, but the models themselves are quite diverse.
 
+Many DM models other than WIMPs exist.
 The obvious SM candidate for DM are neutrinos, as they are known to be non-interacting and massive.
 However, constraints on the neutrino mass restrict $\Omega_\nu h^2 \leq 0.0062$~\cite{pdg}, which is far too small to entirely account for the observed phenomena. 
 Sterile neutrinos (neutrinos that participate in oscillations but do not couple to the $Z$ boson) remain a viable DM candidate, above a mass of 10 keV.
-A proposed solution to the strong CP problem is the addition of a scalar \emph{axion} field.
+Another DM hypothesis is a scalar \emph{axion} field, which also serves as a solution to the strong CP problem.
 While axions can have couplings to photons, those interactions would be sufficiently weak for an axion to remain \emph{dark} in the sense of DM.
 Many other DM candidates have been proposed as well (some of which fall under the generic WIMP umbrella), and this is not an exhaustive list.
 
 \subsubsection{Non-collider WIMP searches}
 
 Each class of DM models has dedicated experimental signatures, and therefore dedicated experiments to search for them.
-Here, we focus on searches sensitive to WIMPs, as these are most relevant for the results in this thesis.
-
 The philosophy of collider DM searches is to produce DM in the laboratory and directly or indirectly detect it.
-Non-collider searches rely on DM that is present somewhere in the universe and look for its interaction with SM particles.
+Here, we focus on searches sensitive to WIMPs, as these are most relevant for the results in this thesis.
+The mass and coupling ranges of WIMPs allow the possibility for their production at a TeV-scale collider, such as the LHC.
+In contrast, non-collider searches rely on DM that is present somewhere in the universe and look for its interaction with SM particles.
 
 \emph{Indirect detection} experiments look for the annihilation process $\chi\bar\chi\rightarrow X$, where $X$ is one or more SM particles.
 The Alpha Magnetic Spectrometer (AMS-02) searches for excess positrons in the cosmic ray flux, arising from $X=e^+e^-$ final states~\cite{ams}. 
@@ -385,7 +390,7 @@ Also shown is an exclusion from a search conducted by the CMS experiment at the 
 
 \begin{figure}[]
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{figures/theory/fermilat.png}
+    \includegraphics[width=0.54\textwidth]{figures/theory/fermilat.png}
     \includegraphics[width=0.4\textwidth]{figures/theory/monojet.png}
     \caption{Excluded WIMP hypotheses as a function of $m_\chi,\langle\sigma v\rangle$ from Fermi-LAT (left) and compared to CMS (right).
              Reprinted from Reference~\cite{fermilat} (left) and Reference~\cite{monojet} (right).}
