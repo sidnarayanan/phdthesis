@@ -76,13 +76,13 @@ Figure~\ref{fig:cms:lumi} shows the total luminosity delivered by the LHC and re
 
 \section{The Compact Muon Solenoid}
 
-The Compact Muon Solenoid (CMS)~\cite{cmsjinst} is one of two general purpose LHC detectors (the other being ATLAS).
+The Compact Muon Solenoid (CMS)~\cite{cmsjinst} is one of two general purpose LHC detectors, the other being ATLAS~\cite{atlasjinst}.
 It is designed to detect and measure stable hadrons, photons, electrons, and muons produced in proton and ion collisions at LHC interaction point 5. 
-From these event descriptions, a number of physics processes can be probed, including SM measurements~\needcite, BSM searches~\needcite, and the discovery of the Higgs boson~\needcite. 
+From these event descriptions, a number of physics processes can be probed, including SM measurements, BSM searches, and the discovery of the Higgs boson. 
 In what follows, we will use the $(r,\phi,\eta)$ coordinate system with respect to the $z$ axis:
 \begin{itemize}
     \setlength\itemsep{1pt}
-    \item $z = $ distance along beam axis, with $z=0$ defined to be at the center of the detector
+    \item $z = $ distance along beam axis, with $z=0$ at the center of the detector
     \item $r = $ distance from the $z$ axis
     \item $\phi = $ azimuthal angle in the plane orthogonal to the $z$ axis
     \item $\eta = $ pseudorapidity $(-\log\nicefrac{\theta}{2}$), with respect to the polar angle $\theta$ 
@@ -111,8 +111,8 @@ Several detector subsystems (Figure~\ref{fig:cms:cms}) are used to identify and 
 Starting from the beam pipe, the first of these subsystems is the silicon tracker~\cite{cmstracker}, used to identify charged particles and measure their momenta. 
 The tracker consists of silicon detector geometries: pixels (providing 3D position measurement) and strips (2D). 
 The arrangement of the pixel and strip layers are shown in Figure~\ref{fig:cms:si}.
-A near-uniform 3.8 T magnetic field, produced by a superconducting NbTi solenoid, envelopes the tracker. 
-The field lines in the tracker volume are approximately parallel to the beam direction. 
+A superconducting NbTi solenoid envelopes the tracker, as well as parts of the calorimeters. 
+The magnetic field inside the tracker volume has strength 3.8 T and field lines approximately parallel to the beam direction. 
 
 A single silicon pixel has dimensions $285\times100\times150$ $(\mu\mathrm{m})^3$ (in $r\times r\phi\times z$), leading to a position resolution of $\sim10\times30$ $(\mu\mathrm{m})^2$ (in $r\phi\times z$). 
 The 66 million pixels are arranged into 7 layers: 3 cylindrical \emph{barrels} (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ \emph{endcap} annulli (at $z=\pm34.5,~\pm46.5$ cm). 
@@ -145,7 +145,7 @@ The efficiency of reconstructing hits varies with the detector type, location, a
 Tracks are found using an iterative \emph{inside-out} process, where each iteration has five steps:
 \begin{enumerate}
     \item Define seeds using pixel hits, double-strip hits (i.e. hits with 3D information), and an estimate of the beam spot (collision point). At least 3 hits are needed for the seed.
-    \item Use a Kalman filter~\cite{kalman2,kalman1} to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field and energy loss.
+    \item Use a Kalman filter~\cite{kalman2,kalman1} to evolve track seeds through the rest of the tracker and find hits, accounting for the $B$-field, energy loss, and multiple scattering.
     \item Estimate trajectory parameters after finding all hits.
     \item Decide whether to keep found tracks based on quality requirements (e.g. number of missing hits, track $\chi^2$)
     \item Remove hits associated with tracks from hit collection and repeat.
@@ -167,7 +167,7 @@ For muons with $|\eta|<1.5$ and $\pt>1$ GeV, the tracking efficiency is over 98\
 
 \subsubsection{Vertexing}
 
-The excellent position resolution of the pixel detector is used to accurately measure the position of primary vertices, as well as any secondary vertices from the decays of long-lived particles.
+The excellent position resolution of the pixel detector is used to accurately measure the position of primary vertices, as well as any secondary vertices from the decays of longer-lived particles with lifetimes $\gtrsim 10^{-13}$ s.
 In the former case, tracks are first clustered together on the basis of the likelihood that the tracks in a cluster arise from a single primary vertex.
 This is done using a deterministic annealing algorithm~\cite{da}, which has as free parameters the number of clusters and the probability of each track belonging to each cluster.
 Having determined the clusters, an adaptive fit algorithm~\cite{adaptivefit} is used to determine the vertex for each cluster.
@@ -175,29 +175,31 @@ The free parameters of this fit are the three spatial coordinates of the vertex.
 As the LHC collides bunches of $\mathcal{O}(10^{11})$ protons, we expect multiple primary vertices in a single collision, and this is reflected in Figure~\ref{fig:cms:npv}.
 The vertex defined to be the hard scattering interaction (known as \emph{the} primary vertex\footnote{This nomenclature is indeed confusing, defining the singular primary vertex to be one of many primary vertices. However, it is standard terminology in CMS publications, so we will continue to use it. In what follows, the distinction will be clear}) is the vertex which maximizes:
 \begin{equation}
-	\sum_{j\in\text{track jets}} (\pt^j)^2 + (\ptmiss)^2
+    \sum_{j\in\text{track jets}} (\pt^j)^2 + (\ptmiss)^2
 \end{equation}
 where ``track jets`` refer to jets (Section~\ref{sec:cms:jets}) clustered from the vertex's tracks, and \ptmiss~is defined in Section~\ref{sec:cms:met}.
+If there are more than 2 charged particle tracks in an event, the efficiency of reocnstructing and identifying the correct primary vertex (PV) is greater than $0.995$.
 
 \begin{figure}[]
     \begin{center} 
         \includegraphics[width=0.6\textwidth]{figures/cms/comparison_npv.pdf}
         \caption{The distribution of the number of reconstructed primary vertices in data recorded by CMS during Run 2 of the LHC.
-				 While the results in this thesis only concern 2016 data, we show the evolution of $N_\mathrm{PV}$ as a function of time, as this correlates directly with increased instantaneous luminosity.}
+                 While the results in this thesis only concern 2016 data, we show the evolution of $N_\mathrm{PV}$ as a function of time, as this correlates directly with increased instantaneous luminosity.}
         \label{fig:cms:npv}
     \end{center}
 \end{figure}
 
 \subsubsection{Secondary vertexing}
 
-The last reconstruction algorithm concerning the tracker alone is the identification of secondary vertices, which arise from the decay of long-lived particles (e.g. $B$ mesons).
+The last reconstruction algorithm concerning the tracker alone is the identification of secondary vertices, which arise from the decay of longer-lived particles.
+The longer-lived particles in the SM are $\tau$ leptons and hadrons containing $b$ and $c$ quarks.
 The inclusive vertex fitter (IVF)~\cite{csvv2} reconstructs such secondary vertices by the following steps:
 \begin{enumerate}
-	\item Select a track as a seed if it satisfies $\sqrt{d_0^2 + d_z^2} > 50~\mu\mathrm{m}$ and $d_0 > 1.2 \delta d_0$.
-	\item Choose nearby tracks based on their closest distance to and opening angle with the seed track.
-	\item Fit the tracks to a displaced vertex using the adaptive fitter~\cite{adaptivefit}.
-	\item Decide which tracks belong to the candidate secondary vertex and which belong to the primary vertex.
-	\item Re-fit the secondary vertex position only using the former set of tracks from the previous step.
+    \item Select a track as a seed if it satisfies $\sqrt{d_0^2 + d_z^2} > 50~\mu\mathrm{m}$ and $d_0 > 1.2 \delta d_0$.
+    \item Choose nearby tracks based on their closest distance to and opening angle with the seed track.
+    \item Fit the tracks to a displaced vertex using the adaptive fitter~\cite{adaptivefit}.
+    \item Decide which tracks belong to the candidate secondary vertex and which belong to the primary vertex.
+    \item Re-fit the secondary vertex position only using the former set of tracks from the previous step.
 \end{enumerate}
 It is important not only to properly determine the location of the secondary vertex, but also to properly assign tracks.
 Observables that are a function of the \emph{tracks} (e.g. vertex mass) will be critical for $b$ jet tagging.
@@ -210,7 +212,7 @@ This provides slightly more coverage than the tracking volume.
 Each crystal in the EB (EE) has dimensions $2.2\times2.2\times23$ ($2.68\times2.68\times22$) $(\mathrm{cm}^3)$, with the long dimension pointing towards the beam.
 This can be compared to a Moli\'ere radius $r_M=2.19$ cm and a radiation length of $X_0=0.89$ cm. 
 A cross-sectional area comparable to $r_M\times r_M$ facilitates the differentiation of different electromagnetic (EM) showers arising from electrons and photons.
-The depth of the crystal (in units of $X_0$) drives the excellent energy resolution, which is determined using a electron beam:
+The depth of the crystal (in units of $X_0$) drives the excellent energy resolution, which is determined using an electron beam:
 \begin{equation}
     \frac{\sigma_E}{E} = \frac{2.8\%}{\sqrt{E/\mathrm{GeV}}} \oplus \frac{12\%}{E/\mathrm{GeV}} \oplus 0.3\%
 \end{equation}
@@ -238,7 +240,7 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
 Due to the bending of a charged particle's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
 A \emph{supercluster} (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
 The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects~\cite{cmsecalreco}.
-For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and some muons), it is only a fraction of the total energy.
+For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and muons), it is only a fraction of the total energy.
 
 \begin{figure}[]
     \begin{center} 
@@ -252,45 +254,57 @@ For an electron or photon, the EM energy is typically the energy of the particle
 \subsection{Hadronic calorimeter}
 
 The hadronic calorimeter (HCAL)~\cite{cmshcaltdr,cmspf,cmshcalperf} is used to identify and measure the energy of hadrons.
-It consists of 4 calorimeters: barrel (HB; $|\eta|<1.4$), endcap (HE; $1.3<|\eta|<3$), forward (HF; $3\lesssim|\eta|<5$), and outer (HO; $|\eta|<1.3$).
+It consists of 4 calorimeters: barrel (abbreviated HB, covering $|\eta|<1.4$), endcap (HE, $1.3<|\eta|<3$), forward (HF, $3\lesssim|\eta|<5$), and outer (HO, $|\eta|<1.3$).
 Their arrangement is shown in Figure~\ref{fig:cms:hcal}.
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.7\textwidth]{figures/cms/hcal.png}
-	\caption{One quadrant of the CMS HCAL (symmetric with rotation around $z$ and reflection across $z=0$).
-			 Note that the slight overlap of the detectors in $\eta$ ensures the hermeticity of the detector.
-			 Reprinted from Reference~\cite{cmshcalperf}.}
-	\label{fig:cms:hcal}.
+    \includegraphics[width=0.7\textwidth]{figures/cms/hcal.png}
+    \caption{One quadrant of the CMS HCAL (symmetric with rotation around $z$ and reflection across $z=0$).
+             Note that the slight overlap of the detectors in $\eta$ ensures the hermeticity of the detector.
+             Reprinted from Reference~\cite{cmshcalperf}.}
+    \label{fig:cms:hcal}.
 \end{center}
 \end{figure}
 
-The HB and HE are both composed of alternating absorber and plastic scintillator layers
+The HB and HE are both composed of alternating absorber and plastic scintillator layers.
 The absorber is a non-magnetic brass alloy with an interaction length $\lambda_I=1.5$ cm.
-The absorber layers range in thickness from 40 to 75 mm in the HB and HE, providing a total of 5.8-10.6$\lambda_I$ of material, depending on the $\eta$ of the particle.
+Absorber layers range in thickness from 40 to 75 mm in the HB and HE, providing a total of 5.8-10.6~$\lambda_I$ of material, depending on the $\eta$ of the particle.
 These dimensions are limited by the constraint that the HB and HE be inside the solenoid. 
-To augment the number of interaction lengths, additional layers of plastic scintillator sit outside of the solenoid.
-These comprise the HO, which use the magnet as an absorber, providing an additional $\sim 1.1\lambda_I$.
+To augment the number of interaction lengths, additional layers of plastic scintillator are located outside of the solenoid.
+These comprise the HO, which use the magnet as an absorber, providing an additional $\sim 1.1~\lambda_I$.
 The light from the scintillator tiles is read out by hybrid photodiodes (HPDs) in the HB and HE and by silicon photomultipliers (SiPMs) in the HO. 
 
-Beyond the HE, at 11 m from the interaction point, sits the HF.
+Beyond the HE, at 11 m from the interaction point, is the HF.
 The HF is also a sampling calorimeter, made of steel absorbers instrumented with quartz fibers.
-Charged particles from the nuclear shower in the steel emit Cerenkov radiation in the quartz fibers, which transports the light to photomultipler tubes (PMTs).
-The HF uses more radiation-hard materials than the rest of the HCAL, as this $\eta$ range is subject to significantly more radiation from collisions than the central part of the detector. 
+Charged particles from the nuclear shower in the steel emit Cerenkov radiation as they traverse the quartz fibers, which transports the light to photomultipler tubes (PMTs).
+The HF uses more radiation-hard materials than the rest of the HCAL because this $\eta$ range is subject to significantly more radiation from collisions than the central part of the detector (Figure~\ref{fig:cms:flux}). 
 
-Each HCAL subsystem is read out in \emph{towers}, corresponding to sections in $\eta$ and $\phi$.
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{figures/cms/flux.pdf}
+        \caption{Flux of various particle types as a function of $\eta$ in the detector.
+             The symbol $h$ refers to any type of hadron.
+             Note that $h^0$ ($\gamma)$ is used to refer to any neutral or charged hadron (photon or electron) in the forward region, as the tracker and ECAL do not have coverage.}
+        \label{fig:cms:flux}
+    \end{center}
+\end{figure}
+
+Each HCAL subsystem is read out in \emph{towers}.
+A tower corresponds to a small segment in $\eta$ and $\phi$ and traverses the perpendicular dimension.
+The direction of a particle is determined from the tower location.
 For $|\eta|<1.74$, the segmentation is $\eta\times\phi = 0.087\times0.087$.
 Beyond this, the towers vary in size from $0.09\times0.175$  to $0.35\times0.175$.
 
-The energy resolution of the HCAL must be considered in conjunction with the ECAL, as energy can be deposited in both detectors.
+The energy resolution of the HCAL must be considered in conjunction with the ECAL, as energy is deposited in both detectors.
 This is calibrated using test beams of various charged particles.
-For the HB and HE, the resolution is:
+For the HB and HE, the combined ECAL+HCAL resolution is:
 \begin{equation}
-	\frac{\sigma_E}{E} = \frac{0.847}{\sqrt{E/\mathrm{GeV}}} \oplus 0.074
+    \frac{\sigma_E}{E} = \frac{0.847}{\sqrt{E/\mathrm{GeV}}} \oplus 0.074
 \end{equation}
-whereas for the HF, it is:
+The region instrumented by the HF does not have ECAL coverage, and so the resolution for the HF alone is:
 \begin{equation}
-	\frac{\sigma_E}{E} = \frac{1.98}{\sqrt{E/\mathrm{GeV}}} \oplus 0.09
+    \frac{\sigma_E}{E} = \frac{1.98}{\sqrt{E/\mathrm{GeV}}} \oplus 0.09
 \end{equation}
 
 \subsection{Muon chambers}
@@ -302,17 +316,17 @@ This results in the characteristic $S$-shape of muon trajectories, as the bendin
 The physical placement of the detectors is shown in Figure~\ref{fig:cms:muondet}.
 
 \begin{figure}[]
-	\begin{center}
-		\includegraphics[width=0.7\textwidth]{figures/cms/muon.png}
-		\caption{One quadrant of the CMS muon detection system, with the DTs (MBs), CSCs (MEs), and RPCs (RBs/REs) labeled. 
-				 Reprinted from Reference~\cite{cmsmuon}.}
-		\label{fig:cms:muondet}
-	\end{center}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{figures/cms/muon.png}
+        \caption{One quadrant of the CMS muon detection system, with the DTs (MBs), CSCs (MEs), and RPCs (RBs/REs) labeled. 
+                 Reprinted from Reference~\cite{cmsmuon}.}
+        \label{fig:cms:muondet}
+    \end{center}
 \end{figure}
 
-The DT cells are filled with a $85\%/15\%$ mix of argon and carbon dioxide, with a gold/steel anode wire held at a voltage of $3600$ V.
+The DT cells are filled with a 85:15 mix of argon and carbon dioxide, with a gold/steel anode wire held at a voltage of $3600$ V.
 The cell is a rectangular prism, with transverse dimensions of $42\times13~\mathrm{mm}^2$ and a longitudinal dimension ranging from $1.9$ to $4.1$ m.
-The dimensions and the drift speed of $55\mu\mathrm{m/s}$ result in a maximum response (drift) time of $400$ ns.
+The dimensions and the drift speed of $55~\mu\mathrm{m/s}$ result in a maximum response (drift) time of $400$ ns.
 The DTs are organized into cylindrical \emph{stations} (MB).
 With the exception of the outermost barrel station (MB4), each MB consists of 3 \emph{superlayers} (SLs).
 Each SL has 4 parallel drift cells, and so measure position in a particular plane.
@@ -323,7 +337,7 @@ The endcap is instrumented with CSCs as these have a faster response time and be
 This is needed in the forward region, where both the muon and background fluxes are higher.
 While the CSC dimensions vary depending on the position of the chamber, each is instrumented with 80 cathode strips, held at voltages (relative to the anode) of 2.9-3.6 kV.
 The CSC wires have a separation of 2.5-3.16 mm, which governs the position resolution.
-A 50\%/40\%/10\% mix of $\mathrm{CO}_2/\mathrm{Ar}/\mathrm{CF}_4$ is used to fill the chambers.
+A 50:40:/10 mix of $\mathrm{CO}_2/\mathrm{Ar}/\mathrm{CF}_4$ is used to fill the chambers.
 
 RPCs are interspersed among the DTs and CSCs in both the barrel and endcap. 
 These serve as a very fast muon detector ($\sim 1$ ns) for the online trigger system. 
@@ -336,20 +350,22 @@ The efficiency of individual reconstructed hits (\emph{rechits}) is over 95\%.
 \subsection{Online trigger system}
 
 Figure~\ref{fig:cms:xsecs} shows various cross sections of $pp$ collisions as a function of $\sqrt{s}$.
-While it is clear that interesting SM processes (e.g. production of $W,Z,t$) increase as a function of $\sqrt{s}$, they still sit several orders of magnitude below the inclusive cross section $\sigma_\mathrm{tot}\sim 10^8$ nb.
+While it is clear that interesting SM processes increase as a function of $\sqrt{s}$, their cross sections are still several orders of magnitude below the inclusive cross section $\sigma_\mathrm{tot}\sim 10^8$ nb.
 To produce an appreciable number of rare events, the LHC has bunch crossings every 25 ns (40 MHz).
 However, it is not possible to read out the entire detector at this rate, much less reconstruct the data and store it.
 CMS uses a two-stage trigger system~\cite{cmstrig} to refine the events to keep for permanent storage and analysis.
 First, a Level 1 (L1) hardware-based trigger selects interesting events at a rate of 100 kHz.
-These events are then fed to the high level trigger (HLT) to partially reconstruct the events on a CPU farm.
+The L1 makes these decisions using incomplete detector information, in order to reduce the read-out and computation time.
+Selected events are then fed to the high level trigger (HLT) to partially reconstruct the events on a CPU farm.
+The HLT uses the full granularity of the detector.
 The final selected data rate from the HLT is 400 Hz.
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.5\textwidth,angle=90]{figures/cms/xsec.png}
-	\caption{Various cross sections of interesting SM processes compared to the inclusive cross section of $pp$ collisions, at various values of $\sqrt{s}$.
-				Reprinted from Reference~\cite{lhcxsec}.}
-	\label{fig:cms:xsecs}
+    \includegraphics[width=0.7\textwidth]{figures/cms/xsec.png}
+    \caption{Various cross sections of interesting SM processes compared to the inclusive cross section of $pp$ collisions, at various values of $\sqrt{s}$.
+                Reprinted from Reference~\cite{lhcxsec}.}
+    \label{fig:cms:xsecs}
 \end{center}
 \end{figure}
 
@@ -363,17 +379,17 @@ Note that the inner tracker is not included in the L1 decision: at the time of t
 Regional trigger decisions are sent to the global trigger (GT), which correlates the TPs it recieves.
 Some GT trigger decisions are localized, such as requiring a high-energy ECAL deposit (e.g. $e,\gamma$).
 Others require computing event-wide observables, such as a large momentum imbalance (e.g. neutrinos, DM).
-The GT also computes simple jets
+The GT also computes simple jets.
 If the GT decides to select the event, the detector is read out and forwarded to the data acquisition system (DAQ).
 Figure~\ref{fig:cms:l1} shows a schematic description of this process.
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.65\textwidth]{figures/cms/l1.png}
-	\caption{Schematic diagram of the CMS L1 trigger system.
-			 In addition to the region and global trigger decisions (described in the text), the flow of data also includes the trigger, timing, and control system (TTC).
-				Reprinted from Reference~\cite{cmstrig}.}
-	\label{fig:cms:l1}
+    \includegraphics[width=0.65\textwidth]{figures/cms/l1.png}
+    \caption{Schematic diagram of the CMS L1 trigger system.
+             In addition to the region and global trigger decisions, the flow of data also includes the trigger, timing, and control system (TTC).
+             Reprinted from Reference~\cite{cmstrig}.}
+    \label{fig:cms:l1}
 \end{center}
 \end{figure}
 
@@ -382,7 +398,7 @@ Figure~\ref{fig:cms:l1} shows a schematic description of this process.
 The full detector readout is picked up by the HLT.
 The HLT computing farm consists of 20k CPU cores (this number has grown from 13k in 2012 and continues to grow).
 Unlike the L1, the HLT has access to the entire event information.
-Therefore, a full reconstruction of the event is performed, using slightly algorithms similar to (in some cases, simplified) the algorithms used in offline reconstruction.
+Therefore, a full reconstruction of the event is performed, using algorithms similar to those used in offline reconstruction.
 To be selected by the HLT, an event must pass an HLT \emph{path}.
 A path consists of a series of filters, each making simple decisions that can be chained into complex decisions.
 For example, three filters may be: (1) two forward jets, (2) large momentum imbalance, and (3) an electron and a muon.
@@ -424,11 +440,11 @@ The PF selection consumes all three types of reconstructed muons: global, tracke
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.6\textwidth]{figures/cms/muonpt.png}
-	\caption{Resolution of muon $\pt$, compared between the different reconstruction algorithms. 
-			 The salient feature is that the muon systems become important to the momentum measurement at approximately 200 GeV.
-			 Reprinted from Reference~\cite{cmsmuon}.}
-	\label{fig:cms:muonpt}
+    \includegraphics[width=0.6\textwidth]{figures/cms/muonpt.png}
+    \caption{Resolution of muon $\pt$, compared between the different reconstruction algorithms. 
+             The salient feature is that the muon systems become important to the momentum measurement at approximately 200 GeV.
+             Reprinted from Reference~\cite{cmsmuon}.}
+    \label{fig:cms:muonpt}
 \end{center}
 \end{figure}
 
@@ -437,38 +453,38 @@ The first is a loose ID, which is used to veto muons when defining muon-free dat
 A loose muon is required to be either a global or tracker muon and have PF isolation less than $0.25$.
 PF isolation is defined as:
 \begin{equation}
-	\left(\sum_{i \in \text{PV charged had.}} \pt^{(i)} +
-	\max\left\{0,~\sum_{i\in\text{neut. had.}} \pt^{(i)} + \sum_{j\in\gamma} \pt^{(j)} - 
-			\frac{1}{2} \sum_{k\in\text{PU charged had.}}\pt^{(k)}\right\} \right)
-	\big/ \pt^{(\mu)}
+    \left(\sum_{i \in \text{PV charged had.}} \pt^{(i)} +
+    \max\left\{0,~\sum_{i\in\text{neut. had.}} \pt^{(i)} + \sum_{j\in\gamma} \pt^{(j)} - 
+            \frac{1}{2} \sum_{k\in\text{PU charged had.}}\pt^{(k)}\right\} \right)
+    \big/ \pt^{(\mu)}
 \end{equation}
 where the sums are over PF candidates within $\Delta R < 0.4$ of the muon.
 PV and PU refer to the primary vertex and pileup vertices, respectively.
 The tight muon ID requires a global muon, PF isolation less than $0.15$, and has selections on the criteria in Table~\ref{tab:cms:muon}.
 
 \begin{table}
-	\begin{center}
-		\caption{Observables used in identifying muons and rejecting backgrounds}
-		\label{tab:cms:muon}
-		\begin{tabular}{c|p{0.65\textwidth}}
-			Observable & Notes \\ 
-			\hline
-			\hline
-			\pt & Backgrounds grow at low \pt. \\ \hline
-			$\chi^2/N_\mathrm{dof}$ & Ensure a good track fit. \\ \hline
-			$N_\mathrm{hit}^\mathrm{muon}$ & At least one hit in the muon chamber in the global fit. \\ \hline
-			$N_\mathrm{stations}$ & At least two muon chamber stations contain segments of the track. \\ \hline
-			$d_0$ & Track impact parameter, remove cosmic rays and hadron decays. \\ \hline
-			$d_z$ & Track impact parameter, as above but also for pileup. \\ \hline
-			$N_\mathrm{hit}^\mathrm{pixel}$ & At least one pixel hit. \\ \hline
-			$N_\mathrm{hit}^\mathrm{tracker}$ & At least 5 hits in the tracker. \\ 
-		\end{tabular}
-	\end{center}
+    \begin{center}
+        \caption{Observables used in identifying muons and rejecting backgrounds}
+        \label{tab:cms:muon}
+        \begin{tabular}{c|p{0.65\textwidth}}
+            Observable & Notes \\ 
+            \hline
+            \hline
+            \pt & Backgrounds grow at low \pt. \\ \hline
+            $\chi^2/N_\mathrm{dof}$ & Ensure a good track fit. \\ \hline
+            $N_\mathrm{hit}^\mathrm{muon}$ & At least one hit in the muon chamber in the global fit. \\ \hline
+            $N_\mathrm{stations}$ & At least two muon chamber stations contain segments of the track. \\ \hline
+            $d_0$ & Track impact parameter, remove cosmic rays and hadron decays. \\ \hline
+            $d_z$ & Track impact parameter, as above but also for pileup. \\ \hline
+            $N_\mathrm{hit}^\mathrm{pixel}$ & At least one pixel hit. \\ \hline
+            $N_\mathrm{hit}^\mathrm{tracker}$ & At least 5 hits in the tracker. \\ 
+        \end{tabular}
+    \end{center}
 \end{table}
 
 To account for differences between data and simulation in the performance of the muon IDs, corrections (known as scale factors) are derived:
 \begin{equation}
-	\SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
+    \SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
 \end{equation}
 where $\epsilon$ refers to the fraction of muons that are correctly identified by the ID criteria.
 While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow \mu\mu$ events, using one muon as a reference tag, and the other to probe the efficiency of the ID being tested.
@@ -487,24 +503,24 @@ The \emph{loose} ID selects electrons with $\sim90\%$ signal efficiency and $\si
 The \emph{tight} ID selects electrons with $\sim70\%$ signal efficiency and $\sim0.1\%$ background acceptance; it is used to \emph{select} electron-pure samples. 
 
 \begin{table}
-	\begin{center}
-		\caption{Observables used in identifying electrons and rejecting hadron and photon backgrounds}
-		\label{tab:cms:el}
-		\begin{tabular}{c|p{0.65\textwidth}}
-			Observable & Notes \\ 
-			\hline
-			\hline
-			\pt & Backgrounds grow at low \pt~and brem.~photons can make low-\pt~tracking difficult. \\ \hline
-			$\sigma_{i\eta i\eta}$  & Energy-weighted width of cell $\eta$ in SC. Small for electrons. \\ \hline
-			$|\Delta\eta(\mathrm{track,SC})|$  & $\Delta\eta$ between SC seed crystal and GSF track at PV. Small for electrons.  \\ \hline
-			$|\Delta\phi(\mathrm{track,SC})|$  & $\Delta\phi$, as above.\\ \hline
-			$E_\mathrm{H}/E_\mathrm{EM}$  & Ratio of HCAL and ECAL energies. Large for hadrons. \\ \hline
-			PF isolation & Sum of energies of other PF candiates near electron. Large for particles in jets. \\ \hline
-			$|\nicefrac{1}{E}-\nicefrac{1}{p}|$ & Checks if ECAL and tracker agree ($m_e\sim0$) \\ \hline
-			$N_\mathrm{hit}^\mathrm{miss}$ & Conversions or bad tracks will have multiple missing hits in the inner tracker.\\ \hline
-			Conversion veto & Check for a pair of tracks originating at a displaced vertex.\\ 
-		\end{tabular}
-	\end{center}
+    \begin{center}
+        \caption{Observables used in identifying electrons and rejecting hadron and photon backgrounds}
+        \label{tab:cms:el}
+        \begin{tabular}{c|p{0.65\textwidth}}
+            Observable & Notes \\ 
+            \hline
+            \hline
+            \pt & Backgrounds grow at low \pt~and brem.~photons can make low-\pt~tracking difficult. \\ \hline
+            $\sigma_{i\eta i\eta}$  & Energy-weighted width of cell $\eta$ in SC. Small for electrons. \\ \hline
+            $|\Delta\eta(\mathrm{track,SC})|$  & $\Delta\eta$ between SC seed crystal and GSF track at PV. Small for electrons.  \\ \hline
+            $|\Delta\phi(\mathrm{track,SC})|$  & $\Delta\phi$, as above.\\ \hline
+            $E_\mathrm{H}/E_\mathrm{EM}$  & Ratio of HCAL and ECAL energies. Large for hadrons. \\ \hline
+            PF isolation & Sum of energies of other PF candiates near electron. Large for particles in jets. \\ \hline
+            $|\nicefrac{1}{E}-\nicefrac{1}{p}|$ & Checks if ECAL and tracker agree ($m_e\sim0$) \\ \hline
+            $N_\mathrm{hit}^\mathrm{miss}$ & Conversions or bad tracks will have multiple missing hits in the inner tracker.\\ \hline
+            Conversion veto & Check for a pair of tracks originating at a displaced vertex.\\ 
+        \end{tabular}
+    \end{center}
 \end{table}
 
 Photons are defined as ECAL SCs without matched tracks. 
@@ -512,20 +528,20 @@ Table~\ref{tab:cms:pho} describes the selection variables used to define the loo
 The direction and energy of a photon are defined by the ECAL SC position and energy, respectively.
 
 \begin{table}
-	\begin{center}
-		\caption{Observables used in identifying photons and rejecting hadron backgrounds}
-		\label{tab:cms:pho}
-		\begin{tabular}{c|p{0.65\textwidth}}
-			Observable & Notes \\ 
-			\hline
-			\hline
-			\pt & Backgrounds grow at low \pt. \\ \hline
-			$\eta$ & EB resolution is better than EE; less hadron background. \\ \hline
-			$\sigma_{i\eta i\eta}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
-			$E_\mathrm{H}/E_\mathrm{EM}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
-			PF isolations & Defined in Table~\ref{tab:cms:el}. For photons, separate isolation criteria are placed on each PF type (photon, charged hadron, neutral hadron). \\ 
-		\end{tabular}
-	\end{center}
+    \begin{center}
+        \caption{Observables used in identifying photons and rejecting hadron backgrounds}
+        \label{tab:cms:pho}
+        \begin{tabular}{c|p{0.65\textwidth}}
+            Observable & Notes \\ 
+            \hline
+            \hline
+            \pt & Backgrounds grow at low \pt. \\ \hline
+            $\eta$ & EB resolution is better than EE; less hadron background. \\ \hline
+            $\sigma_{i\eta i\eta}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
+            $E_\mathrm{H}/E_\mathrm{EM}$  & Defined in Table~\ref{tab:cms:el}. \\ \hline
+            PF isolations & Defined in Table~\ref{tab:cms:el}. For photons, separate isolation criteria are placed on each PF type (photon, charged hadron, neutral hadron). \\ 
+        \end{tabular}
+    \end{center}
 \end{table}
 
 To calibrate ECAL SCs, we define the $R_9 = E_{3\times3}/E_\mathrm{SC}$. 
@@ -558,9 +574,9 @@ The precise definition of a jet is dependent on the algorithm used to cluster pa
 LHC experiments typically use \emph{sequential recombination} algorithms~\cite{antikt,kt,ca}.
 Given a set of particles (in CMS, PF candidates) in the event $E$, we compute two metrics:
 \begin{align}
-	d_{iB} &= \pti^2 \nonumber \\ 
-	d_{ij} &= \min\{\pti^{2q}, \ptj^{2q}\} \frac{\Delta R(p_i^\mu, p_j^\mu)^2}{R}
-	\label{eq:cms:dij}
+    d_{iB} &= \pti^2 \nonumber \\ 
+    d_{ij} &= \min\{\pti^{2q}, \ptj^{2q}\} \frac{\Delta R(p_i^\mu, p_j^\mu)^2}{R}
+    \label{eq:cms:dij}
 \end{align}
 where $i,j$ are two elements of $E$; $B$ represents the beam; and $p,~R$ are tunable parameters.
 Let $\tilde E = E \cup \{B\}$ and find $i,j\in \tilde E$ that minimize $d_{ij}$.
@@ -599,11 +615,11 @@ The \pt~dependence of the corrections and the associated uncertainties are shown
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.35\textwidth]{figures/cms/jec_jotjotRawPt.pdf}
-	\includegraphics[width=0.35\textwidth]{figures/cms/var_jotjotPt.pdf}
-	\caption{Left: the total effect of the L1 and L2L3 jet energy scale corrections in MC, as a function of $\pt,\eta$.
-			 Right: the corresponding uncertainties on the JES corrections, in the same \pt~binning and averaged over $\eta$.}
-	\label{fig:cms:jec}
+    \includegraphics[width=0.35\textwidth]{figures/cms/jec_jotjotRawPt.pdf}
+    \includegraphics[width=0.35\textwidth]{figures/cms/var_jotjotPt.pdf}
+    \caption{Left: the total effect of the L1 and L2L3 jet energy scale corrections in MC, as a function of $\pt,\eta$.
+             Right: the corresponding uncertainties on the JES corrections, in the same \pt~binning and averaged over $\eta$.}
+    \label{fig:cms:jec}
 \end{center}
 \end{figure}
 
@@ -617,10 +633,10 @@ Therefore, the signature of a $b$ jet is the identification of a \emph{secondary
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/cms/bjet.png}
-	\caption{Location of a secondary vertex inside a $b$ jet.
-			 Reprinted from Reference~\cite{csvv2}.}
-	\label{fig:cms:bjet}
+    \includegraphics[width=0.5\textwidth]{figures/cms/bjet.png}
+    \caption{Location of a secondary vertex inside a $b$ jet.
+             Reprinted from Reference~\cite{csvv2}.}
+    \label{fig:cms:bjet}
 \end{center}
 \end{figure}
 
@@ -636,13 +652,13 @@ Figure~\ref{fig:cms:csvv2} compares the CSVv2 response in data and simulation, a
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.48\textwidth]{figures/cms/csvv2.png}
-	\includegraphics[width=0.48\textwidth]{figures/cms/csvsf.png}
-	\caption{Left: The distribution of the CSVv2 response of AK4 jets in a dijet sample enriched with $g\rightarrow b\bar{b}$ events.
-			 Right: data/MC scale factors to correct for discrepancies in the simulation of the $b$ jet ID.
-			 AK4 jet SFs and uncertainties are shown in blue; overlaid in red are the SFs for subjets (see Chapter~\ref{sec:jets}).
-			 Reprinted from Reference~\cite{csvv2}.}
-	\label{fig:cms:csvv2}
+    \includegraphics[width=0.48\textwidth]{figures/cms/csvv2.png}
+    \includegraphics[width=0.48\textwidth]{figures/cms/csvsf.png}
+    \caption{Left: The distribution of the CSVv2 response of AK4 jets in a dijet sample enriched with $g\rightarrow b\bar{b}$ events.
+             Right: data/MC scale factors to correct for discrepancies in the simulation of the $b$ jet ID.
+             AK4 jet SFs and uncertainties are shown in blue; overlaid in red are the SFs for subjets (see Chapter~\ref{sec:jets}).
+             Reprinted from Reference~\cite{csvv2}.}
+    \label{fig:cms:csvv2}
 \end{center}
 \end{figure}
 
@@ -665,7 +681,7 @@ A true $\tau_h$ should be fairly well-isolated, whereas a combinatorial fake wil
 
 The PF missing momentum (\ptmiss) is defined as the magnitude of the missing momentum vector:
 \begin{equation}
-	\vec{p}_\mathrm{T}^\mathrm{~miss} = -\sum_{i\in\,\text{PF cands.}} \left(\begin{matrix} p_x^{(i)} \\ p_y^{(i)} \end{matrix}\right)
+    \vec{p}_\mathrm{T}^\mathrm{~miss} = -\sum_{i\in\,\text{PF cands.}} \left(\begin{matrix} p_x^{(i)} \\ p_y^{(i)} \end{matrix}\right)
 \end{equation}
 In a well-balanced event (without reconstruction error, neutrinos, or other non-interacting particles), the vectorial sum will cancel out perfectly, resulting in $\ptmiss\sim 0$. 
 For the DM searches described in this thesis, we will be interested in $\ptmiss \gg 0$.
@@ -673,13 +689,13 @@ For the DM searches described in this thesis, we will be interested in $\ptmiss 
 Large anomalous \ptmiss~can be reconstructed if detector noise or algorithm failures induce large, localized energy deposits in the event description~\cite{cmsmet}.
 Such events are removed through a series of filters:
 \begin{itemize}
-	\item HCAL and ECAL filters, identifying events with calorimeter clusters caused by noise. 
-			The shape and timing of the energy distribution can be used to identify noise, as well as detector-specific information (such as known problematic ECAL crystals).
-	\item Beam halo filter, identifying energy deposits from muons traveling parallel to the beam. 
-		  These muons are produced from pre-collision interactions between the beam and the machine.
-		  They are identified by their localization in $\phi$ and longitudinal signature in the ECAL/CSCs.
-	\item Reconstruction filters, identifying failures of the PF algorithm to properly reconstruct particles.
-		  In some cases, muons can be double-counted or mis-identified as charged hadrons and muons.
+    \item HCAL and ECAL filters, identifying events with calorimeter clusters caused by noise. 
+            The shape and timing of the energy distribution can be used to identify noise, as well as detector-specific information (such as known problematic ECAL crystals).
+    \item Beam halo filter, identifying energy deposits from muons traveling parallel to the beam. 
+          These muons are produced from pre-collision interactions between the beam and the machine.
+          They are identified by their localization in $\phi$ and longitudinal signature in the ECAL/CSCs.
+    \item Reconstruction filters, identifying failures of the PF algorithm to properly reconstruct particles.
+          In some cases, muons can be double-counted or mis-identified as charged hadrons and muons.
 \end{itemize}
 These filters remove effectively all anomalous \ptmiss~events while rejecting less than 1\% of events with real \ptmiss. 
 
@@ -687,7 +703,7 @@ As the \ptmiss~indirectly depends on the momentum of each PF candidate that ente
 Most energy calibrations are intrinsic to the PF algorithm, but the jet energy scale corrections are not.
 Therefore, the missing momentum is accordingly updated:
 \begin{equation}
-	\vpt{~\mathrm{miss}} \mapsto \vpt{~\mathrm{miss}}  + \sum_{j\in\,\mathrm{jets}} \left(\vpt{~j,\mathrm{corr.}} - \vpt{~j,\mathrm{raw}}\right) 
+    \vpt{~\mathrm{miss}} \mapsto \vpt{~\mathrm{miss}}  + \sum_{j\in\,\mathrm{jets}} \left(\vpt{~j,\mathrm{corr.}} - \vpt{~j,\mathrm{raw}}\right) 
 \end{equation}
 
 \subsection{Pileup mitigation}
@@ -701,7 +717,7 @@ The distribution of $\alpha_i$ is determined for central, charged particles from
 This is then extrapolated to neutral particles and forward particles, to assign a probability $P(\mathrm{PU}|\alpha_i)$. 
 More concretely, the local shape is defined:
 \begin{equation}
-	\alpha_i = \log \sum_{j \neq i} \frac{\ptj}{\Delta R_{ij}} H(\Delta R_{ij} - R_{\min})H(R_0 - \Delta R_{ij})
+    \alpha_i = \log \sum_{j \neq i} \frac{\ptj}{\Delta R_{ij}} H(\Delta R_{ij} - R_{\min})H(R_0 - \Delta R_{ij})
 \end{equation}
 where $R_{\min}, R_0$ are tunable parameters and $H$ is the Heaviside step function. 
 Up to rescaling, $\alpha_i$ is the sum of \pt s of particles in an annulus around particle $i$. 
@@ -710,27 +726,27 @@ This is illustrated in Figure~\ref{fig:cms:puppi}, which shows $\alpha_i^F$ (sam
 
 \begin{figure}[]
 \begin{center}
-	\includegraphics[width=0.8\textwidth]{figures/cms/puppi.png}
-	\caption{Distribution of PUPPI local shapes for charged and neutral particles from the PV and PU vertices.
-			 Reprinted from Reference~\cite{puppi}.}
-	\label{fig:cms:puppi}
+    \includegraphics[width=0.8\textwidth]{figures/cms/puppi.png}
+    \caption{Distribution of PUPPI local shapes for charged and neutral particles from the PV and PU vertices.
+             Reprinted from Reference~\cite{puppi}.}
+    \label{fig:cms:puppi}
 \end{center}
 \end{figure}
 
 Then, we define:
 \begin{equation}
-	x_i = H(\alpha_i - \bar\alpha) \frac{(\alpha_i - \bar\alpha)^2}{\sigma^2}
+    x_i = H(\alpha_i - \bar\alpha) \frac{(\alpha_i - \bar\alpha)^2}{\sigma^2}
 \end{equation}
 where $\bar\alpha$ and $\sigma$ are the median and RMS, respectively, of the charged PU $\alpha_i$ distribution, with some extrapolation for $\eta_i$ and $q_i$.
 It is found that $\alpha_i$ has a Gaussian distribution for pileup, and so $x_i$ should have a $\chi^2$ distribution with 1 degree of freedom.
 Therefore, we define the probability of pileup as:
 \begin{equation}
 w_i = 1 - P(\mathrm{PU}|\alpha_i) = 
-	\begin{cases}
-		1 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ from PV} \\ 
-		0 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ not from PV} \\ 
-		P(\chi^2<x_i | N_\mathrm{dof}=1)  & \text{otherwise} \\ 
-	\end{cases}
+    \begin{cases}
+        1 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ from PV} \\ 
+        0 & \text{if }|\eta|<2.5,~q_i \neq 0, \text{ not from PV} \\ 
+        P(\chi^2<x_i | N_\mathrm{dof}=1)  & \text{otherwise} \\ 
+    \end{cases}
 \end{equation}
 The four momenta of particles are scaled by the PUPPI probability, i.e. $p_i^\mu \mapsto w_i p_i^\mu$.
 
