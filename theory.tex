@@ -449,14 +449,14 @@ The sum over $a,b$ refers to summing over partons in the initial state.
 The momentum fractions of the partons, $x_{a,b}$, follow parton distribution functions (PDFs) $f_{a,b}$ that depend on the particle species $a$ and $b$. 
 We then define an intermediate state $\{c_i\}$ which evolves into the final state $X(\Theta)$.
 That is, the process $ab\rightarrow X$ is split into $ab\rightarrow \{c_i\} \rightarrow X$.
-The definition of $\{c_i\}$ is not unique, but is chosen such that the process $ab\rightarrow\{c_i\}$ can be analyzed perturbatively.
-The non-perturbative aspects of evolution to the final state (soft or collinear radiation) will be analyzed separately. 
-The matrix element for the first step (\emph{hard scattering}) is computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
-Other heuristic methods are used to deal with the second step (\emph{parton shower} (PS)), encoded in the \emph{fragmentation function} $D$. 
+The definition of $\{c_i\}$ is not unique, but is chosen such that the process $ab\rightarrow\{c_i\}$ can be analyzed using perturbation theory.
+The evolution of $\{c_i\}$ to the final state involves the radiation of strong and collinear radiation, which cannot be described by pQCd.
+The matrix element for $ab\rightarrow\{c_i\}$  (\emph{hard scattering}) is computed perturbatively and turned into a cross section by means of Equation~\ref{eq:theory:master}.
+Other heuristic methods are used to deal with the process $\{c_i\}\rightarrow X$ (\emph{parton shower} (PS)), encoded in the \emph{fragmentation function} $D$. 
 
 The ability to partition the calculation into perturbative (hard scattering) and non-perturbative (PDF and PS) components follows from the collinear factorization theorem~\cite{fact}.
 The factorization depends on an arbitrary energy scale $\mu_F$, which defines a lower bound for interactions considered part of the hard scattering. 
-The remainder of this section discusses the use of Monte Carlo (MC) methods to simulate these three factors: $f$, $\Ma$, and $D$.
+The remainder of this section discusses the use of Monte Carlo (MC) methods to simulate these three factors: the parton distribution functions $f_a$, the hard scattering matrix element $\Ma$, and the fragmentation function $D$.
 
 \subsection{Parton distribution functions}
 The analytic behavior of PDFs as a function of the factorization scale is governed by the DGLAP evolution equation~\cite{dglap1,dglap2,dglap3}:
@@ -474,12 +474,12 @@ Results presented in this thesis use the NNPDF3.0 PDF set.
 Monte Carlo generators simulate Equation~\ref{eq:theory:2n} by sampling events with probability proportional to the phase space and matrix element.
 The dedicated MC generators used in this result are MadGraph5~\cite{mg5,fxfx} and Powheg2~\cite{powheg}.
 Both generators can simulate to leading order (LO) in EW vertices and up to next-to-leading order (NLO) in QCD vertices.
-Finally, the PS model Pythia8.2~\cite{pythia} (discussed in the next section) can also generate certain hard scattering processes at LO in QCD.
+The PS model Pythia8.2~\cite{pythia} can also generate certain hard scattering processes at LO in QCD.
 
-MC generators also generate additional partons from initial and final state radiation as part of the hard scattering.
+MC generators also generate additional partons from initial and final state radiation ({ISR} and {FSR}) as part of the hard scattering.
 These quarks, gluons, and photons can be highly energetic in events with large $q^2$, and so it is necessary to compute them as part of the hard scattering matrix element.  
 It should be noted that, while NLO event generation is always preferable, it comes with two costs: (a) being able to generate fewer additional partons and (b) additional computational time.
-We will use LO simulation for processes which have large cross sections and in which additional parton spectra are important.
+Correspondingly, we will use LO simulation in cases where (a) the spectra of ISR and FSR are important and (b) many simulated events are needed for a processes with large cross-sections.
 Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders used in these results.
 
 \begin{table}[]
@@ -490,31 +490,31 @@ Table~\ref{tab:theory:sim} provides a summary of the MC generators and orders us
     \label{tab:theory:sim}
     \begin{tabular}{c|c|c|l}
         $pp\rightarrow X$ & Generator & NLO in QCD? & Notes \\ \hline \hline
-        $t\bar{t}$ & Powheg & \cmark \\ 
-        $t$, $tW$, $tZ$ & Powheg & \cmark \\ 
+        $t\bar{t}$ & Powheg & yes \\ 
+        $t$, $tW$, $tZ$ & Powheg & yes \\ 
         \hline
-        $ZZ,~WZ,~WW$ & Pythia &  \\ 
+        $ZZ,~WZ,~WW$ & Pythia &  no \\ 
         \hline
-        $Z$ (+0,1 partons) & MG  & \cmark  \\ 
-        $W$ (+0,1 partons) & MG  & \cmark \\ 
-        $\gamma$ (+0,1 partons) & MG  & \cmark  \\ 
+        $Z$ (+0,1 partons) & MG  & yes  \\ 
+        $W$ (+0,1 partons) & MG  & yes \\ 
+        $\gamma$ (+0,1 partons) & MG  & yes  \\ 
         \hline
-        $Z$ (+0,1,2,3 partons) & MG  &  \\ 
-        $W$ (+0,1,2,3 partons) & MG  &  \\ 
-        $\gamma$ (+0,1,2 partons) & MG  &  \\ 
+        $Z$ (+0,1,2,3 partons) & MG  & no \\ 
+        $W$ (+0,1,2,3 partons) & MG  & no  \\ 
+        $\gamma$ (+0,1,2 partons) & MG  & no \\ 
         Multijet & MG && Jets defined in Section~\ref{sec:theory:ps} \\
         \hline
-        Resonant DM & MG && See Chapter~\ref{sec:mt} \\ 
-        FCNC DM & MG &\cmark& See Chapter~\ref{sec:mt} \\ 
-        VBF $\hinv$ & Powheg && See Chapter~\ref{sec:vbf} \\ 
+        Resonant DM & MG & no & See Chapter~\ref{sec:mt} \\ 
+        FCNC DM & MG &yes& See Chapter~\ref{sec:mt} \\ 
+        VBF $\hinv$ & Powheg &no & See Chapter~\ref{sec:vbf} \\ 
     \end{tabular}
 \end{center}
 \end{table}
 
 \subsection{Parton shower}
 \label{sec:theory:ps}
-Suppose we know $\di\sigma(ab\rightarrow \{c_i\})$ and would like to know $\di\sigma(ab\rightarrow\{c_i\}j)$, where $j$ is radiated from one of the $c_i$ in the soft and/or collinear limit.
-Such ``splittings'' include:
+Suppose we know $\di\sigma(ab\rightarrow \{c_i\})$ and would like to know $\di\sigma(ab\rightarrow\{c_i\}j)$, where $j$ is an additional particle radiated from one of the $c_i$ in the soft and/or collinear limit.
+Such \emph{splittings} include:
 \begin{gather}
     q\rightarrow qg, \quad g\rightarrow qq, \quad g\rightarrow gg, \nonumber \\ 
         f\rightarrow f\gamma, \quad \gamma\rightarrow ff 

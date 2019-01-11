@@ -4,7 +4,8 @@
 \section{The Large Hadron Collider}
 \label{sec:cms:lhc}.
 
-The Large Hadron Collider (LHC)~\cite{lhcjinst}\footnote{Unless otherwise specified, all technical specifications of the LHC are derived from Reference~\cite{lhcjinst}} is a circular particle accelerator, 27 km in circumference and between 40 and 175 m below the surface of the French-Swiss border. 
+The Large Hadron Collider (LHC)~\cite{lhcjinst}\footnote{Unless otherwise specified, all technical specifications of the LHC are derived from Reference~\cite{lhcjinst}} is a circular particle accelerator, 27 km in circumference and between 40 and 175 m below the surface. 
+The ring cross the French-Swiss border near the city of Geneva. 
 Designed to collide protons at a maximum center-of-mass energy $\sqrt{s} = 14$ TeV, the LHC has delivered collisions at $\sqrt{s}=7,8$ TeV (Run 1) and $\sqrt{s} = 13$ TeV (Run 2); the target energy $\sqrt{s} = 14$ TeV will be reached in Run 3. 
 In addition to protons, the LHC accelerates and collides heavy nuclei (Pb and Xe) at lower values of $\sqrt{s}$. 
 In this thesis, we focus exclusively on data recorded from proton collisions during Run 2. 
@@ -21,23 +22,23 @@ In this thesis, we focus exclusively on data recorded from proton collisions dur
 \end{figure}
 
 Protons are brought to the LHC by the multi-stage process~\cite{lhctdr3} depicted in Figure~\ref{fig:cms:lhc}.
-Hydrogen atoms are stripped of electrons and accelerated by LINAC2 (a linear accelerator) to a kinetic energy of $50$ MeV.
-LINAC2 then feeds the protons into the Booster ring (final energy of $1.4$ GeV), followed by the Proton Synchrotron ($26$ GeV).
-From the PS, the protons are injected into the Super Proton Synchrotron ($450$ GeV).
+Hydrogen atoms are stripped of electrons and accelerated to a kinetic energy of $50$ MeV by LINAC2, a linear accelerator.
+Subsequently, the Booster ring, the Proton Synchrotron (PS) and Super Proton Synchrotron (SPS) successively accelerate the protons to energies of 1.4, 26, and 450 GeV, respectively. 
 Protons exit the SPS and enter the LHC at one of two places, corresponding to two different beams traveling in opposite directions.
 The two beams intersect in eight places along the LHC, four of which are instrumented by a detector experiment: CMS, ATLAS, LHCb, and ALICE. 
 
-Each proton beam in the LHC is accelerated by eight superconducting cavities exerting radio frequency longitudinal (i.e. parallel to beam direction) electric fields with a frequency of $400$ MHz,
+Each proton beam in the LHC is accelerated by eight superconducting cavities exerting 400 MHz oscillating electric fields parallel to the beam line (the \emph{longitudinal} direction).
 The maximum RF voltage seen by each beam is 16 MV per revolution.
-The physical and temporal design of the RF system creates bunches of protons (corresponding to nodes of the oscillating field) approximately 7.5 cm in length and separated by 25 ns. 
+The physical and temporal design of the RF system creates bunches of protons, corresponding to nodes of the oscillating field, approximately 7.5 cm in length and separated by 25 ns. 
 Superconducting NbTi dipole magnets bend the two proton beams in opposite directions as they travel around the ring. 
 Each of the 1232 dipoles is 14 m long and exerts a transverse $B$ field between $0.54$ and $8.33$ T.
 To achieve such high $B$ fields, the magnets are cooled to 2 K by superfluid helium.
 In addition, a number of quadrupole magnets are used to focus and match the beams between the dipoles\footnote{Full details on the various quadrupoles can be found in Table 3.7 of Reference~\cite{lhcjinst}.}.
 
-In addition to the center-of-mass energy $\sqrt{s}$, the other figure of merit is the number of events producing interesting physics processes, which is defined as:
+The two main figures of merit for a collider the center-of-mass energy $\sqrt{s}$ and the number of events produced per unit time.
+The latter is defined as:
 \begin{equation} 
-    N(pp\rightarrow X) = \int dt L \sigma(pp\rightarrow X)
+    N(pp\rightarrow X) = \int \di t~ L \sigma(pp\rightarrow X)
 \end{equation}
 where $\sigma$ is the cross section of the relevant process and $L$ is the instantaneous luminosity of the LHC. 
 The cross section is fixed by nature, and so increasing the luminosity is the only handle to increase $N$. 
@@ -47,20 +48,21 @@ The instantaneous luminosity of two Gaussian beams is given by~\cite{lhcjinst}:
 \end{equation}
 where:
 \begin{itemize}
-    \item[$N_b$ $=$] particles per bunch
-    \item[$n_b$ $=$] bunches per beam 
-    \item[$f_\mathrm{rev}$ $=$] frequency of revolution 
-    \item[$\gamma$ $=$] $E/m$ of beam 
-    \item[$\epsilon$ $=$] emittance of beam 
-    \item[$\beta^*$ $=$] beta function at collision point 
-    \item[$F$ $=$] factor accounting for beam intersection geometry
+    \setlength\itemsep{1pt}
+    \item $N_b$ $=$ particles per bunch
+    \item $n_b$ $=$ bunches per beam 
+    \item $f_\mathrm{rev}$ $=$ frequency of revolution 
+    \item $\gamma$ $=$ $E/m$ of beam 
+    \item $\epsilon$ $=$ emittance of beam 
+    \item $\beta^*$ $=$ beta function at collision point 
+    \item $F$ $=$ factor accounting for beam intersection geometry
 \end{itemize}
 The instantaneous luminosity evolves as a function of time, primarily due to $n_b$ and $N_b$ being modified by collisions.
 The total integrated luminosity after time $T$ is:
 \begin{equation}
-    L_\mathrm{int} = \int_0^T dt L(t) = L(0) \tau_L \left(1 - e^{-T/\tau_L}\right)
+    L_\mathrm{int} = \int_0^T \di t~ L(t) = L(0) \tau_L \left(1 - e^{-T/\tau_L}\right)
 \end{equation}
-where $\tau_L \approx 15$ h is the characteristic beam loss timescale and $L(0)$ is the instantaneous luminosity at $T=0$.
+where $\tau_L \approx 15$ h is the characteristic beam loss timescale and $L(0)$ is the instantaneous luminosity at $t=0$.
 The LHC is designed to deliver $L(0) \sim \mathcal{O}(10^{34})$ cm$^{-2}$s$^{-1}$. 
 Figure~\ref{fig:cms:lumi} shows the total luminosity delivered by the LHC and recorded by CMS during the 2016 portion of Run 2. 
 
@@ -79,10 +81,11 @@ It is designed to detect and measure stable hadrons, photons, electrons, and muo
 From these event descriptions, a number of physics processes can be probed, including SM measurements~\needcite, BSM searches~\needcite, and the discovery of the Higgs boson~\needcite. 
 In what follows, we will use the $(r,\phi,\eta)$ coordinate system with respect to the $z$ axis:
 \begin{itemize}
-    \item[$z = $] distance along beam axis, with $z=0$ defined to be at the center of the detector
-    \item[$r = $] distance from the $z$ axis
-    \item[$\phi = $] azimuthal angle in the plane orthogonal to the $z$ axis
-    \item[$\eta = $] pseudorapidity $(-\log\nicefrac{\theta}{2}$), with respect to the polar angle $\theta$ 
+    \setlength\itemsep{1pt}
+    \item $z = $ distance along beam axis, with $z=0$ defined to be at the center of the detector
+    \item $r = $ distance from the $z$ axis
+    \item $\phi = $ azimuthal angle in the plane orthogonal to the $z$ axis
+    \item $\eta = $ pseudorapidity $(-\log\nicefrac{\theta}{2}$), with respect to the polar angle $\theta$ 
 \end{itemize}
 In this coordinate system, we define $x$ and $y$ to lie in the plane perpendicular to $z$, with $x$ pointing from the center of the detector to the center of the LHC.
 As with the pseudorapidity, it is convenient to use quantities invariant under $z$-boosts, and so we define the transverse momentum:
