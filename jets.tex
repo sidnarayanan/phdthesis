@@ -209,14 +209,13 @@ This feature will be critical to validate any tagger in data, as described in Se
 \end{figure}
 
 \subsubsection{\HTT}
-% https://arxiv.org/pdf/1503.05921.pdf
 
-The \HTT~algorithm de-clusters the jet into many subjets and attempts to reconstruct the $W$ and $t$ decay products out of these subjets~\needcite.
-The computation of the tagging variable \frec~can be simplified into three steps (a more detailed description is found in the appendix of Reference~\needcite):
+The \HTT~algorithm de-clusters the jet into many subjets and attempts to reconstruct the $W$ and $t$ decay products out of these subjets~\cite{htt}.
+The computation of the tagging variable \frec~can be simplified into three steps (a more detailed description is found in the appendix of Reference~\cite{htt}):
 \begin{enumerate}
     \item Compute subjets of the CA15 jet. This is done in a fashion similar to the SD subjets discussed above, but instead of taking the two subjets of the root node, the tree is traversed until some lower \pt~bound is crossed.
     \item Test all triplet combinations of the found subjets and define the $m_{123}$ as the groomed mass of the trijet system. 
-    \item Choosing the triplet most consistent with a 3-body top decay (see Equation 12 in Reference~\needcite), define:
+    \item Choosing the triplet most consistent with a 3-body top decay (see Equation 12 in Reference~\cite{htt}), define:
         \begin{equation}
             \frec = \min_{0\leq i < j \leq 2} \left|
             \frac{\nicefrac{m_{ij}}{m_{123}}}{\nicefrac{m_W}{m_t}} - 1\right|
@@ -224,7 +223,7 @@ The computation of the tagging variable \frec~can be simplified into three steps
         where the indices $i,j$ index elements of the selected triplet. 
 \end{enumerate}
 Figure~\ref{fig:jets:htt} shows the distribution of the selected $m_{123}$ and $\frec$, although we will only use the latter as a tagging observable. 
-Note that we do not define distinct groomed and ungroomed versions of these observables, as grooming is intrinsically used in defining the subjets. 
+Note that we do not define distinct groomed and ungroomed versions of these observables, as grooming is already applied when defining subjets. 
 
 \begin{figure}[]
     \begin{center}
@@ -234,26 +233,27 @@ Note that we do not define distinct groomed and ungroomed versions of these obse
         \begin{subfigure}[t]{0.35\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/shapes/mass_fjHTTFRec.pdf}
         \end{subfigure}
-        \caption{Shape of the $m_{123}$ and $\frec$ observables computed by the \HTT~algorithm. }
+        \caption{Shape of the $m_{123}$ and $\frec$ observables computed by the \HTT~algorithm. 
+                 The value $m_{123} = 0$ indicates the cases in which a subjet triplet consistent with a top decay could not be found. }
         \label{fig:jets:htt}
     \end{center}
 \end{figure}
 
 \subsubsection{Energy Correlation Functions}
 
-Energy correlation functions measure the correlation of the positions of hard particles in a jet~\needcite. 
+Energy correlation functions measure the correlation of the positions of hard particles in a jet~\cite{ecf}. 
 Heuristically, an $N$-point ECF is small if the hard particles can be grouped into fewer than $N$ prongs and large if they arise from $N$ or more prongs. 
 An $N$-point ECF, with angular parameters $o$ and $\beta$, is defined as:
 \begin{equation}
     e(o,N,\beta) \equiv 
     ~_o e_N^\beta = 
-    \sum _{K\subset J, |K|=N} 
+    \sum _{K\subset J,\,|K|=N} 
     \left[\prod_{i\in K} \frac{\pt^{(i)}}{\pt^{(J)}}\right] \times 
     \min\left\{ \prod_{i,j\in P} \Delta R_{ij}^\beta 
-        ~\Big|~ P \subset (K^2 \backslash (k,k)),~|P|=o\right\}
+        ~\Big|~ P \subset \tilde{K}^2 ,~|P|=o\right\}
 \end{equation}
-where $K^2\backslash(k,k)$ indicates all pairs of distinct particles in $K$. 
-The proposed tagger in Reference~\needcite~is:
+where $0 < o \leq N^2-N$ and $\tilde K^2$ indicates all pairs of distinct particles in $K$. 
+The proposed tagger in Reference~\cite{ecf} is:
 \begin{equation}
     N_3^{(\beta)} = \frac{e(2,4,\beta)}{(e(1,3,\beta))^2}
 \end{equation}
@@ -320,11 +320,12 @@ In practice, we only consider a finite sampling of ECF parameters:
 \end{gather}
 This grid results in $\sim900$ $\psi$ observables.
 
+\subsubsection{Boosted decision trees}
 To build a single optimal observable out of all the $\{\psi_i\}$s, we will use a boosted decision tree (BDT).
-A simplified algorithm to train a single decision tree node $n$ is as follows:
+A simplified algorithm to train a single decision tree node $n$ for classification is as follows:
 \begin{enumerate}
     \item Choose a $\psi_j$, either by sampling randomly or selecting the one most optimal for the next step.
-    \item Based on the training data fed to the node, select a decision boundary $d_n$ to optimize a loss function. For example, one can use the cross-entropy loss:
+    \item Based on the training data fed to the node, select a decision boundary $d_n$ to optimize a loss function, such as cross-entropy:
         \begin{gather}
             \ell(X,y;j,d_n) =  -\hat\pi_B\ln\hat\pi_B -\hat\pi_S\ln\hat\pi_S \text{, where } 
             \hat\pi_c = \hat P(y=c | \psi_j < d_n) 
@@ -333,7 +334,13 @@ A simplified algorithm to train a single decision tree node $n$ is as follows:
 A tree is built iteratively:
 \begin{enumerate}
     \item Train a node $n$ using the above criteria. 
-    \item If a stopping condition is not met (i.e.~maximum number of nodes, minimal improvement in $\ell(n)$), train one node on the samples that pass $n$ and another on the samples that fail.
+    \item If a stopping condition is not met, train one node on the samples that pass $n$ and another on the samples that fail.
+          Stopping conditions can take into account features including:
+    \begin{itemize}
+            \item Number of nodes
+            \item Depth of tree
+            \item Relative change in $\ell(n)$
+    \end{itemize}
 \end{enumerate}
 Figure~\ref{fig:jets:dt} provides a pictorial example of how a decision tree can be built. 
 
@@ -341,50 +348,60 @@ Figure~\ref{fig:jets:dt} provides a pictorial example of how a decision tree can
     \begin{center}
         \begin{subfigure}[t]{0.32\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree0.pdf}
+            \caption{}
         \end{subfigure}
         \begin{subfigure}[t]{0.32\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree1.pdf}
+            \caption{}
         \end{subfigure}
         \begin{subfigure}[t]{0.32\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/bdt/tree2.pdf}
+            \caption{}
         \end{subfigure}
-        \caption{Steps in greedily training a simple decision tree.}
+        \caption{Steps in greedily training a simple decision tree.
+                 At each node, the number of signal and background samples is indicated by the tuple $(S,B)$.
+                 For example, the root node in step (a) is fed 100 signal and 100 background samples.
+                 The learning rule decides the optimal decision at this node is $\psi_i < 0.3$, which subdivides the 200 samples into two subsamples with composition $(20,80)$ and $(80,20)$.
+                 Step (b) shows a further partitioning of the training samples using additional features.
+                 Step (c) shows a fully trained tree, in which each leaf node only contains signal or background samples.
+                 Such a tree cannot be further refined, but earlier stopping conditions may also be used.}
         \label{fig:jets:dt}
     \end{center}
 \end{figure}
 
-While decision trees can very accurately describe training data provided sufficient complexity, they also pathologically overfit the data.
-To mitigate this, while retaining descriptive power, a standard method is to \emph{boost} many simple trees~\needcite.
-The simplicity of the tree prevents overfitting, while boosting many trees allows for a complex model.
+Decision trees can very accurately describe training data, but they also pathologically overfit the data.
+\emph{Boosting} many shallow trees is a standard method to mitigate this and retain descriptive power.
+The simplicity of individual trees prevents overfitting, while boosting many trees allows for a complex model.
 The result of a BDT is a classifier $f_n(x) = \sum_{i=0}^n \nu^i T_i(x)$, where $\nu\leq 1$ is tunable and each $T_i$ is a decision tree. 
+Each $T_j$ is trained to correct for the residual error from the previously trained trees $f_j(x) =  \sum_{i=0}^j \nu^i T_i(x)$
 A simplified algorithm to train a BDT is as follows:
 \begin{enumerate}
     \item Define a global loss function, e.g.:
         \begin{equation} L(y_i; f_i) = \ln\left(1 + \exp(-y_if_i)\right)\end{equation}
     \item Train a single tree $T_0$ and initialize classifier $f_0 = T_0$
-    \item Until some stopping condition (index $m=1,\dots$):
+    \item Until some stopping condition (index $m=1,\dots,n$):
     \begin{enumerate}
-      \item[3.1.] Compute the \emph{residual}
+      \item[3.1.] Compute the \emph{residual} as the gradient of the global loss with respect to the classifier $f_{m-1}$:
         \begin{equation}r_{mi} = -\nabla_f L(y_i; f) |_{f=f_{m-1}(\bm\psi_i)}\end{equation}
-        \begin{equation}L = (y-f_m(\bm\psi))^2 \Rightarrow r_m = y - f_m(\bm\psi) \end{equation}
       \item[3.2.] Fit a regression tree $T_m$ to predict $r_{mi}$ as a function of $x_i$:
         \begin{equation}\ell(X,r_m;j,d,\hat{r}) = \sum_{i | \psi_{ji} < d} (r_{mi} - \hat r)^2\end{equation}
       \item[3.3.] Update $f_m = f_{m-1} + \nu T_m$
     \end{enumerate}
 \end{enumerate}
 
+\subsubsection{Training the BDT}
+
 While we would like to train a BDT on the entire space of $\{\psi\}$, there are two issues to be solved: poorly modeled ratios and a large feature space.
-Firstly, not every ECF ratio is well-simulated by our MC (Figure~\ref{fig:jets:datamc_ratios}).
-More systematically, we can compute the CDFs of each $\psi$ and define a score: 
+Firstly, the descriptions of many ECF ratios in LQG jets are poorly-simulated by MC (Figure~\ref{fig:jets:datamc_ratios}).
+More systematically, we can compute the CDF of each $\psi$ and define a score: 
 \begin{equation}
-    -\log_{10} \mathrm{KS}(F(\psi_i | \mathrm{data}), F(\psi_i | \mathrm{MC})) = -\log_{10} \max \left|F(\psi_i | \mathrm{data}) - F(\psi_i | \mathrm{MC})\right|
+    -\log_{10} \mathrm{KS}(F_\mathrm{data}(\psi_i), F_\mathrm{MC}(\psi_i)) = -\log_{10} \max \left|F_\mathrm{data}(\psi_i) - F_\mathrm{MC}(\psi_i)\right|
 \end{equation}
 where $F$ represents the CDF and $\mathrm{KS}$ denotes the Kolmogorov-Smirnov metric on probability distributions.
-The score is close to 0 for poorly-simulated distributions.
+The score is close to 0 for poorly-simulated distributions and approaches $\infty$ as $F_\mathrm{MC} \rightarrow F_\mathrm{data}$..
 Figure~\ref{fig:jets:ks} parameterizes this as a function of $N/M$ (ratio of the number of particles) and $a\alpha/b\beta$ (ratio of the angular powers) and shows an interesting structure.
 It is found that $3/2$ and $4/2$ ratios are uniformly poorly modeled, as are ratios with large $a\alpha/b\beta$. 
-While this structure is interesting and suggestive, we do not yet understand its origin, and therefore do not use this parameterization to select ECF ratios.
-Instead, we simply reject any ECF ratio for which $-\log_{10}\mathrm{KS} < 1$. 
+In what follows, we only consider ECF ratios with $-\log_{10}\mathrm{KS} > 1$, which corresponds to the bottom-left of Figure`\ref{fig:jets:ks}. 
 
 \begin{figure}[]
     \begin{center}
@@ -410,8 +427,7 @@ Instead, we simply reject any ECF ratio for which $-\log_{10}\mathrm{KS} < 1$.
     \end{center}
 \end{figure}
 
-Even after filtering poorly-modeled ratios, we are left with a sampled $\psi$ grid of $\sim 400$ points.
-By inspection, many of the $\psi$s are highly correlated or not useful at all.
+Even after filtering poorly-modeled ratios, we are left with a sampled $\psi$ grid of ${\sim400}$ points.
 It is desirable to reduce the size of the feature space, as computing each ECF is somewhat computationally-intensive: an $N$-point ECF on a $p$-particle jet has $\binom{N}{p}$ terms. 
 Note that standard pre-processing techniques, like principal component analysis, do not reduce the number of features to be computed. 
 While L1 regularization does attempt such a dimensional reduction, it cannot be trivially applied to BDTs. 
@@ -430,14 +446,15 @@ However, as the inference samples are 1-2 orders of magnitude larger than the tr
 Figure~\ref{fig:jets:training} shows background acceptance rate at $\epsilon_\mathrm{sig}=0.5$ (a proxy for the global loss) as a function of feature space size. 
 For illustrative purposes, we only show the range $[1,50]$.
 The inputs for this training are the ECF ratios, as well as $\tau_{32}^\SD$ and $\frec$, which provide additional information.
-It is clear that beyond 13-15 features, there is little to be gained by adding additional information.
+It is clear that beyond 13 features, there is little to be gained by adding additional information.
 
 \begin{figure}[]
     \begin{center}
-        \begin{subfigure}[t]{0.4\textwidth}
+        \begin{subfigure}[t]{0.5\textwidth}
             \includegraphics[width=\textwidth]{figures/toptagging/bdt/fakerate_vs_eff50.pdf}
         \end{subfigure}
-        \caption{Performance of BDTs as a function of the number features used in the training.}
+        \caption{Performance of BDTs as a function of the number features used in the training.
+                 The performance is defined by the fraction of LQG jets accepted by the BDT when the signal efficiency is fixed at $50\%$.}
         \label{fig:jets:training}
     \end{center}
 \end{figure}
@@ -460,8 +477,8 @@ The features selected by this reduction and classification process are:
 \end{gather}
 While a number of $N_3$ or other $4/3$ ratios appear in this list, we find a number of $2/2$ and $3/3$ ratios to contribute meaningfully to the classification task as well. 
 Figure~\ref{fig:jets:features} shows the distributions of all selected features. 
-Figure~\ref{fig:jets:roc} shows the background acceptance as a function of signal efficiency, comparing the final BDT (``Combined BDT``) to several other taggers.
-The ``11 ECF`` BDT refers to a BDT trained using only the 11 ECF ratios from Equation~\ref{eq:jets:features}, indicating that $\tau_{32}^\SD$ and $\frec$ are critical to achieving the same performance that can be reached with a much larger ECF ratio set (``50 ECF``).
+Figure~\ref{fig:jets:roc} shows the background acceptance as a function of signal efficiency, comparing the final BDT (``Combined BDT'') to several other taggers.
+The ``11 ECF'' BDT refers to a BDT trained using only the 11 ECF ratios from Equation~\ref{eq:jets:features}, indicating that $\tau_{32}^\SD$ and $\frec$ are critical to achieving the same performance that can be reached with a much larger ECF ratio set (``50 ECF'').
 For comparison, also shown are the efficiency curves for $\tau_{32}^\SD$ and a BDT trained using $\tau_{32}^\SD$ and $\frec$ only.
 At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduces the background acceptance by 30\% relative to $\tau_{32}^\SD$, the standard top ID criterion at the LHC prior to this study. 
 
@@ -481,15 +498,15 @@ At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduc
         \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_fjTau32SD.pdf}
         \includegraphics[width=0.24\textwidth]{figures/toptagging/shapes/mass_fjHTTFRec.pdf}
         \caption{Distributions of the 13 features selected by the iterative BDT training}
-        \label{figs:jets:features}
+        \label{fig:jets:features}
     \end{center}
 \end{figure}
 
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/toptagging/bdt/massCut_roc.pdf}
-        \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The \emph{Combined BDT} is the ID method chosen as the final tagger.}
-        \label{figs:jets:roc}
+        \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The Combined BDT is the ID method chosen as the final tagger.}
+        \label{fig:jets:roc}
     \end{center}
 \end{figure}
 
@@ -526,7 +543,7 @@ In both samples, we observe reasonably good agreement between data and simulatio
     \end{center}
 \end{figure}
 
-To account for any remaining differences, we define a scale factor (SF):
+To account for any remaining differences, we define a scale factor:
 \begin{equation}
     \mathrm{SF}(x) = \frac{\epsilon_\mathrm{Data}(\mathrm{BDT}>x \text{ and }110<m_\SD<210)}{\epsilon_\mathrm{MC}(\mathrm{BDT}>x \text{ and }110<m_\SD<210)}
 \end{equation}
@@ -577,8 +594,9 @@ Figure~\ref{fig:jets:sffits} show the fits in the passing and failing regions fo
 
 Several sources of uncertainty are considered for this measurement:
 \begin{itemize}
+    \setlength\itemsep{1pt}
     \item Poisson uncertainties in the data and simulation 
-    \item CA15 jet energy scale and resolution 
+    \item CA15 jet energy scale
     \item Definition used to select \emph{merged top} jets, allowing $\max \Delta R_{qq'}$ to vary between 1 and 1.5 (nominal value is 1.2)
     \item Efficiency of selecting $b$ jets
 \end{itemize}
