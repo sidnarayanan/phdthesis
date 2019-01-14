@@ -114,14 +114,6 @@ The arrangement of the pixel and strip layers are shown in Figure~\ref{fig:cms:s
 A superconducting NbTi solenoid envelopes the tracker, as well as parts of the calorimeters. 
 The magnetic field inside the tracker volume has strength 3.8 T and field lines approximately parallel to the beam direction. 
 
-A single silicon pixel has dimensions $285\times100\times150$ $(\mu\mathrm{m})^3$ (in $r\times r\phi\times z$), leading to a position resolution of $\sim10\times30$ $(\mu\mathrm{m})^2$ (in $r\phi\times z$). 
-The 66 million pixels are arranged into 7 layers: 3 cylindrical \emph{barrels} (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ \emph{endcap} annulli (at $z=\pm34.5,~\pm46.5$ cm). 
-Outside the pixel layers are the strip layers, consisting of 9.3 million silicon strips arranged into barrels and endcaps.
-The resolution in $r\phi$ varies between $10$ and $50$ $\mu$m, depending on the location and pitch of the given strip.
-Certain strip layers contain two layers of strips, rotated through a \emph{stereo} angle (100 mrad) with respect to each other.
-By matching adjacent hits, the stereo measurement can add a third dimension ($z$ for barrel, $r$ for endcap) to the strip's 2D measurement, with resolution $100$-$500$ $\mu$m.
-There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0.6 < |z| < 2.8$ m). 
-
 \begin{figure}[]
     \begin{center} 
         \includegraphics[width=0.7\textwidth]{figures/cms/tracker.png}
@@ -133,6 +125,27 @@ There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0
         \label{fig:cms:si}
     \end{center}
 \end{figure}
+
+
+A single silicon pixel has dimensions $285\times100\times150$ $(\mu\mathrm{m})^3$ (in $r\times r\phi\times z$), leading to a position resolution of $\sim10\times30$ $(\mu\mathrm{m})^2$ (in $r\phi\times z$). 
+The 66 million pixels are arranged into 7 layers: 3 cylindrical \emph{barrels} (at $r=4.4,~7.3,~10.2$ cm) and $2\times2$ \emph{endcap} annulli (at $z=\pm34.5,~\pm46.5$ cm). 
+Outside the pixel layers are the strip layers, consisting of 9.3 million silicon strips arranged into barrels and endcaps.
+The resolution in $r\phi$ varies between $10$ and $50$ $\mu$m, depending on the location and pitch of the given strip.
+Certain strip layers contain two layers of strips, rotated through a \emph{stereo} angle (100 mrad) with respect to each other.
+By matching adjacent hits, the stereo measurement can add a third dimension ($z$ for barrel, $r$ for endcap) to the strip's 2D measurement, with resolution $100$-$500$ $\mu$m.
+There are a total of 10 barrel layers ($0.2 < r < 1$ m) and 24 endcap layers ($0.6 < |z| < 2.8$ m). 
+Figure~\ref{fig:cms:trackermat} shows that the thickness of the tracker is between 0.4 and 2 electron radiation lengths ($X_0$).
+
+\begin{figure}[]
+    \begin{center} 
+        \includegraphics[width=0.5\textwidth]{figures/cms/tracker_material.png}
+        \caption{The thickness of the various tracker subsystems and other structures as a function of $\eta$.
+				 The $y$-axis is in units of electron radiation length $X_0$.
+                 Reprinted from Reference~\cite{cmstracker}.}
+        \label{fig:cms:trackermat}
+    \end{center}
+\end{figure}
+
 
 Pixels with a signal greater than a tuneable readout threshold (typically around $3000 Q_e$) are read out.
 These pixels are then aggregated with adjacent signals to form pixel clusters, which are further subjected to readout thresholds ($\sim 4000 Q_e$).
@@ -178,7 +191,8 @@ The vertex defined to be the hard scattering interaction (known as \emph{the} pr
     \sum_{j\in\text{track jets}} (\pt^j)^2 + (\ptmiss)^2
 \end{equation}
 where ``track jets`` refer to jets (Section~\ref{sec:cms:jets}) clustered from the vertex's tracks, and \ptmiss~is defined in Section~\ref{sec:cms:met}.
-If there are more than 2 charged particle tracks in an event, the efficiency of reocnstructing and identifying the correct primary vertex (PV) is greater than $0.995$.
+If there are more than 2 charged particle tracks in an event, the efficiency of reconstructing and identifying the correct primary vertex (PV) is greater than $0.995$.
+The efficiency does not depend strongly on the total number of reconstructed primary vertices $N_\mathrm{PV}$.
 
 \begin{figure}[]
     \begin{center} 
@@ -191,7 +205,7 @@ If there are more than 2 charged particle tracks in an event, the efficiency of 
 
 \subsubsection{Secondary vertexing}
 
-The last reconstruction algorithm concerning the tracker alone is the identification of secondary vertices, which arise from the decay of longer-lived particles.
+The last reconstruction algorithm concerning the tracker alone is the identification of secondary vertices (SVs), which arise from the decay of longer-lived particles.
 The longer-lived particles in the SM are $\tau$ leptons and hadrons containing $b$ and $c$ quarks.
 The inclusive vertex fitter (IVF)~\cite{csvv2} reconstructs such secondary vertices by the following steps:
 \begin{enumerate}
@@ -237,7 +251,7 @@ The physical placement of all three ECAL components is shown in Figure~\ref{fig:
     \end{center}
 \end{figure}
 
-Due to the bending of a charged particle's trajectory in the solenoidal $B$-field, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
+Due to the bending of a charged particle's trajectory in the solenoidal $B$-field and interactions with the tracker material, bremsstrahlung photons will be emitted at similar values of $\eta$, but spread along $\phi$.
 A \emph{supercluster} (SC) is defined by clustering nearby ECAL energy depositions, allowing for a wider spread in $\phi$ than in $\eta$ (Figure~\ref{fig:cms:sc}).
 The particle's EM energy is defined to be the weighted sum of the energies of all crystals in the SC, where the coefficients account for crystal-specific calibration effects~\cite{cmsecalreco}.
 For an electron or photon, the EM energy is typically the energy of the particle, whereas for other particles (charged hadrons and muons), it is only a fraction of the total energy.
@@ -285,7 +299,7 @@ The HF uses more radiation-hard materials than the rest of the HCAL because this
         \includegraphics[width=0.6\textwidth]{figures/cms/flux.pdf}
         \caption{Flux of various particle types as a function of $\eta$ in the detector.
              The symbol $h$ refers to any type of hadron.
-             Note that $h^0$ ($\gamma)$ is used to refer to any neutral or charged hadron (photon or electron) in the forward region, as the tracker and ECAL do not have coverage.}
+             Note that $h^0$ ($\gamma)$ is used to refer to any neutral or charged hadron (photon or electron) in the forward region, where the tracker and ECAL do not have coverage.}
         \label{fig:cms:flux}
     \end{center}
 \end{figure}
@@ -412,8 +426,8 @@ Events that are selected by the HLT are passed on to the Tier 0 computing farm f
 
 \subsection{Particle flow algorithm}
 
-Because of the excellent angular granularity of the CMS detector and the momentum resolution of the tracker, a particle flow~\cite{cmspf} algorithm is used to correlate information from all detector subsystems to build a global description of each event.
-Particle flow (PF) algorithms date back to ALEPH~\needcite, and are in contrast to detector-specific physics object-based algorithms used at other experiments~\needcite.
+The excellent angular granularity of the CMS detector and the momentum resolution of the tracker are leveraged by the \emph{particle flow}~\cite{cmspf} algorithm, which correlates information from all detector subsystems to build a global description of each event.
+Particle flow (PF) algorithms date back to ALEPH~\cite{alephpf}.
 
 The key feature of the PF algorithm is to \emph{link} multiple detector signals together into a single PF candidate.
 This linkage combines inner tracks, ECAL clusters, HCAL clusters, and muon tracks based on their proximity in the $(\eta,\phi)$ plane.
@@ -429,14 +443,14 @@ For example, tracks associated with muons will not be considered when reconstruc
 The first block of the PF algorithm links inner tracks and muon chamber hits to identify muons.
 While \emph{standalone} muons can rely solely on muon chamber hits, we also consider muons that use the inner tracker.
 To construct outside-in \emph{global muons}, standalone muon tracks are first reconstructed using a Kalman filter fit using muon chamber rechits~\cite{cmstdr1,cmsmuon}.
-These standalone tracks are extrapolated inwards to the inner tracker, accounting for effects from the magnetic field and the  material budget between the tracker and the muon chambers.
+These standalone tracks are extrapolated inwards to the inner tracker, accounting for effects from the magnetic field and the  material between the tracker and the muon chambers.
 A second Kalman filter fit is run to combine the inner track with the standalone track to form a global muon.
 To reject backgrounds, requirements are placed on the $\nicefrac{\chi^2}{N_\mathrm{dof}}$ (poorly fit tracks, charged hadrons) and $d_0,d_z$ (muons from hadron decays and cosmic rays).
 The total efficiency of global muon reconstruction is 99\%.
-In addition, \emph{tracker} muons can be reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
-The PF algorithm uses both global and tracker muons, but in this thesis, we will only use the former.
+\emph{Tracker} muons are reconstructed from the inside-out, extrapolating inner tracks to the muon chambers and re-fitting with muon rechits.
 Figure~\ref{fig:cms:muonpt} compares the momentum resolution of muons reconstructed using the different algorithms.  
 The PF selection consumes all three types of reconstructed muons: global, tracker, and standalone.
+In this thesis, we will only use global muons.
 
 \begin{figure}[]
 \begin{center}
@@ -448,7 +462,8 @@ The PF selection consumes all three types of reconstructed muons: global, tracke
 \end{center}
 \end{figure}
 
-We define two muon identification (ID) criteria that are slightly stronger than the PF selection. 
+The PF selection is intentionally non-restrictive, so as to minimize the rate of not identifying a real muon.
+To reduce the rate of mis-identified charged hadrons, we define two muon identification (ID) criteria that are slightly stronger than the PF selection. 
 The first is a loose ID, which is used to veto muons when defining muon-free data samples.
 A loose muon is required to be either a global or tracker muon and have PF isolation less than $0.25$.
 PF isolation is defined as:
@@ -487,7 +502,17 @@ To account for differences between data and simulation in the performance of the
     \SF = \frac{\epsilon_\mathrm{Data}}{\epsilon_\mathrm{MC}}
 \end{equation}
 where $\epsilon$ refers to the fraction of muons that are correctly identified by the ID criteria.
-While $\epsilon_\mathrm{MC}$ can be computed directly from MC truth information, $\epsilon_\mathrm{Data}$ must be computed from $Z\rightarrow \mu\mu$ events, using one muon as a reference tag, and the other to probe the efficiency of the ID being tested.
+While $\epsilon_\mathrm{MC}$ is computed directly from MC truth information, $\epsilon_\mathrm{Data}$ is extracted from data using the \emph{tag-and-probe} method~\cite{cmstnp}.
+The standard approach starts with $Z\rightarrow\mu\mu$ candidate events with exactly two PF muons.
+One muon (the \emph{tag}) is selected using some stringent ID criteria.
+Then, the events are categorized by whether the second PF muon candidate (the \emph{probe})  in the event also passes the ID criteria with efficiency.
+The number of $Z\rightarrow\mu\mu$ events in each category is measured by fitting the $m_{\mu\mu}$ distribution, which strongly distinguishes between the falling charged hadron background and the $Z$ peak.
+The desired ID efficiency is then:
+\begin{equation}
+	\epsilon_\mathrm{Data} = \frac{N_\mathrm{pass}^{Z}}{N_\mathrm{pass}^Z + N_\mathrm{fail}^Z}
+\end{equation}
+Note that the efficiency of the tag criteria does not affect $\epsilon_\mathrm{Data}$ as the two muons are statistically independent.
+The tag definition is chosen to balance the statistical power and the purity of the sample.
 
 \subsection{Electrons and photons}
 
@@ -555,10 +580,10 @@ In the case of the photon ID, the electron SC is used as a proxy for the photon.
 \label{sec:cms:jets}
 
 The remaining final states considered by the PF algorithm are hadrons.
-These are primarily found in jets, along with nonisolated photons (from $\pi^0$ decays) and muons (from heavy hadron decays).
-If a calorimeter cluster is within the tracker acceptance (and not already consumed by an earlier PF block), and it is not linked to a track, then it is assumed to have arisen from a photon or neutral hadron.
+These are primarily found in jets, along with nonisolated photons from $\pi^0$ decays and muons from heavy hadron decays.
+If a calorimeter cluster is within the tracker acceptance and not already consumed by an earlier PF block, and it is not linked to a track, then it is assumed to have arisen from a photon or neutral hadron.
 If the cluster is in the ECAL, then the constructed PF candidate is a photon; if in the HCAL, it is a neutral hadron.
-Unlike for charged hadrons (described next), proximal ECAL and HCAL clusters are not linked together.
+Proximal ECAL and HCAL clusters are not linked together when constructing neutral hadrons.
 This is because neutral hadrons are expected to leave very little energy in the ECAL, and the tracking efficiency for charged hadrons is over 90\%.
 To find charged hadrons, HCAL clusters, ECAL clusters, and tracks are linked together.
 The calorimeter energy of the clusters is estimated using a calibrated sum of the HCAL and ECAL deposits.
@@ -572,13 +597,13 @@ Linked HCAL and ECAL clusters are assumed to arise from a shower containing neut
 Jets arise from the hadronization and fragmentation of colored particles, as described in Section~\ref{sec:theory}.
 The precise definition of a jet is dependent on the algorithm used to cluster particles, and so we will use \emph{jet} to refer to the final states of hadronization/fragmentation and to the output of a jet finding algorithm.
 LHC experiments typically use \emph{sequential recombination} algorithms~\cite{antikt,kt,ca}.
-Given a set of particles (in CMS, PF candidates) in the event $E$, we compute two metrics:
+Given a set of PF candidates in the event $E$, we compute two metrics:
 \begin{align}
     d_{iB} &= \pti^2 \nonumber \\ 
     d_{ij} &= \min\{\pti^{2q}, \ptj^{2q}\} \frac{\Delta R(p_i^\mu, p_j^\mu)^2}{R}
     \label{eq:cms:dij}
 \end{align}
-where $i,j$ are two elements of $E$; $B$ represents the beam; and $p,~R$ are tunable parameters.
+where $i,j \in E$; $B$ represents the beam; and $p$ and $R$ are tunable parameters.
 Let $\tilde E = E \cup \{B\}$ and find $i,j\in \tilde E$ that minimize $d_{ij}$.
 If $j=B$, then we remove particle $i$ from $\tilde E$ and add it to the set of candidate jets.
 Otherwise, we combine $i$ and $j$ into a new particle $k$ by defining $p_k^\mu = p_i^\mu + p_j^\mu$.
@@ -593,7 +618,7 @@ In particular, FastJet reduces the $\mathcal{O}(N^2)$ computation of Equation~\r
 
 \subsubsection{Jet calibration}
 
-While individual PF candidates recieve some level of energy calibration from the detector subsystems, it is still necessary to calibrate each jet as a whole~\cite{jec}.
+While individual PF candidates are individually calibrated using detector subsystem-specific corrections, it is still necessary to calibrate each jet as a whole~\cite{jec}.
 There are 3 steps in the additional calibration:
 \begin{enumerate}
 \item A pileup correction (L1) is derived from MC truth information and randomly-triggered data events.
@@ -627,9 +652,10 @@ The \pt~dependence of the corrections and the associated uncertainties are shown
 
 It is frequently useful to identify the type of parton that induces a jet.
 In the context of the results presented in this thesis, identifying $b$ quarks ($b$-tagging) is important, but identifying other initial states is also possible ($c$ quarks, gluons vs quarks). 
-The hadronization of a $b$ quark involves the production of a $B$ meson, which has a lifetime of $\sim 1.5$ ps. 
-This translates into a lab frame displacement of several millimeters, which is well within the vertexing resolution of the pixel detector.
-Therefore, the signature of a $b$ jet is the identification of a \emph{secondary vertex} (SV) displaced from the PV, with properties consistent with a heavy hadron (Figure~\ref{fig:cms:bjet}).
+The hadronization of a $b$ quark involves the production of a $b$ hadron, which have lifetime of $\tau\sim 1.5$ ps. 
+The lab frame displacement is $\gamma\beta c\tau = \nicefrac{pc\tau}{m}$.
+A $B$ meson with $\pt=50$ GeV will have a mean transverse displacement of $4.3$ mm, which is well within the vertexing resolution of the pixel detector.
+Therefore, the signature of a $b$ jet is the identification of an SV displaced from the PV, with properties consistent with a heavy hadron (Figure~\ref{fig:cms:bjet}).
 
 \begin{figure}[]
 \begin{center}
@@ -646,8 +672,8 @@ Nineteen characteristics of the jet (e.g. mass of tracks associated with the SV,
 For the analyses described in this thesis, a jet is considered $b$-tagged if it satisfies CSVv2 $>0.54$. 
 Discrepancies between data and MC in the efficiency of the $b$ jet ID are corrected for using SFs, derived separately for $b$ and non-$b$ jets.
 Two $b$-enriched samples are used for the former task.
-The first is a relatively pure, but statistically limited, sample of $t\bar{t}$ events, in which the $b$s from the $t$ decays are used.
-The second is a much more statistically powerful sample of $g\rightarrow b\bar{b}$ events, which is selected by triggering on and identifying a non-isolated muon from the decay of one of the $B$ mesons. 
+The first is a relatively pure, but statistically limited, sample of $t\bar{t}$ events, in which the $b$ quarks from the $t$ quark decays are used.
+The second is a much more statistically powerful sample of $g\rightarrow b\bar{b}$ events, which is selected by triggering on and identifying a non-isolated muon from the decay of one of the $b$ hadrons. 
 Figure~\ref{fig:cms:csvv2} compares the CSVv2 response in data and simulation, as well as the SFs used to correct this distribution.
 
 \begin{figure}[]
@@ -667,14 +693,13 @@ Figure~\ref{fig:cms:csvv2} compares the CSVv2 response in data and simulation, a
 A hadronic tau ($\tau_h$) is defined as a tau lepton which decays to one $\nu_\tau$ and one or more hadrons.
 A dedicated algorithm~\cite{cmspf,tauid} is used to extract $\tau_h$ candidates from the AK4 jet collection.
 Only jets within the tracker acceptance and with $\pt>13$ GeV are used.
-Combinations of particles within the jet are considered for compatibility with one of the relevant decay modes: a tau neutrino plus $h^-$, $h^-\pi^0$, $h^-\pi^0\pi^0$, or $h^-h^+h^-$.
-Here, $h^\pm$ refers generically to some charged hadron.
+Combinations of particles within the jet are considered for compatibility with decay modes consisting of a tau neutrino, 0-2 neutral pions, and 1 or 3 charged hadrons.
 While other hadronic final states exist, they have a fairly small branching ratio and are not considered.
-The $\pi^0$ will present in the jet as two photons; in some cases, the photon may convert into an $e^-e^+$ pair. 
+The $\pi^0$ will present in the jet as two photons; in some cases, a photon may convert into an $e^-e^+$ pair. 
 In the case of multi-hadron final states, compatibility with intermediate resonance masses is checked.
 The highest \pt~$\tau_h$ candidate in the jet is selected as a PF $\tau_h$.
-To reduce the large combinatorial background from quark/gluon jets, stringent requirements are made of the PF isolation.
-A true $\tau_h$ should be fairly well-isolated, whereas a combinatorial fake will sit in the middle of a parton shower. 
+To reduce the large combinatorial background from quark and gluon jets, stringent requirements are made on the PF isolation.
+A true $\tau_h$ should be fairly well-isolated, whereas a combinatorial fake will be surrounded by a parton shower. 
 
 \subsection{Missing momentum}
 \label{sec:cms:met}
@@ -683,10 +708,10 @@ The PF missing momentum (\ptmiss) is defined as the magnitude of the missing mom
 \begin{equation}
     \vec{p}_\mathrm{T}^\mathrm{~miss} = -\sum_{i\in\,\text{PF cands.}} \left(\begin{matrix} p_x^{(i)} \\ p_y^{(i)} \end{matrix}\right)
 \end{equation}
-In a well-balanced event (without reconstruction error, neutrinos, or other non-interacting particles), the vectorial sum will cancel out perfectly, resulting in $\ptmiss\sim 0$. 
-For the DM searches described in this thesis, we will be interested in $\ptmiss \gg 0$.
+As the initial state has no net transverse momentum, conservation of momentum requires the same to be true of the final state.
+In a perfectly reconstructed event, non-zero \ptmiss~implies the presence of non-interacting particles such as neutrinos or DM candidates.
 
-Large anomalous \ptmiss~can be reconstructed if detector noise or algorithm failures induce large, localized energy deposits in the event description~\cite{cmsmet}.
+Fake energy reconstruction or failure to properly reconstruct energy deposits can lead to large, fake~\ptmiss.
 Such events are removed through a series of filters:
 \begin{itemize}
     \item HCAL and ECAL filters, identifying events with calorimeter clusters caused by noise. 
@@ -757,8 +782,10 @@ In the context of the results described in this analysis, it is found that CHS p
 
 The CMS offline software suite (CMSSW~\cite{cmssw}) uses Geant4 \cite{geant1,geant2} to simulate the detector response to particles produced in collisions. 
 As described in Section~\ref{sec:theory}, particle-level MC simulates the hard scattering and  parton shower.
-Multiple simulated proton-proton collisions are overlaid into a single event to mimic the effect of in-time pileup. 
+Multiple simulated proton-proton collisions are overlaid into a single event to mimic the effect of pileup. 
 The generate particles are then interfaced to Geant4, which simulates the passage of a particle through the magnetic field, the energy deposited as the particle interacts with the detector material, and the evolution of any additional particles produced (e.g. EM showers).
 The readout electronics' response to the detector signature is then simulated.
-These signals are finally fed into the same software used to reconstruct real collision data, minimizing the differences between simulation and data. 
+The software used to reconstruct the simulated electronic response is identical to that used for real data.
+This minimizes any reconstruction differences between MC and data.
+Additional truth information from the generators is retained for use in data analysis tasks.
 
