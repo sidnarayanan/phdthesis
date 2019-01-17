@@ -46,8 +46,8 @@ These jets are typically:
     \item Have large $E$ and moderate $\pt$
     \item Close together in $\phi$
 \end{itemize}
-The 
 A candidate VBF $\hinv$ event displaying these properties is shown in a CMS event display in Figure~\ref{fig:vbf:ed}.
+The distributions of kinematics corresponding to these characteristics are shown in Figure~\ref{fig:vbf:sigkins}, compared between the VBF and gluon fusion production modes.
 
 \begin{figure}[]
     \begin{center}
@@ -57,6 +57,21 @@ A candidate VBF $\hinv$ event displaying these properties is shown in a CMS even
                  Green lines are tracks reconstructed from hits of charged particles in the tracker. 
                  The blue arrow represents the direction and magnitude of the $\ptmiss$.}
         \label{fig:vbf:ed}
+    \end{center}
+\end{figure}
+
+\begin{figure}[]
+    \begin{center}
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jot12DEta.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jotEta_0_.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jotEta_1_.pdf} \\
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jot12DPhi.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jotE_0_.pdf}
+        \includegraphics[width=0.32\textwidth]{figures/vbf/shapes_signal/loosesignal_jotE_1_.pdf} 
+        \caption{Jet distributions, as compared between VBF and gluon fusion production modes.
+                 A loose threshold is placed on the Higgs \pt~  by requiring $\ptmiss>150$ GeV.
+                 Gluon fusion jets are typically from ISR or from the fermion loop; thus they do not exhibit the characteristic signatures of VBF jets.}
+        \label{fig:vbf:sigkins}
     \end{center}
 \end{figure}
 
@@ -161,7 +176,7 @@ Some conclusions can be drawn from the kinematic distributions (Figure~\ref{fig:
     \item The jet $\pt$ and $\ptmiss$ distributions in the signal are comparable to or softer than the background processes. 
           This is in contrast to other DM searches, in which the signal $\ptmiss$ distribution is much harder than SM predictions.
     \item VBF $\hinv$ produces fewer jets than SM processes.
-    \item VBF $\hinv$ produces relatively forward jets. QCD $V$+jets produces mostly central jets. VBF $V$+jets produces jets that are somewhere between these distributions. 
+    \item VBF $\hinv$ produces relatively forward jets. QCD $V$+jets produces mostly central jets. EW $V$+jets produces jets in an intermediate range. 
 \end{enumerate}
 
 \begin{figure}[]
@@ -315,7 +330,10 @@ Kinematic distributions from the two dilepton CRs are shown in Figure~\ref{fig:v
         \begin{subfigure}[t]{0.24\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/prefit/dimuon_pfUZmag_logy.pdf}
         \end{subfigure}
-        \caption{Dijet and recoil distributions in the dielectron (top) and dimuon (bottom) CRs.}
+        \caption{Dijet and recoil distributions in the dielectron (top) and dimuon (bottom) CRs.
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+        }
         \label{fig:vbf:zcr}
     \end{center}
 \end{figure}
@@ -364,7 +382,10 @@ To validate that the transfer factors are reasonably well-simulated (within the 
         \begin{subfigure}[t]{0.24\textwidth}
             \includegraphics[width=\textwidth]{figures/vbf/prefit/singlemuon_pfUWmag_logy.pdf}
         \end{subfigure}
-        \caption{Dijet and recoil distributions in the single-electron (top) and single-muon (bottom) CRs.}
+        \caption{Dijet and recoil distributions in the single-electron (top) and single-muon (bottom) CRs.
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+        }
         \label{fig:vbf:wcr}
     \end{center}
 \end{figure}
@@ -439,11 +460,11 @@ The upper limits are shown in Figure~\ref{fig:vbf:mhscan}, and the observed (exp
 
 As described in the beginning of this chapter, each Higgs production mode corresponds to a potential invisible Higgs search channel.
 While VBF is the most sensitive, the total sensitivity can be improved by statistically combining all channels.
-Other results from CMS cover searches for associated production of a Higgs boson, either with a leptonically-decaying $Z$ boson (\needcite) or a hadronically-decaying weak boson \cite{monojet}; and for gluon fusion production, with at least one jet originating from the initial state or heavy quark loop \cite{monojet}. 
+Other results from CMS cover searches for associated production of a Higgs boson, either with a leptonically-decaying $Z$ boson \cite{zhinv} or a hadronically-decaying weak boson \cite{monojet}; and for gluon fusion production, with at least one jet originating from the initial state or heavy quark loop \cite{monojet}. 
 The details of these searches are left to the referenced literature, but a summary of their results is provided in Figure~\ref{fig:vbf:comb}.
 When statistically combining the results, most experimental nuisances are treated as correlated between the searches, with the exception of the VBF jet energy scale dependence.
 This is because the VBF category selects forward jets, whereas other searches generally probe central jets.
-Theoretical nuisances (e.g. those affecting $W/Z$ or $ZZ/WZ$ ratios) are left uncorrelated between all searches.
+Theoretical nuisances, such as those affecting $W/Z$ or $ZZ/WZ$ ratios, are left uncorrelated between all searches.
 The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95\% CL, which approximately corresponds to a 1 standard deviation fluctuation upward relative to the median expected limit of $0.20$.
 
 \begin{figure}[]
@@ -456,7 +477,7 @@ The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95
 \end{figure}
 
 Higgs-mediated DM can also be probed by direct detection (DD) experiments.
-We interpret the combined 90\% CL upper limit (for consistency with DD conventions) on $\mathcal{B}(\hinv)$ as an upper limit on the spin-independent cross section of DM-nucleon scattering. 
+We interpret the combined 90\% CL upper limit on $\mathcal{B}(\hinv)$ as an upper limit on the spin-independent cross section of DM-nucleon scattering. 
 First, we convert the branching ratio into a partial width:
 \begin{equation}
     \Gamma_{\hinv} = \frac{\mathcal{B}(\hinv) \cdot \Gamma_\mathrm{SM}}{1 - \mathcal{B}(\hinv)}, \text{ where }\Gamma_\mathrm{SM} = 4~\mathrm{GeV}
