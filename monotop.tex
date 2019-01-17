@@ -175,6 +175,7 @@ This flexibility will be exploited in Section~\ref{sec:mt:bkg}.
 Missing momentum with and without muons are treated on equal footing by defining the \emph{hadronic recoil} $U$:
 \begin{equation}
     \vec{U} = \vptmiss + \sum_{\ell\in\text{ lep.}} \vec{p}_\mathrm{T}^\ell + \sum_{\gamma\in\text{ photons}} \vec{p}_\mathrm{T}^\gamma
+    \label{eq:mt:u}
 \end{equation}
 where \emph{lep} refers to all identified electrons and muons.
 In an event without electrons, muons and photons, $U = \ptmiss$.
@@ -255,9 +256,16 @@ Figure~\ref{fig:mt:prefit_signal} shows the $\ptmiss$ distributions, as predicte
 
 Searching for DM amounts to looking for an excess of data events over the SM prediction at large values of $\ptmiss$.
 Therefore, the $\ptmiss$ distribution of the three primary SM backgrounds described in Section~\ref{sec:mt:sel} must be predicted with small uncertainty.
-The MC simulation provides a reasonable description of the data, but the theoretical uncertainties inherent in the MC (primarily due to higher-order QCD effects) can range up to $20\%$.
-To reduce the prediction uncertainty further, a \emph{data-driven} approach is used to estimate the SM processes in the SR.
-In this context, \emph{data-driven} refers to the use of control data (i.e. data that cannot contain signal) to directly estimate or supplement the estimation of SM processes in the SR.
+The MC simulation provides a reasonable description of the data, but the theoretical uncertainties inherent in the MC, primarily due to higher-order QCD effects, can range up to $20\%$.
+To reduce the prediction uncertainty, data samples that cannot contain a DM signal (\emph{control} data) is used to directly estimate or supplement the estimation of SM processes in the SR.
+This approach is known as \emph{data-driven} estimation.
+
+The basic strategy is as follows: each invisible background will be constrained by one or more visible processes for which we can measure the $U$ spectrum.
+The visible processes are chosen such that they are sufficiently similar to the targeted background, minimizing the uncertainties in the extrapolation.
+The $\ttbar$ background is estimated using $\ttbar$ events in which the charged lepton is properly reconstructed.
+The $Z$ and $W$ backgrounds are simultaneously constrained using a combination of $Z\rightarrow\ell\ell$, $W\rightarrow\ell\nu$, and $\gamma$ events.
+Extrapolations which link very similar processes, such as $Z\rightarrow\mu\mu$ and $Z\rightarrow\nu\nu$, can be made with relatively small experimental uncertainties.
+The linkage of dissimilar processes, such as $\gamma$ and $Z\rightarrow\nu\nu$, additionally brings relatively large theoretical uncertainties, which must be carefully estimated.
 
 \subsection{Visible final states to constrain invisible final states}
 
@@ -268,13 +276,9 @@ Therefore, it is natural to estimate $\ptmiss(Z\rightarrow\nu\nu)$ by measuring 
 
 However, there is one important distinction between $\nu\nu$ and $\mu\mu$ events.
 In the latter, $\pt^Z$ can be directly measured, whereas in the former it must be inferred through a momentum imbalance.
-Effects like jet energy scale and acceptance can impact $\ptmiss$, but not $\pt^{\mu\mu}$.
-Therefore, instead of directly measuring $\pt^{\mu\mu}$ in $\mu\mu$ events, we define and use the hadronic recoil $U$:
-\begin{equation}
-    \vec{U} = \vptmiss + \sum_{\mu} \vpt{~\mu} + \sum_{e} \vpt{~e} + \sum_\gamma \vpt{~\gamma}
-    \label{eq:u}
-\end{equation}
-In the SR (where there are no $e,\mu,\gamma$), $U = \ptmiss$.
+Effects like jet energy scale impact $\ptmiss$, but not $\pt^{\mu\mu}$.
+Therefore, instead of directly measuring $\pt^{\mu\mu}$ in $\mu\mu$ events, we use the hadronic recoil $U$.
+In SR events, in which there are no $e,\mu,\gamma$, $U = \ptmiss$.
 In $Z\rightarrow\mu\mu$ events, $U$ mimics the momentum imbalance, if we had pretended the identified muons did not exist when computing $\ptmiss$.
 Therefore, $U$ is an exact analogy for $\ptmiss$ in the SR.
 Figure~\ref{fig:mt:zvsz} makes the same argument in a schematic fashion.
@@ -299,14 +303,14 @@ Table~\ref{tab:mt:zmm_cuts} describes the criteria used to define events in the 
 Figure~\ref{fig:mt:prefit_dimuon} shows the distribution of $U$ in these CRs, as well as the $m_{\mu\mu}$ and $\pt^\mu$ distributions.
 
 \begin{table}[]
-    \caption{Criteria used to select events for the mono-top $Z\rightarrow\mu\mu$ CR. As with the SR, the region is further split based on the jet BDT score.}
+    \caption{Criteria used to select events for the mono-top $Z\rightarrow\mu\mu$ CR. As in the SR, the region is further subdivided based on the jet BDT score.}
     \label{tab:mt:zmm_cuts}
     \centering
     \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
         Criterion & Notes \\
         \hline
         \hline
-        $U>250$ GeV & Mimicking the selection in the SR; also constrained by trigger thresholds. \\
+        $U>250$ GeV & Same as the SR selection, so as to select $Z$s in the same phase space. \\
         1 CA15 jet with $\pt>250$ GeV &  Same as SR \\
         CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\
         \hline
@@ -339,7 +343,9 @@ Figure~\ref{fig:mt:prefit_dimuon} shows the distribution of $U$ in these CRs, as
             \caption{Leading muon $\pt$}
         \end{subfigure}
         \caption{Various kinematic distributions in the two mono-top $\mu\mu$ CRs.
-                Note the clearly discernible peak in the $m_{\mu\mu}$ distribution near $m_Z$}
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+                 }
         \label{fig:mt:prefit_dimuon}
     \end{center}
 \end{figure}
@@ -356,9 +362,9 @@ That is:
     \Ti{X}{Y} \rightarrow \Ti{X}{Y}(\bm\theta) \equiv \Ti{X}{Y} \times \prod_{j=0}^{n_\theta} (1+\theta_j) \\
     \theta_j \sim p_j(\theta_j)
 \end{gather}
-where $n_\theta$ is the number of nuisance parameters and $p_j(\theta_j)$ is some prior distribution for each nuisance (see below for how the priors are used).
-The priors are typically chosen to have a central value (e.g. mean, median) at $0$, with a finite variance that encodes the uncertainty.
-In this chapter, we assume $p_j$ is either a normal distribution centered at 0 or a log-normal distribution (in cases where negative values are undesirable).
+where $n_\theta$ is the number of nuisance parameters and $p_j(\theta_j)$ is some prior distribution for each nuisance.
+The priors are typically chosen to have a central value at $0$, with a finite variance that encodes the uncertainty.
+In this chapter, we assume $p_j$ is either a normal distribution centered at 0 or a log-normal distribution, in cases where negative values are undesirable.
 We will use the terms \emph{uncertainty} and \emph{nuisance parameter} interchangeably.
 
 Let $\pois(d|\lambda)$ refer to the Poisson probability of observing $d$ with an expected mean of $\lambda$.
@@ -371,16 +377,21 @@ In terms of these transfer factors, the likelihood for the data observed in the 
 \end{align}
 where the following notation is used:
 \begin{itemize}
-    \item[$d^X_i$]: The data observed in bin $i$ of region $X$. For now, $X=\mathrm{SR},\mu\mu$.
-    \item[$S^\mathrm{SR}_i$]: The predicted number of signal events in bin $i$ of the SR, under some fixed signal hypothesis.
-    \item[$\mu$]: The \emph{signal strength}. Essentially an unconstrained nuisance parameter that scales up or down the total signal yield.
-    \item[$\mu_{\mathrm{SR},i}^P$]: The expected number of events from process $P$ in bin $i$ of the SR. This is also an unconstrained nuisance parameter.
-    \item[$B^X_i$]: The predicted number of \emph{minor} background events in bin $i$ of region $X$. Here, \emph{minor} refers to all SM processes that are not the signal and are not estimated using a data-driven method.
+    \item $d^X_i$: The data observed in bin $i$ of region $X$. For now, $X=\mathrm{SR},\mu\mu$.
+    \item $S^\mathrm{SR}_i$: The predicted number of signal events in bin $i$ of the SR, under some fixed signal hypothesis.
+    \item $\mu$: The \emph{signal strength}. Essentially an unconstrained nuisance parameter that scales up or down the total signal yield.
+    \item $\mu_{\mathrm{SR},i}^P$: The expected number of events from process $P$ in bin $i$ of the SR. This is also an unconstrained nuisance parameter.
+    \item $B^X_i$: The predicted number of \emph{minor} background events in bin $i$ of region $X$. 
+          For now, minor refers to all SM processes that are not estimated using a data-driven method.
+          Although it has not yet been described, all major SM backgrounds have data-driven estimations.
+          The remainder are sufficiently small that a precise prediction is not critical.
 \end{itemize}
 The signal and background yields $\bm{S}$ and $\bm{B}$ are estimated using MC.
-Note that the inclusion of the priors in the likelihood constrains the nuisance parameters to be close to their \emph{nominal} values; moving a $\theta_j$ to fit the data incurs a large cost from the prior.
+The purpose of the priors is to encode our hypothesis for the distribution of the nuisance parameters.
+A maximum likelihood estimate will fix $\bm\theta$ to balance between maximizing the Poisson probabilities and maximizing $\prod_j p_j(\theta_j)$.
 
-If we set $B_i = \mu = 0$ (the null hypothesis, ignoring small minor backgrounds), a simple picture emerges of how the likelihood is maximized.
+Ignoring small minor backgrounds, the null hypothesis sets $B_i=\mu=0$.
+In this scenario, there is an intuitive picture of the likelihood maximization.
 The parameters $\muz$ float freely to satisfy $d_\mathrm{SR,i} \sim \muzi$ and $d_\mathrm{\mu\mu,i}\sim \muzi / \Ti{\mu\mu}{Z}(\bm\theta)$.
 If both constraints cannot be satisfied simultaneously by scaling $\muz$, the (constrained) nuisance parameters $\bm\theta$ modify the transfer factor $\T{\mu\mu}{Z}$.
 Table~\ref{tab:mt:zmm_uncs} shows the relevant uncertainties for $\T{\mu\mu}{Z}$, and Figure~\ref{fig:mt:zmm_uncs} shows the shape of uncertainties that evolve as a function of $U$.
@@ -424,9 +435,9 @@ The exact values of $\T{\mu\mu}{Z}(\bm\theta)$ have two salient features:
 \begin{enumerate}
     \item The values are strictly greater than one.
         This is due to (a) $\mathcal{B}(Z\rightarrow\nu\nu)>\mathcal{B}(Z\rightarrow\mu\mu)$ and (b) a non-100\% efficiency in reconstructing and identifying muons.
-        This implies that the constraining power of the $\mu\mu$ CR is less than that of the SR, especially at high $U$ (i.e. the Poisson uncertainties are larger).
+        This implies that the statistical uncertainties of the $\mu\mu$ CR are greater than of the process being estimated, especially at high $U$.
     \item The one standard deviation variation of all uncertainties that impact $\Ti{\mu\mu}{Z}$ are contained within a 10\% envelope.
-        This is already a factor of two smaller than the inherent $\sim20\%$ uncertainties in the MC simulation.
+        This is already a factor of two smaller than the $\sim20\%$ theoretical uncertainties in the MC simulation.
 \end{enumerate}
 
 \begin{figure}[]
@@ -463,7 +474,10 @@ A further set of statistical constraints to improve the estimate at high $U$ (wh
             \includegraphics[width=\textwidth]{figures/monotop/prefit/dielectron_loose_diLepMass_logy.pdf}
             \caption{$m_{ee}$}
         \end{subfigure}
-        \caption{Various kinematic distributions in the two mono-top $ee$ CRs. }
+        \caption{Various kinematic distributions in the two mono-top $ee$ CRs. 
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+        }
         \label{fig:mt:prefit_dielectron}
     \end{center}
 \end{figure}
@@ -499,7 +513,7 @@ Following the same arguments as used for the $Z\rightarrow\ell\ell$ CRs, we can 
             \caption{$t\bar{t}\rightarrow bqq'+b\ell\nu$}
         \end{subfigure}
         \caption{Schematic representation of the $W$ and $t\bar{t}$ SM processes.
-                 In both cases, $U\approx \pt^W$.
+                 In both cases, the measured $U$ is an approximation of $\pt^W$.
                  Furthermore, if the charged lepton is lost, $U = \ptmiss \approx \pt^W$.}
         \label{fig:mt:wtt}
     \end{center}
@@ -511,14 +525,14 @@ The selection for the $\mu$ CRs (to measure $W$) is shown in Table~\ref{tab:mt:w
 Figures~\ref{fig:mt:prefit_tmn}-\ref{fig:mt:prefit_wmn} show various kinematic distributions in these regions.
 
 \begin{table}[]
-    \caption{Criteria used to select events for the mono-top $b\mu$ CR. As with the SR, the region is further split based on the jet BDT score.}
+    \caption{Criteria used to select events for the mono-top $b\mu$ CR. As with the SR, the region is further subdivided based on the jet BDT score.}
     \label{tab:mt:tmn_cuts}
     \centering
     \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
         Criterion & Notes \\
         \hline
         \hline
-        $U>250$ GeV & Mimicking the selection in the SR; also constrained by trigger thresholds. \\
+        $U>250$ GeV & Same as the SR selection, so as to select $t$ quarks in the same phase space. \\
         1 CA15 jet with $\pt>250$ GeV &  Same as SR \\
         CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\
         At least one $b$-tagged sub-jet & Identifying $B$ hadron produced from hadronic top decay. \\
@@ -535,14 +549,14 @@ Figures~\ref{fig:mt:prefit_tmn}-\ref{fig:mt:prefit_wmn} show various kinematic d
 \end{table}
 
 \begin{table}[]
-    \caption{Criteria used to select events for the mono-top $\mu$ CR. As with the SR, the region is further split based on the jet BDT score.}
+    \caption{Criteria used to select events for the mono-top $\mu$ CR. As with the SR, the region is further subdivided based on the jet BDT score.}
     \label{tab:mt:wmn_cuts}
     \centering
     \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
         Criterion & Notes \\
         \hline
         \hline
-        $U>250$ GeV & Mimicking the selection in the SR; also constrained by trigger thresholds. \\
+        $U>250$ GeV & Same as the SR selection, so as to select $W$s in the same phase space. \\
         1 CA15 jet with $\pt>250$ GeV &  Same as SR \\
         CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\
         No $b$-tagged sub-jets & Suppressing semi-leptonic $t\bar{t}$ decays \\
@@ -572,7 +586,10 @@ Figures~\ref{fig:mt:prefit_tmn}-\ref{fig:mt:prefit_wmn} show various kinematic d
             \includegraphics[width=\textwidth]{figures/monotop/prefit/singlemuontop_tight_fj1MSD.pdf}
             \caption{$m_\mathrm{SD}$}
         \end{subfigure}
-        \caption{Various kinematic distributions in the two mono-top $b\mu$ CRs. }
+        \caption{Various kinematic distributions in the two mono-top $b\mu$ CRs. 
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 Although a flat offset is observed in all spectra, it is also observed in the corresponding electron final state (Figure~\ref{fig:mt:prefit_en}).
+                 Such an effect cancels in the transfer factor and is corrected for by the fit (Figure~\ref{fig:mt:postfit_wtop}).}
         \label{fig:mt:prefit_tmn}
     \end{center}
 \end{figure}
@@ -593,7 +610,10 @@ Figures~\ref{fig:mt:prefit_tmn}-\ref{fig:mt:prefit_wmn} show various kinematic d
             \caption{$m_\mathrm{SD}$}
             \label{fig:mt:prefit_wmn:tight2}
         \end{subfigure}
-        \caption{Various kinematic distributions in the two mono-top $\mu$ CRs. }
+        \caption{Various kinematic distributions in the two mono-top $\mu$ CRs. 
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+        }
         \label{fig:mt:prefit_wmn}
     \end{center}
 \end{figure}
@@ -690,7 +710,10 @@ Figures~\ref{fig:mt:prefit_en}~and~\ref{fig:mt:en_xfer} respectively show some k
             \includegraphics[width=\textwidth]{figures/monotop/prefit/singleelectronw_tight_fj1MSD.pdf}
             \caption{$m_\mathrm{SD}$ in tight $e$ CR}
         \end{subfigure}
-        \caption{Various kinematic distributions in the mono-top $be$ CRs (top) and $e$ CRs (bottom).}
+        \caption{Various kinematic distributions in the mono-top $be$ CRs (top) and $e$ CRs (bottom).
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 Although a flat offset is observed in all $t\bar{t}$ spectra, it is also observed in the corresponding muon final state (Figure~\ref{fig:mt:prefit_tmn}).
+                 Such an effect cancels in the transfer factor and is corrected for by the fit (Figure~\ref{fig:mt:postfit_wtop}).}
         \label{fig:mt:prefit_en}
     \end{center}
 \end{figure}
@@ -742,29 +765,58 @@ Having defined (almost all of) the CRs and transfer factors, we can write down a
 Despite the combination of the $\mu\mu$ and $ee$ regions, there are still large statistical uncertainties in the estimate of $Z\rightarrow\nu\nu$ at high $U$.
 This is apparent in Figure~\ref{fig:mt:prefit_dielectron}, in which exactly one event is observed in the last bin of the tight CR.
 The dilepton CRs are limited by $\sigma(pp\rightarrow Z\rightarrow\nu\nu) > \sigma(pp\rightarrow Z\rightarrow\ell^+\ell^-)$; accordingly, to alleviate this limitation, we look to a process with a much bigger cross-section.
-In similar regions of final-state phase space, $\sigma(pp\rightarrow\gamma+\mathrm{jets}) \sim 30 \times \sigma(pp\rightarrow Z(\rightarrow\nu\nu)+\mathrm{jets})$.
-Therefore, it is natural to use the $\gamma$+jet production spectrum as a way to estimate the $Z$+jet spectrum.
+In similar regions of final-state phase space and detector acceptance, $\sigma(pp\rightarrow\gamma) \sim 30 \times \sigma(pp\rightarrow Z\rightarrow\nu\nu)$ and $\sigma(pp\rightarrow W\rightarrow\ell\nu) \sim 2\times\sigma(pp\rightarrow Z\rightarrow\nu\nu)$.
+Therefore, it is natural to use the $W$+jet and $\gamma$+jet production spectra to further estimate the $Z$+jet spectrum.
+For concreteness, we will begin with the latter, more powerful, case.
+First, we select $\gamma$+jet events using the selection in Table~\ref{tab:mt:pho_cuts}.
+
+\begin{table}[]
+    \caption{Criteria used to select events for the mono-top $\gamma$ CR. As in the SR, the region is further subdivided based on the jet BDT score.}
+    \label{tab:mt:pho_cuts}
+    \centering
+    \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
+        Criterion & Notes \\
+        \hline
+        \hline
+        $U>250$ GeV & Same as the SR selection, so as to select $\gamma$s in the same phase space as the targeted $Z$s. \\
+        1 CA15 jet with $\pt>250$ GeV &  Same as SR \\
+        CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\
+        \hline
+        No identified $e,\mu,\tau_\mathrm{h}$ & Same as SR. \\
+        Well-identified $\gamma$ with $\pt>175$ GeV & Same as SR, minimimum \pt~set by trigger threshold. \\
+        \hline
+        $\min_\mathrm{jets}\Delta\phi(\mathrm{jet},U) > 0.5$ & Same as SR \\
+        \hline
+        CA15 jet BDT & Same as SR\\
+    \end{tabular}
+\end{table}
+
+
 As before, let us define another transfer factor:
 \begin{equation}
     \Ti{\gamma}{\gamma} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\gamma(\gamma)}
 \end{equation}
-However, unlike the $\T{X}{Y}$ we have discussed so far (which correlate similar processes, e.g. $Z\rightarrow\nu\nu/Z\rightarrow\mu\mu$), $\T{\gamma}{\gamma}$ is highly sensitive to the theoretical predictions of the $Z$ and $\gamma$ spectra.
+where $N_i^\gamma(\gamma)$ is the number of $\gamma$+jet events in bin $i$ of the photon CR.
+The other $\T{X}{Y}$ we have discussed so far correlate similar processes, such as $Z\rightarrow\nu\nu$ and $Z\rightarrow\mu\mu$, and theoretical uncertainties in the predictions of the numerator and denominator cancel in the transfer factor..
+In contrast, $\T{\gamma}{\gamma}$ is sensitive to the theoretical predictions of the hadronic recoil spectra in $Z$ and $\gamma$ events.
+
+\subsubsection{LO-to-NLO corrections}
 
 To reduce the impact of higher-order effects on $\T\gamma\gamma$, we ensure that the numerator and denominator are predicted to as high an order as possible.
 Leading-order MC is used to simulate $V$+jet processes, because higher-order simulations are much more computationally intensive.
-We therefore choose to produce a less accurate LO simulation, as opposed to a more accurate, but statistically-limited, NLO simulation.
-While producing sufficient NLO simulation for the analysis is prohibitive, we can compute certain inclusive distributions at NLO.
+We therefore choose to produce a less accurate LO simulation, as opposed to a more accurate, but statistically-limited, NLO QCD simulation.
+However, certain inclusive distributions can be computed at NLO.
 Since $U\approx \pt^V$ is the quantity of interest in this analysis, we want to ensure this distribution is accurately predicted.
-It is clear from Figure~\ref{fig:mt:zlonlo} that adding an additional QCD order induces large corrections, both at low and high $\pt^V$.
+It is clear from Figure~\ref{fig:mt:zlonlo} that adding an additional QCD order induces corrections up to $50\%$ across the $\pt^V$ spectrum.
 In the LO simulation, we can obtain an estimate of the uncertainty due to NLO effects by varying the renormalization and factorization scales ($\mu_R,\mu_F$) by factors of two.
-This is represented by the red envelope and grey band in Figure~\ref{fig:mt:zlonlo} and clearly is insufficient to cover NLO effects.
+This is represented by the red envelope and grey band in Figure~\ref{fig:mt:zlonlo} and is insufficient to cover all NLO effects.
 Therefore, we compute a simple correction for the NLO QCD effects, known as a $k$-factor:
 \begin{equation}
     k_{Z,\mathrm{QCD}}(\pt^Z) = \frac{d\sigma_\text{NLO QCD}(Z) / d\pt^Z}{d\sigma_\mathrm{LO}(Z) / d\pt^Z}
 \end{equation}
-We include another$k$-factor, $k_\mathrm{EW}$, to correct for higher-order EW effects.
+We include another $k$-factor, $k_\mathrm{EW}$, to correct for higher-order EW effects.
 Unlike $k_\mathrm{QCD}$, $k_\mathrm{EW}$ is derived using a theoretical calculation~\cite{ewk2,ewk3,ewk1} instead of NLO simulation.
-$k_\mathrm{EW}$ covers NLO EW terms, as well as large Sudakov logarithms that appear at high $\pt^V$ in the NNLO expansion (NLL).
+The factor $k_\mathrm{EW}$ covers NLO EW terms, as well as large Sudakov logarithms that appear at high $\pt^V$ in the NNLO expansion (NLL).
 
 \begin{figure}[]
     \begin{center}
@@ -786,7 +838,7 @@ $k_\mathrm{EW}$ covers NLO EW terms, as well as large Sudakov logarithms that ap
 
 Figure~\ref{fig:mt:vlonlo} compares the $k$-factors for all three $V$+jet processes.
 While there are similar trends as a function of $\pt^V$, it is clear that the corrections are quite different for each process.
-Therefore, transfer factors like $\T\gamma\gamma$ are strongly sensitive to NLO effects, i.e.:
+Therefore, transfer factors like $\T\gamma\gamma$ are sensitive to NLO effects, i.e.:
 \begin{equation}
     \Ti{\gamma}{\gamma} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\gamma(\gamma)} \neq \frac{N^\mathrm{SR,LO}_i(Z\rightarrow\nu\nu)}{N_i^{\gamma,\mathrm{LO}}(\gamma)}
 \end{equation}
@@ -805,13 +857,15 @@ Therefore, transfer factors like $\T\gamma\gamma$ are strongly sensitive to NLO 
             \includegraphics[width=\textwidth]{figures/monotop/kfactors/acorr_ptv.pdf}
             \caption{$\gamma$}
         \end{subfigure}
-        \caption{Differential $k$-factors for each of the $V$+jet processes.}
+        \caption{Values of $k$-factors as a function of $\pt^{V}$ for each of the $V$+jet processes.
+                 While the trend of the $k$-factors is similar between the three processes, the values are not identical.
+                 This leads to a non-trivial modification of the transfer factors.}
         \label{fig:mt:vlonlo}
     \end{center}
 \end{figure}
 
 The distributions in Sections~\ref{sec:mt:sel}-\ref{sec:mt:bkg} are all corrected using these $k$-factors.
-Figure~\ref{fig:mt:prefit_photon} shows the equivalent for CRs that target $\gamma$+jet events, and Table~\ref{tab:mt:pho_cuts} describes the selection used to define these CRs.
+Figure~\ref{fig:mt:prefit_photon} shows the equivalent distributions for CRs that target $\gamma$+jet events.
 
 \begin{figure}[]
     \begin{center}
@@ -827,31 +881,15 @@ Figure~\ref{fig:mt:prefit_photon} shows the equivalent for CRs that target $\gam
             \includegraphics[width=\textwidth]{figures/monotop/prefit/photon_loose_loosePho1Pt_logy.pdf}
             \caption{$\pt^\gamma$}
         \end{subfigure}
-        \caption{Various kinematic distributions in the two mono-top $\gamma$ CRs. }
+        \caption{Various kinematic distributions in the two mono-top $\gamma$ CRs. 
+                 All predicted distributions are prior to the maximization of the likelihood, and the grey band refers only to the statistical uncertainty of the MC.
+                 The pre-fit MC describes the observed data reasonably well.
+        }
         \label{fig:mt:prefit_photon}
     \end{center}
 \end{figure}
 
-\begin{table}[]
-    \caption{Criteria used to select events for the mono-top $\gamma$ CR. As with the SR, the region is further split based on the jet BDT score.}
-    \label{tab:mt:pho_cuts}
-    \centering
-    \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
-        Criterion & Notes \\
-        \hline
-        \hline
-        $U>250$ GeV & Mimicking the selection in the SR\\
-        1 CA15 jet with $\pt>250$ GeV &  Same as SR \\
-        CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Same as SR \\
-        \hline
-        No identified $\mu,e,\tau_\mathrm{h}$ & Same as SR. \\
-        Well-identified $\gamma$ with $\pt^\gamma>175$ GeV & High-$\pt$ photon, set by trigger threshold \\
-        \hline
-        $\min_\mathrm{jets}\Delta\phi(\mathrm{jet},U) > 0.5$ & Same as SR \\
-        \hline
-        CA15 jet BDT & Same as SR\\
-    \end{tabular}
-\end{table}
+\subsubsection{Higher-order uncertainties}
 
 Now that we can describe $\T\gamma\gamma$ at NLO, we must assess the impact of unknown higher-order terms on the transfer factors.
 We account for variations caused by uncertainties in the PDF model by taking the RMS of the 100 parameter variations prescribed for the NNPDF3.0 set~\cite{nnpdf}.
@@ -867,13 +905,13 @@ These EW uncertainties break down into three categories:
     \item The full difference between the NLL correction and an exponentiation of the NLO correction; also not correlated across processes.
 \end{itemize}
 
-It should be stressed that while these uncertainties apply to the prediction of each $V$+jet processes, they do not affect transfer factors that correlate processes differing only in decay mode or acceptance.
-This is simply because these uncertainties primarily deal with the initial state or the production of an electroweak boson, which is not related to the description of the decay to leptons or the experimental identification of leptons and $b$-jets.
+It should be stressed that while these uncertainties apply to the prediction of each $V$+jet process, they do not affect transfer factors that correlate processes differing only in decay mode or acceptance~\cite{ewk3,monojet}.
+This is simply because these uncertainties primarily deal with the initial state or the production of an electroweak boson, which are not related to the description of the decay to leptons or the experimental identification of leptons and $b$-jets.
 That is:
 \begin{equation}
     \Ti{\mu\mu}{Z} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^{\mu\mu}(Z\rightarrow\mu\mu)} \approx \frac{N^\mathrm{SR,LO}_i(Z\rightarrow\nu\nu)}{N_i^{\mu\mu,\mathrm{LO}}(Z\rightarrow\mu\mu)}
 \end{equation}
-Now that we have tools to construct transfer factors of the form $N(V)/N(V')$ with reasonably small uncertainties (i.e. smaller than the statistical uncertainty of the data), it is natural to add another transfer factor to our toolbox:
+Now that we have tools to construct transfer factors of the form $N(V)/N(V')$ with uncertainties smaller than the statistical uncertainty of the data, we can also add the $Z/W$ constraint to the likelihood:
 \begin{equation}
     \Ti{\mathrm{SR}}{Z/W} = \frac{N^\mathrm{SR}_i(Z\rightarrow\nu\nu)}{N_i^\mathrm{SR}(W\rightarrow\ell\nu)}
 \end{equation}
@@ -907,7 +945,9 @@ where $\bm{\hat\theta}$ is the maximum-likelihood estimate of $\bm\theta$.
             \includegraphics[width=0.49\textwidth]{figures/monotop/uncertainties/variations_wz.pdf}
             \caption{Tight $Z/W$}
         \end{subfigure}
-        \caption{The transfer factors $\T\gamma\gamma$ and $\T{\mathrm{SR}}{Z/W}$; and corresponding shape uncertainties.}
+        \caption{The transfer factors $\T\gamma\gamma$ and $\T{\mathrm{SR}}{Z/W}$; and corresponding shape uncertainties.
+                 The theoretical uncertainties dominate these extrapolations and are bigger than the MC Poisson and experimental uncertainties.
+        }
         \label{fig:mt:theory_xfer}
     \end{center}
 \end{figure}
@@ -948,7 +988,8 @@ In particular, we see that the $Z/\gamma$, $Z/W$ and $W/\gamma$ ratios are well-
 \section{Results}
 
 Having built this likelihood, we perform a maximum likelihood fit to the data in all regions simultaneously.
-The results of a ML fit under a background-only hypothesis (i.e. setting $\mu = 0$) is shown in Figures
+The minimization of the negative log likelihood is done by the Minuit2 algorithm, through an interface provided by the RooStats package~\cite{roostats}.
+The results of a ML fit under a background-only hypothesis, with $\mu = 0$, is shown in Figures~\ref{fig:mt:sig}-\ref{fig:mt:zgamma}.
 
 \begin{figure}[]
     \begin{center}
@@ -1043,20 +1084,20 @@ The results of a ML fit under a background-only hypothesis (i.e. setting $\mu = 
 
 The results of the previous section show that the background-only (B-only) model is able to describe the data.
 To quantify the preference of the B-only model to a signal+background model (S+B), we compute 95\% CLs upper limits on the signal strength $\mu$ for each signal hypothesis.
-A description of CLs upper limits and the asymptotic profile likelihood method is given in Section~\cite{sec:cls}.
+A description of CLs upper limits and the asymptotic profile likelihood method is given in Appendix~\ref{sec:cls}.
 
 We begin with the simpler of the two models: the resonant scalar. 
 Figure~\ref{fig:mt:res_obs} shows the upper limit on the cross section of $\phi$ production as a function of $m_\phi$.
 A fixed value of $m_\psi$ is chosen such that $m_\psi \ll m_\phi$. 
 In this regime, the exact value of $m_\psi$ does not strongly affect the kinematics or cross section; in the opposite regime, the decay $\phi\rightarrow t\psi$ is strongly suppressed. 
-The values of the couplings $a_q,b_q$ and $a_\psi,b_\psi$ are similarly fixed to reasonable values.
-The cross section (and therefore the signal strength $\mu$) roughly scales as $(a_q+b_q)^2$ and $(a_\psi+b_\psi)^2$. 
+The values of the couplings $a_q,b_q$ and $a_\psi,b_\psi$ are similarly fixed to reasonable values, as agreed upon by the LHC Dark Matter Working Group (DMWG)~\cite{lhcdmwg}.
+The cross section, and therefore $\mu$, roughly scales as $(a_q+b_q)^2$ and $(a_\psi+b_\psi)^2$. 
 Given these assumptions, the observed data excludes scalars with mass $m_\phi < 3.4$ TeV.
 This can be compared to the expected exclusion, which is also $3.4$ TeV.
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.49\textwidth]{figures/monotop/results/res_obs_limit.pdf}
+        \includegraphics[width=0.55\textwidth]{figures/monotop/results/res_obs_limit.pdf}
         \caption{95\% CLs upper limits on the cross section of the production of $\phi$, where the resonance mass $m_\phi$ is scanned.
                  Values of $m_\phi$ for which $\sigma_{95\%~\mathrm{CLs}} < \sigma_\mathrm{theory}$ are excluded at 95\% confidence level.
                  The dashed black line represents the median expected exclusion, with the green and yellow bands representing the 1 and 2 standard deviation envelopes on the expected exclusion.
@@ -1066,7 +1107,7 @@ This can be compared to the expected exclusion, which is also $3.4$ TeV.
 \end{figure}
 
 The FCNC model contains many more non-trivial parameters, and so we do not simply fix all but one.
-First, fixing the couplings (at values agreed upon by the LHC Dark Matter Working Group in Reference~\cite{lhcdmwg}), we show the upper limits as a function of $(m_V,m_\chi)$ in Figure~\ref{fig:mt:fcnc_obs_mm}.
+First, fixing the couplings at DMWG benchmarks~\cite{lhcdmwg}, we show the upper limits as a function of $(m_V,m_\chi)$ in Figure~\ref{fig:mt:fcnc_obs_mm}.
 Both vector-like and axial vector-like couplings are probed independently. 
 In either scenario, assuming $m_\chi < 50$ GeV, we are able to exclude $0.2 < m_V < 1.75$ TeV.
 The lower bound arises from measurements of $m_t$ and $\Gamma_t$; allowing $m_V \lesssim 200$ GeV modifies $\Gamma_t$ beyond measured bounds as the $t^{(*)} \rightarrow V u$ channel opens. 
@@ -1093,7 +1134,7 @@ On the entire plane, the observed exclusion is consistent with the median expect
 
 Sticking to two-dimensional projections of the parameter space, Figure~\ref{fig:mt:fcnc_obs_mg} shows the excluded regions as a function of mediator mass $m_V$ and all four free couplings $g_q^V,g_q^A,g_\chi^V,g_\chi^A$. 
 As the DM mass is fixed to be strictly on-shell regardless of $m_V$, there are no visible differences between the vector and axial-vector scenarios. 
-Assuming sufficiently low masses (still corresponding to viable hypotheses), we exclude couplings as weak as $g_q \cdot g_\chi \sim 0.01$.  
+Assuming sufficiently low masses, we exclude couplings as weak as $g_q \cdot g_\chi \sim 0.01$.  
 
 \begin{figure}[]
     \begin{center}
@@ -1128,7 +1169,7 @@ Given sufficiently large couplings, we exclude FCNCs as massive as $2.5$ TeV, wh
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{figures/monotop/results/fcnc3d_obs_vector.pdf}
+        \includegraphics[width=0.7\textwidth]{figures/monotop/results/fcnc3d_obs_vector.pdf}
         \caption{Maximum excluded value of $m_V$ for each set of couplings, assuming vector-only couplings.}
         \label{fig:mt:fcnc_obs_mgg}
     \end{center}

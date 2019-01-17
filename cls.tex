@@ -28,7 +28,7 @@ Finally, we define the $\CLs$~statistic as:
 \begin{gather}
     \CLs(\mu) = \frac{\mathrm{CL}_{s+b}(\mu)}{\mathrm{CL}_b(\mu)},~\text{where:} \nonumber \\ 
     \mathrm{CL}_{s+b}(\mu) = \int_{\tilde q_\mu^\mathrm{obs}}^\infty \di \tilde q_{\mu}~p(\tilde q_\mu\,|\,\mu,\hat{\bm{\theta}}_\mu), \quad
-    \mathrm{CL}_b(\mu)(\mu) = \int_{\tilde q_\mu^\mathrm{obs}}^\infty \di \tilde q_{\mu}~p(\tilde q_\mu\,|\,0,\hat{\bm{\theta}}_0)
+    \mathrm{CL}_b(\mu) = \int_{\tilde q_\mu^\mathrm{obs}}^\infty \di \tilde q_{\mu}~p(\tilde q_\mu\,|\,0,\hat{\bm{\theta}}_0)
 \end{gather}
 These PDFs and the corresponding integrals are shown in Figure~\ref{fig:cls:cls}.
 
@@ -50,4 +50,8 @@ To estimate the significance of $\mu_\alpha^\mathrm{obs}$, the above procedure i
 Each pseudo-dataset is generated using the maximum likelhood estimate for the background-only hypothesis $\La(\bm{d}\,|\,0,\hat{\bm{\theta}}_0)$.
 The distribution of $\mu_\alpha$ assuming no signal can be compared to the observed value.
 A measure of the significance is $(\mu_\alpha^\mathrm{obs} - \langle\mu_\alpha\rangle) / \sigma(\mu_\alpha)$.
+These numbers are usually quoted as the expected (median) $\mu_\alpha$, with one and two standard deviation coverage bands.
 
+The computation of the $\CLs$ test statistic with many toys can be prohibitive.
+If the determination of the PDFs $p$ requires $N$ toys, and the evaluation of the distribution of $\mu_\alpha$ requires $M$ toys, then at least $N+M$ maximizations of the likelihood are needed.
+The asymptotic method
