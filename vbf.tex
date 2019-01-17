@@ -43,9 +43,10 @@ These jets are typically:
 \begin{itemize}
     \item Fairly forward in the detector
     \item Far apart from each other in $\eta$
-    \item Highly energetic (large $E$, moderate $\pt$)
+    \item Have large $E$ and moderate $\pt$
     \item Close together in $\phi$
 \end{itemize}
+The 
 A candidate VBF $\hinv$ event displaying these properties is shown in a CMS event display in Figure~\ref{fig:vbf:ed}.
 
 \begin{figure}[]
@@ -98,146 +99,17 @@ Accordingly, we define the \emph{missing barrel hadronic transverse momentum}:
 As shown in Figure~\ref{fig:vbf:hltb}, the three categories (BB, BF, All) have similar behavior as a function of $H_\mathrm{T,barrel}^\mathrm{miss}$.
 Therefore, we use this parameterization of the efficiency to correct MC simulation to match data. 
 
-A second L1-related issue that plagues the 2016 dataset is caused by a \emph{pre-firing} effect.
-When an L1 seed is triggered to accept an event (\emph{L1Accept} or \emph{L1A}), the following two bunch crossings (not necessarily corresponding to collisions) are blocked from firing L1As. 
-At most, two in four consecutive events can fire L1A (i.e. the sequence L1A, blocked, blocked, L1A).
-Figure~\ref{fig:vbf:pre1} is an example of a normal ECAL L1 seed accepting an event and blocking the subsequent bunch crossings.
-In what follows, we will refer to the bunch crossing with an interesting collision (i.e. the one we would like the trigger to select) as \bx{0}.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth,page=1]{figures/vbf/triggers/l1diag.pdf}
-        \caption{A normal event in which an ECAL seed triggers the L1A signal. 
-                 The subsequent two bunch crossings are blocked. 
-                 \bx{0}~refers to the event containing the physics object of interest.
-                 Green arrows indicate causality.}
-        \label{fig:vbf:pre1}
-    \end{center}
-\end{figure}
-
-A pre-fire refers to the case in which a malformed detector signal is mis-reconstructed, so that the peak of the pulse appears to have occurred in the previous bunch crossing (\bx{-1}).   
-In this particular case, a region of the ECAL ($2.5 < |\eta|<3$) suffered from a loss in transparency due to radiation damage and would produce pulse shapes that are poorly described by the model used to extract the pulse energy and time. 
-When this happens, the L1 seeds for ECAL-based signatures (e.g. electron triggers) can fire an L1A for \bx{-1}.
-This ECAL L1 seed in \bx{-1}~will zero out the corresponding ECAL clusters in \bx{0} (known as zero suppression), further biasing the event description.
-So, we would have an L1A for an arbitrary event (\bx{-1}), and the interesting event (\bx{0}) would be blocked from passing the L1 altogether. 
-This is depicted in Figure~\ref{fig:vbf:pre2}.
-Typically, \bx{-1}~contains uninteresting physics signatures, and so is not accepted by the HLT.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth,page=2]{figures/vbf/triggers/l1diag.pdf}
-        \caption{A pre-fired event in which an ECAL seed triggers the L1A signal for \bx{-1}. 
-                 The subsequent two bunch crossings (including the one of interest) are blocked. 
-                 \bx{0}~refers to the event containing the physics object of interest.
-                 Green arrows indicate causality.}
-        \label{fig:vbf:pre2}
-    \end{center}
-\end{figure}
-
-To measure how often an ECAL energy deposit (typically left by a jet) causes an event to be lost by pre-firing, we need to compute the following efficiency:
-\begin{equation}
-    \epsilon_\text{pre-fire}(\pt,\eta,\phi) = \frac{N_\text{pre-fire}(\pt,\eta,\phi)}{N_\text{all events}(\pt,\eta,\phi)}
-\end{equation}
-However, by definition, pre-fired events cannot be recorded, and therefore $N_\text{pre-fire}(\pt,\eta,\phi)$ is difficult to measure.
-A very small subset of the recorded dataset ($0.2\%$) consists of \emph{un-pre-fireable} events.
-These are recorded events (\bx{0}) in which an L1A fired 3 bunch crossings prior (\bx{-3}).
-Due to the blocking rules, L1A cannot fire in \bx{-2}~and \bx{-1}.
-Even if there is an ECAL seed in \bx{0}~that pre-fires, it will be blocked from firing an L1A, and therefore \bx{0}~is protected.
-If some other object in \bx{0}~manages to pass L1 and HLT decisions, then \bx{0}~will be recorded and can be studied.
-A schematic of such events is shown in Figure~\ref{fig:vbf:pre3}.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth,page=3]{figures/vbf/triggers/l1diag.pdf}
-        \caption{An un-pre-fireable event in which \bx{-3}~protects \bx{0}~from being pre-fired. 
-                 Green arrows indicate causality.}
-        \label{fig:vbf:pre3}
-    \end{center}
-\end{figure}
-
-The L1 trigger system records trigger primitive (TP) information (4-vectors of physics objects considered in an L1 selection) for \bx{-1}~if \bx{0}~is triggered.
-This means we can identify the cases in which a physics object in \bx{0}~coincides with a TP in \bx{-1}, indicating a pre-fire. 
-Therefore (using the bunch crossing numbering in Figure~\ref{fig:vbf:pre3}), we re-define the efficiency:
-\begin{equation}
-    \epsilon_\text{pre-fire}(\pt,\eta,\phi) = \frac{N_\text{pre-fire \bx{0}|\bx{-3}}(\pt,\eta,\phi)}{N_\text{\bx{0}|\bx{-3}}(\pt,\eta,\phi)}
-\end{equation}
-By definition, all events in this ratio will be recorded. 
-Figure~\ref{fig:vbf:pre_eff2_etaphi} shows this efficiency as a function of jet location. 
-We observe there is a \emph{hot} ECAL tower near the location $\eta=-2.8$ and $\phi=2$.
-Not only does this tower fire very frequently (leading to many particles, leading to many jets), but it almost always pre-fires.
-To first order, events with a jet in this crystal should be rejected.
-Beyond this, there is very little localization in the pre-fire probability (besides restriction to the ECAL endcap). 
-
-\begin{figure}[]
-    \begin{center}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_inclusive_egiso_etaphi_den.pdf}
-            \caption{Number of jets}
-        \end{subfigure}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_inclusive_egiso_etaphi_ratio.pdf}
-            \caption{Pre-fire probability}
-        \end{subfigure}
-        \caption{Distribution of jets and pre-fire events as a function of the jet location in the detector.
-                 Note the spike near $(\eta,\phi) = (-2.8,2)$. }
-        \label{fig:vbf:pre_eff2_etaphi}
-    \end{center}
-\end{figure}
-
-In Figure~\ref{fig:vbf:pre_eff1} we see $\epsilon_\text{pre-fire}$ as a function of $\pt$ in a restricted $\eta$ range.
-Firstly, we observe that $\epsilon_\text{pre-fire}$ increases as a function of $\pt$, and the turn-on is sharper as a function of EM $\pt$. 
-This is explained by the mechanism of the pre-fire: the individual ECAL trigger seeds have a threshold of 30 GeV.
-The higher the jet $\pt$, the higher the probability of the jet depositing $30$ GeV of EM energy in a localized area, setting off an L1 seed. 
-Secondly, we observe a strong dependence on the reference triggers used to select $\bx{0}$.
-For example, jet-based triggers (JetHT) lead to a much higher efficiency than $\ptmiss$-based triggers (MET).  
-This is a consequence of zero suppression biasing the \bx{0}~triggers, as shown diagrammatically in Figure~\ref{fig:vbf:pre_diag}.
-Muon-based triggers (SingleMuon) are largely unaffected by the ECAL system, and therefore this measurement of $\epsilon_\text{pre-fire}$ is the least biased.  
-
-\begin{figure}[]
-    \begin{center}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/triggers/oned_jotPt_finor_ratio.pdf}
-            \caption{$\pt$}
-        \end{subfigure}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/triggers/oned_jotEMPt_finor_ratio.pdf}
-            \caption{$\pt \times E_\mathrm{ECAL}/E_\mathrm{total}$}
-        \end{subfigure}
-        \caption{Probability that a given jet with $2.25<|\eta|<3$ causes a pre-fire in the L1 trigger due to ECAL mistiming.
-                 Two parameterizations are used: jet $\pt$ and EM $\pt$.
-                 The three curves refer to which set of triggers are used to select $\bx{0}$.}
-        \label{fig:vbf:pre_eff1}
-    \end{center}
-\end{figure}
-
-\begin{figure}[]
-    \begin{center}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/normal_dijet.pdf}
-            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/prefire_dijet.pdf}
-            \caption{Dijet event}
-        \end{subfigure}
-        \begin{subfigure}[t]{0.49\textwidth}
-            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/normal_z.pdf}
-            \includegraphics[width=0.49\textwidth]{figures/vbf/triggers/prefire_z.pdf}
-            \caption{$Z\rightarrow\nu\nu$ event}
-        \end{subfigure}
-        \caption{How zero suppression in the ECAL due to pre-firing can bias certain events.
-                 Subfigure (a) shows a dijet event, in which the loss of an ECAL deposit reduces the total $H_\mathrm{T}$ of the event, thereby lowering the probability of a jet-based trigger to fire.
-                 Subfigure (b) shows a $Z\rightarrow\nu\nu$ event, in which the loss of an ECAL deposit reduces the total $\ptmiss$ of the event.}
-        \label{fig:vbf:pre_diag}
-    \end{center}
-\end{figure}
-
-The probability of at least one jet pre-firing in an event is:
-\begin{equation}
-    \epsilon_\text{pre-fire}^\text{event} = 1 - \prod_{j\in\text{jets}}  \left(1-\epsilon_\text{pre-fire}(\pt^j,\eta^j)\right)
-\end{equation}
-The $\phi$-dependence has been dropped, since it is clear from Figure~\ref{fig:vbf:pre_eff2_etaphi} that the effect can be averaged over $\phi$ (once the spike is removed). 
-Figure~\ref{fig:vbf:pre_eff2_pteta} shows $\epsilon_\text{pre-fire}(\pt,\eta)$ using muon-triggered and jet-triggered events.
-In the former case, statistical fluctuations make the region with $\pt>250$ GeV unusable.
-Fortunately, this is the region in which the trigger bias is smallest, and so we switch to the jet triggered measurement above this threshold.
-A 20\% uncertainty is assessed on the efficiency, which is derived from the difference between the SingleMuon and JetHT measurements. 
+A second L1-related issue that plagues the 2016 dataset is the \emph{pre-firing} effect.
+This occurs when an ECAL deposit in a particular bunch crossing (\bx{0}) is mis-timed by the L1, leading the ECAL cluster to be assigned to the previous event (\bx{-1}).
+If this anomalous cluster causes the L1 to accept \bx{-1}, the L1 will not consider \bx{0}.
+The portion of the ECAL covering $2.5 < |\eta| < 3$ is particularly prone to this issue.
+As VBF jets frequently deposit energy in this region, it must be corrected for. 
+Details of the pre-firing mechanism and the derivation of the correction are provided in Appendix~\ref{sec:prefire}.
+An unbiased sample of muon-triggered events are used to determine the probability of a pre-fire $\epsilon(\bx{-1})$.
+This sample is statistically limited, so it is supplemented by a jet-triggered measurement.
+Although jet-based triggers have a weak correlation with $\epsilon(\bx{-1})$, this is at low jet $\pt$, where the muon-triggered measurement is sufficient. 
+The resulting probabilities are shown in Figure~\ref{fig:vbf:pre_eff2_pteta1} and are applied to the MC as a function of jet \pt~ and $\eta$.
+A relative 20\% uncertainty is assessed on the efficiency, which is derived from the difference between the muon and jet measurements. 
 
 \begin{figure}[]
     \begin{center}
@@ -249,8 +121,10 @@ A 20\% uncertainty is assessed on the efficiency, which is derived from the diff
             \includegraphics[width=\textwidth]{figures/vbf/triggers/JetHT_spike_finor_pteta_ratio.pdf}
             \caption{Jet-triggered}
         \end{subfigure}
-        \caption{$\epsilon_\text{pre-fire}(\pt,\eta)$ with two different sets of reference triggers used to select \bx{0}.}
-        \label{fig:vbf:pre_eff2_pteta}
+        \caption{$\epsilon_\text{pre-fire}(\pt,\eta)$ with two different sets of reference triggers used to select \bx{0}.
+                 Muon-triggered events are used below $250$ GeV, to minimize the bias from jet triggers.
+                 Jet-triggered events are used above this threshold, to minimize the statistical uncertainty.}
+        \label{fig:vbf:pre_eff2_pteta1}
     \end{center}
 \end{figure}
 
@@ -362,28 +236,32 @@ A \emph{baseline} selection is defined as:
     \item $|p^\mathrm{miss}_\mathrm{T,calo}-\ptmiss|<\ptmiss/2$: remove miscalibrated events.
 \end{itemize}
 
-As the tag variables each show some level of separation between signal and backgrounds, we can choose to either fit the distributions or use them to select events. 
+As the tag variables each offer some level of separation between signal and backgrounds, we can choose to either fit the distributions or use them to select events. 
 To find the optimal choice, we fit each of the distributions in turn, and scan the other two observables.
 The details of this fit and the background estimation are described in Section~\ref{sec:vbf:bkg}.
 The metric is chosen to be the expected 95\% CLs upper limit on $\mathcal{B}(\hinv)$.
 Figure~\ref{fig:vbf:opt} shows the result of this optimization.
-The dijet mass is found to be the best distribution to fit, while requiring $\Delta\eta_{jj}>1$ and $\Delta\phi_{jj}<1.5$.
+With appropriate selection critera, fitting either $m_{jj}$ and $\Delta\eta_{jj}$ gives an optimal expected limit of $0.23$.
+Of the two options, we choose to fit $m_{jj}$ and require $\Delta\eta_{jj}>1$ and $\Delta\phi_{jj}<1.5$.
 
 \begin{figure}[]
     \begin{center}
         \begin{subfigure}[t]{0.32\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_fabsdphi.pdf}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_fabsdphi.png}
             \caption{Fit \mjj}
         \end{subfigure}
         \begin{subfigure}[t]{0.32\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_fabsdphi_mjj.pdf}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_fabsdphi_mjj.png}
             \caption{Fit \deta}
         \end{subfigure}
         \begin{subfigure}[t]{0.32\textwidth}
-            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_mjj.pdf}
+            \includegraphics[width=\textwidth]{figures/vbf/opt/optimized_scan_deta_mjj.png}
             \caption{Fit \dphi}
         \end{subfigure}
-        \caption{Optimization of the dijet kinematic selection, in three different fitting distribution scenarios.}
+        \caption{Optimization of the dijet kinematic selection.
+                 Each plot corresponds to fitting the labelled distribution, while scanning the other two VBF tag observables as selection criteria.
+                 The color $z$-axis is the expected 95\% CLs upper limit on the invisible branching ratio of the Higgs boson.
+                 The optimal selection criteria for each fit distribution is indicated with a red star.}
         \label{fig:vbf:opt}
     \end{center}
 \end{figure}
@@ -442,7 +320,7 @@ Kinematic distributions from the two dilepton CRs are shown in Figure~\ref{fig:v
     \end{center}
 \end{figure}
 
-In the region $m_{jj}>2.5$ TeV, the statistical power of the dilepton regions is extremely limited.
+In the region $m_{jj}>2.5$ TeV, the statistical power of the dilepton regions is limited.
 For this reason, and to estimate the $W$+jets contribution in the SR, we add two single-lepton CRs in analogy to what is done in Section~\ref{sec:mt:bkg}. 
 Figure~\ref{fig:vbf:wcr} shows the level of agreement between the data and MC in these CRs.
 The likelihood is modified to include the constraints of the single-lepton CRs:
