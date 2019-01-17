@@ -171,18 +171,20 @@ The $N$-subjettiness ($\tau_N$) is a measure of the compatibility of a jet with 
 It is defined as:
 \begin{equation}
     \tau_N = \frac{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} \min\{\Delta R_{ia} | a\in A\}}{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} R}
+    \label{eq:jets:taun}
 \end{equation}
 where $R=1.5$ (the jet radius); $\Delta R_{ia}$ is the $\Delta R$ distance between the particle $i$ and the axis $a$; and $A$ is a set of $N$ axes. 
 Ideally, $A$ would be defined to be the set of axes that minimize $\tau_N$ for each jet, but this minimization problem is computationally difficult.  
-Instead, the exclusive \kt~algorithm is used to partition the jet's constituents into $N$ subjets (NB: these are not the SD subjets discussed above).
-Since the \kt~distance metric is proportional to $\nicefrac{\Delta R^2}{R^2}$, this approximates the ideal minimization.
+Instead, the exclusive \kt~algorithm is used to partition the jet's constituents into $N$ subjets\footnote{These are distinct from the SD subjets discussed above.}.
 The set of axes $A$ is taken to be the directions of the $N$ \kt~subjets. 
+Since the \kt~distance metric is proportional to $\nicefrac{\Delta R^2}{R^2}$, this approximates the ideal minimization.
+Assuming the axes are chosen to minimize Equation~\ref{eq:jets:taun}, $\tau_{N} \leq \tau_{M}$ for $N > M$. 
 A small $\tau_N$ indicates a high degree of compatibility with the $N$-axis hypothesis.
-Therefore, we expect a 3-pronged (e.g. top) jet to satisfy $\tau_3 \ll \tau_2$, whereas a 1-pronged (e.g. LQG) jet should satisfy $\tau_3 \lesssim \tau_2$ (for optimal choice of $A$, $N>M \Rightarrow \tau_{N} \leq \tau_{M}$ for any jet). 
+Therefore, we expect a top quark jet with three prongs to satisfy $\tau_3 \ll \tau_2$, whereas a 1-pronged LQG jet should satisfy $\tau_3 \lesssim \tau_2$.
 Correspondingly, we take $\tau_{32} \equiv \nicefrac{\tau_3}{\tau_2}$ to be the tagging observable. 
 
 Figure~\ref{fig:jets:tau32} shows the distribution of $\tau_{32}$.
-As with jet mass, we may calculate $\tau_{32}$ either on the whole jet or on the groomed (SD) jet.
+As with jet mass, we may calculate $\tau_{32}$ either on the whole jet or on the SD jet.
 The discrimination between top and LQG jets is similar in both cases, but as Figure~\ref{fig:jets:msdtau} demonstrates, $\tau_{32}^\SD$ has the weaker correlation with $m_\SD$ in LQG jets. 
 This feature will be critical to validate any tagger in data, as described in Section~\ref{sec:jets:sf}.
 
@@ -311,7 +313,7 @@ A large subset of this broader class of ECF observables are found to be useful (
 \subsection{A combined tagger}
 \label{sec:jets:bdt}
 
-In principle, we have constructed an infinitely large space of substructure observables.
+In principle, we have constructed an infinitely large space of jet substructure observables.
 In practice, we only consider a finite sampling of ECF parameters:
 \begin{gather}
     N \in \{1,2,3,4\} \nonumber \\ 
@@ -325,10 +327,11 @@ To build a single optimal observable out of all the $\{\psi_i\}$s, we will use a
 A simplified algorithm to train a single decision tree node $n$ for classification is as follows:
 \begin{enumerate}
     \item Choose a $\psi_j$, either by sampling randomly or selecting the one most optimal for the next step.
-    \item Based on the training data fed to the node, select a decision boundary $d_n$ to optimize a loss function, such as cross-entropy:
+    \item Based on the training data fed to the node, select a decision boundary $d_n$ to optimize a loss function
+          For classification, we use cross-entropy:
         \begin{gather}
-            \ell(X,y;j,d_n) =  -\hat\pi_B\ln\hat\pi_B -\hat\pi_S\ln\hat\pi_S \text{, where } 
-            \hat\pi_c = \hat P(y=c | \psi_j < d_n) 
+            \ell(X,y;j,d_n) =  -\hat\pi_B\ln\hat\pi_B -\hat\pi_S\ln\hat\pi_S \\ 
+            \hat\pi_c = P(y=c | \psi_j < d_n) 
         \end{gather}
 \end{enumerate}
 A tree is built iteratively:
@@ -389,6 +392,8 @@ A simplified algorithm to train a BDT is as follows:
     \end{enumerate}
 \end{enumerate}
 
+The decision tree training and boosting algorithms we use are provided by the Toolkit for Multivariate Analysis~\cite{tmva}.
+
 \subsubsection{Training the BDT}
 
 While we would like to train a BDT on the entire space of $\{\psi\}$, there are two issues to be solved: poorly modeled ratios and a large feature space.
@@ -430,7 +435,7 @@ In what follows, we only consider ECF ratios with $-\log_{10}\mathrm{KS} > 1$, w
 Even after filtering poorly-modeled ratios, we are left with a sampled $\psi$ grid of ${\sim400}$ points.
 It is desirable to reduce the size of the feature space, as computing each ECF is somewhat computationally-intensive: an $N$-point ECF on a $p$-particle jet has $\binom{N}{p}$ terms. 
 Note that standard pre-processing techniques, like principal component analysis, do not reduce the number of features to be computed. 
-While L1 regularization does attempt such a dimensional reduction, it cannot be trivially applied to BDTs. 
+Methods like L1 regularization~\cite{nns} do force sparsity in the feature space, but cannot be trivially applied to BDTs. 
 Therefore, we introduce a targeted iterative training method to solve this problem:
 \begin{enumerate}
     \item Train a BDT with trees $T_1,\dots,T_n$
@@ -438,7 +443,7 @@ Therefore, we introduce a targeted iterative training method to solve this probl
         \begin{equation}
              s_i = \sum_{m=1}^n \nu^{m-1} \sum_{\text{nodes using $\psi_i$ in $T_m$}} N_\text{samples}(\mathrm{node}) \times \left(\ell(\mathrm{node}) - \ell(\mathrm{parent})\right)^2  
         \end{equation}
-    \item Remove (one or more) $\psi_i$ with smallest $s_i$ and repeat until the global loss $L$ worsens significantly
+    \item Remove one or more $\psi_i$ with smallest $s_i$ and repeat. 
 \end{enumerate}
 Iterative training is expensive and can require the training of $\mathcal{O}(50)$ BDTs.
 It is semi-parallelizable, and the entire process typically takes a few hours.
@@ -446,7 +451,6 @@ However, as the inference samples are 1-2 orders of magnitude larger than the tr
 Figure~\ref{fig:jets:training} shows background acceptance rate at $\epsilon_\mathrm{sig}=0.5$ (a proxy for the global loss) as a function of feature space size. 
 For illustrative purposes, we only show the range $[1,50]$.
 The inputs for this training are the ECF ratios, as well as $\tau_{32}^\SD$ and $\frec$, which provide additional information.
-It is clear that beyond 13 features, there is little to be gained by adding additional information.
 
 \begin{figure}[]
     \begin{center}
@@ -459,7 +463,8 @@ It is clear that beyond 13 features, there is little to be gained by adding addi
     \end{center}
 \end{figure}
 
-The features selected by this reduction and classification process are:
+The background acceptance reaches a minumum with 13 features, and so we choose this configuration as the final BDT.
+The features are:
 \begin{gather}
     \frac{e(1,4,20)}{e(1,3,10)^2},~
     \frac{e(1,4,40)}{e(1,3,20)^2},~
@@ -478,9 +483,11 @@ The features selected by this reduction and classification process are:
 While a number of $N_3$ or other $4/3$ ratios appear in this list, we find a number of $2/2$ and $3/3$ ratios to contribute meaningfully to the classification task as well. 
 Figure~\ref{fig:jets:features} shows the distributions of all selected features. 
 Figure~\ref{fig:jets:roc} shows the background acceptance as a function of signal efficiency, comparing the final BDT (``Combined BDT'') to several other taggers.
-The ``11 ECF'' BDT refers to a BDT trained using only the 11 ECF ratios from Equation~\ref{eq:jets:features}, indicating that $\tau_{32}^\SD$ and $\frec$ are critical to achieving the same performance that can be reached with a much larger ECF ratio set (``50 ECF'').
-For comparison, also shown are the efficiency curves for $\tau_{32}^\SD$ and a BDT trained using $\tau_{32}^\SD$ and $\frec$ only.
-At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduces the background acceptance by 30\% relative to $\tau_{32}^\SD$, the standard top ID criterion at the LHC prior to this study. 
+The standard LHC tagger prior to this work is $\tau_{32}^\SD$, which, by itself, has a worse performance than the BDTs.
+The Combined BDT's performance is near that of a BDT trained with many ECFs, including poorly modeled ones (``50 ECF'').
+Removing $\tau_{32}^\SD$ and $\frec$ from Equation~\ref{eq:jets:features} results in the ``11 ECF'' BDT.
+Therefore, the addition of these two features is critical to reaching the maximal performance achievable with the ECF ratio set, if description in simulation were not a concern.
+At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduces the background acceptance by 30\% relative to $\tau_{32}^\SD$. 
 
 \begin{figure}[]
     \begin{center}
@@ -504,7 +511,7 @@ At fixed signal efficiency $\epsilon_\mathrm{sig} = 0.5$, the combined BDT reduc
 
 \begin{figure}[]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{figures/toptagging/bdt/massCut_roc.pdf}
+        \includegraphics[width=0.5\textwidth]{figures/toptagging/bdt/roc.pdf}
         \caption{Receiver Operating Characteristic (ROC) curve comparing various top identification methods. The Combined BDT is the ID method chosen as the final tagger.}
         \label{fig:jets:roc}
     \end{center}
@@ -524,17 +531,18 @@ In both samples, we observe reasonably good agreement between data and simulatio
 
 \begin{figure}[]
     \begin{center}
-        \begin{subfigure}[t]{\textwidth}
+        \begin{subfigure}[t]{0.49\textwidth}
     \begin{center}
-            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/dimuon_fjMSD_logy.pdf}
-            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/dimuon_top_ecf_bdt.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/toptagging/sf/dimuon_fjMSD_logy.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/toptagging/sf/dimuon_top_ecf_bdt.pdf}
             \caption{Dimuon selection}
+            \label{figs:jets:bdtdistmuon}
     \end{center}
-        \end{subfigure} \\ 
-        \begin{subfigure}[t]{\textwidth}
+    \end{subfigure} 
+    \begin{subfigure}[t]{0.49\textwidth}
     \begin{center}
-            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/singlemuontop_fjMSD.pdf}
-            \includegraphics[width=0.35\textwidth]{figures/toptagging/sf/singlemuontop_top_ecf_bdt.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/toptagging/sf/singlemuontop_fjMSD.pdf}
+            \includegraphics[width=0.49\textwidth]{figures/toptagging/sf/singlemuontop_top_ecf_bdt.pdf}
             \caption{$t\bar{t}$ selection}
     \end{center}
         \end{subfigure}
@@ -550,9 +558,9 @@ To account for any remaining differences, we define a scale factor:
 where $x$ is a particular decision boundary and $\epsilon$ is the fraction of data or MC events passing this BDT  and mass selection.
 These are chosen to optimize sensitivity to the mono-top analysis, as described in Chapter~\ref{sec:mt}.
 The SF is strongly dependent on the type of jet; in particular, we expect different SFs for top and LQG jets.
-In what follows, we will define two decision boundaries: a loose (0.1) and a tight (0.45) category.
+In what follows, we will define two decision boundaries: loose ($x>0.1$) and tight ($x>0.45$) categories.
 
-To compute $\mathrm{SF}_\mathrm{LQG}$, we use the dimuon selection in Figure~\ref{fig:jets:bdtdist}, as this contains an essentially pure selection of LQG jets.
+To compute $\mathrm{SF}_\mathrm{LQG}$, we use the dimuon selection in Figure~\ref{fig:jets:bdtdistmuon}, as this contains an essentially pure selection of LQG jets.
 Two sources of uncertainty are considered: the statistical uncertainties present in the data and MC, and the uncertainties on the theoretical prediction of the cross section of the small non-LQG backgrounds ($t\bar{t}$ and diboson events).
 The measured SFs are:
 \begin{align}

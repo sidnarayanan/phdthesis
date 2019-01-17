@@ -1,5 +1,5 @@
 \boldmath
-\chapter{The Search for ${t+p_\text{T}^\text{miss}}$}
+\chapter{The Search for Missing Momentum and a Top Quark}
 \unboldmath
 \label{sec:mt}
 
@@ -17,11 +17,11 @@ True production of mono-top must introduce some such coupling as an extension to
     \end{center}
 \end{figure}
 
-To illustrate how beyond-SM physics can produce this final state, we introduce two DM models: a flavor-changing neutral current $V$ and a charged, colored scalar $\phi$.
+We introduce two DM models that can produce this final state: a flavor-changing neutral current $V$ and a charged, colored scalar $\phi$.
 These models will also be used to benchmark the sensitivity of the analysis.
 However, it should be emphasized that the search is motivated and designed without reliance on any specific model; the assumption is that the mono-top final state alone is indicative of new physics, regardless of the specific production mechanism.
 
-The FCNC $V$ is assumed to couple to a fermionic DM candidate $\chi$.
+The flavor-changing neutral current (FCNC) $V$ is assumed to couple to a fermionic DM candidate $\chi$.
 A partial Lagrangian of the interaction terms is given by:
 \begin{equation}
 \mathcal{L}_\text{int}=  V_\mu  \overline\chi \gamma^\mu (  g^V_{\chi} + g^A_{\chi} \gamma_5 ) \chi
@@ -44,7 +44,7 @@ The model comes with 22 free parameters, broadly organized in three sets:
 \end{itemize}
 
 It is the $g_{u,d}^{V,A}$ matrices that determine whether the model can produce mono-top, or mono-bottom, or mono-up, etc.
-If $g_{u,d}$ is strongly diagonal (i.e. strongest couplings are within generations), then mono-light quark production will dominate, resulting in the mono-jet final state (Figure~\ref{fig:mt:fcncdiaga}).
+If $g_{u,d}$ is strongly diagonal, in the sense that the cross-generation couplings are weak, then mono-light quark production will dominate, resulting in the mono-jet final state (Figure~\ref{fig:mt:fcncdiaga}).
 On the other hand, if we assume the only non-zero elements are those that couple the first and third generations, then mono-top production at the LHC is the best way to probe this model (Figure~\ref{fig:mt:fcncdiagb}).
 It is this latter choice that will be made in the rest of this chapter; other choices are best probed using a combination of multiple DM channels, which is left as future work.
 Furthermore, to respect $\mathrm{SU}(2)_\mathrm{L}$ symmetry, we make the assumption that $g_u^V = g_d^V$ and $g_u^A = g_d^A$.
@@ -61,7 +61,8 @@ Furthermore, to respect $\mathrm{SU}(2)_\mathrm{L}$ symmetry, we make the assump
             \caption{$(g_{u}^{V,A})_{ij} \approx \delta_{i1}\delta_{j3} + \delta_{i3}\delta_{j1}$}
             \label{fig:mt:fcncdiagb}
         \end{subfigure}
-        \caption{Possible DM production at the LHC, assuming a simplified spin-1 extension to the SM.}
+        \caption{Possible DM production at the LHC, assuming a simplified spin-1 extension to the SM.
+                 The shown diagrams are at LO, although the MC simulation of these processes is at NLO in QCD vertices.}
         \label{fig:mt:fcncdiag}
     \end{center}
 \end{figure}
@@ -82,13 +83,17 @@ In this model, mono-top production primarily occurs through the resonant decay o
 \begin{figure}[]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/monotop/diagrams/resonant.pdf}
-        \caption{Possible DM production at the LHC, assuming the existence of a charged, color scalar that couples to DM and the top quark.}
+        \caption{Possible DM production at the LHC, assuming the existence of a charged, color scalar that couples to DM and the top quark.
+                 The diagrams and the MC simulation of this process are at LO.}
         \label{fig:mt:resdiag}
     \end{center}
 \end{figure}
 
 The two benchmark models show markedly different spectra in Figure~\ref{fig:mt:shapes}, motivating their use to test different modes of mono-top production.
-The FCNC produces a falling \ptmiss~distribution, whereas the scalar resonance produces a \ptmiss~distribution peaking at approximately $\nicefrac{m_\phi}{2}$.
+The FCNC produces a falling \ptmiss~distribution.
+The decay of a scalar resonance produces a distribution peaking at approximately $\ptmiss\approx\nicefrac{m_\phi}{2}$.
+This is because \ptmiss~is the transverse component of the momentum of one of the decay products of the resonance.
+In the region of interest, $m_\phi$ is quite large and the scalar is produced near rest, and so $|\vec p_\psi| \sim \nicefrac{m_\phi}{2}$.
 
 \begin{figure}[]
     \begin{center}
@@ -100,7 +105,9 @@ The FCNC produces a falling \ptmiss~distribution, whereas the scalar resonance p
             \includegraphics[width=\textwidth]{figures/monotop/diagrams/res_pfmet.pdf}
             \caption{Scalar resonance}
         \end{subfigure}
-        \caption{Spectra of DM (missing) momentum under various signal hypothesis.}
+        \caption{Spectra of DM (missing) momentum under various signal hypothesis.
+                 In the FCNC case, the spectra become harder as $m_V$ increases, as the momentum transfer needed to produce a particle of mass $m_V$ increases.
+                 In the scalar resonance case, the \ptmiss~distribution is a Jacobian shape, with a peak near half the resonance mass. }
         \label{fig:mt:shapes}
     \end{center}
 \end{figure}
@@ -110,12 +117,21 @@ The FCNC produces a falling \ptmiss~distribution, whereas the scalar resonance p
 \section{Signal selection}
 \label{sec:mt:sel}
 
+In this section, we will describe how events with large missing momentum and a top jet candidate are selected, and events with other signatures, such as leptons and photons, are rejected.
+The selection begins with a relatively loose trigger definition, to record collision events, followed by a more stringent set of \emph{offline} criteria and categorization.
+
 When looking at events that pass a simple set of criteria (moderate $\ptmiss$ and one CA15 jet), it is clear (Figure~\ref{fig:mt:bkgshapes}) that the highest signal sensitivity is found in regions of high $\ptmiss$ and jet $\pt$.
-The three primary background processes are:
+After this loose selection, the three primary backgrounds, from most to least important, are:
 \begin{itemize}
-    \item $Z\rightarrow\nu\nu$. When the $Z$ is produced in association with one or more jets, the jet system can (with low probability) pass the criteria used to select a top jet. The neutrinos manifest as $\ptmiss$.
-    \item $W\rightarrow\ell\nu$. As in the case of the $Z$, additional jets can mimic the signature of a top jet. Typically, the charged lepton in the final state is vetoed, but if it is out of acceptance ($e,\mu$) or fails ID criteria ($\tau_\mathrm{h}$), then it is not identified.
-    \item $t\bar{t} \rightarrow bq\bar{q}' + \bar{b}\ell\nu$. As in the case of the $W$, a charged lepton in the final state may not be properly identified. Unlike the previous two processes, a semi-leptonic $t\bar{t}$ event contains a real hadronic top quark decay.
+    \item $Z\rightarrow\nu\nu$. 
+          When the $Z$ is produced in association with one or more jets, the jet system will, in rare cases, pass the criteria used to select a top jet. 
+          The neutrinos manifest as $\ptmiss$.
+    \item $W\rightarrow\ell\nu$. 
+          As in the case of the $Z$, additional jets mimic the signature of a top jet. 
+          Typically, the charged lepton in the final state is vetoed, but if it is out of acceptance ($e,\mu$) or fails ID criteria ($\tau_\mathrm{h}$), then it is not identified.
+    \item $t\bar{t} \rightarrow bq\bar{q}' + \bar{b}\ell\nu$. 
+          As in the case of the $W$, a charged lepton in the final state may not be properly identified. 
+          Unlike the previous two processes, a semi-leptonic $t\bar{t}$ event contains a real hadronic top quark decay.
 \end{itemize}
 
 \begin{figure}[]
@@ -150,10 +166,18 @@ These are defined as:
 \end{equation}
 The HLT decides to keep an event if $\min(p_\mathrm{T,HLT}^\mathrm{miss}, H_\mathrm{T,HLT}^\mathrm{miss})$ is higher than a specified threshold.
 Over the course of the data-taking period considered in this chapter, this threshold varied from $90$ to $120$ GeV.
+The use of noise-rejection in the definition of $H_\mathrm{T,HLT}^\mathrm{miss}$ makes it more resilient to detector noise than $p_\mathrm{T,HLT}^\mathrm{miss}$.
+Therefore, we place symmetric selections on both quantities.
 
-Note that in all of the trigger decisions, muons are implicitly (in the L1) or explicitly (in the HLT) excluded from the missing momentum calculations.
+Note that in all trigger decisions, muons are excluded from the missing momentum calculations.
 This means that an event which produces high-momentum muons can be selected using these triggers.
 This flexibility will be exploited in Section~\ref{sec:mt:bkg}. 
+Missing momentum with and without muons are treated on equal footing by defining the \emph{hadronic recoil} $U$:
+\begin{equation}
+    \vec{U} = \vptmiss + \sum_{\ell\in\text{ lep.}} \vec{p}_\mathrm{T}^\ell + \sum_{\gamma\in\text{ photons}} \vec{p}_\mathrm{T}^\gamma
+\end{equation}
+where \emph{lep} refers to all identified electrons and muons.
+In an event without electrons, muons and photons, $U = \ptmiss$.
 
 Since the online environment and reconstruction are significantly limited as compared to the offline reconstruction of $U$, we do not expect the trigger decision to be a step function at $U=120$ GeV.
 Therefore, we define and measure a trigger efficiency:
@@ -161,10 +185,10 @@ Therefore, we define and measure a trigger efficiency:
     \epsilon_\mathrm{trig} (U) = \frac{N_\text{pass trig}(U)}{N(U)}
 \end{equation}
 This is measured using $W\rightarrow\mu\nu$ events containing one or more high-$\pt$ jets.
-The events are triggered using single-$\mu$ triggers (which have lower thresholds and efficiencies $\sim 1$ in this phase space).
+The events are triggered using single-$\mu$ triggers, which have lower thresholds and efficiencies close to 1 in this phase space.
 We then require events have exactly one well-identified muon and at least one jet with $\pt>100$ GeV.
 Figure~\ref{fig:mt:trigeff} shows the efficiency as a function of $U$.
-To avoid the steeply-rising part of the curve, we choose a threshold of $U>250$ GeV in the analysis.
+A threshold of $U>250$ GeV is chosen to optimize the tradeoff between the number of selected signal events and the increased systematic uncertainties incurred from the steeply-rising part of the efficiency curve.
 
 \begin{figure}[]
     \begin{center}
@@ -176,9 +200,11 @@ To avoid the steeply-rising part of the curve, we choose a threshold of $U>250$ 
 
 \subsection{Offline signal selection}
 
-Events in the signal regions (SRs) are then selected according to Table~\ref{tab:mt:cuts}, chosen to be consistent with the signal topology while mitigating the aforementioned SM backgrounds.
-As described in Section~\ref{sec:jets:combined}, two working points (WPs) are defined for the top ID BDT.
-The signal events (passing all other selection criteria) are partitioned into a \emph{loose} SR and a \emph{tight} SR on the basis of which WP the top candidate jet satisfies.
+The signal regions (SRs) are defined by a further set of offline selection criteria, which are listed and motivated in Table~\ref{tab:mt:cuts}.
+The selections are optimized on the basis of sensitivity to a benchmark signal hypothesis, an FCNC with $m_V=1.7$ TeV.
+This optimization is approximately ideal for all relevant signal models, as the main differences are in the tail of the $\ptmiss$ distribution, which is not affected by the criteria in Table~\ref{tab:mt:cuts}.
+As described in Section~\ref{sec:jets:reco}, two working points (WPs) are defined for the top ID BDT.
+The signal events passing all other selection criteria are partitioned into a \emph{loose} SR and a \emph{tight} SR on the basis of which WP the top candidate jet satisfies.
 
 \begin{table}[]
     \caption{Criteria used to select events for the mono-top search signal regions. Note that two SRs are defined, based on the BDT score.}
@@ -190,7 +216,7 @@ The signal events (passing all other selection criteria) are partitioned into a 
         $\ptmiss>250$ GeV & Signal events should have large missing momentum. Exact threshold is chosen to maximize online trigger efficiency. \\
         1 CA15 jet with $\pt>250$ GeV & Top quark candidate. Recoils against $\ptmiss$, so threshold is set at $250$ GeV. \\
         CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Consistency with top quark mass. \\
-        At least one $b$-tagged sub-jet & Identifying $B$ hadron produced from top decay/hadronization. \\
+        At least one $b$-tagged sub-jet & Identifying $b$ hadron produced from top decay/hadronization. \\
         No $b$-tagged narrow jets & Rejecting semi-leptonic $t\bar{t}$ decays. \\
         \hline
         No identified $e,\mu,\tau_\mathrm{h}$ & Suppress $W$+jet and $t\bar{t}$ processes. \\
@@ -216,7 +242,8 @@ Figure~\ref{fig:mt:prefit_signal} shows the $\ptmiss$ distributions, as predicte
         \end{subfigure}
         \caption{$\ptmiss$ distributions in the two mono-top signal regions.
                  The bottom section of each figure shows the ratio of the data and the prediction.
-                 The only uncertainties plotted in these figures are those arising from Poisson fluctuations in data (black bars) and MC (grey band).}
+                 The only uncertainties plotted in these figures are those arising from Poisson fluctuations in data (black bars) and MC (grey band).
+                 Enough MC events are produced such that the MC statistical uncertainties are smaller than those in data.}
         \label{fig:mt:prefit_signal}
     \end{center}
 \end{figure}
