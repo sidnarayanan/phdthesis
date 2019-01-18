@@ -1,10 +1,10 @@
 \chapter{L1 Trigger Pre-Firing}
 \label{sec:prefire}
 
-When an L1 seed is triggered to accept an event (\emph{L1A}), the following two bunch crossings (not necessarily corresponding to collisions) are blocked from firing L1As. 
+When an L1 seed is triggered to accept an event (\emph{L1A}), the following two bunch crossings are blocked from firing L1As. 
 At most, two in four consecutive events can fire L1A (i.e. the sequence L1A, blocked, blocked, L1A).
 Figure~\ref{fig:vbf:pre1} is an example of a normal ECAL L1 seed accepting an event and blocking the subsequent bunch crossings.
-In what follows, we will refer to the bunch crossing with an interesting collision (i.e. the one we would like the trigger to select) as \bx{0}.
+In what follows, we will refer to the bunch crossing with an interesting collision, the one we would like the trigger to select, as \bx{0}.
 
 \begin{figure}
     \begin{center}
@@ -20,8 +20,8 @@ In what follows, we will refer to the bunch crossing with an interesting collisi
 A pre-fire refers to the case in which a malformed detector signal is mis-reconstructed, so that the peak of the pulse appears to have occurred in the previous bunch crossing (\bx{-1}).   
 In this particular case, a region of the ECAL ($2.5 < |\eta|<3$) suffered from a loss in transparency due to radiation damage and would produce pulse shapes that are poorly described by the model used to extract the pulse energy and time. 
 When this happens, the L1 seeds for ECAL-based signatures (e.g. electron triggers) can fire an L1A for \bx{-1}.
-This ECAL L1 seed in \bx{-1}~will set to zero the corresponding ECAL clusters in \bx{0} (known as zero suppression), further biasing the event description.
-So, we would have an L1A for an arbitrary event (\bx{-1}), and the interesting event (\bx{0}) would be blocked from passing the L1 altogether. 
+This ECAL L1 seed in \bx{-1}~will set to zero the corresponding ECAL clusters in \bx{0} (\emph{zero suppression}), further biasing the event description.
+Thus, we would have an L1A for an arbitrary event (\bx{-1}), and the interesting event (\bx{0}) would be blocked from passing the L1 altogether. 
 This is depicted in Figure~\ref{fig:vbf:pre2}.
 Typically, \bx{-1}~contains uninteresting physics signatures, and so is not accepted by the HLT.
 
@@ -36,7 +36,7 @@ Typically, \bx{-1}~contains uninteresting physics signatures, and so is not acce
     \end{center}
 \end{figure}
 
-To measure how often an ECAL energy deposit (typically left by a jet) causes an event to be lost by pre-firing, we need to compute the following efficiency:
+To measure how often an ECAL energy deposit causes an event to be lost by pre-firing, we need to compute the following probability:
 \begin{equation}
     \epsilon_\text{pre-fire}(\pt,\eta,\phi) = \frac{N_\text{pre-fire}(\pt,\eta,\phi)}{N_\text{all events}(\pt,\eta,\phi)}
 \end{equation}
@@ -44,8 +44,8 @@ However, by definition, pre-fired events cannot be recorded, and therefore $N_\t
 A very small subset of the recorded dataset ($0.2\%$) consists of \emph{un-pre-fireable} events.
 These are recorded events (\bx{0}) in which an L1A fired 3 bunch crossings prior (\bx{-3}).
 Due to the blocking rules, L1A cannot fire in \bx{-2}~and \bx{-1}.
-Even if there is an ECAL seed in \bx{0}~that pre-fires, it will be blocked from firing an L1A, and therefore \bx{0}~is protected.
-If some other object in \bx{0}~manages to pass L1 and HLT decisions, then \bx{0}~will be recorded and can be studied.
+Even if there is a mis-timed ECAL seed in \bx{0}, it will be blocked from firing an L1A in \bx{-1}, and therefore \bx{0}~is protected.
+If some other object in \bx{0}~ passes L1 and HLT decisions, then \bx{0}~ will be recorded and can be studied.
 A schematic of such events is shown in Figure~\ref{fig:vbf:pre3}.
 
 \begin{figure}
@@ -59,7 +59,7 @@ A schematic of such events is shown in Figure~\ref{fig:vbf:pre3}.
 
 The L1 trigger system records trigger primitive (TP) information (4-vectors of physics objects considered in an L1 selection) for \bx{-1}~if \bx{0}~is triggered.
 This means we can identify the cases in which a physics object in \bx{0}~coincides with a TP in \bx{-1}, indicating a pre-fire. 
-Therefore (using the bunch crossing numbering in Figure~\ref{fig:vbf:pre3}), we re-define the efficiency:
+Using the bunch crossing numbering in Figure~\ref{fig:vbf:pre3}, we re-define the probability:
 \begin{equation}
     \epsilon_\text{pre-fire}(\pt,\eta,\phi) = \frac{N_\text{pre-fire \bx{0}|\bx{-3}}(\pt,\eta,\phi)}{N_\text{\bx{0}|\bx{-3}}(\pt,\eta,\phi)}
 \end{equation}
@@ -67,8 +67,8 @@ By definition, all events in this ratio will be recorded.
 Figure~\ref{fig:vbf:pre_eff2_etaphi} shows this efficiency as a function of jet location. 
 We observe there is a \emph{hot} ECAL tower near the location $\eta=-2.8$ and $\phi=2$.
 Not only does this tower fire very frequently (leading to many particles, leading to many jets), but it almost always pre-fires.
-To first order, events with a jet in this crystal should be rejected.
-Beyond this, there is very little localization in the pre-fire probability (besides restriction to the ECAL endcap). 
+As a simple correction, events with a jet in this crystal are rejected.
+Beyond this, there is very little localization in the pre-fire probability, besides restriction to the ECAL endcap. 
 
 \begin{figure}[]
     \begin{center}

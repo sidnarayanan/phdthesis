@@ -301,7 +301,7 @@ Of the two options, we choose to fit $m_{jj}$ and require $\Delta\eta_{jj}>1$ an
 To estimate the combined $m_{jj}$ spectra of the EW and QCD $V$+jet backgrounds, we employ a similar visible-to-invisible strategy as described in Section~\ref{sec:mt:bkg}.
 In this case, the transfer factors $\T{}{}$ are a function of $m_{jj}$.
 Control regions are defined using dilepton (single-lepton) selections to estimate the $Z$ ($W$) contributions.
-Again, $\ptmiss$ is replaced by $U$ (Equation~\ref{eq:mt:u}) to mimic the signal region selection. 
+Again, $\ptmiss$ is replaced by $U$ to mimic the signal region selection. 
 Because there are \emph{two} components to estimate in each CR (QCD and EW), we slightly modify the likelihood.
 Adding only the $\mu\mu$ CR to constrain the $Z$+jet component for now:
 \begin{align}
@@ -428,9 +428,10 @@ To validate that the transfer factors are reasonably well-simulated (within the 
 The dijet mass distribution in data is fit in all signal and control regions, the results of which are shown in Figure~\ref{fig:vbf:postfit}.
 As no statistically significant excess over the Standard Model is observed, we translate the results into upper limits on the branching ratio of $\hinv$.
 As the signal hypothesis, both the VBF and gluon fusion (with 2 extra jets) Higgs production modes are considered; the latter contaminates the SR due to its relatively large cross section.
-After the signal region selection criteria, the two modes contribute approximately equal yields. 
+After the signal region selection criteria, the two modes contribute approximately equal number of events. 
 Assuming $m_H=125$ GeV, the observed 95\% CL upper limit is 0.33. 
-Assuming a background-only hypothesis, the expected distribution of upper limits has median $0.33$, with the 1 standard deviation band covering $[0.18,0.35]$; the observation therefore represents an upwards fluctuation slightly under $1\sigma$. 
+Assuming a background-only hypothesis, the expected distribution of upper limits has a median of $0.33$, with the one standard deviation band covering the interval $[0.18,0.35]$.
+The observation therefore represents an upwards fluctuation slightly under one standard deviation. 
 
 \begin{figure}[]
     \begin{center}
@@ -473,13 +474,14 @@ The upper limits are shown in Figure~\ref{fig:vbf:mhscan}, and the observed (exp
 \end{figure}
 
 As described in the beginning of this chapter, each Higgs production mode corresponds to a potential invisible Higgs search channel.
-While VBF is the most sensitive, the total sensitivity can be improved by statistically combining all channels.
+While VBF is the most sensitive, the total sensitivity is improved by statistically combining all channels.
 Other results from CMS cover searches for associated production of a Higgs boson, either with a leptonically-decaying $Z$ boson \cite{zhinv} or a hadronically-decaying weak boson \cite{monojet}; and for gluon fusion production, with at least one jet originating from the initial state or heavy quark loop \cite{monojet}. 
-The details of these searches are left to the referenced literature, but a summary of their results is provided in Figure~\ref{fig:vbf:comb}.
+A summary of their results is provided in Figure~\ref{fig:vbf:comb}.
 When statistically combining the results, most experimental nuisances are treated as correlated between the searches, with the exception of the VBF jet energy scale dependence.
 This is because the VBF category selects forward jets, whereas other searches generally probe central jets.
 Theoretical nuisances, such as those affecting $W/Z$ or $ZZ/WZ$ ratios, are left uncorrelated between all searches.
-The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95\% CL, which approximately corresponds to a 1 standard deviation fluctuation upward relative to the median expected limit of $0.20$.
+As with the jet energy scale, this is because the nuisances are affected by the jet phase space, which is very different between the searches.
+The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95\% CL, which approximately corresponds to a one standard deviation fluctuation upward relative to the median expected limit of $0.20$.
 
 \begin{figure}[]
     \begin{center}
@@ -490,16 +492,18 @@ The combined result constrains $\mathcal{B}(\hinv)$ to be less than $0.26$ at 95
     \end{center}
 \end{figure}
 
-Higgs-mediated DM can also be probed by direct detection (DD) experiments.
+Higgs-mediated DM is also probed by direct detection (DD) experiments.
 We interpret the combined 90\% CL upper limit on $\mathcal{B}(\hinv)$ as an upper limit on the spin-independent cross section of DM-nucleon scattering. 
+The choice of 90\%, as opposed to 95\% as for other results, is made to be consistent with conventions for DD experiments.
 First, we convert the branching ratio into a partial width:
 \begin{equation}
     \Gamma_{\hinv} = \frac{\mathcal{B}(\hinv) \cdot \Gamma_\mathrm{SM}}{1 - \mathcal{B}(\hinv)}, \text{ where }\Gamma_\mathrm{SM} = 4~\mathrm{GeV}
 \end{equation}
 Then, using the results described in Reference~\cite{higgsdm3}, $\Gamma_{\hinv}$ is translated into $\sigma^{\mathrm{SI}}_{\chi N}(m_\chi)$, where the only free parameter is the DM mass.
-Figure~\ref{fig:vbf:dd} compares the CMS exclusions with those from DD experiments~\needcite.
-Also shown for comparison is the \emph{neutrino floor}, which is the cross section of coherent scattering of solar neutrinos, and a limiting factor for DD experiments.
+Figure~\ref{fig:vbf:dd} compares the CMS exclusions with those from DD experiments~\cite{lux,panda,cdms,cresst,xenon1t}.
+Also shown for comparison is the \emph{neutrino floor}, which is the cross section of coherent scattering of solar neutrinos, and a limiting factor for DD experiments~\cite{nufloor}.
 At low $m_\chi$, CMS is able to significantly extend the DD constraints, reaching well below the neutrino floor. 
+The CMS results extend until $m_\chi \approx \nicefrac{m_H}{2}$, above which the invisible decay mode is forbidden. 
 
 \begin{figure}[]
     \begin{center}
