@@ -1,0 +1,167 @@
+\usepackage{datetime}
+\usepackage{tikz}
+\usepackage{pgf}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{amssymb,amsmath}
+\usepackage{slashed}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+\usepackage{color}
+% \usepackage{appendixnumberbeamer}
+\usepackage{listings}
+\usepackage{hyperref}
+% \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hhline}
+\usepackage{caption}
+\usepackage[normalem]{ulem}
+\usepackage[export]{adjustbox}
+\usepackage{soul}
+% \usepackage{subcaption}
+\newcommand{\thus}{$\Rightarrow$~}
+\newcommand{\ttbar}{\ensuremath{t\bar{t}}~}
+\newcommand{\sgn}{\text{sign}}
+\newcommand{\p}{\hat{p}}
+\newcommand{\q}{\mathbf{q}}
+\newcommand{\tv}{\tilde{\ve}}
+\newcommand{\proj}{\text{\proj}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ov}{\overline}
+\newcommand{\tr}{\text{Tr}}
+\newcommand{\spane}{\text{span}}
+\newcommand{\pp}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\dd}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\ddt}[2]{\dfrac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\dre}{\dot{\re}}
+\newcommand{\met}{ E_\text{T}^\text{miss}}
+\newcommand{\ptmiss}{ p_\text{T}^\text{miss}}
+\newcommand{\pt}{ p_\text{T}}
+\newcommand{\metphi}{\phi_{\slashed E_T}}
+\newcommand{\qbar}{\bar{q}}
+\newcommand{\bbar}{\bar{b}}
+\newcommand{\metsig}{\slashed E_{T,\text{sig}}}
+\newcommand{\bness}{b\text{ness}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\out}{\mathbf{o}}
+\newcommand{\inp}{\mathbf{i}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\Xn}[1]{{x}^{(#1)}}
+\newcommand{\yn}[1]{y^{(#1)}}
+\newcommand{\z}{{z}}
+\newcommand{\zn}[1]{z^{(#1)}}
+\newcommand{\esig}{\epsilon_\text{sig}}
+\newcommand{\ebg}{\epsilon_\text{bg}}
+\newcommand{\gev}{\text{GeV}}
+\newcommand{\tev}{\text{TeV}}
+\newcommand{\gevp}{\text{GeV}/c}
+\newcommand{\gevm}{\text{GeV}/c^2}
+\newcommand{\tbar}{\bar{t}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\mlink}[1]{\textcolor{maroon}{\bf {#1}}}
+\newcommand{\mlinkmath}[1]{$\textcolor{maroon}{\bm {#1}}$}
+\newcommand{\mlinksmall}[1]{#1}
+\newcommand{\fns}{\footnotesize}
+\newcommand{\msd}{m_\text{SD}}
+\newcommand{\fb}{\text{fb}}
+\newcommand{\mlc}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\secpage}[1]{\begin{frame}[t]
+\frametitle{~}
+\vspace{15mm}
+\begin{center}
+  \LARGE{#1}
+\end{center}
+\end{frame}
+}
+\newcommand{\X}{\mlink{X}}
+\newcommand{\rc}{\cellcolor{maroon!75}}
+\newcommand{\gc}{\cellcolor{mygrey}}
+\newcommand{\N}{\mlink{N}}
+\newcommand{\monojet}{mono-\mlink{jet}}
+\newcommand{\ttdm}{$\textcolor{maroon}{\bm{\ttbar}}\mathrm{+DM}$}
+
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+\newcommand{\bmu}{\textcolor{maroon}{\bm{\mu}}}
+\newcommand{\bR}{\textcolor{maroon}{\bm{R}}}
+
+\newdateformat{dmy}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+\newdateformat{ymd}{\twodigit{\THEYEAR}/\twodigit{\THEMONTH}/\twodigit{\THEDAY}}
+
+\usefonttheme{serif}
+
+
+\DeclareMathOperator{\diag}{\text{diag}}
+\DeclareMathOperator{\NN}{\text{NN}}
+\DeclareMathOperator{\NLL}{\text{NLL}}
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+% \logo{
+%   \includegraphics[width=0.08\textwidth]{MIT-logo-black-red.pdf}~
+%   \includegraphics[width=0.05\textwidth]{CMS_logo_bw.pdf}
+% }
+
+\addtobeamertemplate{frametitle}{}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east,yshift=0pt] at (current page.north east) {
+      \includegraphics[width=0.05\textwidth]{../figures/common/CMS_logo_bw.pdf}\hspace{.1mm}
+      \includegraphics[width=0.095\textwidth]{../figures/common/MIT-logo-black-red.pdf}
+    };
+  \end{tikzpicture}
+}
+\definecolor{maroon}{rgb}{0.64, 0.12, 0.20}
+\definecolor{mygrey}{rgb}{0.4, 0.4, 0.4}
+\usecolortheme{dove}
+\setbeamercolor{enumerate item}{fg=black,bg=white}
+\setbeamercolor{enumerate subitem}{fg=black,bg=white}
+\setbeamercolor{itemize subitem}{fg=black,bg=white}
+\setbeamercolor{itemize item}{fg=black,bg=white}
+\setbeamercolor{item projected}{fg=white,bg=TAMIU}
+\useoutertheme{infolines}
+\setbeamertemplate{headline}{}
+\useinnertheme{default}
+\lstset{%
+  language=C++,
+%  backgroundcolor=\color{mygrey!25},
+  basicstyle=\ttfamily,
+  breaklines=true,
+  columns=fullflexible
+}
+
+\newcommand{\mycite}[1]{{\tiny[#1]}}
+
+\newcommand{\references}{
+ \begin{frame}[t] \frametitle{References}
+   \fns{
+     [1] \url{https://en.wikipedia.org/wiki/Galaxy_rotation_curve}
+
+     [2] \url{arXiv:astro-ph/9909252}
+
+     [3] \url{hubblesite.org/image/1276/news\_release/2003-01}
+
+     [4] \url{chandra.harvard.edu/photo/2006/1e0657/more.html}
+
+     [5] 	\url{arXiv:astro-ph/1202.0090}
+
+     [6] \url{https://kipac.stanford.edu/highlights/let-there-be-light-upon-dark-digging-deeper-dark-matter-lux}
+
+     [7] \url{https://fermi.gsfc.nasa.gov/science/eteu/dm/}
+
+     [6] \url{physik.uzh.ch/en/researcharea/lhcb/outreach/StandardModel.html}
+
+     [7] \url{arXiv:hep-ph/0802.1189}
+
+     [8] \url{arXiv:hep-ph/1609.07473}
+  }
+ \end{frame}
+}
