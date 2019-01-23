@@ -451,7 +451,7 @@
     Dimensional reduction \\  
   \begin{itemize}
     \item {\small Large ECF ratio space}
-    \item {\small ECFs are expensive to compute }
+    \item {\small Expensive to compute }
   \end{itemize}
       \includegraphics[width=0.8\textwidth]{../figures/toptagging/bdt/fakerate_vs_eff50.pdf}
       \vspace{-5mm}
@@ -463,69 +463,225 @@
     \centering 
     Combined tagger \\ 
     \begin{itemize}
-      \item {\small Well-described ECFs are }
+      \item {\small Final discriminator combines ECFs, $\tau_{32}$, $f_\mathrm{rec}$ }
     \end{itemize}
       \includegraphics[width=0.8\textwidth]{../figures/toptagging/bdt/roc.pdf}
       \vspace{-3mm}
     \begin{itemize}
-      \item {\small \mlink{Soft drop} removes wide-angle and soft radiation from jet}
+      \item {\small 30\% better background rejection }
     \end{itemize}
   \end{column}
   \end{columns}
 \end{frame}
 
-% \begin{frame}[t]   \frametitle{Space of ECF ratios}
-%   \vspace{-5mm}
-%   \begin{itemize}
-%     \item Can extend argument to infinitely large ratio space
-%     \[\frac{e(a,\mlink{N},\alpha)}{e(b,\mlink{M},\beta)^x}\text{, where } M\leq N\text{ and }x=\frac{a\alpha}{b\beta}\]
-%     \item Turns out many correlation function ratios can separate signal and background
-%   \end{itemize}
+\begin{frame}[t]  \frametitle{Selecting mono-top events}
+  \vspace{-5mm}
+  \begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+  \centering
+    \includegraphics[width=0.8\textwidth]{../figures/talk/boosted_event.pdf}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{itemize}
+      \item $\ptmiss>250\,\gev$ (trigger)
+      \item CA15 jet, $\pt>250\,\gev$
+      \begin{itemize}
+        \item Selected by BDT \pause
+        \item Mass consistent with $m_t$
+        \item Signature of $B$ meson decay inside jet
+        \begin{itemize}
+          \item Lab frame $c\tau \sim \mathcal{O} (\mathrm{mm})$
+        \end{itemize}
+      \end{itemize}
+    \end{itemize}
+    \centering
+    \hspace{-30mm}
+      \includegraphics[width=0.5\textwidth]{../figures/toptagging/sf/tight_pass.pdf}
+      \includegraphics[width=0.65\textwidth]{../figures/cms/csvv2.png}
+  \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t]  \frametitle{SM backgrounds}
+  \centering
+  \vspace{5mm}
+  \begin{columns}
+  \begin{column}{0.33\textwidth}
+    \centering
+    $Z\rightarrow\nu\nu $ ($30\%$) \\
+    \includegraphics[width=\textwidth]{../figures/talk/zsr.pdf} \pause
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \centering
+    $W\rightarrow (\ell)\nu$ ($15\%$) \\
+    \includegraphics[width=\textwidth]{../figures/talk/wsr.pdf} \pause
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \centering
+    $t$ quark pair ($50\%$) \\
+    \includegraphics[width=\textwidth]{../figures/talk/ttsr.pdf} \pause
+  \end{column}
+  \end{columns}
+  {\large
+    Note that $\ptmiss$ is the transverse momentum of the \mlink{vector boson}
+  }
+\end{frame}
+% 
+% \begin{frame}[t]  \frametitle{Background estimation}
 %   \begin{columns}
 %   \begin{column}{0.33\textwidth}
 %     \centering
-%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input6.pdf}
-%     \\ $e(\N=4)/e(\N=3)$
+%     \textcolor{mygrey}{$Z\rightarrow\nu\nu$} \\
+%     \includegraphics[width=\textwidth]{figs/sketches/zsr.pdf}
+%   \end{column}
+%   \begin{column}{0.34\textwidth}
+%     \centering
+%     Ideally: \\
+%     {\Large \textcolor{mygrey}{$\ptmiss$}$ \,= \pt^Z =\,$\textcolor{maroon}{$ \pt^{\ell\ell}  $}} \\
+%     \vspace{5mm}
+%     \uncover<2->{
+%     In practice: \\
+%     {\Large \textcolor{mygrey}{$\ptmiss$}$ \,\approx \pt^Z \approx\,$\textcolor{maroon}{$ \ptmiss(\mathrm{no}~\ell)$}}
+%     }
 %   \end{column}
 %   \begin{column}{0.33\textwidth}
 %     \centering
-%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input0.pdf}
-%     \\ $e(\N=2)/e(\N=2)$
+%     \textcolor{maroon}{$Z\rightarrow\ell\ell$} \\
+%     \includegraphics[width=\textwidth]{figs/sketches/zcr.pdf}
 %   \end{column}
-%   \begin{column}{0.33\textwidth}
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input4.pdf}
-%     \\ $e(\N=3)/e(\N=3)$
-%   \end{column}
+%   \end{columns}
+% 
+%   \uncover<2->{
+%   \vspace{5mm}
+%   \centering
+%     \mlink{Hadronic recoil} $\equiv$ momentum imbalance if we pretend $\ell^\pm$ are invisible. \\
+%     Only syst.~uncertainty on this extrapolation comes from $\ell$ ID ($\sim1\mathrm{-}3\%$)}
+% \end{frame}
+% 
+% \begin{frame} \frametitle{$\mathcal{B}{(Z\rightarrow\nu\nu)} > \mathcal{B}{(Z\rightarrow\ell\ell)}$}
+%   \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_signal_monotop.pdf}
+%     \end{column}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_dielectron_monotop.pdf}
+%     \end{column}
 %   \end{columns}
 % \end{frame}
 % 
-% \begin{frame}[t]   \frametitle{Building a discriminator}
+% \begin{frame} \frametitle{$\sigma(\gamma) \gg \sigma(W) > \sigma{(Z)}$}
+%   \centering
+%       Use production of $\gamma$ and $W$ to estimate production of $Z$
+%   \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_photon_monotop.pdf}
+%     \end{column}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_singlemuonw_monotop.pdf}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+% 
+% \begin{frame} \frametitle{Extrapolation uncertainties}
 %   \vspace{-5mm}
 %   \begin{columns}
-%   \begin{column}{0.5\textwidth}
-%   \begin{itemize}
-%     % \item ECFs and $\tau_N$ are computed after soft drop grooming is applied
-%     \item Large number of substructure observables to choose from
-%     \item Many are highly correlated or not useful
-%     \item Use boosted decision trees to prune space of observables and extract useful information
-%   \end{itemize}
-%   \centering
-%     {\small
-%         \begin{tabular}{l|c}
-%            & $\epsilon_\text{bkg}(\epsilon_\mathrm{sig}=0.5)$\\
-%           \hline
-%             $\tau_{32}$ & $6.9\%$\\
-%             Combined BDT & \mlink{$\bm{4.7\%}$} \\
-%         \end{tabular}
-%     }
-%   \end{column}
-%   \begin{column}{0.5\textwidth}
-%   \centering
-%     \includegraphics[width=\textwidth]{../../figs/toptagging/vtest/massCut_roc.pdf} \\
-%     % \includegraphics[width=\textwidth]{../../figs/toptagging/v7/workshop/massCut_comparisonFinal.pdf} \\
-%   \end{column}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       $Z(\mu\mu)\Rightarrow Z(\nu\nu)$ \\
+%       \only<1>{\includegraphics[width=0.8\textwidth]{figs/monotop/fits_unblinded/variations_dimuon.pdf}} \\
+%       Small experimental uncertainties
+%     \end{column}
+%     \begin{column}{0.5\textwidth}
+%       \centering
+%       $W\Rightarrow Z$ \\
+%       \only<1>{\includegraphics[width=0.8\textwidth]{figs/monotop/fits_unblinded/variations_wz.pdf}} \\
+%       Large theoretical uncertainties
+%     \end{column}
 %   \end{columns}
+% \end{frame}
+% 
+% \begin{frame}[t]  \frametitle{Background estimation summary}
+%   \begin{minipage}{\textwidth}
+%   \centering
+%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+%                     semithick,text width=1.5cm,align=center]
+%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+% 
+%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+% 
+%     \path[dashed]
+%           (ZvvSR) edge          node {} (ZllCR)
+%     ;
+%   \end{tikzpicture}
+%   \end{minipage}
+% \end{frame}
+% 
+% \begin{frame}[t]   \frametitle{Background estimation summary}
+%   \begin{minipage}{\textwidth}
+%   \centering
+%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+%                     semithick,text width=1.5cm,align=center]
+%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+% 
+%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+%     \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
+%     \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
+%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+%     \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
+% 
+%     \path[dashed]
+%           (ZvvSR) edge          node {} (ZllCR)
+%     ;
+%     \path
+%           (ZvvSR) edge          node {} (ACR)
+%           (ZvvSR) edge          node {} (WlvSR)
+%     ;
+%   \end{tikzpicture}
+%   \end{minipage}
+% \end{frame}
+% 
+% \begin{frame}[t]   \frametitle{Background estimation summary}
+%   \begin{minipage}{\textwidth}
+%   \centering
+%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+%                     semithick,text width=1.5cm,align=center]
+%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+% 
+%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+%     \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
+%     \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
+%     \node[state,color=orange] (WlvCR) [above right of=WlvSR]  {\textcolor{black}{$W\rightarrow\ell\nu$\\$\ell$ CR}};
+%     \node[state,color=red] (ttSR) [below right of=WlvCR] {\textcolor{black}{$t\bar{t}$\\SR}};
+%     \node[state,color=orange] (ttWCR) [above right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$\ell$ CR}};
+%     \node[state,color=black!60!green] (tttCR) [below right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$b\ell$ CR}};
+%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+%     \node(WlvDiag) [left of=WlvCR] {\includegraphics[width=1.5\textwidth]{figs/sketches/wcr.pdf}\hspace{-40mm}};
+%     \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
+%     \node(ttDiag) [right of=ttSR] {\includegraphics[width=1.5\textwidth]{figs/sketches/ttcr.pdf}};
+% 
+%     \path[dashed]
+%           (ZvvSR) edge          node {} (ZllCR)
+%           (WlvSR) edge          node {} (WlvCR)
+%           (ttSR)  edge          node {} (tttCR)
+%           (ttSR)  edge          node {} (ttWCR)
+%     ;
+%     \path
+%           (ZvvSR) edge          node {} (ACR)
+%           (ZvvSR) edge          node {} (WlvSR)
+%     ;
+%   \end{tikzpicture}
+%   \end{minipage}
+%   \put(-270,-45){Largest uncertainties:}
+%   \put(-270,-60){- $\ell$, $b$ ID; trigger }
+%   \put(-270,-75){- $\gamma/Z$ and $W/Z$ prediction}
 % \end{frame}
 
 \references
