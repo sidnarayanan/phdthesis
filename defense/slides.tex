@@ -86,7 +86,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{Assumptions for production of WIMPs at LHC}
+\begin{frame} \frametitle{Production of WIMPs at a hadron collider}
   \vspace{-5mm}
   \centering 
      Effective coupling to quarks/gluons $\gtrsim 10^{-4}$ \hspace{20mm}
@@ -295,7 +295,7 @@
     \centering
     \only<1>{Hadronic decay $\Rightarrow$ larger $\mathcal{B}$, no $\ptmiss$\\
              \includegraphics[width=\textwidth]{../figures/talk//parton_event.pdf}}
-    \only<2-3>{Bare quarks hadronize into jets \\
+    \only<2-3>{Bare quarks shower into jets \\
                \includegraphics[width=\textwidth]{../figures/talk//resolved_event.pdf}}
     \only<4>{Decay products collimate
              \includegraphics[width=\textwidth]{../figures/talk//boosted_event.pdf}}
@@ -305,7 +305,7 @@
       \begin{itemize}
         \item Soft and collinear splittings $\Rightarrow$ parton shower
         \item Color confinement $\Rightarrow$ hadronization 
-        \item ``Jets'' are reconstructed using iterative algorithms at LHC
+        \item ``Jets'' are reconstructed using iterative clustering algorithms at LHC
       \end{itemize}
       \centering
         \includegraphics[width=0.8\textwidth]{../figures/talk/akt.png}
@@ -317,8 +317,8 @@
             \end{center}
       \vspace{-3mm}
         \begin{itemize}
-            \item Signal events generally more energetic than SM events
-            \item Want to increase S/B? Look for very energetic top quarks!
+            \item Signal more energetic than SM 
+            \item Maximize S/B $\Rightarrow$ large jet $\pt$
       }
       \uncover<4->{
       \item Separation between jets: $\Delta R \sim 2 m_t /\pt $
@@ -333,44 +333,200 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[t]   \frametitle{Reconstruction of top quark}
+\begin{frame}[t]   \frametitle{Reconstruction of top quark jet}
   \vspace{-5mm}
-  \begin{columns}
-  \begin{column}{0.7\textwidth}
-  \begin{itemize}
-    \item Three $R=0.4$ jets $\rightarrow$ single $R=1.5$ jet
-    \item Circular jets $\rightarrow$ oddly-shaped jets
+  \begin{columns}[T]
+  \begin{column}{0.33\textwidth}
+  \centering 
+    Clustering 
     \begin{itemize}
-      \item Jet is the sum of 3 jets
-      \item Anti-$k_\mathrm{T}$ $\rightarrow$ C/A
+      \item {\small Three $R=0.4$ jets $\rightarrow$ single $R=1.5$ jet}
     \end{itemize}
-  \end{itemize}
-    \begin{columns}
-    \begin{column}{0.35\textwidth}
-      \includegraphics[width=\textwidth]{figs/sketches/topjet_dr.pdf}
-    \end{column}
-    \begin{column}{0.65\textwidth}
-  \begin{itemize}
-    \item These are \textcolor{maroon}{\bf big} jets
+      \includegraphics[width=0.8\textwidth]{../figures/toptagging/gen/ptdr.pdf}
+      \vspace{-3mm}
     \begin{itemize}
-      \item $R=1.5$ can contain up to half the detector
+      \item {\small These are huge jets: half the detector!}
+      \item {\small Many extra particles}
     \end{itemize}
-      \item Lots of extra radiation in jet
-      \begin{itemize}
-        \item PU, ISR, UE/MPI
-      \end{itemize}
-      \item Combinatorial fakes ($q/g$)
-  \end{itemize}
-    \end{column}
-    \end{columns}
   \end{column}
-  \begin{column}{0.3\textwidth}
-    \vspace{-2mm}
-    \centering
-      \includegraphics[width=\textwidth]{figs/jetalgos.png}\\ {\tiny J. Phys.: Conf. Ser. 645 012008}
+  \pause 
+  \begin{column}{0.33\textwidth}
+  \centering 
+    Pileup particles 
+  \begin{itemize}
+    \item {\small 10-25 vertices per collision}
+    \item {\small PU particles are isotropic }
+  \end{itemize}
+      \includegraphics[width=0.8\textwidth]{../figures/toptagging/gen/npv_clf_MSD_ZpTT_lo.pdf}
+      \vspace{-5mm}
+  \begin{itemize}
+    \item {\small \mlink{PUPPI} estimates $P(\mathrm{PU}|\pt,\eta,\phi)$ from proximity to PV particles}
+  \end{itemize}
+  \end{column}
+  \pause 
+  \begin{column}{0.33\textwidth}
+    \centering 
+    Non-PS radiation 
+    \begin{itemize}
+      \item {\small Initial state radiation, underlying event, multi-parton interactions}
+    \end{itemize}
+      \includegraphics[width=0.8\textwidth]{../figures/toptagging/gen/compare_ZpTT_lo.pdf}
+      \vspace{-3mm}
+    \begin{itemize}
+      \item {\small \mlink{Soft drop} removes wide-angle and soft radiation from jet}
+    \end{itemize}
   \end{column}
   \end{columns}
 \end{frame}
+
+\begin{frame}[t]  \frametitle{Jet substructure}
+  \begin{itemize}
+    \item Top quark $\rightarrow$ 3q $\Rightarrow$ top jet has 3 ``prongs'': regions of correlated radiation
+    \begin{center}
+      \includegraphics[width=0.3\textwidth]{../figures/talk/topjet.pdf} \hspace{10mm}
+      \includegraphics[width=0.3\textwidth]{../figures/talk/qgjet.pdf}
+    \end{center}
+    \item \mlink{Substructure} observables are sensitive to such features
+    \begin{itemize}
+      \item $N$-subjettiness, subjet algorithms, ECFs,\dots
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]   \frametitle{Energy correlation functions}
+  \vspace{-5mm}
+  \centering
+    ECFs are $\N$-point distance-weighted correlation functions among particles of the jet
+    \vspace{3mm}
+    \centering
+    \begin{tabular}{ccccc}
+      $e(a,\N,\alpha) \sim $ &
+      $\displaystyle\sum _{\N \text{ particles }\in J}$ &
+      $ \uncover<2->{\textcolor{mygrey}{ \left[\displaystyle\prod_{p\in \text{particles}} \dfrac{E_p}{{E_J}} \right]} $ &
+      $\uncover<3->{\times} $ &
+      $\uncover<3->{\textcolor{maroon}{\min\left\{\displaystyle\prod_{p,q \in \text{particles}}^a \theta(p,q) \right\}^\alpha}}} $ \\
+      \\
+      &
+      sets of $\N$ particles &
+      \uncover<2->{\textcolor{mygrey}{energy fractions}} &
+      &
+      \uncover<3->{\textcolor{maroon}{opening angle}}  \\
+    \end{tabular}
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \centering 
+        \includegraphics[width=0.67\textwidth]{../figures/talk/e4_3.png}\mycite{9}
+      \end{column}
+      \uncover<4->{
+      \begin{column}{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.67\textwidth]{../figures/toptagging/shapes/mass_ratio_24101310.pdf}
+        \\ {\small $e(4)/e(3)$ }
+      \end{column}
+      }
+      \uncover<5->{
+      \begin{column}{0.33\textwidth}
+        \centering 
+        \includegraphics[width=0.67\textwidth]{../figures/toptagging/shapes/mass_ratio_12102205.pdf}
+        \\ {\small $e(2)/e(2)$ }
+      \end{column}
+      }
+      \end{columns}
+\end{frame}
+
+\begin{frame}[t] \frametitle{Building a combined tagger}
+  \vspace{-5mm}
+  \begin{columns}[T]
+  \begin{column}{0.33\textwidth}
+  \centering 
+    Modeling issues \\  
+    \begin{itemize}
+      \item {\small PS model does not perfectly describe all ECF ratios}
+    \end{itemize}
+        \only<1>{\includegraphics[width=0.8\textwidth]{../figures/toptagging/datamc/singlemuonw_ratio_22051240_logy.pdf}}
+        \only<2>{\includegraphics[width=0.8\textwidth]{../figures/toptagging/datamc/scanmnab.pdf}}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+  \centering 
+    Dimensional reduction \\  
+  \begin{itemize}
+    \item {\small Large ECF ratio space}
+    \item {\small ECFs are expensive to compute }
+  \end{itemize}
+      \includegraphics[width=0.8\textwidth]{../figures/toptagging/bdt/fakerate_vs_eff50.pdf}
+      \vspace{-5mm}
+  \begin{itemize}
+    \item {\small Embed dimensional reduction into boosted decision tree training}
+  \end{itemize}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \centering 
+    Combined tagger \\ 
+    \begin{itemize}
+      \item {\small Well-described ECFs are }
+    \end{itemize}
+      \includegraphics[width=0.8\textwidth]{../figures/toptagging/bdt/roc.pdf}
+      \vspace{-3mm}
+    \begin{itemize}
+      \item {\small \mlink{Soft drop} removes wide-angle and soft radiation from jet}
+    \end{itemize}
+  \end{column}
+  \end{columns}
+\end{frame}
+
+% \begin{frame}[t]   \frametitle{Space of ECF ratios}
+%   \vspace{-5mm}
+%   \begin{itemize}
+%     \item Can extend argument to infinitely large ratio space
+%     \[\frac{e(a,\mlink{N},\alpha)}{e(b,\mlink{M},\beta)^x}\text{, where } M\leq N\text{ and }x=\frac{a\alpha}{b\beta}\]
+%     \item Turns out many correlation function ratios can separate signal and background
+%   \end{itemize}
+%   \begin{columns}
+%   \begin{column}{0.33\textwidth}
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input6.pdf}
+%     \\ $e(\N=4)/e(\N=3)$
+%   \end{column}
+%   \begin{column}{0.33\textwidth}
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input0.pdf}
+%     \\ $e(\N=2)/e(\N=2)$
+%   \end{column}
+%   \begin{column}{0.33\textwidth}
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{../../figs/toptagging/v7/massCut_input4.pdf}
+%     \\ $e(\N=3)/e(\N=3)$
+%   \end{column}
+%   \end{columns}
+% \end{frame}
+% 
+% \begin{frame}[t]   \frametitle{Building a discriminator}
+%   \vspace{-5mm}
+%   \begin{columns}
+%   \begin{column}{0.5\textwidth}
+%   \begin{itemize}
+%     % \item ECFs and $\tau_N$ are computed after soft drop grooming is applied
+%     \item Large number of substructure observables to choose from
+%     \item Many are highly correlated or not useful
+%     \item Use boosted decision trees to prune space of observables and extract useful information
+%   \end{itemize}
+%   \centering
+%     {\small
+%         \begin{tabular}{l|c}
+%            & $\epsilon_\text{bkg}(\epsilon_\mathrm{sig}=0.5)$\\
+%           \hline
+%             $\tau_{32}$ & $6.9\%$\\
+%             Combined BDT & \mlink{$\bm{4.7\%}$} \\
+%         \end{tabular}
+%     }
+%   \end{column}
+%   \begin{column}{0.5\textwidth}
+%   \centering
+%     \includegraphics[width=\textwidth]{../../figs/toptagging/vtest/massCut_roc.pdf} \\
+%     % \includegraphics[width=\textwidth]{../../figs/toptagging/v7/workshop/massCut_comparisonFinal.pdf} \\
+%   \end{column}
+%   \end{columns}
+% \end{frame}
 
 \references
 
