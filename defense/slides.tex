@@ -100,25 +100,22 @@
     \begin{column}{0.7\textwidth}
     \begin{itemize}
       \item By definition, DM will not interact with a detector 
-    \uncover<2->{
       \item Look for production of DM with SM particle(s)
       \item Key observable is transverse momentum imbalance
-    }
     \end{itemize}
     \end{column}
     \begin{column}{0.3\textwidth}
       \centering
-        \uncover<2->{\includegraphics[width=0.8\textwidth]{../figures/talk/1275337_634520340_334_RhoPhi.png} }
+        \includegraphics[width=0.8\textwidth]{../figures/talk/1275337_634520340_334_RhoPhi.png}
     \end{column}
   \end{columns}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.6\textwidth}
       \vspace{-10mm}
-      \only<1>{\includegraphics[width=\textwidth]{../figures/talk/1275337_634520340_334_3DTower.png}}
-      \only<2->{\includegraphics[width=\textwidth]{../figures/talk/1275337_634520340_334_3DTower2.png}}
+      \includegraphics[width=\textwidth]{../figures/talk/ptmiss3.pdf}
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \uncover<2->{\includegraphics[width=\textwidth]{../figures/talk/ptmiss3.pdf} }
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width=\textwidth]{../figures/talk/1275337_634520340_334_3DTower2.png}
     \end{column}
   \end{columns}
 \end{frame}
@@ -176,17 +173,56 @@
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{The Compact Muon Solenoid}
+\begin{frame}[t]   \frametitle{Compact Muon Solenoid}
+  \vspace{-5mm}
+  \begin{columns}[T]
+  \begin{column}{0.4\textwidth}
+    All particles in sum $\Rightarrow$ \\
+    all subdetectors help measure $\ptmiss$!
+  \vspace{-3mm}
+  \begin{itemize}
+        \item Solenoidal magnet
+        \begin{itemize}
+          \item $3.8\,$T B field
+        \end{itemize}
+        \item Silicon tracker
+        \begin{itemize}
+          \item Charged particles' $\vec{p}$
+          \item Track vertices
+        \end{itemize}
+        \item Calorimeters
+        \begin{itemize}
+          \item EM and hadronic
+          \item Good energy resolution
+          \item Large coverage
+        \end{itemize}
+        \item Muon chambers
+        \begin{itemize}
+          \item ID muons
+          \item Help measure $\vec{p}$
+        \end{itemize}
+  \end{itemize}
+  \end{column}
+  \begin{column}{0.6\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{../figures/talk/cms.png}
+  \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{Particle reconstruction}
   \vspace{-7mm}
   \centering 
   \includegraphics[width=0.8\textwidth]{../figures/talk/cms_transverse.png}\mycite{8} \\ 
   \begin{tabular}{c|c|c|c}
     Tracker & ECAL & HCAL & Muon \\ 
      \hline 
+     \hline 
+     $|\eta|<2.5$ & $|\eta| <3$ & $|\eta|<5$ & $|\eta|<2.4$ \\ 
      $\frac{0.015\%\cdot\pt}{\mathrm{GeV}} \oplus 0.5\%$ &
      $\frac{3\%}{\sqrt{\nicefrac{E}{\mathrm{GeV}}}} \oplus \frac{12\%}{E/\mathrm{GeV}} \oplus 0.3\%$ & 
      $\frac{85\%}{\sqrt{\nicefrac{E}{\mathrm{GeV}}}} \oplus 7.4\%$ &
-     $3\%$ at 100 GeV
+     $3\%$ at 100 GeV \\ 
   \end{tabular}
 \end{frame}
 
@@ -269,7 +305,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[t] \frametitle{Connection to canonical DM models}
+\begin{frame}[t] \frametitle{Connection to other DM models}
   \vspace{-5mm}
   \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
@@ -313,7 +349,7 @@
       \uncover<3->{
       \vspace{-5mm}
             \begin{center}
-              \includegraphics[width=0.5\textwidth]{../figures/talk/fatjetpt.pdf}
+              \includegraphics[width=0.6\textwidth]{../figures/talk/fatjetpt.pdf}
             \end{center}
       \vspace{-3mm}
         \begin{itemize}
@@ -324,6 +360,7 @@
       \item Separation between jets: $\Delta R \sim 2 m_t /\pt $
       \begin{itemize}
         \item $\pt>250\,\gev$ $\Rightarrow$  jets ($R=0.4$) overlap
+        \item $\Delta R = \sqrt{(\Delta\phi)^2 + (\Delta\eta)^2}$
       \end{itemize}
       }
       \uncover<3->{
@@ -340,7 +377,7 @@
   \centering 
     Clustering 
     \begin{itemize}
-      \item {\small Three $R=0.4$ jets $\rightarrow$ single $R=1.5$ jet}
+      \item {\small Three AK $R=0.4$ jets $\rightarrow$ single CA $R=1.5$ jet}
     \end{itemize}
       \includegraphics[width=0.8\textwidth]{../figures/toptagging/gen/ptdr.pdf}
       \vspace{-3mm}
@@ -368,7 +405,7 @@
     \centering 
     Non-PS radiation 
     \begin{itemize}
-      \item {\small Initial state radiation, underlying event, multi-parton interactions}
+      \item {\small ISR, UE, MPI}
     \end{itemize}
       \includegraphics[width=0.8\textwidth]{../figures/toptagging/gen/compare_ZpTT_lo.pdf}
       \vspace{-3mm}
@@ -439,11 +476,14 @@
   \begin{columns}[T]
   \begin{column}{0.33\textwidth}
   \centering 
-    Modeling issues \\  
+    Modeling issues 
+    \vspace{-2mm}
+    \[{\displaystyle \frac{e(a,N,\alpha)}{e(b,M,\beta)^x},~~ M \leq N, ~ x = \frac{a\alpha}{b\beta} }\] 
+    \vspace{-4mm}
     \begin{itemize}
-      \item {\small PS model does not perfectly describe all ECF ratios}
+      \item {\small Some ECF ratios poorly described by PS model}
     \end{itemize}
-        \only<1>{\includegraphics[width=0.8\textwidth]{../figures/toptagging/datamc/singlemuonw_ratio_22051240_logy.pdf}}
+        \only<1>{\includegraphics[width=0.8\textwidth]{../figures/toptagging/datamc/singlemuonw_ratio_22051240.pdf}}
         \only<2>{\includegraphics[width=0.8\textwidth]{../figures/toptagging/datamc/scanmnab.pdf}}
   \end{column}
   \begin{column}{0.33\textwidth}
@@ -468,7 +508,7 @@
       \includegraphics[width=0.8\textwidth]{../figures/toptagging/bdt/roc.pdf}
       \vspace{-3mm}
     \begin{itemize}
-      \item {\small 30\% better background rejection }
+      \item {\small 30\% better background rejection than $\tau_{32}$ }
     \end{itemize}
   \end{column}
   \end{columns}
@@ -484,7 +524,8 @@
   \begin{column}{0.5\textwidth}
     \begin{itemize}
       \item $\ptmiss>250\,\gev$ (trigger)
-      \item CA15 jet, $\pt>250\,\gev$
+      \item No $e,\mu,\tau_h$, and AK4 $b$ jets
+      \item One CA15 jet, $\pt>250\,\gev$
       \begin{itemize}
         \item Selected by BDT \pause
         \item Mass consistent with $m_t$
@@ -495,9 +536,10 @@
       \end{itemize}
     \end{itemize}
     \centering
-    \hspace{-30mm}
-      \includegraphics[width=0.5\textwidth]{../figures/toptagging/sf/tight_pass.pdf}
-      \includegraphics[width=0.65\textwidth]{../figures/cms/csvv2.png}
+    \vspace{-5mm}
+    \hspace{-40mm}
+      \includegraphics[width=0.45\textwidth]{../figures/toptagging/sf/tight_pass.pdf}
+      \includegraphics[width=0.55\textwidth]{../figures/cms/csvv2.png}
   \end{column}
   \end{columns}
 \end{frame}
@@ -526,207 +568,556 @@
     Note that $\ptmiss$ is the transverse momentum of the \mlink{vector boson}
   }
 \end{frame}
-% 
-% \begin{frame}[t]  \frametitle{Background estimation}
-%   \begin{columns}
-%   \begin{column}{0.33\textwidth}
-%     \centering
-%     \textcolor{mygrey}{$Z\rightarrow\nu\nu$} \\
-%     \includegraphics[width=\textwidth]{figs/sketches/zsr.pdf}
-%   \end{column}
-%   \begin{column}{0.34\textwidth}
-%     \centering
-%     Ideally: \\
-%     {\Large \textcolor{mygrey}{$\ptmiss$}$ \,= \pt^Z =\,$\textcolor{maroon}{$ \pt^{\ell\ell}  $}} \\
-%     \vspace{5mm}
-%     \uncover<2->{
-%     In practice: \\
-%     {\Large \textcolor{mygrey}{$\ptmiss$}$ \,\approx \pt^Z \approx\,$\textcolor{maroon}{$ \ptmiss(\mathrm{no}~\ell)$}}
-%     }
-%   \end{column}
-%   \begin{column}{0.33\textwidth}
-%     \centering
-%     \textcolor{maroon}{$Z\rightarrow\ell\ell$} \\
-%     \includegraphics[width=\textwidth]{figs/sketches/zcr.pdf}
-%   \end{column}
-%   \end{columns}
-% 
-%   \uncover<2->{
-%   \vspace{5mm}
-%   \centering
-%     \mlink{Hadronic recoil} $\equiv$ momentum imbalance if we pretend $\ell^\pm$ are invisible. \\
-%     Only syst.~uncertainty on this extrapolation comes from $\ell$ ID ($\sim1\mathrm{-}3\%$)}
-% \end{frame}
-% 
-% \begin{frame} \frametitle{$\mathcal{B}{(Z\rightarrow\nu\nu)} > \mathcal{B}{(Z\rightarrow\ell\ell)}$}
-%   \begin{columns}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_signal_monotop.pdf}
-%     \end{column}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_dielectron_monotop.pdf}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
-% 
-% \begin{frame} \frametitle{$\sigma(\gamma) \gg \sigma(W) > \sigma{(Z)}$}
-%   \centering
-%       Use production of $\gamma$ and $W$ to estimate production of $Z$
-%   \begin{columns}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_photon_monotop.pdf}
-%     \end{column}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       \includegraphics[width=0.8\textwidth]{../../figs/monotop/v14/fr/brown/stackedPostfit_singlemuonw_monotop.pdf}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
-% 
-% \begin{frame} \frametitle{Extrapolation uncertainties}
-%   \vspace{-5mm}
-%   \begin{columns}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       $Z(\mu\mu)\Rightarrow Z(\nu\nu)$ \\
-%       \only<1>{\includegraphics[width=0.8\textwidth]{figs/monotop/fits_unblinded/variations_dimuon.pdf}} \\
-%       Small experimental uncertainties
-%     \end{column}
-%     \begin{column}{0.5\textwidth}
-%       \centering
-%       $W\Rightarrow Z$ \\
-%       \only<1>{\includegraphics[width=0.8\textwidth]{figs/monotop/fits_unblinded/variations_wz.pdf}} \\
-%       Large theoretical uncertainties
-%     \end{column}
-%   \end{columns}
-% \end{frame}
-% 
-% \begin{frame}[t]  \frametitle{Background estimation summary}
-%   \begin{minipage}{\textwidth}
-%   \centering
-%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
-%                     semithick,text width=1.5cm,align=center]
-%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
-% 
-%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
-%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
-%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
-% 
-%     \path[dashed]
-%           (ZvvSR) edge          node {} (ZllCR)
-%     ;
-%   \end{tikzpicture}
-%   \end{minipage}
-% \end{frame}
-% 
-% \begin{frame}[t]   \frametitle{Background estimation summary}
-%   \begin{minipage}{\textwidth}
-%   \centering
-%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
-%                     semithick,text width=1.5cm,align=center]
-%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
-% 
-%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
-%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
-%     \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
-%     \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
-%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
-%     \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
-% 
-%     \path[dashed]
-%           (ZvvSR) edge          node {} (ZllCR)
-%     ;
-%     \path
-%           (ZvvSR) edge          node {} (ACR)
-%           (ZvvSR) edge          node {} (WlvSR)
-%     ;
-%   \end{tikzpicture}
-%   \end{minipage}
-% \end{frame}
-% 
-% \begin{frame}[t]   \frametitle{Background estimation summary}
-%   \begin{minipage}{\textwidth}
-%   \centering
-%   \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
-%                     semithick,text width=1.5cm,align=center]
-%     % \tikzstyle{every state}=[fill=red,draw=none,text=white]
-% 
-%     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
-%     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
-%     \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
-%     \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
-%     \node[state,color=orange] (WlvCR) [above right of=WlvSR]  {\textcolor{black}{$W\rightarrow\ell\nu$\\$\ell$ CR}};
-%     \node[state,color=red] (ttSR) [below right of=WlvCR] {\textcolor{black}{$t\bar{t}$\\SR}};
-%     \node[state,color=orange] (ttWCR) [above right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$\ell$ CR}};
-%     \node[state,color=black!60!green] (tttCR) [below right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$b\ell$ CR}};
-%     \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
-%     \node(WlvDiag) [left of=WlvCR] {\includegraphics[width=1.5\textwidth]{figs/sketches/wcr.pdf}\hspace{-40mm}};
-%     \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
-%     \node(ttDiag) [right of=ttSR] {\includegraphics[width=1.5\textwidth]{figs/sketches/ttcr.pdf}};
-% 
-%     \path[dashed]
-%           (ZvvSR) edge          node {} (ZllCR)
-%           (WlvSR) edge          node {} (WlvCR)
-%           (ttSR)  edge          node {} (tttCR)
-%           (ttSR)  edge          node {} (ttWCR)
-%     ;
-%     \path
-%           (ZvvSR) edge          node {} (ACR)
-%           (ZvvSR) edge          node {} (WlvSR)
-%     ;
-%   \end{tikzpicture}
-%   \end{minipage}
-%   \put(-270,-45){Largest uncertainties:}
-%   \put(-270,-60){- $\ell$, $b$ ID; trigger }
-%   \put(-270,-75){- $\gamma/Z$ and $W/Z$ prediction}
-% \end{frame}
 
-\references
-
-\backupbegin
-
-
-\secpage{BACKUP}
-
-\begin{frame}[t]   \frametitle{Compact Muon Solenoid}
-  \vspace{-5mm}
-  \begin{columns}[T]
-  \begin{column}{0.4\textwidth}
-    All particles in sum $\Rightarrow$ \\
-    all subdetectors help measure $\ptmiss$!
-  \vspace{-3mm}
-  \begin{itemize}
-        \item Solenoidal magnet
-        \begin{itemize}
-          \item $3.8\,$T B field
-        \end{itemize}
-        \item Silicon tracker
-        \begin{itemize}
-          \item Charged particles' $\vec{p}$
-          \item Track vertices
-        \end{itemize}
-        \item Calorimeters
-        \begin{itemize}
-          \item EM and hadronic
-          \item Good energy resolution
-          \item Large coverage
-        \end{itemize}
-        \item Muon chambers
-        \begin{itemize}
-          \item ID muons
-          \item Help measure $\vec{p}$
-        \end{itemize}
-  \end{itemize}
-  \end{column}
-  \begin{column}{0.6\textwidth}
+\begin{frame}[t]  \frametitle{Background estimation}
+  \begin{columns}
+  \begin{column}{0.33\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{../figures/talk/cms.png}
+    \textcolor{mygrey}{$Z\rightarrow\nu\nu$} \\
+    \includegraphics[width=\textwidth]{../figures/talk/zsr.pdf}
+  \end{column}
+  \begin{column}{0.34\textwidth}
+    \centering
+    Ideally: \\
+    {\Large \textcolor{mygrey}{$\ptmiss$}$ \,= \pt^Z =\,$\textcolor{maroon}{$ \pt^{\ell\ell}  $}} \\
+    \vspace{5mm}
+    \uncover<2->{
+    In practice: \\
+    {\Large \textcolor{mygrey}{$\ptmiss$}$ \,\approx \pt^Z \approx\,$\textcolor{maroon}{$ \ptmiss(\mathrm{no}~\ell)$}}
+    }
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \centering
+    \textcolor{maroon}{$Z\rightarrow\ell\ell$} \\
+    \includegraphics[width=\textwidth]{../figures/talk/zcr.pdf}
+  \end{column}
+  \end{columns}
+
+  \uncover<2->{
+  \vspace{5mm}
+  \centering
+    \mlink{Hadronic recoil} $\equiv$ momentum imbalance if we pretend $\ell^\pm$ are invisible. \\
+    Only syst.~uncertainty on this extrapolation comes from $\ell$ ID ($\sim1\mathrm{-}3\%$)}
+\end{frame}
+ 
+\begin{frame} \frametitle{The real observable: $T = Z(\rightarrow\nu\nu)/Z(\rightarrow \ell\ell)$}
+  \vspace{-5mm}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop.pdf}
+    \end{column}
+    \begin{column}{0.05\textwidth} $\Big/$ \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_dielectron_monotop.pdf}
+    \end{column}
+    \begin{column}{0.05\textwidth} $=$  \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/xfer/rfactor_dielectron.pdf}
+    \end{column}
+  \end{columns}
+  \begin{columns}[T]
+    \begin{column}{0.7\textwidth}
+      \begin{itemize}
+        \item Exp. and MC stat. uncertainties are small ($\leq 7\%$)
+        \item Jet-related experimental uncertainties cancel 
+        \item Data stat. uncertainties are large at high $U$
+        \pause 
+        \item Compare to LO-to-NLO effect (+40\% to -30\%)
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \vspace{-6.5mm}
+      \includegraphics[width=0.8\textwidth]{../figures/monotop/kfactors/zcorr_ptv.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+ 
+\begin{frame} \frametitle{Additional constraints: $Z/\gamma$, $Z/W$}
+  \vspace{-5mm}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop.pdf}
+    \end{column}
+    \begin{column}{0.05\textwidth} $\Big/$ \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_photon_monotop.pdf}
+    \end{column}
+    \begin{column}{0.05\textwidth} $=$  \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/xfer/rfactor_photon.pdf}
+    \end{column}
+  \end{columns}
+  \begin{columns}[T]
+    \begin{column}{0.7\textwidth}
+      \begin{itemize}
+        \item Small data stat. uncertainties
+        \item Higher-order corrections needed for $Z/\gamma$ and $Z/W$ predictions 
+        \item Total (partial) cancellation of jet (theory) uncertainties
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \vspace{-6.5mm}
+      \includegraphics[width=0.8\textwidth]{../figures/monotop/xfer/rfactor_wz.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{Extrapolation uncertainties}
+  \vspace{-5mm}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \only<1>{
+      $Z(\nu\nu)/Z(\mu\mu)$ \\
+      \includegraphics[width=0.8\textwidth]{../figures/monotop/uncertainties/variations_dimuon.pdf} \\
+      }
+      \only<2>{
+      $Z(\mu\mu)/Z(ee)$ \\
+      \includegraphics[width=0.7\textwidth]{../figures/monotop/ratios/ratio_loose_zmm_zee_shapes_fit_b.pdf} \\
+      }
+      Small experimental uncertainties
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \only<1>{
+      $Z(\nu\nu)/\gamma$ \\
+      \includegraphics[width=0.8\textwidth]{../figures/monotop/uncertainties/variations_photon.pdf} \\
+      }
+      \only<2>{
+      $Z(\mu\mu)/\gamma$ \\
+      \includegraphics[width=0.7\textwidth]{../figures/monotop/ratios/ratio_loose_pho_zmm_shapes_fit_b.pdf} \\
+      }
+      Large theoretical uncertainties
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t]  \frametitle{Background estimation summary}
+  \begin{minipage}{\textwidth}
+  \centering
+  \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick,text width=1.5cm,align=center]
+    % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+    \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+    \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+
+    \path[dashed]
+          (ZvvSR) edge          node {} (ZllCR)
+    ;
+  \end{tikzpicture}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[t]   \frametitle{Background estimation summary}
+  \begin{minipage}{\textwidth}
+  \centering
+  \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick,text width=1.5cm,align=center]
+    % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+    \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+    \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+    \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
+    \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
+
+    \path[dashed]
+          (ZvvSR) edge          node {} (ZllCR)
+    ;
+    \path
+          (ZvvSR) edge          node {} (ACR)
+          (ZvvSR) edge          node {} (WlvSR)
+    ;
+  \end{tikzpicture}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[t]   \frametitle{Background estimation summary}
+  \begin{minipage}{\textwidth}
+  \centering
+  \begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick,text width=1.5cm,align=center]
+    % \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+    \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
+    \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
+    \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
+    \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
+    \node[state,color=orange] (WlvCR) [above right of=WlvSR]  {\textcolor{black}{$W\rightarrow\ell\nu$\\$\ell$ CR}};
+    \node[state,color=red] (ttSR) [below right of=WlvCR] {\textcolor{black}{$t\bar{t}$\\SR}};
+    \node[state,color=orange] (ttWCR) [above right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$\ell$ CR}};
+    \node[state,color=black!60!green] (tttCR) [below right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$b\ell$ CR}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+    \node(WlvDiag) [left of=WlvCR] {\includegraphics[width=1.5\textwidth]{figs/sketches/wcr.pdf}\hspace{-40mm}};
+    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
+    \node(ttDiag) [right of=ttSR] {\includegraphics[width=1.5\textwidth]{figs/sketches/ttcr.pdf}};
+
+    \path[dashed]
+          (ZvvSR) edge          node {} (ZllCR)
+          (WlvSR) edge          node {} (WlvCR)
+          (ttSR)  edge          node {} (tttCR)
+          (ttSR)  edge          node {} (ttWCR)
+    ;
+    \path
+          (ZvvSR) edge          node {} (ACR)
+          (ZvvSR) edge          node {} (WlvSR)
+    ;
+  \end{tikzpicture}
+  \end{minipage}
+  \put(-270,-45){Largest uncertainties:}
+  \put(-270,-60){- $\ell$, $b$ ID; trigger }
+  \put(-270,-75){- $\gamma/Z$ and $W/Z$ prediction}
+\end{frame}
+
+
+\begin{frame}[t] \frametitle{Post-fit recoil distributions}
+  \vspace{-7mm}
+  \begin{columns}[T]
+    \begin{column}{0.25\textwidth}
+      \centering
+      \vspace{-3.5mm}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop.pdf}\\
+      \vspace{-5.5mm}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop_loose.pdf}
+    \end{column}
+    \begin{column}{0.125\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_dimuon_monotop.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_dimuon_monotop_loose.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_dielectron_monotop.pdf}
+    \end{column}
+    \begin{column}{0.125\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_dielectron_monotop_loose.pdf}\\
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singlemuonw_monotop.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singlemuonw_monotop_loose.pdf}
+    \end{column}
+    \begin{column}{0.125\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singleelectronw_monotop.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singleelectronw_monotop_loose.pdf}\\
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singlemuontop_monotop.pdf}
+    \end{column}
+    \begin{column}{0.125\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singlemuontop_monotop_loose.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singleelectrontop_monotop.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_singleelectrontop_monotop_loose.pdf}
+    \end{column}
+    \begin{column}{0.125\textwidth}
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_photon_monotop.pdf}\\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_photon_monotop_loose.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t]   \frametitle{Limits on mono-top benchmark models}
+  \vspace{-5mm}
+  \centering
+    Benchmark models probe range of mono-top kinematics.
+    \vspace{3mm}
+  \begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+    \centering
+      Resonant scalar
+    \begin{itemize}
+      \item $\pt$ of top quark increases with $m_\phi$
+      \item Better selection efficiency at high $m_\phi$
+    \end{itemize}
+    \centering
+    \only<1>{\includegraphics[width=0.8\textwidth]{../figures/monotop/diagrams/resonant.pdf}}
+    \only<2>{\includegraphics[width=0.6\textwidth]{../figures/monotop/diagrams/res_pfmet.pdf}}
+    \only<3>{\includegraphics[width=0.7\textwidth]{../figures/monotop/results/res_obs_limit.pdf}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \centering
+      FCNC
+    \begin{itemize}
+      \item Falling $\ptmiss$ spectra $\Rightarrow$ worse signal eff.
+      \item Constraints on $m_V$ and couplings $g_\chi, g_q$
+    \end{itemize}
+    \centering
+    \only<1>{\includegraphics[width=0.8\textwidth]{../figures/monotop/diagrams/fcncb.pdf}}
+    \only<2>{\includegraphics[width=0.6\textwidth]{../figures/monotop/diagrams/fcnc_pfmet.pdf}}
+    \only<3>{\includegraphics[width=0.7\textwidth]{../figures/monotop/results/fcnc2d_obs_vector.pdf}}
   \end{column}
   \end{columns}
 \end{frame}
+
+\begin{frame}[t] \frametitle{FCNC parameter space}
+  \centering 
+  6 free parameters: $m_\chi$, $m_V$, $g_q^V$, $g_q^A$, $g_\chi^V$, $g_\chi^A$
+  \vspace{5mm}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \centering Axial-vector current \\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/results/fcnc2d_obs_axial.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering $m_V$ vs $g_q^V$  \\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/results/fcnc2d_obs_gdmv_mV.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering $m_V$ vs $g_q^V$ vs $g_\chi^V$  \\ 
+      \includegraphics[width=\textwidth]{../figures/monotop/results/fcnc3d_obs_vector.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t] \frametitle{Comparison to previous results}
+  \centering 
+  \vspace{7mm}
+  \begin{tabular}{l|c|c} 
+    & CMS Run 1 & This result \\ 
+    \hline \hline 
+    Dataset size & 20/fb & 36/fb \\ 
+    Collision energy & 8 TeV & 13 TeV \\ 
+    $\sigma(pp\rightarrow\phi\rightarrow t\psi)$, $m_\phi = 1.5$ TeV & 0.04 pb & 0.19 pb \\ 
+    Reconstruction & 3 resolved jets & 1 merged jet \\  
+    \hline
+    Excluded $m_\phi$ & 350 GeV & 0.8-3.5 TeV \\ 
+    Excluded resonant $\sigma\times \mathcal{B}$ & 0.6 pb & 0.002 pb \\  
+    \hline
+    Excluded $m_V$ & 650 GeV & 0.2-1.8 TeV \\ 
+    Excluded FCNC $\sigma\times \mathcal{B}$ & 0.2 pb & 0.018 pb \\  
+  \end{tabular}
+\end{frame}
+
+\secpage{Vector boson fusion $H\rightarrow$ invisible}
+
+\begin{frame} \frametitle{Invisible Higgs}
+    \vspace{-3mm}
+      \begin{itemize}
+        \item Core assumptions: 
+        \begin{itemize}
+          \item DM mass generation is through Higgs mechanism 
+          \item $2m_\chi < m_H$ 
+        \end{itemize}
+        \item Production mode $\Rightarrow$  mono-\X~channels
+        \begin{itemize}
+          \item $gg\rightarrow H$ + jet(s) $\Rightarrow$ mono-jet
+          \item $VH$ $\Rightarrow$ mono-$V(qq')$ and mono-$Z(\ell\ell)$
+          \item Vector boson fusion $\Rightarrow$ VBF+$H\rightarrow$inv
+        \end{itemize}
+      \end{itemize}
+      \centering
+      \includegraphics[width=0.32\textwidth]{../figures/vbf/diagrams/ggf_hinv.pdf}
+      \includegraphics[width=0.32\textwidth]{../figures/vbf/diagrams/zh_hinv.pdf}
+      \includegraphics[width=0.32\textwidth]{../figures/vbf/diagrams/vbf_hinv.pdf}
+\end{frame}
+
+\begin{frame}   \frametitle{VBF production of bosons}
+  \vspace{-5mm}
+  \begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+      \centering
+      $H\rightarrow\chi\bar\chi$ \\
+      \includegraphics[width=\textwidth]{../figures/vbf/diagrams/vbf_hinv.pdf} \\
+      \includegraphics[width=\textwidth]{../figures/vbf/misc/event_display.png}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering 
+      $Z$ \\
+      \includegraphics[width=\textwidth]{../figures/vbf/diagrams/vbf_z.pdf} \\
+      \includegraphics[width=\textwidth]{../figures/vbf/diagrams/qcd_z.pdf} 
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering 
+      $W$ \\
+      \includegraphics[width=\textwidth]{../figures/vbf/diagrams/vbf_w.pdf} \\
+      \includegraphics[width=\textwidth]{../figures/vbf/diagrams/qcd_w.pdf} 
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}   \frametitle{Dijet kinematics in QCD/EW/VBF processes}
+  \centering
+  \includegraphics[width=0.32\textwidth]{../figures/vbf/shapes/loosesignal_jot12Mass_logy.pdf}
+  \includegraphics[width=0.32\textwidth]{../figures/vbf/shapes/loosesignal_jot12DEta.pdf}
+  \includegraphics[width=0.32\textwidth]{../figures/vbf/shapes/loosesignal_jot12DPhi.pdf} \\
+  $\Delta\eta$ and $m_{jj}$ strongly correlated \\ 
+  Use $m_{jj}$ distribution to extract signal. Require $\Delta\eta>1$ and $\Delta\phi<1.5$. 
+\end{frame}
+
+\begin{frame} \frametitle{Forward jets and L1 trigger}
+  \vspace{-3mm}
+  \centering 
+  Resolution of $\ptmiss$ strongly depends on location of jets \\ 
+  \vspace{1mm}
+  \begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+      \centering 
+        L1 $\ptmiss$ calculation 
+      \begin{itemize} 
+        \sitem{High rate from noise and multijet events}
+        \sitem{Only $|\eta|<3$ particles}
+      \end{itemize}
+      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/trigeff_nmu1pfUWmag.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering 
+      L1 pre-firing 
+      \begin{itemize}
+        \sitem{Collisions are 25 ns apart}
+        \item {\small Mis-timed signals block interesting events}
+      \end{itemize}
+      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/JetHT_spike_finor_pteta_ratio.pdf}
+    \end{column}
+    \pause 
+    \begin{column}{0.33\textwidth}
+      \centering 
+      Net effect
+      \begin{itemize}
+          \sitem{20\% of signal is lost when data is collected}
+          \sitem{Fixed in 2018 data}
+      \end{itemize}
+      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/trigeff_nmu1barrelHTMiss.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{$V$+jet estimation}
+  \vspace{-5mm}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{itemize}
+        \item Precision estimation of QCD and EW $V$+jets
+        \item Similar strategy as mono-top, but no $\gamma$
+      \end{itemize}
+      \vspace{2mm}
+      \centering
+      \begin{tabular}{l|c}
+        Uncertainty & Size \\
+        \hline \hline
+        $W/Z$ QCD & 15\% \\
+        $W/Z$ EW & 15\% \\
+        \hline
+        Trigger & 2\% \\
+        Lepton ID & 2-3\% \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{../figures/vbf/fits/vbf_PULLS_prefit_postfit_singlemuon.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{../figures/vbf/fits/vbf_PULLS_prefit_postfit_signal.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{Constraints on $\mathcal{B}(H\rightarrow\mathrm{inv})$}
+  \vspace{-5mm}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \centering
+      VBF-only \\ 
+        {\includegraphics[width=\textwidth]{../figures/vbf/fits/mhscan_ggf.pdf}}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \centering
+      All production modes \\ 
+        \includegraphics[width=\textwidth]{../figures/vbf/fits/comb.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+ 
+\begin{frame} \frametitle{Comparison of LHC and direct detection constraints}
+  \begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+      \centering
+      $H\rightarrow$ inv \\
+      \includegraphics[width=\textwidth]{../figures/vbf/fits/dd.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      Mono-Higgs\\
+      \includegraphics[width=\textwidth]{../figures/talk/monohiggs.png}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      Mono-jet \\
+      \includegraphics[width=\textwidth]{../figures/talk/monojet.png}
+    \end{column}
+  \end{columns}
+  \begin{itemize}
+    \item LHC constraints strongest at low DM mass
+    \item Constraints depend strongly on choice of model
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t] \frametitle{Impact of analysis strategy and L1 losses}
+  \centering 
+  \vspace{7mm}
+  \begin{tabular}{l|c|c} 
+    & Previous CMS result & This result \\ 
+    \hline \hline 
+    Collision energy & 7,8,13 TeV & 13 TeV \\ 
+    Dataset size & 5,20,2/fb & 36/fb\\ 
+    $\sigma(qq'\rightarrow qq'H)$ & 1.2,1.6,3.7 pb & 3.7 pb  \\ 
+    \hline
+    Exp. limit $\mathcal{B}(H\rightarrow\mathrm{inv})$ & 0.30 & 0.25  \\ 
+    \hline 
+    Non-differential & - & 0.30 \\ 
+    No L1 effect & - & 0.21 \\
+  \end{tabular}
+  \vspace{3mm}
+  \begin{itemize}
+    \item Same sensitivity from old analysis technique on new dataset 
+      \begin{itemize}
+        \item Driven by losses in L1 
+      \end{itemize}
+    \item Improvements driven by precise measurement of EW+QCD $V$+jet spectra
+  \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{Improving DM searches at LHC: prediction of $V$+jets}
+  \vspace{-5mm}
+    \begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+      \centering
+      VBF \\
+      \begin{tabular}{l|c|c}
+        Uncertainty & Size & Effect \\
+        \hline \hline
+        $W/Z$ EW & 15\% & 50\%\\
+        $W/Z$ QCD & 15\% & 25\% \\
+        \hline
+        Trigger & 2\% & 20\% \\
+        Lepton ID & 2-3\% & 15\% \\
+      \end{tabular} \\
+
+      \vspace{5mm}
+      Mono-top \\
+      \begin{tabular}{l|c|c}
+        Uncertainty & Size & Effect \\
+        \hline \hline
+        $V/Z$ & 15\% & 30\%\\
+        \hline
+        $b$ ID & 2-10\% & 30\% \\
+        Lepton ID & 2-3\% & 15\% \\
+      \end{tabular}
+    \end{column}
+    \pause 
+    \begin{column}{0.33\textwidth}
+      \centering
+      Inclusive $Z/\gamma$ prediction \\
+      \includegraphics[width=\textwidth]{../figures/talk/mj_theory.png}\\\mycite{10}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      $\gamma$+2 jet prediction \\
+      \includegraphics[width=\textwidth]{../figures/vbf/projection/projection_compare_3.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\backupbegin
+
+\secpage{BACKUP}
+
+\references
+
 
 
 \backupend
