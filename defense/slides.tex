@@ -906,16 +906,16 @@
   \begin{tabular}{l|c|c} 
     & CMS Run 1 & This result \\ 
     \hline \hline 
-    Dataset size & 20/fb & 36/fb \\ 
-    Collision energy & 8 TeV & 13 TeV \\ 
-    $\sigma(pp\rightarrow\phi\rightarrow t\psi)$, $m_\phi = 1.5$ TeV & 0.04 pb & 0.19 pb \\ 
+    Dataset size $[\mathrm{fb}^{-1}]$ & 20 & 36 \\ 
+    Collision energy [TeV] & 8 & 13 \\ 
+    $\sigma(pp\rightarrow\phi\rightarrow t\psi)$, $m_\phi = 1.5$ TeV [pb] & 0.04  & 0.19  \\ 
     Reconstruction & 3 resolved jets & 1 merged jet \\  
     \hline
-    Excluded $m_\phi$ & 0.35 TeV & 0.8-3.4 TeV \\ 
-    Excluded resonant $\sigma\times \mathcal{B}$ & 0.6 pb & 0.002 pb \\  
+    Excluded $m_\phi$ [TeV] & $<0.35$  & 0.8-3.4  \\ 
+    Excluded resonant $\sigma\times \mathcal{B}$ [pb] & 0.6 & 0.002 \\  
     \hline
-    Excluded $m_V$ & 0.65 TeV & 0.2-1.8 TeV \\ 
-    Excluded FCNC $\sigma\times \mathcal{B}$ & 0.2 pb & 0.018 pb \\  
+    Excluded $m_V$ [TeV] & $<0.65$ & 0.2-1.8 \\ 
+    Excluded FCNC $\sigma\times \mathcal{B}$ [pb] & 0.2 & 0.018 \\  
   \end{tabular}
 \end{frame}
 
@@ -1007,7 +1007,7 @@
           \sitem{20\% of signal is lost when data is collected}
           \sitem{Fixed in 2018 data}
       \end{itemize}
-      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/mjjsignal_jot12Mass.pdf}
+      \includegraphics[width=0.8\textwidth]{../figures/vbf/triggers/mjjsignal_jot12Mass.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -1089,9 +1089,9 @@
   \begin{tabular}{l|c|c} 
     & Previous CMS result & This result \\ 
     \hline \hline 
-    Collision energy & 7,8,13 TeV & 13 TeV \\ 
-    Dataset size & 5,20,2/fb & 36/fb\\ 
-    $\sigma(qq'\rightarrow qq'H)$ & 1.2,1.6,3.7 pb & 3.7 pb  \\ 
+    Collision energy [TeV] & 7,8,13 & 13  \\ 
+    Dataset size $[\mathrm{fb}^{-1}]$ & 5,20,2 & 36b\\ 
+    $\sigma(qq'\rightarrow qq'H)$ [pb] & 1.2,1.6,3.7 & 3.7  \\ 
     \hline
     Exp. limit $\mathcal{B}(H\rightarrow\mathrm{inv})$ & 0.30 & 0.25  \\ 
     \hline 
@@ -1172,7 +1172,6 @@
           \sitem {Very different set of jet challenges: triggering, backgrounds, energy calibration}
           \sitem {Precise measurement of QCD and EW $V$ spectra}
       \end{itemize}
-      \pause
     \end{column}
     \begin{column}{0.4\textwidth}
       \pause 
@@ -1466,6 +1465,29 @@
   \end{columns}
 \end{frame}
 
+\begin{frame} \frametitle{Monotop selection}
+  \vspace{-7mm}
+  \resizebox{\textwidth}{!}{
+    \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
+        Criterion & Notes \\
+        \hline
+        \hline
+        $\ptmiss>250$ GeV & Signal events should have large missing momentum. Exact threshold is chosen to maximize online trigger efficiency. \\
+        1 CA15 jet with $\pt>250$ GeV & Top quark candidate. Recoils against $\ptmiss$, so threshold is set at $250$ GeV. \\
+        CA15 jet $110 < m_\mathrm{SD} < 210$ GeV & Consistency with top quark mass. \\
+        At least one $b$-tagged sub-jet & Identifying $b$ hadron produced from top decay/hadronization. \\
+        No $b$-tagged narrow jets & Rejecting semi-leptonic $t\bar{t}$ decays. \\
+        \hline
+        No identified $e,\mu,\tau_\mathrm{h}$ & Suppress $W$+jet and $t\bar{t}$ processes. \\
+        No identified $\gamma$ & Suppress $\gamma$+jet processes. \\
+        \hline
+        $\min_\mathrm{jets}\Delta\phi(\mathrm{jet},\ptmiss) > 0.5$ & Remove events with large $\ptmiss$ caused by mismeasured jets. \\
+        \hline
+        CA15 jet BDT & Identifying top decay structure. If the jet passes the tight WP, it is placed in the \emph{tight} SR. Otherwise, if it only passes the loose WP, it is placed in the \emph{loose} SR.\\
+    \end{tabular}
+  }
+\end{frame}
+
 \begin{frame} \frametitle{Monotop Lagrangians}
   \[
 \mathcal{L}_\text{int}=  V_\mu  \overline\chi \gamma^\mu (  g^V_{\chi} + g^A_{\chi} \gamma_5 ) \chi
@@ -1507,14 +1529,14 @@
 \end{frame}
 
 \begin{frame} \frametitle{VBF likelihood}
-\vspace{-5mm}
-\begin{align*}
-    \mathcal{L}\left(\bm{d}\,|\, \mu,\muz,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
-    \prod_{i\in\mathrm{bins}} & \left[
-    \pois\left\{d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\left(1+\frac{1}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)}\right)\muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right\} \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
-    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \nonumber \\
-    & \phantom{\Big[} \times \left.\prod_{X=\mu\mu,ee} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
-\end{align*}
+  \vspace{-5mm}
+  \begin{align*}
+      \mathcal{L}\left(\bm{d}\,|\, \mu,\muz,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
+      \prod_{i\in\mathrm{bins}} & \left[
+      \pois\left\{d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\left(1+\frac{1}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)}\right)\muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right\} \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+      & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \nonumber \\
+      & \phantom{\Big[} \times \left.\prod_{X=\mu\mu,ee} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+  \end{align*}
 \end{frame}
 
 \begin{frame} \frametitle{VBF $\bm{T}$ validation}
