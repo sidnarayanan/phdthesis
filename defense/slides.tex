@@ -53,10 +53,11 @@
       \begin{itemize}
         \item Weakly: DM-SM coupling $g_\chi \sim g$ 
         \item Massive: mass $m_\chi \sim 100$ GeV
-        \item Close to measured relic density:
+        \item The ``WIMP miracle'':
           \[\Omega \propto  \frac{\rho}{\rho_{c}} \propto \frac{1}{\langle \sigma v \rangle} \]
           \[\Omega_\mathrm{meas.} = 0.12, \quad \Omega_\chi \sim 0.1\]
-        \item Particle colliders can probe WIMPs
+        \item Almost any DM model probed by a collider has a WIMP 
+        \item Many other models exist (axions, MACHOs, \dots)
       \end{itemize}
     \end{column}
   \end{columns}
@@ -78,8 +79,10 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{center}
-        \only<1>{ \includegraphics[width=0.9\textwidth]{../figures/talk/lux.png} \mycite{6} }
-        \only<2>{ \includegraphics[width=0.9\textwidth]{../figures/talk/fermilat1.png} \mycite{7} }
+        \only<1>{ \includegraphics[width=0.9\textwidth]{../figures/talk/lux.png} \mycite{6} \\ 
+                  LUX (shown), PandaX, CDMS, Xenon1T,\dots}
+        \only<2>{ \includegraphics[width=0.9\textwidth]{../figures/talk/fermilat1.png} \mycite{7} \\
+                   FermiLAT, AMS}
         \only<3>{ \includegraphics[width=\textwidth]{../figures/cms/lhc.png} }
       \end{center}
     \end{column}
@@ -173,6 +176,24 @@
   \end{columns}
 \end{frame}
 
+\begin{frame} \frametitle{Proton collisions}
+  \vspace{-5mm}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item Two 6.5 TeV proton beams
+        \item $\sim 10^{11}$ protons per bunch
+        \item Average collision has 10-25 pile-up interactions 
+      \end{itemize}
+      \centering 
+      \includegraphics[width=0.75\textwidth]{../figures/cms/comparison_npv.pdf}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=\textwidth]{../figures/talk/vertices.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}[t]   \frametitle{Compact Muon Solenoid}
   \vspace{-5mm}
   \begin{columns}[T]
@@ -226,6 +247,7 @@
   \end{tabular}
 \end{frame}
 
+
 \begin{frame}  \frametitle{Outline of this talk}
   \vspace{-5mm}
   \begin{columns}[T]
@@ -264,8 +286,8 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \centering
-      Electroweak SM backgrounds \\
-      Forward jets
+      Forward jets \\
+      Electroweak SM backgrounds 
     \end{column}
   \end{columns}
 \end{frame}
@@ -285,7 +307,7 @@
       \item { Excess mono-top production $\Rightarrow$ flavor-changing BSM }
     }
     \uncover<2->{
-      \item SM process is tiny: 0.14 pb $\Rightarrow$ 5000 events in 36/fb 
+      \item Leading SM process: 0.14 pb $\Rightarrow$ 5000 events in 36/fb 
     }
   \end{itemize}
     \uncover<2->{
@@ -331,7 +353,7 @@
     \centering
     \only<1>{Hadronic decay $\Rightarrow$ larger $\mathcal{B}$, no $\ptmiss$\\
              \includegraphics[width=\textwidth]{../figures/talk//parton_event.pdf}}
-    \only<2-3>{Bare quarks shower into jets \\
+    \only<2-3>{Quarks shower and hadronize into jets \\
                \includegraphics[width=\textwidth]{../figures/talk//resolved_event.pdf}}
     \only<4>{Decay products collimate
              \includegraphics[width=\textwidth]{../figures/talk//boosted_event.pdf}}
@@ -339,12 +361,15 @@
   \begin{column}{0.55\textwidth}
       \only<2>{
       \begin{itemize}
-        \item Soft and collinear splittings $\Rightarrow$ parton shower
-        \item Color confinement $\Rightarrow$ hadronization 
-        \item ``Jets'' are reconstructed using iterative clustering algorithms at LHC
+        \item Particles are clustered into jets based on a distance metric:
+            \[d_{ij} = \min\{\pti^{2q}, \ptj^{2q}\} \frac{\Delta R(p_i^\mu, p_j^\mu)^2}{R}\]
+        \item $q=-1$: anti-$k_\mathrm{T}$ (AK)
+        \item $q=0$: Cambridge-Aachen (CA)
+        \item Single-parton jet: AK $R=0.4$
       \end{itemize}
       \centering
-        \includegraphics[width=0.8\textwidth]{../figures/talk/akt.png}
+        \includegraphics[width=0.4\textwidth]{../figures/talk/akt.png}
+        \includegraphics[width=0.4\textwidth]{../figures/talk/ca.png}
       }
       \uncover<3->{
       \vspace{-5mm}
@@ -569,37 +594,34 @@
   }
 \end{frame}
 
-\begin{frame}[t]  \frametitle{Background estimation}
+\begin{frame}[t]  \frametitle{Prediction of $Z$ $\ptmiss$ spectrum}
+  \vspace{-5mm}
+  \begin{itemize}
+      \sitem{MC predictions have $\sim30\%$ uncertainties $\Rightarrow$ use data to constrain}
+      \sitem{$\ptmiss$ is driven by jet measurement}
+      \sitem{\mlink{Hadronic recoil} ($U$) $\equiv$ momentum imbalance if we pretend $\ell^\pm,\gamma$ are invisible. }
+  \end{itemize}
   \begin{columns}
   \begin{column}{0.33\textwidth}
     \centering
-    \textcolor{mygrey}{$Z\rightarrow\nu\nu$} \\
-    \includegraphics[width=\textwidth]{../figures/talk/zsr.pdf}
+    \includegraphics[width=\textwidth]{../figures/talk/zsr.pdf}\\ \vspace{-7mm}
+    \textcolor{mygrey}{$Z\rightarrow\nu\nu$} (20.5\%) \\
   \end{column}
   \begin{column}{0.34\textwidth}
     \centering
-    Ideally: \\
-    {\Large \textcolor{mygrey}{$\ptmiss$}$ \,= \pt^Z =\,$\textcolor{maroon}{$ \pt^{\ell\ell}  $}} \\
+    {\Large \textcolor{mygrey}{$\ptmiss$} $\longleftrightarrow$ \textcolor{maroon}{$ \ptmiss$(no $\ell$)}} \\
     \vspace{5mm}
-    \uncover<2->{
-    In practice: \\
-    {\Large \textcolor{mygrey}{$\ptmiss$}$ \,\approx \pt^Z \approx\,$\textcolor{maroon}{$ \ptmiss(\mathrm{no}~\ell)$}}
-    }
+    In both cases: \\
+    {\Large $U \approx \pt^Z$}
   \end{column}
   \begin{column}{0.33\textwidth}
     \centering
-    \textcolor{maroon}{$Z\rightarrow\ell\ell$} \\
-    \includegraphics[width=\textwidth]{../figures/talk/zcr.pdf}
+    \includegraphics[width=\textwidth]{../figures/talk/zcr.pdf} \\ \vspace{-7mm}
+    \textcolor{maroon}{$Z\rightarrow\ell\ell$} (6.8\%) \\
   \end{column}
   \end{columns}
-
-  \uncover<2->{
-  \vspace{5mm}
-  \centering
-    \mlink{Hadronic recoil} $\equiv$ momentum imbalance if we pretend $\ell^\pm$ are invisible. \\
-    Only syst.~uncertainty on this extrapolation comes from $\ell$ ID ($\sim1\mathrm{-}3\%$)}
 \end{frame}
- 
+
 \begin{frame} \frametitle{The real observable: $T = Z(\rightarrow\nu\nu)/Z(\rightarrow \ell\ell)$}
   \vspace{-5mm}
   \begin{columns}
@@ -636,28 +658,31 @@
   \vspace{-5mm}
   \begin{columns}
     \begin{column}{0.3\textwidth}
-      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop.pdf}
+      \only<1>{\includegraphics[width=\textwidth]{../figures/talk/zsr.pdf}}
+      \only<2>{\includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_signal_monotop.pdf}}
     \end{column}
-    \begin{column}{0.05\textwidth} $\Big/$ \end{column}
+    \begin{column}{0.05\textwidth} \only<2>{$\Big/$} \end{column}
     \begin{column}{0.3\textwidth}
-      \includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_photon_monotop.pdf}
+      \only<1>{\includegraphics[width=\textwidth]{../figures/talk/wcr.pdf}}
+      \only<2>{\includegraphics[width=\textwidth]{../figures/monotop/postfit/stackedPostfit_photon_monotop.pdf}}
     \end{column}
-    \begin{column}{0.05\textwidth} $=$  \end{column}
+    \begin{column}{0.05\textwidth} \only<2>{$=$}  \end{column}
     \begin{column}{0.3\textwidth}
-      \includegraphics[width=\textwidth]{../figures/monotop/xfer/rfactor_photon.pdf}
+      \only<1>{\includegraphics[width=\textwidth]{../figures/talk/acr.pdf}}
+      \only<2>{\includegraphics[width=\textwidth]{../figures/monotop/xfer/rfactor_photon.pdf}}
     \end{column}
   \end{columns}
   \begin{columns}[T]
     \begin{column}{0.7\textwidth}
       \begin{itemize}
-        \item Small data stat. uncertainties
         \item Higher-order corrections needed for $Z/\gamma$ and $Z/W$ predictions 
         \item Total (partial) cancellation of jet (theory) uncertainties
+        \only<2>{\item Small data stat. uncertainties}
       \end{itemize}
     \end{column}
     \begin{column}{0.3\textwidth}
       \vspace{-6.5mm}
-      \includegraphics[width=0.8\textwidth]{../figures/monotop/xfer/rfactor_wz.pdf}
+      \only<2>{\includegraphics[width=0.8\textwidth]{../figures/monotop/xfer/rfactor_wz.pdf}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -701,7 +726,7 @@
 
     \node[state,color=red] (ZvvSR)                    {\textcolor{black}{$Z\rightarrow\nu\nu$\\SR}};
     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
-    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{../figures/talk/zcr.pdf}};
 
     \path[dashed]
           (ZvvSR) edge          node {} (ZllCR)
@@ -721,8 +746,8 @@
     \node[state,color=blue] (ZllCR) [above left of=ZvvSR] {\textcolor{black}{$Z\rightarrow\ell\ell$\\ $\ell\ell$ CR}};
     \node[state,color=black!60!blue] (ACR) [below left of=ZvvSR] {\textcolor{black}{$\gamma$\\$\gamma$ CR}};
     \node[state,color=red]         (WlvSR) [right of=ZvvSR]   {\textcolor{black}{$W\rightarrow\ell\nu$\\SR}};
-    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
-    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{../figures/talk/zcr.pdf}};
+    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{../figures/talk/acr.pdf}};
 
     \path[dashed]
           (ZvvSR) edge          node {} (ZllCR)
@@ -750,10 +775,10 @@
     \node[state,color=red] (ttSR) [below right of=WlvCR] {\textcolor{black}{$t\bar{t}$\\SR}};
     \node[state,color=orange] (ttWCR) [above right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$\ell$ CR}};
     \node[state,color=black!60!green] (tttCR) [below right of=ttSR]  {\textcolor{black}{$t\bar{t}$\\$b\ell$ CR}};
-    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/zcr.pdf}};
-    \node(WlvDiag) [left of=WlvCR] {\includegraphics[width=1.5\textwidth]{figs/sketches/wcr.pdf}\hspace{-40mm}};
-    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{figs/sketches/acr.pdf}};
-    \node(ttDiag) [right of=ttSR] {\includegraphics[width=1.5\textwidth]{figs/sketches/ttcr.pdf}};
+    \node(ZllDiag) [right of=ZllCR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{../figures/talk/zcr.pdf}};
+    \node(WlvDiag) [left of=WlvCR] {\includegraphics[width=1.5\textwidth]{../figures/talk/wcr.pdf}\hspace{-40mm}};
+    \node(ADiag) [right of=ACR] {\hspace{-12mm}\includegraphics[width=1.5\textwidth]{../figures/talk/acr.pdf}};
+    \node(ttDiag) [right of=ttSR] {\includegraphics[width=1.5\textwidth]{../figures/talk/ttcr.pdf}};
 
     \path[dashed]
           (ZvvSR) edge          node {} (ZllCR)
@@ -772,8 +797,20 @@
   \put(-270,-75){- $\gamma/Z$ and $W/Z$ prediction}
 \end{frame}
 
+\begin{frame}[t] \frametitle{Likelihood maximization}
+  
+  \centering 
+  Likelihood assuming one major background $(Z\rightarrow\nu\nu)$ and one CR :
 
-\begin{frame}[t] \frametitle{Post-fit recoil distributions}
+  \begin{align*}
+    \mathcal{L}(\bm{d} ~|~ \mu, \bm\mu^Z, \bm\theta) =~& \prod_{i} \mathrm{Pois}\left(d_i^\mathrm{SR} ~|~ \mu S_i(\bm\theta) + \mu^Z_i + B_i^\mathrm{SR}(\bm\theta)\right) \\
+                                                      &\times \prod_{i}\mathrm{Pois}\left(d_i^\mathrm{CR} ~\Big|~ \frac{\mu^Z_i}{T_i(\bm\theta)} + B_i^\mathrm{CR}(\bm\theta)\right) \\ 
+                                                      &\times \prod_j p(\theta_j)
+  \end{align*}
+\end{frame}
+
+
+\begin{frame}[t] \frametitle{MLE recoil distributions (SM hypothesis)}
   \vspace{-7mm}
   \begin{columns}[T]
     \begin{column}{0.25\textwidth}
@@ -874,10 +911,10 @@
     $\sigma(pp\rightarrow\phi\rightarrow t\psi)$, $m_\phi = 1.5$ TeV & 0.04 pb & 0.19 pb \\ 
     Reconstruction & 3 resolved jets & 1 merged jet \\  
     \hline
-    Excluded $m_\phi$ & 350 GeV & 0.8-3.5 TeV \\ 
+    Excluded $m_\phi$ & 0.35 TeV & 0.8-3.4 TeV \\ 
     Excluded resonant $\sigma\times \mathcal{B}$ & 0.6 pb & 0.002 pb \\  
     \hline
-    Excluded $m_V$ & 650 GeV & 0.2-1.8 TeV \\ 
+    Excluded $m_V$ & 0.65 TeV & 0.2-1.8 TeV \\ 
     Excluded FCNC $\sigma\times \mathcal{B}$ & 0.2 pb & 0.018 pb \\  
   \end{tabular}
 \end{frame}
@@ -905,7 +942,7 @@
       \includegraphics[width=0.32\textwidth]{../figures/vbf/diagrams/vbf_hinv.pdf}
 \end{frame}
 
-\begin{frame}   \frametitle{VBF production of bosons}
+\begin{frame}   \frametitle{Production of bosons with two jets}
   \vspace{-5mm}
   \begin{columns}[T]
     \begin{column}{0.33\textwidth}
@@ -981,7 +1018,7 @@
     \begin{column}{0.33\textwidth}
       \begin{itemize}
         \item Precision estimation of QCD and EW $V$+jets
-        \item Similar strategy as mono-top, but no $\gamma$
+        \item Similar strategy as mono-top, but no $\gamma$ CR
       \end{itemize}
       \vspace{2mm}
       \centering
@@ -1016,7 +1053,7 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \centering
-      All production modes \\ 
+      All production modes (SM Higgs) \\ 
         \includegraphics[width=\textwidth]{../figures/vbf/fits/comb.pdf}
     \end{column}
   \end{columns}
@@ -1026,7 +1063,7 @@
   \begin{columns}[T]
     \begin{column}{0.33\textwidth}
       \centering
-      $H\rightarrow$ inv \\
+      SM $H\rightarrow$ inv \\
       \includegraphics[width=\textwidth]{../figures/vbf/fits/dd.pdf}
     \end{column}
     \begin{column}{0.33\textwidth}
@@ -1092,7 +1129,7 @@
       \begin{tabular}{l|c|c}
         Uncertainty & Size & Effect \\
         \hline \hline
-        $V/Z$ & 15\% & 30\%\\
+        $V/Z$ QCD & 15\% & 30\%\\
         \hline
         $b$ ID & 2-10\% & 30\% \\
         Lepton ID & 2-3\% & 15\% \\
@@ -1101,15 +1138,49 @@
     \pause 
     \begin{column}{0.33\textwidth}
       \centering
-      Inclusive $Z/\gamma$ prediction \\
+      Inclusive $Z/V$ prediction \\
       \includegraphics[width=\textwidth]{../figures/talk/mj_theory.png}\\\mycite{10}
     \end{column}
     \begin{column}{0.33\textwidth}
       \centering
-      $\gamma$+2 jet prediction \\
+      Adding VBF $\gamma$ CR \\
       \includegraphics[width=\textwidth]{../figures/vbf/projection/projection_compare_3.pdf}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{Conclusions}
+  \vspace{-11mm}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{center}
+        Mono-top
+      \end{center}
+      \vspace{-5mm}
+      \begin{itemize}
+          \sitem {Boosted top reconstruction extends reach}
+          \sitem {Jet substructure is critical}
+          \sitem {Strong constraints on flavor-changing DM models}
+          \sitem {Substructure methods can be applied broadly}
+      \end{itemize}
+      \vspace{1mm}
+      \begin{center}
+        VBF $H\rightarrow$ invisible
+      \end{center}
+      \vspace{-5mm}
+      \begin{itemize}
+          \sitem {Very different set of jet challenges: triggering, backgrounds, energy calibration}
+          \sitem {Precise measurement of QCD and EW $V$ spectra}
+      \end{itemize}
+      \pause
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \pause 
+      \centering 
+      \includegraphics[width=\textwidth]{../figures/vbf/projection/projection_compare.pdf}
+    \end{column}
+  \end{columns}
+
 \end{frame}
 
 \backupbegin
@@ -1118,7 +1189,131 @@
 
 \references
 
+\begin{frame}
+    \includegraphics[width=0.49\textwidth]{../figures/theory/dm_rot.png}
+    \includegraphics[width=0.49\textwidth]{../figures/theory/planck.png}
+\end{frame}
 
+\begin{frame}
+    \includegraphics[width=0.54\textwidth]{../figures/theory/fermilat.png}
+    \includegraphics[width=0.4\textwidth]{../figures/theory/monojet.png}
+\end{frame}
+
+\begin{frame}\frametitle{LHC luminosity}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \[L = \frac{N_b^2 n_b f_\mathrm{rev} \gamma F}{4\pi\epsilon \beta^*}\]
+    \begin{itemize}
+        \item $N_b$ $=$ particles per bunch
+        \item $n_b$ $=$ bunches per beam 
+        \item $f_\mathrm{rev}$ $=$ frequency of revolution 
+        \item $\gamma$ $=$ $E/m$ of beam 
+        \item $\epsilon$ $=$ emittance of beam 
+        \item $\beta^*$ $=$ beta function at collision point 
+        \item $F$ $=$ factor accounting for beam intersection geometry
+    \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../figures/cms/lumi.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{Tracking}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{{itemize}
+        \item Hit resolution: 10-30 $\mu$m (pixels) and 10-500 $\mu$m (strips)
+        \item Vertex resolution: 10-12 $\mu$m
+        \item Track efficiency: $>98\%$ above 1 GeV
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{figures/cms/tracker_material.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame} \frametitle{}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 \backupend
 
