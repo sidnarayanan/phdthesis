@@ -1007,7 +1007,7 @@
           \sitem{20\% of signal is lost when data is collected}
           \sitem{Fixed in 2018 data}
       \end{itemize}
-      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/trigeff_nmu1barrelHTMiss.pdf}
+      \includegraphics[width=0.9\textwidth]{../figures/vbf/triggers/mjjsignal_jot12Mass.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -1203,15 +1203,15 @@
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \[L = \frac{N_b^2 n_b f_\mathrm{rev} \gamma F}{4\pi\epsilon \beta^*}\]
-    \begin{itemize}
-        \item $N_b$ $=$ particles per bunch
-        \item $n_b$ $=$ bunches per beam 
-        \item $f_\mathrm{rev}$ $=$ frequency of revolution 
-        \item $\gamma$ $=$ $E/m$ of beam 
-        \item $\epsilon$ $=$ emittance of beam 
-        \item $\beta^*$ $=$ beta function at collision point 
-        \item $F$ $=$ factor accounting for beam intersection geometry
-    \end{itemize}
+      \begin{itemize}
+          \item $N_b$ $=$ particles per bunch
+          \item $n_b$ $=$ bunches per beam 
+          \item $f_\mathrm{rev}$ $=$ frequency of revolution 
+          \item $\gamma$ $=$ $E/m$ of beam 
+          \item $\epsilon$ $=$ emittance of beam 
+          \item $\beta^*$ $=$ beta function at collision point 
+          \item $F$ $=$ factor accounting for beam intersection geometry
+      \end{itemize}
     \end{column}
     \begin{column}{0.4\textwidth}
         \includegraphics[width=\textwidth]{../figures/cms/lumi.pdf}
@@ -1222,98 +1222,345 @@
 \begin{frame} \frametitle{Tracking}
   \begin{columns}
     \begin{column}{0.6\textwidth}
-      \begin{{itemize}
+      \begin{itemize}
         \item Hit resolution: 10-30 $\mu$m (pixels) and 10-500 $\mu$m (strips)
         \item Vertex resolution: 10-12 $\mu$m
         \item Track efficiency: $>98\%$ above 1 GeV
       \end{itemize}
     \end{column}
     \begin{column}{0.4\textwidth}
-        \includegraphics[width=\textwidth]{figures/cms/tracker_material.png}
+        \includegraphics[width=\textwidth]{../figures/cms/tracker_material.png}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
+\begin{frame} \frametitle{Calorimeters}
+  \vspace{-5mm}
   \begin{columns}
     \begin{column}{0.6\textwidth}
+      \begin{center} ECAL \end{center}
+        \vspace{-3mm}
+      \begin{itemize}
+        \sitem{Barrel ($|\eta|<1.44$) and ($|\eta|<3$) endcap structures}
+        \sitem {Lead tungstate crystals, $2.2\times2.2\times23$ cm$^3$}
+        \sitem{$r_M = 2.19$ cm, $X_0=0.89$ cm}
+      \end{itemize}
+      \begin{center} HCAL \end{center}
+        \vspace{-3mm}
+      \begin{itemize}
+        \sitem {HB ($|\eta|<1.4$), HE ($[1.3,3]$), HF ($[3,5]$), HO ($1.3$)}
+        \sitem {Brass absorber ($\lambda_I=1.5$ cm) and plastic scintillator  ]}
+        \sitem {Thickness is 5.8-10.6 $\lambda_I$}
+        \sitem {Tower segmentation is $0.087\times0.087$ in $\eta\times\phi$}
+      \end{itemize}
+      \[
+            \frac{\sigma_E}{E} = \frac{1.98}{\sqrt{E/\mathrm{GeV}}} \oplus 0.09
+        \]
     \end{column}
     \begin{column}{0.4\textwidth}
+      \centering 
+        \includegraphics[width=0.5\textwidth]{../figures/cms/sc.png} \\
+        \includegraphics[width=0.8\textwidth]{../figures/cms/hcal.png}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
+\begin{frame} \frametitle{Muon chambers}
   \begin{columns}
     \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Drift tubes (barrel) and cathode strip chambers (endcaps)
+        \item Hit resolution $78-152$ $\mu$m
+        \item Efficiency is over $95\%$ 
+      \end{itemize}        
     \end{column}
     \begin{column}{0.4\textwidth}
+      \includegraphics[width=\textwidth]{../figures/cms/muonpt.png}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
+\begin{frame} \frametitle{PUPPI}
+  \vspace{-3mm}
   \begin{columns}
-    \begin{column}{0.6\textwidth}
+    \begin{column}{0.5\textwidth}
+      \[
+        \alpha_i = \log \sum_{j \neq i} \frac{\ptj}{\Delta R_{ij}} H(\Delta R_{ij} - R_{\min})H(R_0 - \Delta R_{ij})
+      \]
+      \begin{itemize}
+        \sitem{ Compute $\alpha_i$ for PV charged, PU charged, and neutrals}
+        \sitem{ Extrapolate in $\eta$ and charge}
+        \sitem{ Compare neutral $\alpha_i$ to PV and PU distributions}
+        \sitem{ Rescale neutrals by probability:}
+      \end{itemize}
+      \[w_i = P(\chi^2<x_i|N_\mathrm{dof}=1)\]
+      \[x_i = H(\alpha_i - \bar\alpha) \frac{(\alpha_i - \bar\alpha)^2}{\sigma^2}\]
     \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{../figures/cms/puppi.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+ 
+\begin{frame} \frametitle{Soft drop}
+  \begin{columns}
     \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item Step through clustering tree, starting root node
+        \item If the softer of the two branches $j=1,2$ satisfies:
+          \[
+            \frac{\min(p_\mathrm{T,1},p_\mathrm{T,2})}{p_\mathrm{T,1}+p_\mathrm{T,2}} < 
+            \left(\frac{\Delta R_{12}}{R}\right)^\beta
+          \]
+          then drop it 
+        \item Re-compute quantities as a function of the groomed jet
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+          \includegraphics[width=0.32\textwidth]{../figures/toptagging/gen/norm_clf_M_QCD.pdf}
+          \includegraphics[width=0.32\textwidth]{../figures/toptagging/gen/norm_clf_M_ZpTT_lo.pdf}\\
+          \includegraphics[width=0.32\textwidth]{../figures/toptagging/gen/norm_clf_MSD_QCD.pdf}
+          \includegraphics[width=0.32\textwidth]{../figures/toptagging/gen/norm_clf_MSD_ZpTT_lo.pdf}
+          \includegraphics[width=0.32\textwidth]{../figures/toptagging/gen/msdtau_QCD.pdf}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
+\begin{frame}[t]  \frametitle{Classification (and regression) trees}
+  \vspace{-5mm}
+  \begin{columns}[T]
+    \begin{column}{0.66\textwidth}
+      \begin{itemize}
+        \item Sample the ECF ratio space with finite (but large) grid
+        \item Greedily train a decision tree $T_0(\bm{\psi}) \in \{0,1\}$
+        \item At each node $n$, choose a $\psi_j$ and a boundary $d_n$
+        \item Minimize some cost function, e.g.:
+        \[ \ell(X,y;j,d_n) =  -\hat\pi_B\ln\hat\pi_B -\hat\pi_S\ln\hat\pi_S \]
+        \[\hat\pi_c = \hat P(y=c | \psi_j < d_n)\]
+        \item Proceed until stopping condition
+        \begin{itemize}
+          \item Perfect classification
+          \item Maximum depth/nodes
+          \item Small change in $\ell$
+        \end{itemize}
+      \end{itemize}
     \end{column}
-    \begin{column}{0.4\textwidth}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame} \frametitle{}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame} \frametitle{}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame} \frametitle{}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
-    \end{column}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.33\textwidth}
+      \only<1>{\includegraphics[width=\textwidth]{../figures/toptagging//bdt/tree0.pdf} }
+      \only<2>{\includegraphics[width=\textwidth]{../figures/toptagging//bdt/tree1.pdf} }
+      \only<3>{\includegraphics[width=\textwidth]{../figures/toptagging//bdt/tree2.pdf} }
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
+\begin{frame}[t] \frametitle{Boosted trees}
+  \vspace{-5mm}
+  \begin{itemize}
+    \item Decision trees prone to overfitting
+    \begin{itemize}
+      \item Need to be very large for complex decision boundaries
+    \end{itemize}
+    \item Boosting is a standard method to combine an ensemble of shallow trees
+    \item Need to define a global loss function $L$, e.g.
+    \[L(y_i; f_i) = \ln\left(1 + \exp(-y_if_i)\right)\]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t] \frametitle{Boosted trees}
+  \vspace{-5mm}
+    \[L(y_i; f_i) = \ln\left(1 + \exp(-y_if_i)\right)\]
+  \begin{enumerate}
+    \item Initialize classifier $f_0 = T_0$
+    \item Until some stopping condition (index $m=1,\dots$):
+    \begin{enumerate}
+      \item[2.1.] Compute the ``residual''
+        \[r_{mi} = -\nabla_f L(y_i; f) |_{f=f_{m-1}(\bm\psi_i)}\]
+        \[L = (y-f_m(\bm\psi))^2 \Rightarrow r_m = y - f_m(\bm\psi) \]
+      \item[2.2.] Fit a regression tree $T_m$ to predict $r_{mi}$ as a function of $x_i$:
+        \[\ell(X,r_m;j,d,\hat{r}) = \sum_{i | \psi_{ji} < d} (r_{mi} - \hat r)^2\]
+      \item[2.3.] Update $f_m = f_{m-1} + \nu T_m$
+    \end{enumerate}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t] \frametitle{Dimensional reduction}
+  \begin{itemize}
+    \item ECF ratio space is much bigger than the problem we're solving
+    \begin{itemize}
+      \item Large subsets are useless/correlated
+      \item Strong non-linear relationships among useful ratios
+    \end{itemize}
+    \item Inference speed is important
+    \begin{itemize}
+      \item Reduce number of $\psi_i$ to compute
+      \item Make trees smaller
+    \end{itemize}
+    \item Standard dimensional reduction techniques aren't ideal
+    \begin{itemize}
+      \item PCA
+      \begin{itemize}
+        \item Kernel PCA
+      \end{itemize}
+      \item Autoencoders, etc.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{Dimensional reduction using BDTs}
+  \vspace{-5mm}
+  \begin{itemize}
+    \item Can we embed dimensional reduction into the classification?
+  \end{itemize}
+  \begin{enumerate}
+    \item Train a BDT with trees $T_1,\dots,T_n$
+    \item For each $\psi_i$, define a score:
+    \[ s_i = \sum_{m=1}^n \nu^{m-1} \sum_{\text{nodes using $\psi_i$ in $T_m$}} N_\text{samples}(\mathrm{node}) \times \left(\ell(\mathrm{node}) - \ell(\mathrm{parent})\right)^2  \]
+    \item Remove (one or more) $\psi_i$ with smallest $s_i$ and repeat
+  \end{enumerate}
+  \begin{itemize}
+    \item Iterative training is expensive, but can significantly improve inference speed
+    \item Grid computing resources makes training semi-parallelizable
+  \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{$\tau_{32}$ and $f_\mathrm{rec}$}
+  \vspace{-5mm}
   \begin{columns}
-    \begin{column}{0.6\textwidth}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item $\tau_{32} = \tau_3 / \tau_2$, where:
+          \[
+            \tau_N = \frac{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} \min\{\Delta R_{ia} | a\in A\}}{\sum_{i\in\mathrm{jet}} p_{\mathrm{T},i} R}
+          \]
+        \item Compute the filtered subjets of the CA15 jet, and choose the three ($1,2,3$) most consistent with top decay products. Then define:
+          \[
+            f_\mathrm{rec} = \min_{0\leq i < j \leq 2} \left|
+            \frac{\nicefrac{m_{ij}}{m_{123}}}{\nicefrac{m_W}{m_t}} - 1\right|
+          \]
+      \end{itemize}
     \end{column}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{../figures/toptagging/shapes/mass_fjTau32SD.pdf} \\
+    \end{column}
+    \begin{column}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{../figures/toptagging/shapes/mass_fjHTTFRec.pdf}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame} \frametitle{}
+\begin{frame} \frametitle{Efficiency in data}
+  \vspace{-5mm}
+\begin{align*}
+    \mathrm{SF}_\mathrm{top}(0.1) = 1.08 & \pm 0.04 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.03 (\mathrm{statistical}) \pm 0.02 (\mathrm{JES+JER}) \pm 0.02 (\mathrm{merging}) \pm 0.002 (b) \nonumber \\ 
+    \mathrm{SF}_\mathrm{top}(0.45) = 1.07 & \pm 0.06 (\mathrm{total}) \nonumber \\ 
+                                         & \pm 0.03 (\mathrm{statistical}) \pm 0.02 (\mathrm{JES+JER}) \pm 0.014 (\mathrm{merging}) \pm 0.000 (b) 
+\end{align*}
   \begin{columns}
-    \begin{column}{0.6\textwidth}
+    \begin{column}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{../figures/toptagging/sf/loose_fail.pdf}
     \end{column}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{../figures/toptagging/sf/loose_pass.pdf}
     \end{column}
   \end{columns}
 \end{frame}
+
+\begin{frame} \frametitle{Monotop Lagrangians}
+  \[
+\mathcal{L}_\text{int}=  V_\mu  \overline\chi \gamma^\mu (  g^V_{\chi} + g^A_{\chi} \gamma_5 ) \chi
+                           + \overline{q}_u \gamma^\mu
+                           ( g^V_u + g^A_u \gamma_5 ) q_u V_\mu
+                           + \overline{q}_{d} \gamma^\mu
+                           (  g^V_{d} + g^A_{d} \gamma_5 ) q_d V_\mu
+                           + \text{h.c.},
+   \]
+
+   \[
+    \mathcal{L}_\text{int} = \phi\overline{{d}}_i^C[(a_{q})^{ij}+(b_{q})^{ij}\gamma^5]{d}_j+\phi\overline{{t}}[a_{\psi}+b_{\psi}\gamma^5]\psi+\text{h.c.}
+   \]
+\end{frame}
+
+\begin{frame} \frametitle{Monotop likelihood}
+  \vspace{-8mm}
+\begin{align*}
+    \mathcal{L}\left(\bm{d}~|~ \mu,\muz,\mut,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
+    \prod_{i\in\mathrm{bins}} & \left[
+    \pois\left(d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \muzi + \frac{\muzi}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + \muti + B^{\mathrm{SR}}_{i}(\bm\theta)\right) \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=\mu\mu,ee} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=b\mu,be}\pois\left(d^{X}_i~\Big|~ \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left(d^{X}_i~\Big|~ \frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + \frac{\muti}{\Ti{X}{\ttbar}(\bm\theta)} + B^{X}_i(\bm\theta) \right) \nonumber \\
+    & \phantom{\Big[} \times \pois\left(\left.d^\gamma_i~\Big|~ \frac{\muzi}{\Ti\gamma\gamma(\bm\theta)} \right) \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+\end{align*}
+\end{frame}
+
+\begin{frame} \frametitle{VBF vs gluon fusion}
+  \vspace{-5mm}
+    \begin{center}
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_jot12DEta.pdf}
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_fabsjotEta_0_.pdf}
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_fabsjotEta_1_.pdf} \\
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_jot12DPhi.pdf}
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_jotE_0_.pdf}
+        \includegraphics[width=0.25\textwidth]{../figures/vbf/shapes_signal/loosesignal_jotE_1_.pdf} 
+    \end{center}
+\end{frame}
+
+\begin{frame} \frametitle{VBF likelihood}
+\vspace{-5mm}
+\begin{align*}
+    \mathcal{L}\left(\bm{d}\,|\, \mu,\muz,\bm{\theta}\right) = \hspace{-30mm} & \nonumber \\
+    \prod_{i\in\mathrm{bins}} & \left[
+    \pois\left\{d^{\mathrm{SR}}_{i} ~\Big|~ \mu S^{\mathrm{SR}}_{i}(\bm\theta)  + \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\left(1+\frac{1}{\Ti{\mathrm{SR}}{Z/W}(\bm\theta)}\right)\muzi + B^{\mathrm{SR}}_{i}(\bm\theta)\right\} \vphantom{\frac{\muzi}{\Ti{\mu\mu}{Z}(\bm\theta)}}\right. \nonumber \\
+    & \phantom{\Big[} \times \prod_{X=\mu,e} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{W}(\bm\theta)\Ti{\mathrm{SR}}{Z/W}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \nonumber \\
+    & \phantom{\Big[} \times \left.\prod_{X=\mu\mu,ee} \pois\left\{d^{X}_i~\Big|~ \left(1+\frac{1}{\Ti{\mathrm{QE}}{Z}(\bm\theta)}\right)\frac{\muzi}{\Ti{X}{Z}(\bm\theta)} + B^{X}_i(\bm\theta) \right\} \right]  \times  \prod_{j=0}^{n_\theta} p_j(\theta_j)
+\end{align*}
+\end{frame}
+
+\begin{frame} \frametitle{VBF $\bm{T}$ validation}
+            \includegraphics[width=0.32\textwidth]{../figures/vbf/fits/dimuon_dielectron_cat_vbf_ratio.pdf}
+            \includegraphics[width=0.32\textwidth]{../figures/vbf/fits/singlemuon_singleelectron_cat_vbf_ratio.pdf}
+            \includegraphics[width=0.32\textwidth]{../figures/vbf/fits/combined_combinedW_cat_vbf_ratio.pdf}
+\end{frame}
+
+\begin{frame} \frametitle{L1 pre-firing mechanism}
+  \vspace{-5mm}
+  \centering
+        \includegraphics[width=0.8\textwidth,page=2]{../figures/vbf/triggers/l1diag.pdf}
+\end{frame}
+
+\begin{frame} \frametitle{Un-pre-fireable events}
+  \vspace{-5mm}
+  \centering
+        \includegraphics[width=0.8\textwidth,page=3]{../figures/vbf/triggers/l1diag.pdf}
+\end{frame}
+
+% \begin{frame} \frametitle{}
+%   \begin{columns}
+%     \begin{column}{0.6\textwidth}
+%     \end{column}
+%     \begin{column}{0.4\textwidth}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+% 
+% \begin{frame} \frametitle{}
+%   \begin{columns}
+%     \begin{column}{0.6\textwidth}
+%     \end{column}
+%     \begin{column}{0.4\textwidth}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+% 
+% \begin{frame} \frametitle{}
+%   \begin{columns}
+%     \begin{column}{0.6\textwidth}
+%     \end{column}
+%     \begin{column}{0.4\textwidth}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
 
 \backupend
 
